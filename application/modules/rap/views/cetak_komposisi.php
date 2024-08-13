@@ -101,7 +101,7 @@
 				$total = 0;
 				?>
 				<?php
-				$total_bahan = $row['total_a'] + $row['total_b'] + $row['total_c'] + $row['total_d'];
+				$total_bahan = $row['total_a'] + $row['total_b'] + $row['total_c'] + $row['total_d'] + $row['total_e'];
 				?>
 				<td align="center">1.</td>
 				<td align="left"><?= $row['produk_a'] = $this->crud_global->GetField('produk',array('id'=>$row['produk_a']),'nama_produk'); ?></td>
