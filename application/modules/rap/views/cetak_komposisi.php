@@ -314,23 +314,23 @@
 			</tr>
 			<tr>
 				<td align="right" colspan="5"><b>LABA</b></td>
-				<td align="right"><b><?php echo number_format(7.00,2,',','.');?>%</b></td>
-				<td align="right"><b><?php echo number_format(($total * 7) / 100,0,',','.');?></b></td>
+				<td align="right"><b><?php echo number_format(9.00,2,',','.');?>%</b></td>
+				<td align="right"><b><?php echo number_format(($total * 9) / 100,0,',','.');?></b></td>
 			</tr>
 			<tr>
 				<td align="right" colspan="5"><b>HARGA JUAL</b></td>
 				<td align="right"></td>
-				<td align="right"><b><?php echo number_format((($total * 7) / 100) + $total,0,',','.');?></b></td>
+				<td align="right"><b><?php echo number_format((($total * 9) / 100) + $total,0,',','.');?></b></td>
 			</tr>
 			<tr>
 				<td align="right" colspan="5"><b>DISKONTO</b></td>
 				<td align="right"><b><?php echo number_format(4.00,2,',','.');?>%</b></td>
-				<td align="right"><b><?php echo number_format((((($total * 7) / 100) + $total) * 4) /100,0,',','.');?></b></td>
+				<td align="right"><b><?php echo number_format((((($total * 9) / 100) + $total) * 4) /100,0,',','.');?></b></td>
 			</tr>
 			<tr>
 			<td align="right" colspan="5"><b>HARGA JUAL</b></td>
 				<td align="right"></td>
-				<td align="right"><b><?php echo number_format(((((($total * 7) / 100) + $total) * 4) /100) + (($total * 7) / 100) + $total,0,',','.');?></b></td>
+				<td align="right"><b><?php echo number_format(((((($total * 9) / 100) + $total) * 4) /100) + (($total * 9) / 100) + $total,0,',','.');?></b></td>
 			</tr>
 		</table>
 	</body>
