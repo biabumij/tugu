@@ -156,7 +156,7 @@
 				$total_alat = $row['batching_plant'] + $row['truck_mixer'] + $row['wheel_loader'] + $row['bbm_solar'];
 				$total_bua = (0.0700 * 800000) + (0.0700 * 250000);
 				$total_bank = 15000;
-				$total = $total_bahan + $total_alat + $total_bua + $total_bank;
+				$total = $total_bahan + $total_alat + $total_bua;
 				?>
 			<tr>
 				<td align="right" colspan="5"><b>JUMLAH HARGA BAHAN</b></td>
@@ -300,11 +300,11 @@
 				<td align="center"></td>
 				<td align="right"><?php echo number_format(15000,0,',','.');?></td>
 				<td align="right"></td>
-				<td align="right"><?php echo number_format(15000,0,',','.');?></td>
+				<td align="right"></td>
 			</tr>
 			<tr>
 				<td align="right" colspan="5"><b>JUMLAH BIAYA BANK</b></td>
-				<td align="right"><b><?php echo number_format(($total_bank / $total) * 100,2,',','.');?>%</b></td>
+				<td align="right"><b><?php echo number_format(0,2,',','.');?>%</b></td>
 				<td align="right"></td>
 			</tr>
 			<tr>
