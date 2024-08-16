@@ -414,6 +414,15 @@ class Pembelian extends Secure_Controller
                 $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 
+                $uploads_verifikasi = '<a href="javascript:void(0);" onclick="UploadDocVerifikasi('.$row['id'].')" class="btn btn-primary" style="border-radius:10px;" title="Upload Dok. Verifikasi" ><i class="fa fa-upload"></i> </a>';
+				$row['document_verifikasi'] = $uploads_verifikasi.' ';
+                
+                if (!empty($row['verifikasi_file'])) {
+                    $row['verifikasi_file'] = '<a href="'.base_url().'uploads/verifikasi_dokumen/'.$row['verifikasi_file'].'" target="_blank">'.$row['verifikasi_file'].'</a>';
+                } else {
+                    $row['verifikasi_file'] = '-';
+                }
+
                 $data[] = $row;
             }
         }
@@ -888,9 +897,8 @@ class Pembelian extends Secure_Controller
             'catatan' => $this->input->post('catatan'),
             'kategori_persetujuan' => 'VERIFIKASI PEMBELIAN',
             'approve_unit_head' => 'TIDAK DISETUJUI',
+            'logistik' => 10,
             'unit_head' => 6,
-            'keu' => 9,
-            'log' => 10,
             'created_by' => $this->session->userdata('admin_id'),
             'created_on' => date('Y-m-d H:i:s'),
         );
@@ -1995,7 +2003,10 @@ class Pembelian extends Secure_Controller
     public function closed_verifikasi($id)
 	{
 		$this->db->set("approve_unit_head", "SETUJUI");
-        $this->db->set("m_keu", 37);
+        $this->db->set("keu_pusat", "8");
+        $this->db->set("pusat", "2");
+        $this->db->set("updated_by", $this->session->userdata('admin_id'));
+        $this->db->set("updated_on", date('Y-m-d H:i:s'));
 		$this->db->where("id", $id);
 		$this->db->update("pmm_verifikasi_penagihan_pembelian");
 		$this->session->set_flashdata('notif_success','<b>CLOSED</b>');

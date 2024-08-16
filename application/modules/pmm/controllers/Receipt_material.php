@@ -226,6 +226,52 @@ class Receipt_material extends CI_Controller {
 		echo json_encode($output);
 	}
 
+	public function form_document_verifikasi()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+
+			$file = '';
+			$error_file = false;
+
+			if (!file_exists('./uploads/verifikasi_dokumen/')) {
+			    mkdir('./uploads/verifikasi_dokumen/', 0777, true);
+			}
+			// Upload email
+			$config['upload_path']          = './uploads/verifikasi_dokumen/';
+	        $config['allowed_types']        = 'jpg|png|jpeg|JPG|PNG|JPEG|pdf';
+
+	        $this->load->library('upload', $config);
+
+			if($_FILES["file"]["error"] == 0) {
+				if (!$this->upload->do_upload('file'))
+				{
+						$error = $this->upload->display_errors();
+						$file = $error;
+						$error_file = true;
+				}else{
+						$data = $this->upload->data();
+						$file = $data['file_name'];
+				}
+			}
+
+			if($error_file){
+				$output['output'] = false;
+				$output['err'] = $file;
+				echo json_encode($output);
+				exit();
+			}
+
+			$arr_data['verifikasi_file'] = $file;
+
+			if($this->db->update('pmm_penagihan_pembelian',$arr_data,array('id'=>$id))){
+				$output['output'] = true;
+			}
+		}
+		echo json_encode($output);
+	}
+
 	public function table_receipt()
 	{	
 		$data = array();

@@ -504,16 +504,17 @@
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
-                                                    <th>Verifikasi Dok.</th>
+                                                    <th>Verif. Dok.</th>
+                                                    <th>Verif. File</th>
                                                     <th>Status Tagihan</th>
                                                     <th>Tgl. Invoice</th>
                                                     <th>No. Invoice</th>
                                                     <th>Rekanan</th>
-                                                    <th>Tgl. Pesanan Pembelian</th>
-                                                    <th>No. Pesanan Pembelian</th>
+                                                    <th>No. Pesanan</th>
                                                     <th>Total</th>
                                                     <th>Pembayaran</th>
                                                     <th>Sisa Tagihan</th>
+                                                    <th>Upload Verif.</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -522,6 +523,34 @@
                                         </table>
                                     </div>
 
+                                </div>
+
+                                <div class="modal fade bd-example-modal-lg" id="modalDocVerifikasi" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <span class="modal-title">Upload Dokumen Verifikasi Pembelian</span>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal" enctype="multipart/form-data" method="POST" style="padding: 0 10px 0 20px;">
+                                                    <input type="hidden" name="id" id="id_doc_verifikasi">
+                                                    <div class="form-group">
+                                                        <label>Upload Dokumen</label>
+                                                        <input type="file" id="file" name="file" class="form-control" required="" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-success" id="btn-form-doc-surat-jalan" style="font-weight:bold; width;10%; border-radius:10px;"> KIRIM</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%; border-radius:10px;"> CLOSE</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -1459,6 +1488,9 @@
                 "data": "verifikasi_dok"
             },
             {
+                "data": "verifikasi_file"
+            },
+            {
                 "data": "status"
             },
             {
@@ -1469,9 +1501,6 @@
             },
             {
                 "data": "supplier"
-            },
-            {
-                "data": "tanggal_po"
             },
             {
                 "data": "no_po"
@@ -1485,10 +1514,15 @@
             {
                 "data": "sisa_tagihan"
             },
+            {
+                "data": "document_verifikasi"
+            },
         ],
         "columnDefs": [
             { "width": "5%", "targets": 0, "className": 'text-center'},
+            { "targets": 7, "className": 'text-left'},
             { "targets": [8, 9, 10], "className": 'text-right'},
+            { "width": "5%", "targets": 11, "className": 'text-center'},
         ],
         responsive: true,
         pageLength: 25,
@@ -1807,6 +1841,46 @@
                     table_receipt.ajax.reload();
 
                     $('#modalDocSuratJalan').modal('hide');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        event.preventDefault();
+
+    });
+
+    function UploadDocVerifikasi(id) {
+
+    $('#modalDocVerifikasi').modal('show');
+    $('#id_doc_verifikasi').val(id);
+    }
+
+    $('#modalDocVerifikasi form').submit(function(event) {
+        $('#btn-form-doc-verifikasi').button('loading');
+
+        var form = $(this);
+        var formdata = false;
+        if (window.FormData) {
+            formdata = new FormData(form[0]);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/receipt_material/form_document_verifikasi'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: formdata ? formdata : form.serialize(),
+            success: function(result) {
+                $('#btn-form-doc-verifikasi').button('reset');
+                if (result.output) {
+                    $("#modalDocVerifikasi form").trigger("reset");
+                    table_tagihan.ajax.reload();
+
+                    $('#modalDocVerifikasi').modal('hide');
                 } else if (result.err) {
                     bootbox.alert(result.err);
                 }
