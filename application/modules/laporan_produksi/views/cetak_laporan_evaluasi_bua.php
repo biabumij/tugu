@@ -900,7 +900,7 @@
 								Direktur Utama</b>
 							</td>
 							<td align="center">
-								<b><u>Novel Joko Tri Laksono</u><br />
+								<b><u>Tri Wahyu Rahadi</u><br />
 								Ka. Plant</b>
 							</td>
 						</tr>

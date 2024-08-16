@@ -330,12 +330,12 @@
 						</tr>
 						<tr>
 						<td align="center">
-								<b><u>Novel Joko Tri Laksono</u><br />
+								<b><u>Tri Wahyu Rahadi</u><br />
 								Ka. Plant</b>
 							</td>
 							<td align="center">
-								<b><u>Rani Oktavia Rizal</u><br />
-								Adm. Lohistik</b>
+								<b><u>Vicky Irwana Yudha</u><br />
+								Logistik</b>
 							</td>
 						</tr>
 					</table>
