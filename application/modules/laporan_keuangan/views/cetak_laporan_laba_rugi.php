@@ -564,7 +564,7 @@
 								Direktur Utama</b>
 							</td>
 							<td align="center">
-								<b><u>Tri Wahyu Rahadi</u><br />
+								<b><u>Novel Joko Tri Laksono</u><br />
 								Ka. Plant</b>
 							</td>
 						</tr>
