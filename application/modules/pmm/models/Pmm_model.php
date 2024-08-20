@@ -233,7 +233,7 @@ class Pmm_model extends CI_Model {
             $id = 1;
         }
         $date = explode('-', $date);
-        $output = sprintf('%04d', $id).'/RM/'.$code_prefix['code_prefix'].'/'.$date[1].'/'.$date[0];
+        $output = sprintf('%04d', $id).'/BBJ/'.$code_prefix['code_prefix'].'/'.$date[1].'/'.$date[0];
         return $output;
             
     }
