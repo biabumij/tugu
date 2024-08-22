@@ -106,12 +106,7 @@
         <br />
         <br />
         <br />
-        <br />
-        <?php
-        $staff_keuangan_pusat = $this->pmm_model->GetNameGroup(9);
-        $manager_keuangan = $this->pmm_model->GetNameGroup(5);
-        $direksi = $this->pmm_model->GetNameGroup(6);
-        ?>     
+        <br />  
         <table width="98%" border="0" cellpadding="0">
             <tr >
                 <td width="5%"></td>
@@ -122,7 +117,10 @@
                                 Dibuat Oleh
                             </td>
                             <td align="center" >
-                                Diperiksa dan Disetujui Oleh
+                                Diperiksa Oleh
+                            </td>
+                            <td align="center" >
+                                Disetujui Oleh
                             </td>
                             <td align="center" >
                                 Diketahui Oleh
@@ -138,16 +136,22 @@
                             <td align="center">
                                 
                             </td>
+                            <td align="center">
+                                
+                            </td>
                         </tr>
                         <tr class="table-active3">
                             <td align="center" >
-                            <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$pembayaran['created_by']),'admin_name'); ?>
+                                <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$pembayaran['created_by']),'admin_name'); ?>
+                            </td>
+                            <td align="center" >
+                                Rifka Dian Bethary
+                            </td>
+                            <td align="center" >
+                                Tri Wahyu Rahadi
                             </td>
                             <td align="center" >
                                 Erika Sinaga
-                            </td>
-                            <td align="center" >
-                                Deddy Sarwobiso
                             </td>
                         </tr>
                         <tr class="table-active3">
@@ -161,10 +165,13 @@
                                  <b><?= $created_group['admin_group_name']?></b>
                             </td>
                             <td align="center" >
-                                <b>Dir. Keuangan</b>
+                                <b>Pj. Keuangan & SDM</b>
                             </td>
                             <td align="center" >
-                                <b>Direktur Utama</b>
+                                <b>Ka. Plant</b>
+                            </td>
+                            <td align="center" >
+                                <b>Dir. Keuangan</b>
                             </td>
                         </tr>
                     </table>

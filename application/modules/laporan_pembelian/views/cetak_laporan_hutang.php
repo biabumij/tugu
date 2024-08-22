@@ -165,5 +165,52 @@
 				<th align="right"><?php echo number_format($total_sisa_hutang_tagihan,0,',','.');?></th>
             </tr>   
 		</table>
+		<p>* Exclude PPN & PPH</p>
+		<table width="98%" border="0" cellpadding="30">
+			<tr >
+				<td width="5%"></td>
+				<td width="90%">
+					<table width="100%" border="0" cellpadding="3">
+						<tr>
+							<td align="center" >
+								Disetujui Oleh
+							</td>
+							<td align="center" >
+								Diperiksa Oleh
+							</td>
+							<td align="center">
+								Dibuat Oleh
+							</td>
+						</tr>
+						<tr class="">
+							<td align="center" height="70px">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<b><u>Tri Wahyu Rahadi</u><br />
+								Ka. Plant</b>
+							</td>
+							<td align="center">
+							<b><u>Rifka Dian Bethary</u><br />
+								Pj. Keuangan & SDM</b>
+							</td>
+							<td align="center">
+							<b><u>a Widya Kumala</u><br />
+								Keuangan Proyek</b>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+			</tr>
+		</table>
 	</body>
 </html>

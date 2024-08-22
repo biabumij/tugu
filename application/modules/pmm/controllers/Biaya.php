@@ -180,7 +180,7 @@ class Biaya extends CI_Controller {
             'memo' => $this->input->post('memo'),
         	'status' => 'PAID',
             'unit_head' => 6,
-            'admin' => 9,
+            'admin' => 13,
             'transaksi' => 'BIAYA',
         	'created_by' => $this->session->userdata('admin_id'),
         	'created_on' => date('Y-m-d H:i:s')
