@@ -404,7 +404,7 @@
 								Pj. Keuangan & SDM</b>
 							</td>
 							<td align="center">
-							<b><u>a Widya Kumala</u><br />
+							<b><u>Iva Widya Kumala</u><br />
 								Keuangan Proyek</b>
 							</td>
 						</tr>
