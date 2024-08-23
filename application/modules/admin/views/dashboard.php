@@ -309,7 +309,7 @@
                                     if(in_array($this->session->userdata('admin_group_id'), array(5))){
                                     ?>
                                     <th width="25%" class="text-center">
-                                        <ul class="row text-center list-inline  wowload bounceInUp collapse" id="rencana">
+                                        <ul class="row text-center list-inline  wowload bounceInUp collapse" id="keuangan">
                         
                                         </ul>
                                     </th>
