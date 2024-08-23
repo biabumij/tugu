@@ -118,11 +118,12 @@
             <?php echo $this->Templates->PageHeader();?>
             <div class="page-body">
                 <div id="about" class="container spacer about">
+                    <?php
+                    if(in_array($this->session->userdata('admin_group_id'), array(1,2,3))){
+                    ?>
                     <div class="col-sm-12" style="background:#fff;background-image:linear-gradient(to right,#999999 0%,#333333 51%,#666666 100%); font-size:18px; border-radius: 10px; padding:10px; margin-bottom:50px;">
                         <figure class="highcharts-figure">
-                            <?php
-                            if(in_array($this->session->userdata('admin_group_id'), array(1,2,3))){
-                            ?>
+                            
                             <?php
                             $query1 = $this->db->select('COUNT(pvp.id) as id')
                             ->from('pmm_verifikasi_penagihan_pembelian pvp')
@@ -563,7 +564,7 @@
                                 fontSize: '14px',
                                 fontFamily: 'helvetica'
                             },
-                            text: 'PT. BIA BUMI JAYENDRA - TIGA DIHAJI',
+                            text: 'PT. BIA BUMI JAYENDRA - TUGU',
                             x: -20 //center text
                         },
                         xAxis: { //data bulan
@@ -730,7 +731,7 @@
                                 fontSize: '14px',
                                 fontFamily: 'helvetica'
                             },
-                            text: 'PT. BIA BUMI JAYENDRA - TIGA DIHAJI',
+                            text: 'PT. BIA BUMI JAYENDRA - TUGU',
                             x: -20
                         },
                         xAxis: { //X axis menampilkan data bulan
