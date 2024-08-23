@@ -324,6 +324,19 @@
                                     <?php
                                     }
                                     ?>
+                                    
+                                    <?php
+                                    if(in_array($this->session->userdata('admin_group_id'), array(6))){
+                                    ?>
+                                    <th width="25%" class="text-center">
+                                        <ul class="row text-center list-inline  wowload bounceInUp collapse" id="rencana">
+                                            
+                                            
+                                        </ul>
+                                    </th>
+                                    <?php
+                                    }
+                                    ?>
                                 </tr>
                             </table>
                             <table width="100%">
