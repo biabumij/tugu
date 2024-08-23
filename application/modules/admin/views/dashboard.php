@@ -304,6 +304,18 @@
                                     <?php
                                     }
                                     ?>
+
+                                    <?php
+                                    if(in_array($this->session->userdata('admin_group_id'), array(5))){
+                                    ?>
+                                    <th width="25%" class="text-center">
+                                        <ul class="row text-center list-inline  wowload bounceInUp collapse" id="rencana">
+                        
+                                        </ul>
+                                    </th>
+                                    <?php
+                                    }
+                                    ?>
                                     
                                     <?php
                                     if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,5,7,8))){
@@ -500,6 +512,7 @@
                             ?>
                         </div>
                     </div>
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
                 </div>
             </div>
         </div>
