@@ -234,9 +234,6 @@
                                             </li>
                                         </ul>
                                     </th>
-                                    <?php
-                                    if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,6,7,8))){
-                                    ?>
                                     <th width="25%" class="text-center" data-toggle="collapse" data-target="#keuangan" aria-expanded="false" aria-controls="kp">
                                         <ul class="row text-center list-inline  wowload bounceIn">
                                             <li style="background: linear-gradient(110deg, #8dea57 20%, #8dea57 40%, #57d762 80%);">
@@ -245,12 +242,6 @@
                                             </li>
                                         </ul>
                                     </th>
-                                    <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,5,7,8))){
-                                    ?>
                                     <th width="25%" class="text-center" data-toggle="collapse" data-target="#rencana" aria-expanded="false" aria-controls="beton">
                                         <ul class="row text-center list-inline  wowload bounceIn">
                                             <li class="text-center" style="background: linear-gradient(110deg, #cf9231 20%, #cf9231 40%, #ca861b 80%);">
@@ -259,9 +250,6 @@
                                             </li>
                                         </ul>
                                     </th>
-                                    <?php
-                                    }
-                                    ?>
                                 </tr>
                             </table>
                             <table width="100%">
@@ -437,7 +425,7 @@
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-users"></i><b>USER</b></span></a>
                                             </li>
                                             <?php
-                                            if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,7,8))){
+                                            if(in_array($this->session->userdata('admin_group_id'), array(1,2,7,8))){
                                             ?>
                                             <li class="text-center" style="background: linear-gradient(110deg, #d11212 20%, #d11212 40%, #b30f15 80%);">
                                                 <a href="<?php echo site_url('admin/perusahaan');?>">
@@ -474,7 +462,6 @@
                                     if(in_array($this->session->userdata('admin_group_id'), array(1))){
                                     ?>
                                     <th width="25%" class="text-center">
-                                        
                                     </th>
                                     <th width="25%" class="text-center">
                                         <ul class="row text-center list-inline  wowload bounceInUp collapse" id="settings">
