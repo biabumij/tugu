@@ -22,6 +22,10 @@
             background-color: #eeeeee !important;
         }
 
+        a:hover {
+            color: white;
+        }
+
         th, td {
             padding: 15px;
         }
@@ -114,6 +118,61 @@
             <?php echo $this->Templates->PageHeader();?>
             <div class="page-body">
                 <div id="about" class="container spacer about">
+                    <div class="col-sm-12" style="background:#fff;background-image:linear-gradient(to right,#999999 0%,#333333 51%,#666666 100%); font-size:18px; border-radius: 10px; padding:10px; margin-bottom:50px;">
+                        <figure class="highcharts-figure">
+                            <?php
+                            if(in_array($this->session->userdata('admin_group_id'), array(1,2,3))){
+                            ?>
+                            <?php
+                            $query1 = $this->db->select('COUNT(pvp.id) as id')
+                            ->from('pmm_verifikasi_penagihan_pembelian pvp')
+                            ->where("pvp.approve_unit_head = 'TIDAK DISETUJUI'")
+                            ->get()->row_array();
+
+                            $query2 = $this->db->select('COUNT(ppo.id) as id')
+                            ->from('pmm_purchase_order ppo')
+                            ->where("ppo.status = 'WAITING'")
+                            ->get()->row_array();
+                            
+                            $query = $query1['id'] + $query2['id'];
+                            ?>
+                                <center><b><a target="_blank" href="<?= base_url("pmm/reports/detail_notification/") ?>"><i class="fa-solid fa-clipboard-check"></i> BUTUH PERSETUJUAN KANTOR PUSAT (<blink><?php echo number_format($query,0,',','.');?></blink>)</a><b></center>
+                            <?php
+                            }
+                            ?>
+
+                            <?php
+                            if(in_array($this->session->userdata('admin_group_id'), array(1,4))){
+                            ?>
+                            <?php
+                            $query = $this->db->select('COUNT(req.id) as id')
+                            ->from('pmm_request_materials req')
+                            ->where("req.status = 'WAITING'")
+                            ->get()->row_array();
+                            
+                            $query = $query['id'];
+                            ?>
+                                <center><b><a target="_blank" href="<?= base_url("pmm/reports/detail_notification_2/") ?>"><i class="fa-solid fa-clipboard-check"></i> BUTUH PERSETUJUAN KA. PLANT (<blink><?php echo number_format($query,0,',','.');?></blink>)</a><b></center>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if(in_array($this->session->userdata('admin_group_id'), array(1))){
+                            ?>
+                            <?php
+                            $query = $this->db->select('COUNT(id) as id')
+                            ->from('perubahan_sistem')
+                            ->where("status = 'UNPUBLISH'")
+                            ->get()->row_array();
+                            
+                            $query = $query['id'];
+                            ?>
+                                <center><a target="_blank" href="<?= base_url("pmm/reports/detail_notification_3/") ?>"><i class="fa-solid fa-clipboard-check"></i> BUTUH PERSETUJUAN TI & SISTEM (<blink><?php echo number_format($query,0,',','.');?></blink>)</a></center>
+                            <?php
+                            }
+                            ?>
+                        </figure>    
+                    </div>
                     <?php
                     if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,7,8))){
                     ?>
@@ -162,52 +221,7 @@
                     <div id="flippy_menu">
                         <button title="Click to show/hide content" type="button" onclick="if(document.getElementById('spoiler_menu') .style.display=='none') {document.getElementById('spoiler_menu') .style.display=''}else{document.getElementById('spoiler_menu') .style.display='none'}"><i class="fa-regular fa-hand-point-right"></i> MENU</button>
                     </div>
-                    <div id="spoiler_menu" style="display:block">
-                        <?php
-                        if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4))){
-                        ?>
-
-                        <?php
-                        $query1 = $this->db->select('COUNT(pvp.id) as id')
-                        ->from('pmm_verifikasi_penagihan_pembelian pvp')
-                        ->where("pvp.approve_unit_head = 'TIDAK DISETUJUI'")
-                        ->get()->row_array();
-
-                        $query2 = $this->db->select('COUNT(ppo.id) as id')
-                        ->from('pmm_purchase_order ppo')
-                        ->where("ppo.status = 'WAITING'")
-                        ->get()->row_array();
-
-                        $query3 = $this->db->select('COUNT(req.id) as id')
-                        ->from('pmm_request_materials req')
-                        ->where("req.status = 'WAITING'")
-                        ->get()->row_array();
-                        
-                        $query = $query1['id'] + $query2['id'] + $query3['id'];
-                        ?>
-
-                        <div style="font-weight:bold; font-size:14px;">
-                            <center><a target="_blank" href="<?= base_url("pmm/reports/detail_notification/") ?>"><i class="fa-solid fa-clipboard-check"></i> BUTUH PERSETUJUAN KA. PLANT (<blink><?php echo number_format($query,0,',','.');?></blink>)</a><center>
-                            <?php
-                            }
-                            ?>
-                            <?php
-                            if(in_array($this->session->userdata('admin_group_id'), array(1,2,3))){
-                            ?>
-                            <?php
-                            $query = $this->db->select('COUNT(id) as id')
-                            ->from('perubahan_sistem')
-                            ->where("status = 'UNPUBLISH'")
-                            ->get()->row_array();
-                            
-                            $query = $query['id'];
-                            ?>
-                                <center><a target="_blank" href="<?= base_url("pmm/reports/detail_notification_2/") ?>"><i class="fa-solid fa-clipboard-check"></i> FORM PERUBAHAN APLIKASI (<blink><?php echo number_format($query,0,',','.');?></blink>)</a><center>
-                            <?php
-                            }
-                            ?>
-                        </div>
-                        
+                    <div id="spoiler_menu" style="display:block">        
                         <div class="process">
                             <table width="100%" style="margin-top:100px;">
                                 <tr>
@@ -549,7 +563,7 @@
                                 fontSize: '14px',
                                 fontFamily: 'helvetica'
                             },
-                            text: 'PT. BIA BUMI JAYENDRA - TUGU',
+                            text: 'PT. BIA BUMI JAYENDRA - TIGA DIHAJI',
                             x: -20 //center text
                         },
                         xAxis: { //data bulan
@@ -716,7 +730,7 @@
                                 fontSize: '14px',
                                 fontFamily: 'helvetica'
                             },
-                            text: 'PT. BIA BUMI JAYENDRA - TUGU',
+                            text: 'PT. BIA BUMI JAYENDRA - TIGA DIHAJI',
                             x: -20
                         },
                         xAxis: { //X axis menampilkan data bulan
