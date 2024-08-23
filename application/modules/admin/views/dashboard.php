@@ -330,8 +330,7 @@
                                     ?>
                                     <th width="25%" class="text-center">
                                         <ul class="row text-center list-inline  wowload bounceInUp collapse" id="rencana">
-                                            
-                                            
+                        
                                         </ul>
                                     </th>
                                     <?php
@@ -451,6 +450,9 @@
                                     </th>
                                 </tr>
                             </table>
+                            <?php
+                            if(in_array($this->session->userdata('admin_group_id'), array(1))){
+                            ?>
                             <table width="100%">
                                 <tr>
                                     <th width="25%" class="text-center" data-toggle="collapse" data-target="#" aria-expanded="false" aria-controls="beton">
@@ -470,10 +472,7 @@
                                 </tr>
                             </table>
                             <table width="100%">
-                                <tr>                   
-                                    <?php
-                                    if(in_array($this->session->userdata('admin_group_id'), array(1))){
-                                    ?>
+                                <tr>
                                     <th width="25%" class="text-center">
                                     </th>
                                     <th width="25%" class="text-center">
@@ -494,11 +493,11 @@
                                     </th>
                                     <th width="25%" class="text-center">
                                     </th>
-                                    <?php
-                                    }
-                                    ?>
                                 </tr>
                             </table>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
