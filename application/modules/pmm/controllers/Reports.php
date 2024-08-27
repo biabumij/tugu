@@ -9035,8 +9035,95 @@ class Reports extends CI_Controller {
 					font-size: 10px;
 					font-weight: bold;
 				}
+				
 			</style>
+			<script>
+				function toggle() {
+					if( document.getElementById("hidethis").style.display=='none' ){
+					document.getElementById("hidethis").style.display = '';
+					}else{
+					document.getElementById("hidethis").style.display = 'none';
+					}
 
+					if( document.getElementById("hidethis2").style.display=='none' ){
+					document.getElementById("hidethis2").style.display = '';
+					}else{
+					document.getElementById("hidethis2").style.display = 'none';
+					}
+
+					if( document.getElementById("hidethis3").style.display=='none' ){
+					document.getElementById("hidethis3").style.display = '';
+					}else{
+					document.getElementById("hidethis3").style.display = 'none';
+					}
+
+					if( document.getElementById("hidethis4").style.display=='none' ){
+					document.getElementById("hidethis4").style.display = '';
+					}else{
+					document.getElementById("hidethis4").style.display = 'none';
+					}
+
+					if( document.getElementById("hidethis5").style.display=='none' ){
+					document.getElementById("hidethis5").style.display = '';
+					}else{
+					document.getElementById("hidethis5").style.display = 'none';
+					}
+
+					if( document.getElementById("hidethis6").style.display=='none' ){
+					document.getElementById("hidethis6").style.display = '';
+					}else{
+					document.getElementById("hidethis6").style.display = 'none';
+					}
+
+					if( document.getElementById("hidethis7").style.display=='none' ){
+					document.getElementById("hidethis7").style.display = '';
+					}else{
+					document.getElementById("hidethis7").style.display = 'none';
+					}
+
+					if( document.getElementById("hidethis8").style.display=='none' ){
+					document.getElementById("hidethis8").style.display = '';
+					}else{
+					document.getElementById("hidethis8").style.display = 'none';
+					}
+
+					if( document.getElementById("hidethis9").style.display=='none' ){
+					document.getElementById("hidethis9").style.display = '';
+					}else{
+					document.getElementById("hidethis9").style.display = 'none';
+					}
+
+					if( document.getElementById("hidethis10").style.display=='none' ){
+					document.getElementById("hidethis10").style.display = '';
+					}else{
+					document.getElementById("hidethis10").style.display = 'none';
+					}
+
+					if( document.getElementById("hidethis11").style.display=='none' ){
+					document.getElementById("hidethis11").style.display = '';
+					}else{
+					document.getElementById("hidethis11").style.display = 'none';
+					}
+
+					if( document.getElementById("hidethis12").style.display=='none' ){
+					document.getElementById("hidethis12").style.display = '';
+					}else{
+					document.getElementById("hidethis12").style.display = 'none';
+					}
+
+					if( document.getElementById("hidethis13").style.display=='none' ){
+					document.getElementById("hidethis13").style.display = '';
+					}else{
+					document.getElementById("hidethis13").style.display = 'none';
+					}
+
+					if( document.getElementById("hidethis14").style.display=='none' ){
+					document.getElementById("hidethis14").style.display = '';
+					}else{
+					document.getElementById("hidethis14").style.display = 'none';
+					}
+				}
+			</script>
 			<?php
 			$date_agustus24_awal = date('2024-08-01');
 			$date_agustus24_akhir = date('2024-08-31');
@@ -9444,10 +9531,10 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_11,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_12,0,',','.');?></th>
 			</tr>
-			<tr class="table-baris">
+			<tr class="table-baris" onClick="toggle();">
 				<th class="text-left" colspan="16"><b>B. VOLUME PRODUKSI</b></th>
 			</tr>
-			<tr class="table-baris">
+			<tr class="table-baris" id="hidethis" style="display:none;">
 				<th class="text-center">1.</th>
 				<th class="text-left" colspan="15">Beton K 300 (10±2)</th>
 			</tr>
@@ -9455,7 +9542,7 @@ class Reports extends CI_Controller {
 			$total_volume_semen_300 = $total_volume_semen_300_1 + $total_volume_semen_300_2 + $total_volume_semen_300_3 + $total_volume_semen_300_4 + $total_volume_semen_300_5;
 			$total_nilai_semen_300 = $total_nilai_semen_300_1 + $total_nilai_semen_300_2 + $total_nilai_semen_300_3 + $total_nilai_semen_300_4 + $total_nilai_semen_300_5;
 			?>
-			<tr class="table-baris">
+			<tr class="table-baris" id="hidethis2" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Semen</th>
 				<th class="text-right"><?php echo number_format(1120000,0,',','.');?></th>
@@ -9477,7 +9564,7 @@ class Reports extends CI_Controller {
 			$total_volume_pasir_300 = $total_volume_pasir_300_1 + $total_volume_pasir_300_2 + $total_volume_pasir_300_3 + $total_volume_pasir_300_4 + $total_volume_pasir_300_5;
 			$total_nilai_pasir_300 = $total_nilai_pasir_300_1 + $total_nilai_pasir_300_2 + $total_nilai_pasir_300_3 + $total_nilai_pasir_300_4 + $total_nilai_pasir_300_5;
 			?>
-			<tr class="table-baris">
+			<tr class="table-baris" id="hidethis3" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Pasir</th>
 				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
@@ -9499,7 +9586,7 @@ class Reports extends CI_Controller {
 			$total_volume_batu1020_300 = $total_volume_batu1020_300_1 + $total_volume_batu1020_300_2 + $total_volume_batu1020_300_3 + $total_volume_batu1020_300_4 + $total_volume_batu1020_300_5;
 			$total_nilai_batu1020_300 = $total_nilai_batu1020_300_1 + $total_nilai_batu1020_300_2 + $total_nilai_batu1020_300_3 + $total_nilai_batu1020_300_4 + $total_nilai_batu1020_300_5;
 			?>
-			<tr class="table-baris">
+			<tr class="table-baris" id="hidethis4" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Batu Split 10 - 20</th>
 				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
@@ -9521,7 +9608,7 @@ class Reports extends CI_Controller {
 			$total_volume_batu2030_300 = $total_volume_batu2030_300_1 + $total_volume_batu2030_300_2 + $total_volume_batu2030_300_3 + $total_volume_batu2030_300_4 + $total_volume_batu2030_300_5;
 			$total_nilai_batu2030_300 = $total_nilai_batu2030_300_1 + $total_nilai_batu2030_300_2 + $total_nilai_batu2030_300_3 + $total_nilai_batu2030_300_4 + $total_nilai_batu2030_300_5;
 			?>
-			<tr class="table-baris">
+			<tr class="table-baris" id="hidethis5" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Batu Split 20 - 30</th>
 				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
@@ -9543,7 +9630,7 @@ class Reports extends CI_Controller {
 			$total_volume_additive_300 = $total_volume_additve_300_1 + $total_volume_additve_300_2 + $total_volume_additve_300_3 + $total_volume_additve_300_4 + $total_volume_additve_300_5;
 			$total_nilai_additive_300 = $total_nilai_additve_300_1 + $total_nilai_additve_300_2 + $total_nilai_additve_300_3 + $total_nilai_additve_300_4 + $total_nilai_additve_300_5;
 			?>
-			<tr class="table-baris">
+			<tr class="table-baris" id="hidethis6" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Additive</th>
 				<th class="text-right"><?php echo number_format(12000,0,',','.');?></th>
@@ -9569,7 +9656,7 @@ class Reports extends CI_Controller {
 			$jumlah_bahan_5 = $total_nilai_semen_300_5 + $total_nilai_pasir_300_5 + $total_nilai_batu1020_300_5 + $total_nilai_batu2030_300_5 + $total_nilai_additive_300_5;
 			$jumlah_bahan_300 = $total_nilai_semen_300 + $total_nilai_pasir_300 + $total_nilai_batu1020_300 + $total_nilai_batu2030_300 + $total_nilai_additive_300;
 			?>
-			<tr class="table-total">
+			<tr class="table-total" id="hidethis7" style="display:none;">
 				<th class="text-right" colspan="4">JUMLAH</th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($jumlah_bahan_1,0,',','.');?></th>
@@ -9585,7 +9672,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_bahan_300,0,',','.');?></th>
 			</tr>
 
-			<tr class="table-baris">
+			<tr class="table-baris" id="hidethis8" style="display:none;">
 				<th class="text-center">2.</th>
 				<th class="text-left" colspan="15">Beton K 300 (18±2)</th>
 			</tr>
@@ -9593,7 +9680,7 @@ class Reports extends CI_Controller {
 			$total_volume_semen_300_18 = $total_volume_semen_300_18_1 + $total_volume_semen_300_18_2 + $total_volume_semen_300_18_3 + $total_volume_semen_300_18_4 + $total_volume_semen_300_18_5;
 			$total_nilai_semen_300_18 = $total_nilai_semen_300_18_1 + $total_nilai_semen_300_18_2 + $total_nilai_semen_300_18_3 + $total_nilai_semen_300_18_4 + $total_nilai_semen_300_18_5;
 			?>
-			<tr class="table-baris">
+			<tr class="table-baris" id="hidethis9" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Semen</th>
 				<th class="text-right"><?php echo number_format(1120000,0,',','.');?></th>
@@ -9615,7 +9702,7 @@ class Reports extends CI_Controller {
 			$total_volume_pasir_300_18 = $total_volume_pasir_300_18_1 + $total_volume_pasir_300_18_2 + $total_volume_pasir_300_18_3 + $total_volume_pasir_300_18_4 + $total_volume_pasir_300_18_5;
 			$total_nilai_pasir_300_18 = $total_nilai_pasir_300_18_1 + $total_nilai_pasir_300_18_2 + $total_nilai_pasir_300_18_3 + $total_nilai_pasir_300_18_4 + $total_nilai_pasir_300_18_5;
 			?>
-			<tr class="table-baris">
+			<tr class="table-baris" id="hidethis10" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Pasir</th>
 				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
@@ -9637,7 +9724,7 @@ class Reports extends CI_Controller {
 			$total_volume_batu1020_300_18 = $total_volume_batu1020_300_18_1 + $total_volume_batu1020_300_18_2 + $total_volume_batu1020_300_18_3 + $total_volume_batu1020_300_18_4 + $total_volume_batu1020_300_18_5;
 			$total_nilai_batu1020_300_18 = $total_nilai_batu1020_300_18_1 + $total_nilai_batu1020_300_18_2 + $total_nilai_batu1020_300_18_3 + $total_nilai_batu1020_300_18_4 + $total_nilai_batu1020_300_18_5;
 			?>
-			<tr class="table-baris">
+			<tr class="table-baris" id="hidethis11" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Batu Split 10 - 20</th>
 				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
@@ -9659,7 +9746,7 @@ class Reports extends CI_Controller {
 			$total_volume_batu2030_300_18 = $total_volume_batu2030_300_18_1 + $total_volume_batu2030_300_18_2 + $total_volume_batu2030_300_18_3 + $total_volume_batu2030_300_18_4 + $total_volume_batu2030_300_18_5;
 			$total_nilai_batu2030_300_18 = $total_nilai_batu2030_300_18_1 + $total_nilai_batu2030_300_18_2 + $total_nilai_batu2030_300_18_3 + $total_nilai_batu2030_300_18_4 + $total_nilai_batu2030_300_18_5;
 			?>
-			<tr class="table-baris">
+			<tr class="table-baris" id="hidethis12" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Batu Split 20 - 30</th>
 				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
@@ -9681,7 +9768,7 @@ class Reports extends CI_Controller {
 			$total_volume_additive_300_18 = $total_volume_additve_300_18_1 + $total_volume_additve_300_18_2 + $total_volume_additve_300_18_3 + $total_volume_additve_300_18_4 + $total_volume_additve_300_18_5;
 			$total_nilai_additive_300_18 = $total_nilai_additve_300_18_1 + $total_nilai_additve_300_18_2 + $total_nilai_additve_300_18_3 + $total_nilai_additve_300_18_4 + $total_nilai_additve_300_18_5;
 			?>
-			<tr class="table-baris">
+			<tr class="table-baris" id="hidethis13" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Additive</th>
 				<th class="text-right"><?php echo number_format(12000,0,',','.');?></th>
@@ -9707,7 +9794,7 @@ class Reports extends CI_Controller {
 			$jumlah_bahan2_5 = $total_nilai_semen_300_18_5 + $total_nilai_pasir_300_18_5 + $total_nilai_batu1020_300_18_5 + $total_nilai_batu2030_300_18_5 + $total_nilai_additive_300_18_5;
 			$jumlah_bahan_300_18 = $total_nilai_semen_300_18 + $total_nilai_pasir_300_18 + $total_nilai_batu1020_300_18 + $total_nilai_batu2030_300_18 + $total_nilai_additive_300_18;
 			?>
-			<tr class="table-total">
+			<tr class="table-total" id="hidethis14" style="display:none;">
 				<th class="text-right" colspan="4">JUMLAH</th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($jumlah_bahan2_1,0,',','.');?></th>
