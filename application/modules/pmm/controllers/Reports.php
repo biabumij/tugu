@@ -9038,144 +9038,328 @@ class Reports extends CI_Controller {
 			</style>
 
 			<?php
-			$date_now = date('Y-m-d');
-			$date_akumulasi = date('2024-08-01');
+			$date_agustus24_awal = date('2024-08-01');
+			$date_agustus24_akhir = date('2024-08-31');
+			$date_september24_awal = date('2024-09-01');
+			$date_september24_akhir = date('2024-09-30');
+			$date_oktober24_awal = date('2024-10-01');
+			$date_oktober24_akhir = date('2024-10-31');
+			$date_november24_awal = date('2024-11-01');
+			$date_november24_akhir = date('2024-11-30');
+			$date_desember24_awal = date('2024-12-01');
+			$date_desember24_akhir = date('2024-12-31');
 
-			//BULAN 1
-			$date_1_awal = date('Y-m-01', (strtotime($date_now)));
-			$date_1_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_1_awal)));
-			$date_2_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_1_akhir)));
-			$date_2_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_2_awal)));
-			$date_3_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_2_akhir)));
-			$date_3_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_3_awal)));
-			$date_4_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_3_akhir)));
-			$date_4_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_4_awal)));
-			$date_5_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_4_akhir)));
-			$date_5_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_5_awal)));
-
-			$penjualan_saat_ini_K300 = $this->db->select('SUM(pp.display_volume) as volume, SUM(pp.display_price) as nilai')
-			->from('pmm_productions pp')
-			->join('penerima p', 'pp.client_id = p.id','left')
-			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-			->where("pp.date_production between '$date_1_awal' and '$date_1_akhir'")
-			->where("pp.product_id = 9")
-			->where("pp.status = 'PUBLISH'")
-			->where("ppo.status in ('OPEN','CLOSED')")
+			//BETON K-300 SLUMP 10
+			$rak_1_K300 = $this->db->select('*, SUM(vol_produk_a) as vol_produk_a')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_agustus24_awal' and '$date_agustus24_akhir'")
 			->get()->row_array();
-			$vol_penjualan_saat_ini_K300 = $penjualan_saat_ini_K300['volume'];
-			$nilai_penjualan_saat_ini_K300 = $penjualan_saat_ini_K300['nilai'];
-
-			$penjualan_akumulasi_K300 = $this->db->select('SUM(pp.display_volume) as volume, SUM(pp.display_price) as nilai')
-			->from('pmm_productions pp')
-			->join('penerima p', 'pp.client_id = p.id','left')
-			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-			->where("pp.date_production between '$date_akumulasi' and '$date_1_akhir'")
-			->where("pp.product_id = 9")
-			->where("pp.status = 'PUBLISH'")
-			->where("ppo.status in ('OPEN','CLOSED')")
-			->get()->row_array();
-			$vol_penjualan_akumulasi_K300 = $penjualan_akumulasi_K300['volume'];
-			$nilai_penjualan_akumulasi_K300 = $penjualan_akumulasi_K300['nilai'];
+			$rak_1_vol_K300 = $rak_1_K300['vol_produk_a'];
+			$rak_1_nilai_K300 = $rak_1_vol_K300 * $rak_1_K300['price_a'];
 
 			$rak_2_K300 = $this->db->select('*, SUM(vol_produk_a) as vol_produk_a')
 			->from('rak')
-			->where("tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
+			->where("tanggal_rencana_kerja between '$date_september24_awal' and '$date_september24_akhir'")
 			->get()->row_array();
 			$rak_2_vol_K300 = $rak_2_K300['vol_produk_a'];
 			$rak_2_nilai_K300 = $rak_2_vol_K300 * $rak_2_K300['price_a'];
 
 			$rak_3_K300 = $this->db->select('*, SUM(vol_produk_a) as vol_produk_a')
 			->from('rak')
-			->where("tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
+			->where("tanggal_rencana_kerja between '$date_oktober24_awal' and '$date_oktober24_akhir'")
 			->get()->row_array();
 			$rak_3_vol_K300 = $rak_3_K300['vol_produk_a'];
 			$rak_3_nilai_K300 = $rak_3_vol_K300 * $rak_3_K300['price_a'];
 
 			$rak_4_K300 = $this->db->select('*, SUM(vol_produk_a) as vol_produk_a')
 			->from('rak')
-			->where("tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
+			->where("tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
 			->get()->row_array();
 			$rak_4_vol_K300 = $rak_4_K300['vol_produk_a'];
 			$rak_4_nilai_K300 = $rak_4_vol_K300 * $rak_4_K300['price_a'];
 
 			$rak_5_K300 = $this->db->select('*, SUM(vol_produk_a) as vol_produk_a')
 			->from('rak')
-			->where("tanggal_rencana_kerja between '$date_5_awal' and '$date_5_akhir'")
+			->where("tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
 			->get()->row_array();
 			$rak_5_vol_K300 = $rak_5_K300['vol_produk_a'];
 			$rak_5_nilai_K300 = $rak_5_vol_K300 * $rak_5_K300['price_a'];
 
-			$jumlah_vol_K300 = $vol_penjualan_akumulasi_K300 + $rak_2_vol_K300 + $rak_3_vol_K300 +  + $rak_4_vol_K300 +  + $rak_5_vol_K300;
-			$jumlah_nilai_K300 = $nilai_penjualan_akumulasi_K300 = $rak_2_nilai_K300 + $rak_3_nilai_K300 + $rak_4_nilai_K300 + $rak_5_nilai_K300;
+			$jumlah_vol_K300 = $rak_1_vol_K300 + $rak_2_vol_K300 + $rak_3_vol_K300 +  + $rak_4_vol_K300 +  + $rak_5_vol_K300;
+			$jumlah_nilai_K300 = $rak_1_nilai_K300 + $rak_2_nilai_K300 + $rak_3_nilai_K300 + $rak_4_nilai_K300 + $rak_5_nilai_K300;
 			
 			//BETON K-300 SLUMP 18
-			$penjualan_saat_ini_K300_18 = $this->db->select('SUM(pp.display_volume) as volume, SUM(pp.display_price) as nilai')
-			->from('pmm_productions pp')
-			->join('penerima p', 'pp.client_id = p.id','left')
-			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-			->where("pp.date_production between '$date_1_awal' and '$date_1_akhir'")
-			->where("pp.product_id = 26")
-			->where("pp.status = 'PUBLISH'")
-			->where("ppo.status in ('OPEN','CLOSED')")
+			$rak_1_K300_18 = $this->db->select('*, SUM(vol_produk_b) as vol_produk_b')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_agustus24_awal' and '$date_agustus24_akhir'")
 			->get()->row_array();
-			$vol_penjualan_saat_ini_K300_18 = $penjualan_saat_ini_K300_18['volume'];
-			$nilai_penjualan_saat_ini_K300_18 = $penjualan_saat_ini_K300_18['nilai'];
-
-			$penjualan_akumulasi_K300_18 = $this->db->select('SUM(pp.display_volume) as volume, SUM(pp.display_price) as nilai')
-			->from('pmm_productions pp')
-			->join('penerima p', 'pp.client_id = p.id','left')
-			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-			->where("pp.date_production between '$date_akumulasi' and '$date_1_akhir'")
-			->where("pp.product_id = 26")
-			->where("pp.status = 'PUBLISH'")
-			->where("ppo.status in ('OPEN','CLOSED')")
-			->get()->row_array();
-			$vol_penjualan_akumulasi_K300_18 = $penjualan_akumulasi_K300_18['volume'];
-			$nilai_penjualan_akumulasi_K300_18 = $penjualan_akumulasi_K300_18['nilai'];
+			$rak_1_vol_K300_18 = $rak_1_K300_18['vol_produk_b'];
+			$rak_1_nilai_K300_18 = $rak_1_vol_K300_18 * $rak_1_K300_18['price_b'];
 
 			$rak_2_K300_18 = $this->db->select('*, SUM(vol_produk_b) as vol_produk_b')
 			->from('rak')
-			->where("tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
+			->where("tanggal_rencana_kerja between '$date_september24_awal' and '$date_september24_akhir'")
 			->get()->row_array();
 			$rak_2_vol_K300_18 = $rak_2_K300_18['vol_produk_b'];
 			$rak_2_nilai_K300_18 = $rak_2_vol_K300_18 * $rak_2_K300_18['price_b'];
 
 			$rak_3_K300_18 = $this->db->select('*, SUM(vol_produk_b) as vol_produk_b')
 			->from('rak')
-			->where("tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
+			->where("tanggal_rencana_kerja between '$date_oktober24_awal' and '$date_oktober24_akhir'")
 			->get()->row_array();
 			$rak_3_vol_K300_18 = $rak_3_K300_18['vol_produk_b'];
 			$rak_3_nilai_K300_18 = $rak_3_vol_K300_18 * $rak_3_K300_18['price_b'];
 
 			$rak_4_K300_18 = $this->db->select('*, SUM(vol_produk_b) as vol_produk_b')
 			->from('rak')
-			->where("tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
+			->where("tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
 			->get()->row_array();
 			$rak_4_vol_K300_18 = $rak_4_K300_18['vol_produk_b'];
 			$rak_4_nilai_K300_18 = $rak_4_vol_K300_18 * $rak_4_K300_18['price_b'];
 
 			$rak_5_K300_18 = $this->db->select('*, SUM(vol_produk_b) as vol_produk_b')
 			->from('rak')
-			->where("tanggal_rencana_kerja between '$date_5_awal' and '$date_5_akhir'")
+			->where("tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
 			->get()->row_array();
 			$rak_5_vol_K300_18 = $rak_5_K300_18['vol_produk_b'];
 			$rak_5_nilai_K300_18 = $rak_5_vol_K300_18 * $rak_5_K300_18['price_b'];
 
-			$jumlah_vol_K300_18 = $vol_penjualan_akumulasi_K300_18 + $rak_2_vol_K300_18 + $rak_3_vol_K300_18 +  + $rak_4_vol_K300_18 +  + $rak_5_vol_K300_18;
-			$jumlah_nilai_K300_18 = $nilai_penjualan_akumulasi_K300_18 = $rak_2_nilai_K300_18 + $rak_3_nilai_K300_18 + $rak_4_nilai_K300_18 + $rak_5_nilai_K300_18;
+			$jumlah_vol_K300_18 = $rak_1_vol_K300_18 + $rak_2_vol_K300_18 + $rak_3_vol_K300_18 +  + $rak_4_vol_K300_18 +  + $rak_5_vol_K300_18;
+			$jumlah_nilai_K300_18 = $rak_1_nilai_K300_18 + $rak_2_nilai_K300_18 + $rak_3_nilai_K300_18 + $rak_4_nilai_K300_18 + $rak_5_nilai_K300_18;
+			
+			//KOMPOSISI BAHAN K-300 SLUMP 10
+			$komposisi_300_1 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			->from('rak r')
+			->join('pmm_agregat pk', 'r.komposisi_300 = pk.id','left')
+			->where("r.tanggal_rencana_kerja between '$date_agustus24_awal' and '$date_agustus24_akhir'")
+			->get()->result_array();
+
+			$total_volume_semen_300_1 = 0;
+			$total_nilai_semen_300_1 = 0;
+
+			foreach ($komposisi_300_1 as $x){
+				$total_volume_semen_300_1 = $x['vol_komposisi_semen'];
+				$total_nilai_semen_300_1 = $x['nilai_komposisi_semen'];
+				$total_volume_pasir_300_1 = $x['vol_komposisi_pasir'];
+				$total_nilai_pasir_300_1 = $x['nilai_komposisi_pasir'];
+				$total_volume_batu1020_300_1 = $x['vol_komposisi_batu1020'];
+				$total_nilai_batu1020_300_1 = $x['nilai_komposisi_batu1020'];
+				$total_volume_batu2030_300_1 = $x['vol_komposisi_batu2030'];
+				$total_nilai_batu2030_300_1 = $x['nilai_komposisi_batu2030'];
+				$total_volume_additve_300_1 = $x['vol_komposisi_additve'];
+				$total_nilai_additve_300_1 = $x['nilai_komposisi_additve'];
+			}
+
+			$komposisi_300_2 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			->from('rak r')
+			->join('pmm_agregat pk', 'r.komposisi_300 = pk.id','left')
+			->where("r.tanggal_rencana_kerja between '$date_september24_awal' and '$date_september24_akhir'")
+			->get()->result_array();
+
+			$total_volume_semen_300_2 = 0;
+			$total_nilai_semen_300_2 = 0;
+
+			foreach ($komposisi_300_2 as $x){
+				$total_volume_semen_300_2 = $x['vol_komposisi_semen'];
+				$total_nilai_semen_300_2 = $x['nilai_komposisi_semen'];
+				$total_volume_pasir_300_2 = $x['vol_komposisi_pasir'];
+				$total_nilai_pasir_300_2 = $x['nilai_komposisi_pasir'];
+				$total_volume_batu1020_300_2 = $x['vol_komposisi_batu1020'];
+				$total_nilai_batu1020_300_2 = $x['nilai_komposisi_batu1020'];
+				$total_volume_batu2030_300_2 = $x['vol_komposisi_batu2030'];
+				$total_nilai_batu2030_300_2 = $x['nilai_komposisi_batu2030'];
+				$total_volume_additve_300_2 = $x['vol_komposisi_additve'];
+				$total_nilai_additve_300_2 = $x['nilai_komposisi_additve'];
+			}
+
+			$komposisi_300_3 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			->from('rak r')
+			->join('pmm_agregat pk', 'r.komposisi_300 = pk.id','left')
+			->where("r.tanggal_rencana_kerja between '$date_oktober24_awal' and '$date_oktober24_akhir'")
+			->get()->result_array();
+
+			$total_volume_semen_300_3 = 0;
+			$total_nilai_semen_300_3 = 0;
+
+			foreach ($komposisi_300_3 as $x){
+				$total_volume_semen_300_3 = $x['vol_komposisi_semen'];
+				$total_nilai_semen_300_3 = $x['nilai_komposisi_semen'];
+				$total_volume_pasir_300_3 = $x['vol_komposisi_pasir'];
+				$total_nilai_pasir_300_3 = $x['nilai_komposisi_pasir'];
+				$total_volume_batu1020_300_3 = $x['vol_komposisi_batu1020'];
+				$total_nilai_batu1020_300_3 = $x['nilai_komposisi_batu1020'];
+				$total_volume_batu2030_300_3 = $x['vol_komposisi_batu2030'];
+				$total_nilai_batu2030_300_3 = $x['nilai_komposisi_batu2030'];
+				$total_volume_additve_300_3 = $x['vol_komposisi_additve'];
+				$total_nilai_additve_300_3 = $x['nilai_komposisi_additve'];
+			}
+
+			$komposisi_300_4 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			->from('rak r')
+			->join('pmm_agregat pk', 'r.komposisi_300 = pk.id','left')
+			->where("r.tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
+			->get()->result_array();
+
+			$total_volume_semen_300_4 = 0;
+			$total_nilai_semen_300_4 = 0;
+
+			foreach ($komposisi_300_4 as $x){
+				$total_volume_semen_300_4 = $x['vol_komposisi_semen'];
+				$total_nilai_semen_300_4 = $x['nilai_komposisi_semen'];
+				$total_volume_pasir_300_4 = $x['vol_komposisi_pasir'];
+				$total_nilai_pasir_300_4 = $x['nilai_komposisi_pasir'];
+				$total_volume_batu1020_300_4 = $x['vol_komposisi_batu1020'];
+				$total_nilai_batu1020_300_4 = $x['nilai_komposisi_batu1020'];
+				$total_volume_batu2030_300_4 = $x['vol_komposisi_batu2030'];
+				$total_nilai_batu2030_300_4 = $x['nilai_komposisi_batu2030'];
+				$total_volume_additve_300_4 = $x['vol_komposisi_additve'];
+				$total_nilai_additve_300_4 = $x['nilai_komposisi_additve'];
+			}
+
+			$komposisi_300_5 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			->from('rak r')
+			->join('pmm_agregat pk', 'r.komposisi_300 = pk.id','left')
+			->where("r.tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
+			->get()->result_array();
+
+			$total_volume_semen_300_5 = 0;
+			$total_nilai_semen_300_5 = 0;
+
+			foreach ($komposisi_300_5 as $x){
+				$total_volume_semen_300_5 = $x['vol_komposisi_semen'];
+				$total_nilai_semen_300_5 = $x['nilai_komposisi_semen'];
+				$total_volume_pasir_300_5 = $x['vol_komposisi_pasir'];
+				$total_nilai_pasir_300_5 = $x['nilai_komposisi_pasir'];
+				$total_volume_batu1020_300_5 = $x['vol_komposisi_batu1020'];
+				$total_nilai_batu1020_300_5 = $x['nilai_komposisi_batu1020'];
+				$total_volume_batu2030_300_5 = $x['vol_komposisi_batu2030'];
+				$total_nilai_batu2030_300_5 = $x['nilai_komposisi_batu2030'];
+				$total_volume_additve_300_5 = $x['vol_komposisi_additve'];
+				$total_nilai_additve_300_5 = $x['nilai_komposisi_additve'];
+			}
+
+			//KOMPOSISI BAHAN K-300 SLUMP 18
+			$komposisi_300_18_1 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			->from('rak r')
+			->join('pmm_agregat pk', 'r.komposisi_300_18 = pk.id','left')
+			->where("r.tanggal_rencana_kerja between '$date_agustus24_awal' and '$date_agustus24_akhir'")
+			->get()->result_array();
+
+			$total_volume_semen_300_18_1 = 0;
+			$total_nilai_semen_300_18_1 = 0;
+
+			foreach ($komposisi_300_18_1 as $x){
+				$total_volume_semen_300_18_1 = $x['vol_komposisi_semen'];
+				$total_nilai_semen_300_18_1 = $x['nilai_komposisi_semen'];
+				$total_volume_pasir_300_18_1 = $x['vol_komposisi_pasir'];
+				$total_nilai_pasir_300_18_1 = $x['nilai_komposisi_pasir'];
+				$total_volume_batu1020_300_18_1 = $x['vol_komposisi_batu1020'];
+				$total_nilai_batu1020_300_18_1 = $x['nilai_komposisi_batu1020'];
+				$total_volume_batu2030_300_18_1 = $x['vol_komposisi_batu2030'];
+				$total_nilai_batu2030_300_18_1 = $x['nilai_komposisi_batu2030'];
+				$total_volume_additve_300_18_1 = $x['vol_komposisi_additve'];
+				$total_nilai_additve_300_18_1 = $x['nilai_komposisi_additve'];
+			}
+
+			$komposisi_300_18_2 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			->from('rak r')
+			->join('pmm_agregat pk', 'r.komposisi_300_18 = pk.id','left')
+			->where("r.tanggal_rencana_kerja between '$date_september24_awal' and '$date_september24_akhir'")
+			->get()->result_array();
+
+			$total_volume_semen_300_18_2 = 0;
+			$total_nilai_semen_300_18_2 = 0;
+
+			foreach ($komposisi_300_18_2 as $x){
+				$total_volume_semen_300_18_2 = $x['vol_komposisi_semen'];
+				$total_nilai_semen_300_18_2 = $x['nilai_komposisi_semen'];
+				$total_volume_pasir_300_18_2 = $x['vol_komposisi_pasir'];
+				$total_nilai_pasir_300_18_2 = $x['nilai_komposisi_pasir'];
+				$total_volume_batu1020_300_18_2 = $x['vol_komposisi_batu1020'];
+				$total_nilai_batu1020_300_18_2 = $x['nilai_komposisi_batu1020'];
+				$total_volume_batu2030_300_18_2 = $x['vol_komposisi_batu2030'];
+				$total_nilai_batu2030_300_18_2 = $x['nilai_komposisi_batu2030'];
+				$total_volume_additve_300_18_2 = $x['vol_komposisi_additve'];
+				$total_nilai_additve_300_18_2 = $x['nilai_komposisi_additve'];
+			}
+
+			$komposisi_300_18_3 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			->from('rak r')
+			->join('pmm_agregat pk', 'r.komposisi_300_18 = pk.id','left')
+			->where("r.tanggal_rencana_kerja between '$date_oktober24_awal' and '$date_oktober24_akhir'")
+			->get()->result_array();
+
+			$total_volume_semen_300_18_3 = 0;
+			$total_nilai_semen_300_18_3 = 0;
+
+			foreach ($komposisi_300_18_3 as $x){
+				$total_volume_semen_300_18_3 = $x['vol_komposisi_semen'];
+				$total_nilai_semen_300_18_3 = $x['nilai_komposisi_semen'];
+				$total_volume_pasir_300_18_3 = $x['vol_komposisi_pasir'];
+				$total_nilai_pasir_300_18_3 = $x['nilai_komposisi_pasir'];
+				$total_volume_batu1020_300_18_3 = $x['vol_komposisi_batu1020'];
+				$total_nilai_batu1020_300_18_3 = $x['nilai_komposisi_batu1020'];
+				$total_volume_batu2030_300_18_3 = $x['vol_komposisi_batu2030'];
+				$total_nilai_batu2030_300_18_3 = $x['nilai_komposisi_batu2030'];
+				$total_volume_additve_300_18_3 = $x['vol_komposisi_additve'];
+				$total_nilai_additve_300_18_3 = $x['nilai_komposisi_additve'];
+			}
+
+			$komposisi_300_18_4 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			->from('rak r')
+			->join('pmm_agregat pk', 'r.komposisi_300_18 = pk.id','left')
+			->where("r.tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
+			->get()->result_array();
+
+			$total_volume_semen_300_18_4 = 0;
+			$total_nilai_semen_300_18_4 = 0;
+
+			foreach ($komposisi_300_18_4 as $x){
+				$total_volume_semen_300_18_4 = $x['vol_komposisi_semen'];
+				$total_nilai_semen_300_18_4 = $x['nilai_komposisi_semen'];
+				$total_volume_pasir_300_18_4 = $x['vol_komposisi_pasir'];
+				$total_nilai_pasir_300_18_4 = $x['nilai_komposisi_pasir'];
+				$total_volume_batu1020_300_18_4 = $x['vol_komposisi_batu1020'];
+				$total_nilai_batu1020_300_18_4 = $x['nilai_komposisi_batu1020'];
+				$total_volume_batu2030_300_18_4 = $x['vol_komposisi_batu2030'];
+				$total_nilai_batu2030_300_18_4 = $x['nilai_komposisi_batu2030'];
+				$total_volume_additve_300_18_4 = $x['vol_komposisi_additve'];
+				$total_nilai_additve_300_18_4 = $x['nilai_komposisi_additve'];
+			}
+
+			$komposisi_300_18_5 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			->from('rak r')
+			->join('pmm_agregat pk', 'r.komposisi_300_18 = pk.id','left')
+			->where("r.tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
+			->get()->result_array();
+
+			$total_volume_semen_300_18_5 = 0;
+			$total_nilai_semen_300_18_5 = 0;
+
+			foreach ($komposisi_300_18_5 as $x){
+				$total_volume_semen_300_18_5 = $x['vol_komposisi_semen'];
+				$total_nilai_semen_300_18_5 = $x['nilai_komposisi_semen'];
+				$total_volume_pasir_300_18_5 = $x['vol_komposisi_pasir'];
+				$total_nilai_pasir_300_18_5 = $x['nilai_komposisi_pasir'];
+				$total_volume_batu1020_300_18_5 = $x['vol_komposisi_batu1020'];
+				$total_nilai_batu1020_300_18_5 = $x['nilai_komposisi_batu1020'];
+				$total_volume_batu2030_300_18_5 = $x['vol_komposisi_batu2030'];
+				$total_nilai_batu2030_300_18_5 = $x['nilai_komposisi_batu2030'];
+				$total_volume_additve_300_18_5 = $x['vol_komposisi_additve'];
+				$total_nilai_additve_300_18_5 = $x['nilai_komposisi_additve'];
+			}
 			?>
 
 			<tr class="table-judul">
 				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
 				<th class="text-center" rowspan="2" style="vertical-align:middle;">URAIAN</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle;">HARGA</th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle;">HARSAT</th>
 				<th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
-				<th class="text-center" colspan="2" style="text-transform:uppercase;"><?php echo $date_1_awal = date('F Y');?></th>
-				<th class="text-center" colspan="2" style="text-transform:uppercase;">SD. <?php echo $date_1_awal = date('F Y');?></th>
-				<th class="text-center" colspan="2" style="text-transform:uppercase;"><?php echo $date_2_awal = date('F Y', strtotime('+1 days', strtotime($date_1_akhir)));?></th>
-				<th class="text-center" colspan="2" style="text-transform:uppercase;"><?php echo $date_3_awal = date('F Y', strtotime('+1 days', strtotime($date_2_akhir)));?></th>
-				<th class="text-center" colspan="2" style="text-transform:uppercase;"><?php echo $date_4_awal = date('F Y', strtotime('+1 days', strtotime($date_3_akhir)));?></th>
-				<th class="text-center" colspan="2" style="text-transform:uppercase;"><?php echo $date_5_awal = date('F Y', strtotime('+1 days', strtotime($date_4_akhir)));?></th>
+				<th class="text-center" colspan="2" style="text-transform:uppercase;">AGUSTUS 2024</th>
+				<th class="text-center" colspan="2" style="text-transform:uppercase;">SEPTEMBER 2024</th>
+				<th class="text-center" colspan="2" style="text-transform:uppercase;">OKTOBER 2024</th>
+				<th class="text-center" colspan="2" style="text-transform:uppercase;">NOVEMBER 2024</th>
+				<th class="text-center" colspan="2" style="text-transform:uppercase;">DESEMBER 2024</th>
 				<th class="text-center" colspan="2">JUMLAH</th>
 	        </tr>
 			<tr class="table-judul">
@@ -9191,21 +9375,17 @@ class Reports extends CI_Controller {
 				<th class="text-center" ><b>NILAI</b></th>
 				<th class="text-center" ><b>VOL.</b></th>
 				<th class="text-center" ><b>NILAI</b></th>
-				<th class="text-center" ><b>VOL.</b></th>
-				<th class="text-center" ><b>NILAI</b></th>
 			</tr>
 			<tr class="table-baris">
-				<th class="text-left" colspan="19"><b>PENDAPATAN USAHA</b></th>
+				<th class="text-left" colspan="16"><b>A. PENDAPATAN USAHA</b></th>
 			</tr>
 			<tr class="table-baris">
 				<th class="text-center">1.</th>
 				<th class="text-left">Beton K 300 (10±2)</th>
 				<th class="text-right"><?php echo number_format(1065000,0,',','.');?></th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($vol_penjualan_saat_ini_K300,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_penjualan_saat_ini_K300,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($vol_penjualan_akumulasi_K300,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_penjualan_akumulasi_K300,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rak_1_vol_K300,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rak_1_nilai_K300,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rak_2_vol_K300,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rak_2_nilai_K300,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rak_3_vol_K300,2,',','.');?></th>
@@ -9222,10 +9402,8 @@ class Reports extends CI_Controller {
 				<th class="text-left">Beton K 300 (18±2)</th>
 				<th class="text-right"><?php echo number_format(1075000,0,',','.');?></th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($vol_penjualan_saat_ini_K300_18,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_penjualan_saat_ini_K300_18,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($vol_penjualan_akumulasi_K300_18,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_penjualan_akumulasi_K300_18,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rak_1_vol_K300_18,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rak_1_nilai_K300_18,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rak_2_vol_K300_18,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rak_2_nilai_K300_18,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rak_3_vol_K300_18,2,',','.');?></th>
@@ -9238,20 +9416,18 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_nilai_K300_18,0,',','.');?></th>
 			</tr>
 			<?php
-			$jumlah_1 = $vol_penjualan_saat_ini_K300 + $vol_penjualan_saat_ini_K300_18;
-			$jumlah_2 = $nilai_penjualan_saat_ini_K300 + $nilai_penjualan_saat_ini_K300_18;
-			$jumlah_3 = $vol_penjualan_akumulasi_K300 + $vol_penjualan_akumulasi_K300_18;
-			$jumlah_4 = $nilai_penjualan_akumulasi_K300_18 + $nilai_penjualan_akumulasi_K300_18;
-			$jumlah_5 = $rak_2_vol_K300 + $rak_2_vol_K300_18;
-			$jumlah_6 = $rak_2_nilai_K300 + $rak_2_nilai_K300_18;
-			$jumlah_7 = $rak_3_vol_K300 + $rak_3_vol_K300_18;
-			$jumlah_8 = $rak_3_nilai_K300 + $rak_3_nilai_K300_18;
-			$jumlah_9 = $rak_4_vol_K300 + $rak_4_vol_K300_18;
-			$jumlah_10 = $rak_4_nilai_K300 + $rak_4_nilai_K300_18;
-			$jumlah_11 = $rak_5_vol_K300_18 + $rak_5_vol_K300_18;
-			$jumlah_12 = $rak_5_nilai_K300 + $rak_5_nilai_K300_18;
-			$jumlah_13 = $jumlah_vol_K300 + $jumlah_vol_K300_18;
-			$jumlah_14 = $jumlah_nilai_K300 + $jumlah_nilai_K300_18;
+			$jumlah_1 = $rak_1_vol_K300 + $rak_1_vol_K300_18;
+			$jumlah_2 = $rak_1_nilai_K300 + $rak_1_nilai_K300_18;
+			$jumlah_3 = $rak_2_vol_K300 + $rak_2_vol_K300_18;
+			$jumlah_4 = $rak_2_nilai_K300 + $rak_2_nilai_K300_18;
+			$jumlah_5 = $rak_3_vol_K300 + $rak_3_vol_K300_18;
+			$jumlah_6 = $rak_3_nilai_K300 + $rak_3_nilai_K300_18;
+			$jumlah_7 = $rak_4_vol_K300 + $rak_4_vol_K300_18;
+			$jumlah_8 = $rak_4_nilai_K300 + $rak_4_nilai_K300_18;
+			$jumlah_9 = $rak_5_vol_K300_18 + $rak_5_vol_K300_18;
+			$jumlah_10 = $rak_5_nilai_K300 + $rak_5_nilai_K300_18;
+			$jumlah_11 = $jumlah_vol_K300 + $jumlah_vol_K300_18;
+			$jumlah_12 = $jumlah_nilai_K300 + $jumlah_nilai_K300_18;
 			?>
 			<tr class="table-total">
 				<th class="text-right" colspan="4">JUMLAH</th>
@@ -9267,10 +9443,648 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_10,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_11,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_12,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($jumlah_13,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($jumlah_14,0,',','.');?></th>
 			</tr>
-	    </table>
+			<tr class="table-baris">
+				<th class="text-left" colspan="16"><b>B. VOLUME PRODUKSI</b></th>
+			</tr>
+			<tr class="table-baris">
+				<th class="text-center">1.</th>
+				<th class="text-left" colspan="15">Beton K 300 (10±2)</th>
+			</tr>
+			<?php
+			$total_volume_semen_300 = $total_volume_semen_300_1 + $total_volume_semen_300_2 + $total_volume_semen_300_3 + $total_volume_semen_300_4 + $total_volume_semen_300_5;
+			$total_nilai_semen_300 = $total_nilai_semen_300_1 + $total_nilai_semen_300_2 + $total_nilai_semen_300_3 + $total_nilai_semen_300_4 + $total_nilai_semen_300_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Semen</th>
+				<th class="text-right"><?php echo number_format(1120000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300,0,',','.');?></th>
+			</tr>
+			<?php
+			$total_volume_pasir_300 = $total_volume_pasir_300_1 + $total_volume_pasir_300_2 + $total_volume_pasir_300_3 + $total_volume_pasir_300_4 + $total_volume_pasir_300_5;
+			$total_nilai_pasir_300 = $total_nilai_pasir_300_1 + $total_nilai_pasir_300_2 + $total_nilai_pasir_300_3 + $total_nilai_pasir_300_4 + $total_nilai_pasir_300_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Pasir</th>
+				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300,0,',','.');?></th>
+			</tr>
+			<?php
+			$total_volume_batu1020_300 = $total_volume_batu1020_300_1 + $total_volume_batu1020_300_2 + $total_volume_batu1020_300_3 + $total_volume_batu1020_300_4 + $total_volume_batu1020_300_5;
+			$total_nilai_batu1020_300 = $total_nilai_batu1020_300_1 + $total_nilai_batu1020_300_2 + $total_nilai_batu1020_300_3 + $total_nilai_batu1020_300_4 + $total_nilai_batu1020_300_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Batu Split 10 - 20</th>
+				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300,0,',','.');?></th>
+			</tr>
+			<?php
+			$total_volume_batu2030_300 = $total_volume_batu2030_300_1 + $total_volume_batu2030_300_2 + $total_volume_batu2030_300_3 + $total_volume_batu2030_300_4 + $total_volume_batu2030_300_5;
+			$total_nilai_batu2030_300 = $total_nilai_batu2030_300_1 + $total_nilai_batu2030_300_2 + $total_nilai_batu2030_300_3 + $total_nilai_batu2030_300_4 + $total_nilai_batu2030_300_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Batu Split 20 - 30</th>
+				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300,0,',','.');?></th>
+			</tr>
+			<?php
+			$total_volume_additive_300 = $total_volume_additve_300_1 + $total_volume_additve_300_2 + $total_volume_additve_300_3 + $total_volume_additve_300_4 + $total_volume_additve_300_5;
+			$total_nilai_additive_300 = $total_nilai_additve_300_1 + $total_nilai_additve_300_2 + $total_nilai_additve_300_3 + $total_nilai_additve_300_4 + $total_nilai_additve_300_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Additive</th>
+				<th class="text-right"><?php echo number_format(12000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300,0,',','.');?></th>
+			</tr>
+			<?php
+			$jumlah_bahan_1 = $total_nilai_semen_300_1 + $total_nilai_pasir_300_1 + $total_nilai_batu1020_300_1 + $total_nilai_batu2030_300_1 + $total_nilai_additive_300_1;
+			$jumlah_bahan_2 = $total_nilai_semen_300_2 + $total_nilai_pasir_300_2 + $total_nilai_batu1020_300_2 + $total_nilai_batu2030_300_2 + $total_nilai_additive_300_2;
+			$jumlah_bahan_3 = $total_nilai_semen_300_3 + $total_nilai_pasir_300_3 + $total_nilai_batu1020_300_3 + $total_nilai_batu2030_300_3 + $total_nilai_additive_300_3;
+			$jumlah_bahan_4 = $total_nilai_semen_300_4 + $total_nilai_pasir_300_4 + $total_nilai_batu1020_300_4 + $total_nilai_batu2030_300_4 + $total_nilai_additive_300_4;
+			$jumlah_bahan_5 = $total_nilai_semen_300_5 + $total_nilai_pasir_300_5 + $total_nilai_batu1020_300_5 + $total_nilai_batu2030_300_5 + $total_nilai_additive_300_5;
+			$jumlah_bahan_300 = $total_nilai_semen_300 + $total_nilai_pasir_300 + $total_nilai_batu1020_300 + $total_nilai_batu2030_300 + $total_nilai_additive_300;
+			?>
+			<tr class="table-total">
+				<th class="text-right" colspan="4">JUMLAH</th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_1,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_2,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_3,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_4,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_5,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_300,0,',','.');?></th>
+			</tr>
+
+			<tr class="table-baris">
+				<th class="text-center">2.</th>
+				<th class="text-left" colspan="15">Beton K 300 (18±2)</th>
+			</tr>
+			<?php
+			$total_volume_semen_300_18 = $total_volume_semen_300_18_1 + $total_volume_semen_300_18_2 + $total_volume_semen_300_18_3 + $total_volume_semen_300_18_4 + $total_volume_semen_300_18_5;
+			$total_nilai_semen_300_18 = $total_nilai_semen_300_18_1 + $total_nilai_semen_300_18_2 + $total_nilai_semen_300_18_3 + $total_nilai_semen_300_18_4 + $total_nilai_semen_300_18_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Semen</th>
+				<th class="text-right"><?php echo number_format(1120000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_18_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_18_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_18_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_18_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_18_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_18_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_18_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_18_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_18_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_18_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_18,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_18,0,',','.');?></th>
+			</tr>
+			<?php
+			$total_volume_pasir_300_18 = $total_volume_pasir_300_18_1 + $total_volume_pasir_300_18_2 + $total_volume_pasir_300_18_3 + $total_volume_pasir_300_18_4 + $total_volume_pasir_300_18_5;
+			$total_nilai_pasir_300_18 = $total_nilai_pasir_300_18_1 + $total_nilai_pasir_300_18_2 + $total_nilai_pasir_300_18_3 + $total_nilai_pasir_300_18_4 + $total_nilai_pasir_300_18_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Pasir</th>
+				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_18_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_18_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_18_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_18_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_18_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_18_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_18_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_18_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_18_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_18_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_18,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_18,0,',','.');?></th>
+			</tr>
+			<?php
+			$total_volume_batu1020_300_18 = $total_volume_batu1020_300_18_1 + $total_volume_batu1020_300_18_2 + $total_volume_batu1020_300_18_3 + $total_volume_batu1020_300_18_4 + $total_volume_batu1020_300_18_5;
+			$total_nilai_batu1020_300_18 = $total_nilai_batu1020_300_18_1 + $total_nilai_batu1020_300_18_2 + $total_nilai_batu1020_300_18_3 + $total_nilai_batu1020_300_18_4 + $total_nilai_batu1020_300_18_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Batu Split 10 - 20</th>
+				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_18_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_18_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_18_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_18_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_18_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_18_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_18_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_18_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_18_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_18_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_18,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_18,0,',','.');?></th>
+			</tr>
+			<?php
+			$total_volume_batu2030_300_18 = $total_volume_batu2030_300_18_1 + $total_volume_batu2030_300_18_2 + $total_volume_batu2030_300_18_3 + $total_volume_batu2030_300_18_4 + $total_volume_batu2030_300_18_5;
+			$total_nilai_batu2030_300_18 = $total_nilai_batu2030_300_18_1 + $total_nilai_batu2030_300_18_2 + $total_nilai_batu2030_300_18_3 + $total_nilai_batu2030_300_18_4 + $total_nilai_batu2030_300_18_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Batu Split 20 - 30</th>
+				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_18_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_18_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_18_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_18_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_18_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_18_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_18_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_18_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_18_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_18_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_18,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_18,0,',','.');?></th>
+			</tr>
+			<?php
+			$total_volume_additive_300_18 = $total_volume_additve_300_18_1 + $total_volume_additve_300_18_2 + $total_volume_additve_300_18_3 + $total_volume_additve_300_18_4 + $total_volume_additve_300_18_5;
+			$total_nilai_additive_300_18 = $total_nilai_additve_300_18_1 + $total_nilai_additve_300_18_2 + $total_nilai_additve_300_18_3 + $total_nilai_additve_300_18_4 + $total_nilai_additve_300_18_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Additive</th>
+				<th class="text-right"><?php echo number_format(12000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_18_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_18_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_18_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_18_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_18_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_18_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_18_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_18_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_18_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_18_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_18,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_18,0,',','.');?></th>
+			</tr>
+			<?php
+			$jumlah_bahan2_1 = $total_nilai_semen_300_18_1 + $total_nilai_pasir_300_18_1 + $total_nilai_batu1020_300_18_1 + $total_nilai_batu2030_300_18_1 + $total_nilai_additive_300_18_1;
+			$jumlah_bahan2_2 = $total_nilai_semen_300_18_2 + $total_nilai_pasir_300_18_2 + $total_nilai_batu1020_300_18_2 + $total_nilai_batu2030_300_18_2 + $total_nilai_additive_300_18_2;
+			$jumlah_bahan2_3 = $total_nilai_semen_300_18_3 + $total_nilai_pasir_300_18_3 + $total_nilai_batu1020_300_18_3 + $total_nilai_batu2030_300_18_3 + $total_nilai_additive_300_18_3;
+			$jumlah_bahan2_4 = $total_nilai_semen_300_18_4 + $total_nilai_pasir_300_18_4 + $total_nilai_batu1020_300_18_4 + $total_nilai_batu2030_300_18_4 + $total_nilai_additive_300_18_4;
+			$jumlah_bahan2_5 = $total_nilai_semen_300_18_5 + $total_nilai_pasir_300_18_5 + $total_nilai_batu1020_300_18_5 + $total_nilai_batu2030_300_18_5 + $total_nilai_additive_300_18_5;
+			$jumlah_bahan_300_18 = $total_nilai_semen_300_18 + $total_nilai_pasir_300_18 + $total_nilai_batu1020_300_18 + $total_nilai_batu2030_300_18 + $total_nilai_additive_300_18;
+			?>
+			<tr class="table-total">
+				<th class="text-right" colspan="4">JUMLAH</th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan2_1,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan2_2,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan2_3,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan2_4,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan2_5,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_300_18,0,',','.');?></th>
+			</tr>
+			<tr class="table-baris">
+				<th class="text-left" colspan="16"><b>C. TOTAL KEBUTUHAN BAHAN</b></th>
+			</tr>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Semen</th>
+				<th class="text-right"><?php echo number_format(1120000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_1 +$total_volume_semen_300_18_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_1 + $total_nilai_semen_300_18_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_2 + $total_volume_semen_300_18_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_2 + $total_nilai_semen_300_18_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_3 + $total_volume_semen_300_18_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_3 + $total_nilai_semen_300_18_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_4 + $total_volume_semen_300_18_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_4 + $total_nilai_semen_300_18_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_5 + $total_volume_semen_300_18_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_5 + $total_nilai_semen_300_18_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300 + $total_volume_semen_300_18,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300 + $total_nilai_semen_300_18,0,',','.');?></th>
+			</tr>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Pasir</th>
+				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_1 +$total_volume_pasir_300_18_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_1 + $total_nilai_pasir_300_18_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_2 + $total_volume_pasir_300_18_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_2 + $total_nilai_pasir_300_18_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_3 + $total_volume_pasir_300_18_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_3 + $total_nilai_pasir_300_18_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_4 + $total_volume_pasir_300_18_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_4 + $total_nilai_pasir_300_18_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_5 + $total_volume_pasir_300_18_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_5 + $total_nilai_pasir_300_18_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300 + $total_volume_pasir_300_18,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300 + $total_nilai_pasir_300_18,0,',','.');?></th>
+			</tr>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Batu Split 10 - 20</th>
+				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_1 +$total_volume_batu1020_300_18_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_1 + $total_nilai_batu1020_300_18_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_2 + $total_volume_batu1020_300_18_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_2 + $total_nilai_batu1020_300_18_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_3 + $total_volume_batu1020_300_18_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_3 + $total_nilai_batu1020_300_18_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_4 + $total_volume_batu1020_300_18_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_4 + $total_nilai_batu1020_300_18_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_5 + $total_volume_batu1020_300_18_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_5 + $total_nilai_batu1020_300_18_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300 + $total_volume_batu1020_300_18,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300 + $total_nilai_batu1020_300_18,0,',','.');?></th>
+			</tr>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Batu Split 10 - 20</th>
+				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_1 +$total_volume_batu2030_300_18_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_1 + $total_nilai_batu2030_300_18_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_2 + $total_volume_batu2030_300_18_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_2 + $total_nilai_batu2030_300_18_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_3 + $total_volume_batu2030_300_18_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_3 + $total_nilai_batu2030_300_18_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_4 + $total_volume_batu2030_300_18_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_4 + $total_nilai_batu2030_300_18_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_5 + $total_volume_batu2030_300_18_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_5 + $total_nilai_batu2030_300_18_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300 + $total_volume_batu2030_300_18,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300 + $total_nilai_batu2030_300_18,0,',','.');?></th>
+			</tr>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Additive</th>
+				<th class="text-right"><?php echo number_format(12000,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_1 +$total_volume_additive_300_18_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_1 + $total_nilai_additive_300_18_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_2 + $total_volume_additive_300_18_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_2 + $total_nilai_additive_300_18_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_3 + $total_volume_additive_300_18_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_3 + $total_nilai_additive_300_18_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_4 + $total_volume_additive_300_18_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_4 + $total_nilai_additive_300_18_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_5 + $total_volume_additive_300_18_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_5 + $total_nilai_additive_300_18_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300 + $total_volume_additive_300_18,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300 + $total_nilai_additive_300_18,0,',','.');?></th>
+			</tr>
+			<tr class="table-total">
+				<th class="text-right" colspan="4">JUMLAH</th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_1 + $jumlah_bahan2_1,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_2 + $jumlah_bahan2_2,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_3 + $jumlah_bahan2_3,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_4 + $jumlah_bahan2_4,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_5 + $jumlah_bahan2_5,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_bahan_300 + $jumlah_bahan_300_18,0,',','.');?></th>
+			</tr>
+			<?php
+			$volume_rak_1 = $this->db->select('*, sum(vol_produk_a + vol_produk_b) as volume')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_agustus24_awal' and '$date_agustus24_akhir'")
+			->get()->row_array();
+
+			$volume_rak_2 = $this->db->select('*, sum(vol_produk_a + vol_produk_b) as volume')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_september24_awal' and '$date_september24_akhir'")
+			->get()->row_array();
+
+			$volume_rak_3 = $this->db->select('*, sum(vol_produk_a + vol_produk_b) as volume')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_oktober24_awal' and '$date_oktober24_akhir'")
+			->get()->row_array();
+
+			$volume_rak_4 = $this->db->select('*, sum(vol_produk_a + vol_produk_b) as volume')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
+			->get()->row_array();
+
+			$volume_rak_5 = $this->db->select('*, sum(vol_produk_a + vol_produk_b) as volume')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
+			->get()->row_array();
+
+			$volume_rap_alat = $this->db->select('*')
+			->from('rap_alat')
+			->order_by('id','desc')->limit(1)
+			->get()->row_array();
+			$volume_rap_alat_bp = ($volume_rap_alat['vol_batching_plant'] * $volume_rak_1['harga_bp']) / 200;
+			$volume_rap_alat_tm = ($volume_rap_alat['vol_truck_mixer'] * $volume_rak_1['harga_tm']) / 200;
+			$volume_rap_alat_wl = ($volume_rap_alat['vol_wheel_loader'] * $volume_rak_1['harga_wl']) / 200;
+			$volume_rap_alat_solar = ($volume_rap_alat['vol_bbm_solar'] * $volume_rak_1['harga_solar']);
+
+			$total_volume_bp_1 = $volume_rak_1['volume'];
+			$total_volume_bp_2 = $volume_rak_2['volume'];
+			$total_volume_bp_3 = $volume_rak_3['volume'];
+			$total_volume_bp_4 = $volume_rak_4['volume'];
+			$total_volume_bp_5 = $volume_rak_5['volume'];
+			
+			$total_nilai_bp_1 = $volume_rak_1['volume'] * $volume_rap_alat_bp;
+			$total_nilai_bp_2 = $volume_rak_2['volume'] * $volume_rap_alat_bp;
+			$total_nilai_bp_3 = $volume_rak_3['volume'] * $volume_rap_alat_bp;
+			$total_nilai_bp_4 = $volume_rak_4['volume'] * $volume_rap_alat_bp;
+			$total_nilai_bp_5 = $volume_rak_5['volume'] * $volume_rap_alat_bp;
+
+			$total_volume_tm_1 = $volume_rak_1['volume'];
+			$total_volume_tm_2 = $volume_rak_2['volume'];
+			$total_volume_tm_3 = $volume_rak_3['volume'];
+			$total_volume_tm_4 = $volume_rak_4['volume'];
+			$total_volume_tm_5 = $volume_rak_5['volume'];
+
+			$total_nilai_tm_1 = $volume_rak_1['volume'] * $volume_rap_alat_tm;
+			$total_nilai_tm_2 = $volume_rak_2['volume'] * $volume_rap_alat_tm;
+			$total_nilai_tm_3 = $volume_rak_3['volume'] * $volume_rap_alat_tm;
+			$total_nilai_tm_4 = $volume_rak_4['volume'] * $volume_rap_alat_tm;
+			$total_nilai_tm_5 = $volume_rak_5['volume'] * $volume_rap_alat_tm;
+
+			$total_volume_wl_1 = $volume_rak_1['volume'];
+			$total_volume_wl_2 = $volume_rak_2['volume'];
+			$total_volume_wl_3 = $volume_rak_3['volume'];
+			$total_volume_wl_4 = $volume_rak_4['volume'];
+			$total_volume_wl_5 = $volume_rak_5['volume'];
+
+			$total_nilai_wl_1 = $volume_rak_1['volume'] * $volume_rap_alat_wl;
+			$total_nilai_wl_2 = $volume_rak_2['volume'] * $volume_rap_alat_wl;
+			$total_nilai_wl_3 = $volume_rak_3['volume'] * $volume_rap_alat_wl;
+			$total_nilai_wl_4 = $volume_rak_4['volume'] * $volume_rap_alat_wl;
+			$total_nilai_wl_5 = $volume_rak_5['volume'] * $volume_rap_alat_wl;
+
+			$total_volume_solar_1 = $volume_rak_1['volume'];
+			$total_volume_solar_2 = $volume_rak_2['volume'];
+			$total_volume_solar_3 = $volume_rak_3['volume'];
+			$total_volume_solar_4 = $volume_rak_4['volume'];
+			$total_volume_solar_5 = $volume_rak_5['volume'];
+
+			$total_nilai_solar_1 = $volume_rak_1['volume'] * $volume_rap_alat['bbm_solar'];
+			$total_nilai_solar_2 = $volume_rak_2['volume'] * $volume_rap_alat['bbm_solar'];
+			$total_nilai_solar_3 = $volume_rak_3['volume'] * $volume_rap_alat['bbm_solar'];
+			$total_nilai_solar_4 = $volume_rak_4['volume'] * $volume_rap_alat['bbm_solar'];
+			$total_nilai_solar_5 = $volume_rak_5['volume'] * $volume_rap_alat['bbm_solar'];
+
+			?>
+			<tr class="table-baris">
+				<th class="text-left" colspan="16"><b>D. TOTAL BIAYA PERALATAN</b></th>
+			</tr>
+			<?php
+			$total_volume_bp = $total_volume_bp_1 + $total_volume_bp_2 + $total_volume_bp_3 + $total_volume_bp_4 + $total_volume_bp_5;
+			$total_nilai_bp = $total_nilai_bp_1 + $total_nilai_bp_2 + $total_nilai_bp_3 +  + $total_nilai_bp_4 +  + $total_nilai_bp_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Batching Plant</th>
+				<th class="text-right"><?php echo number_format($volume_rap_alat_bp,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_bp_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_bp_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_bp_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_bp_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_bp_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_bp_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_bp_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_bp_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_bp_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_bp_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_bp,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_bp,0,',','.');?></th>
+			</tr>
+			<?php
+			$total_volume_tm = $total_volume_tm_1 + $total_volume_tm_2 + $total_volume_tm_3 + $total_volume_tm_4 + $total_volume_tm_5;
+			$total_nilai_tm = $total_nilai_tm_1 + $total_nilai_tm_2 + $total_nilai_tm_3 +  + $total_nilai_tm_4 +  + $total_nilai_tm_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Truck Mixer</th>
+				<th class="text-right"><?php echo number_format($volume_rap_alat_tm,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_tm_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_tm_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_tm_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_tm_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_tm_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_tm_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_tm_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_tm_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_tm_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_tm_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_tm,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_tm,0,',','.');?></th>
+			</tr>
+			<?php
+			$total_volume_wl = $total_volume_wl_1 + $total_volume_wl_2 + $total_volume_wl_3 + $total_volume_wl_4 + $total_volume_wl_5;
+			$total_nilai_wl = $total_nilai_wl_1 + $total_nilai_wl_2 + $total_nilai_wl_3 +  + $total_nilai_wl_4 +  + $total_nilai_wl_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Wheel Loader</th>
+				<th class="text-right"><?php echo number_format($volume_rap_alat_wl,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_wl_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_wl_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_wl_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_wl_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_wl_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_wl_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_wl_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_wl_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_wl_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_wl_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_wl,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_wl,0,',','.');?></th>
+			</tr>
+			<?php
+			$total_volume_solar = $total_volume_solar_1 + $total_volume_solar_2 + $total_volume_solar_3 + $total_volume_solar_4 + $total_volume_solar_5;
+			$total_nilai_solar = $total_nilai_solar_1 + $total_nilai_solar_2 + $total_nilai_solar_3 +  + $total_nilai_solar_4 +  + $total_nilai_solar_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Solar</th>
+				<th class="text-right"><?php echo number_format($volume_rap_alat_solar,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_volume_solar_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_solar_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_solar_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_solar_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_solar_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_solar_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_solar_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_solar_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_solar_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_solar_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_solar,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_solar,0,',','.');?></th>
+			</tr>
+			<?php
+			$jumlah_alat_1 = $total_nilai_bp_1 + $total_nilai_tm_1 + $total_nilai_wl_1 + $total_nilai_solar_1;
+			$jumlah_alat_2 = $total_nilai_bp_2 + $total_nilai_tm_2 + $total_nilai_wl_2 + $total_nilai_solar_2;
+			$jumlah_alat_3 = $total_nilai_bp_3 + $total_nilai_tm_3 + $total_nilai_wl_3 + $total_nilai_solar_3;
+			$jumlah_alat_4 = $total_nilai_bp_4 + $total_nilai_tm_4 + $total_nilai_wl_4 + $total_nilai_solar_4;
+			$jumlah_alat_5 = $total_nilai_bp_5 + $total_nilai_tm_5 + $total_nilai_wl_5 + $total_nilai_solar_5;
+			$jumlah_alat = $jumlah_alat_1 + $jumlah_alat_2 + $jumlah_alat_3 + $jumlah_alat_4 + $jumlah_alat_5;
+			?>
+			<tr class="table-total">
+				<th class="text-right" colspan="4">JUMLAH</th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_alat_1,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_alat_2,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_alat_3,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_alat_4,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_alat_5,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_alat,0,',','.');?></th>
+			</tr>
+			<?php
+			$overhead_rak_1 = $this->db->select('sum(overhead) as nilai')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_agustus24_awal' and '$date_agustus24_akhir'")
+			->get()->row_array();
+
+			$overhead_rak_2 = $this->db->select('sum(overhead) as nilai')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_september24_awal' and '$date_september24_akhir'")
+			->get()->row_array();
+			
+			$overhead_rak_3 = $this->db->select('sum(overhead) as nilai')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_oktober24_awal' and '$date_oktober24_akhir'")
+			->get()->row_array();
+
+			$overhead_rak_4 = $this->db->select('sum(overhead) as nilai')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
+			->get()->row_array();
+
+			$overhead_rak_5 = $this->db->select('sum(overhead) as nilai')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
+			->get()->row_array();
+
+			$total_nilai_overhead_1 = $overhead_rak_1['nilai'];
+			$total_nilai_overhead_2 = $overhead_rak_2['nilai'];
+			$total_nilai_overhead_3 = $overhead_rak_3['nilai'];
+			$total_nilai_overhead_4 = $overhead_rak_4['nilai'];
+			$total_nilai_overhead_5 = $overhead_rak_5['nilai'];
+			?>
+			<tr class="table-baris">
+				<th class="text-left" colspan="16"><b>E. OVERHEAD</b></th>
+			</tr>
+			<?php
+			$total_nilai_overhead = $total_nilai_overhead_1 + $total_nilai_overhead_2 + $total_nilai_overhead_3 + $total_nilai_overhead_4 + $total_nilai_overhead_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Overhead</th>
+				<th class="text-right"></th>
+				<th class="text-center"></th>
+				<th class="text-right"><?php echo number_format($total_volume_overhead_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_overhead_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_overhead_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_overhead_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_overhead_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_overhead_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_overhead_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_overhead_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_overhead_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_overhead_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_overhead,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_overhead,0,',','.');?></th>
+			</tr>
+		</table>
 		<?php
 	}
 
