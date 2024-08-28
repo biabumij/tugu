@@ -404,7 +404,7 @@
                                             <br />
                                             <li class="text-center" style="background: linear-gradient(110deg, #38761d 20%, #38761d 40%, #6aa84f 80%);">
                                                 <a href="<?php echo site_url('admin/laporan_rencana_kerja');?>">
-                                                <span style="color:#fffdd0;"><i class="fa-solid fa-calendar-week"></i><b>RENCANA KERJA</b></span></a>
+                                                <span style="color:#fffdd0;"><i class="fa-solid fa-calendar-week"></i><b>RENCANA<br />KERJA</b></span></a>
                                             </li>
                                         </ul>
                                     </th>

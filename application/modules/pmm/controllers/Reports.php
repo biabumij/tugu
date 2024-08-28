@@ -9215,11 +9215,12 @@ class Reports extends CI_Controller {
 			$jumlah_nilai_K300_18 = $rak_1_nilai_K300_18 + $rak_2_nilai_K300_18 + $rak_3_nilai_K300_18 + $rak_4_nilai_K300_18 + $rak_5_nilai_K300_18;
 			
 			//KOMPOSISI BAHAN K-300 SLUMP 10
-			$komposisi_300_1 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			$komposisi_300_1 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additive, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additive')
 			->from('rak r')
 			->join('pmm_agregat pk', 'r.komposisi_300 = pk.id','left')
 			->where("r.tanggal_rencana_kerja between '$date_agustus24_awal' and '$date_agustus24_akhir'")
 			->get()->result_array();
+			file_put_contents("D:\\test.txt", $this->db->last_query());
 
 			$total_volume_semen_300_1 = 0;
 			$total_nilai_semen_300_1 = 0;
@@ -9233,11 +9234,11 @@ class Reports extends CI_Controller {
 				$total_nilai_batu1020_300_1 = $x['nilai_komposisi_batu1020'];
 				$total_volume_batu2030_300_1 = $x['vol_komposisi_batu2030'];
 				$total_nilai_batu2030_300_1 = $x['nilai_komposisi_batu2030'];
-				$total_volume_additve_300_1 = $x['vol_komposisi_additve'];
-				$total_nilai_additve_300_1 = $x['nilai_komposisi_additve'];
+				$total_volume_additive_300_1 = $x['vol_komposisi_additive'];
+				$total_nilai_additive_300_1 = $x['nilai_komposisi_additive'];
 			}
 
-			$komposisi_300_2 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			$komposisi_300_2 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additive, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additive')
 			->from('rak r')
 			->join('pmm_agregat pk', 'r.komposisi_300 = pk.id','left')
 			->where("r.tanggal_rencana_kerja between '$date_september24_awal' and '$date_september24_akhir'")
@@ -9255,11 +9256,11 @@ class Reports extends CI_Controller {
 				$total_nilai_batu1020_300_2 = $x['nilai_komposisi_batu1020'];
 				$total_volume_batu2030_300_2 = $x['vol_komposisi_batu2030'];
 				$total_nilai_batu2030_300_2 = $x['nilai_komposisi_batu2030'];
-				$total_volume_additve_300_2 = $x['vol_komposisi_additve'];
-				$total_nilai_additve_300_2 = $x['nilai_komposisi_additve'];
+				$total_volume_additive_300_2 = $x['vol_komposisi_additive'];
+				$total_nilai_additive_300_2 = $x['nilai_komposisi_additive'];
 			}
 
-			$komposisi_300_3 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			$komposisi_300_3 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additive, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additive')
 			->from('rak r')
 			->join('pmm_agregat pk', 'r.komposisi_300 = pk.id','left')
 			->where("r.tanggal_rencana_kerja between '$date_oktober24_awal' and '$date_oktober24_akhir'")
@@ -9277,11 +9278,11 @@ class Reports extends CI_Controller {
 				$total_nilai_batu1020_300_3 = $x['nilai_komposisi_batu1020'];
 				$total_volume_batu2030_300_3 = $x['vol_komposisi_batu2030'];
 				$total_nilai_batu2030_300_3 = $x['nilai_komposisi_batu2030'];
-				$total_volume_additve_300_3 = $x['vol_komposisi_additve'];
-				$total_nilai_additve_300_3 = $x['nilai_komposisi_additve'];
+				$total_volume_additive_300_3 = $x['vol_komposisi_additive'];
+				$total_nilai_additive_300_3 = $x['nilai_komposisi_additive'];
 			}
 
-			$komposisi_300_4 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			$komposisi_300_4 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additive, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additive')
 			->from('rak r')
 			->join('pmm_agregat pk', 'r.komposisi_300 = pk.id','left')
 			->where("r.tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
@@ -9299,11 +9300,11 @@ class Reports extends CI_Controller {
 				$total_nilai_batu1020_300_4 = $x['nilai_komposisi_batu1020'];
 				$total_volume_batu2030_300_4 = $x['vol_komposisi_batu2030'];
 				$total_nilai_batu2030_300_4 = $x['nilai_komposisi_batu2030'];
-				$total_volume_additve_300_4 = $x['vol_komposisi_additve'];
-				$total_nilai_additve_300_4 = $x['nilai_komposisi_additve'];
+				$total_volume_additive_300_4 = $x['vol_komposisi_additive'];
+				$total_nilai_additive_300_4 = $x['nilai_komposisi_additive'];
 			}
 
-			$komposisi_300_5 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			$komposisi_300_5 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_a * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_a * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_a * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_a * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_a * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_a * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_a * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_a * pk.presentase_e) as vol_komposisi_additive, (r.vol_produk_a * pk.presentase_e) * pk.price_e as nilai_komposisi_additive')
 			->from('rak r')
 			->join('pmm_agregat pk', 'r.komposisi_300 = pk.id','left')
 			->where("r.tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
@@ -9321,12 +9322,12 @@ class Reports extends CI_Controller {
 				$total_nilai_batu1020_300_5 = $x['nilai_komposisi_batu1020'];
 				$total_volume_batu2030_300_5 = $x['vol_komposisi_batu2030'];
 				$total_nilai_batu2030_300_5 = $x['nilai_komposisi_batu2030'];
-				$total_volume_additve_300_5 = $x['vol_komposisi_additve'];
-				$total_nilai_additve_300_5 = $x['nilai_komposisi_additve'];
+				$total_volume_additive_300_5 = $x['vol_komposisi_additive'];
+				$total_nilai_additive_300_5 = $x['nilai_komposisi_additive'];
 			}
 
 			//KOMPOSISI BAHAN K-300 SLUMP 18
-			$komposisi_300_18_1 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			$komposisi_300_18_1 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additive, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additive')
 			->from('rak r')
 			->join('pmm_agregat pk', 'r.komposisi_300_18 = pk.id','left')
 			->where("r.tanggal_rencana_kerja between '$date_agustus24_awal' and '$date_agustus24_akhir'")
@@ -9344,11 +9345,11 @@ class Reports extends CI_Controller {
 				$total_nilai_batu1020_300_18_1 = $x['nilai_komposisi_batu1020'];
 				$total_volume_batu2030_300_18_1 = $x['vol_komposisi_batu2030'];
 				$total_nilai_batu2030_300_18_1 = $x['nilai_komposisi_batu2030'];
-				$total_volume_additve_300_18_1 = $x['vol_komposisi_additve'];
-				$total_nilai_additve_300_18_1 = $x['nilai_komposisi_additve'];
+				$total_volume_additive_300_18_1 = $x['vol_komposisi_additive'];
+				$total_nilai_additive_300_18_1 = $x['nilai_komposisi_additive'];
 			}
 
-			$komposisi_300_18_2 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			$komposisi_300_18_2 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additive, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additive')
 			->from('rak r')
 			->join('pmm_agregat pk', 'r.komposisi_300_18 = pk.id','left')
 			->where("r.tanggal_rencana_kerja between '$date_september24_awal' and '$date_september24_akhir'")
@@ -9366,11 +9367,11 @@ class Reports extends CI_Controller {
 				$total_nilai_batu1020_300_18_2 = $x['nilai_komposisi_batu1020'];
 				$total_volume_batu2030_300_18_2 = $x['vol_komposisi_batu2030'];
 				$total_nilai_batu2030_300_18_2 = $x['nilai_komposisi_batu2030'];
-				$total_volume_additve_300_18_2 = $x['vol_komposisi_additve'];
-				$total_nilai_additve_300_18_2 = $x['nilai_komposisi_additve'];
+				$total_volume_additive_300_18_2 = $x['vol_komposisi_additive'];
+				$total_nilai_additive_300_18_2 = $x['nilai_komposisi_additive'];
 			}
 
-			$komposisi_300_18_3 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			$komposisi_300_18_3 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additive, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additive')
 			->from('rak r')
 			->join('pmm_agregat pk', 'r.komposisi_300_18 = pk.id','left')
 			->where("r.tanggal_rencana_kerja between '$date_oktober24_awal' and '$date_oktober24_akhir'")
@@ -9388,11 +9389,11 @@ class Reports extends CI_Controller {
 				$total_nilai_batu1020_300_18_3 = $x['nilai_komposisi_batu1020'];
 				$total_volume_batu2030_300_18_3 = $x['vol_komposisi_batu2030'];
 				$total_nilai_batu2030_300_18_3 = $x['nilai_komposisi_batu2030'];
-				$total_volume_additve_300_18_3 = $x['vol_komposisi_additve'];
-				$total_nilai_additve_300_18_3 = $x['nilai_komposisi_additve'];
+				$total_volume_additive_300_18_3 = $x['vol_komposisi_additive'];
+				$total_nilai_additive_300_18_3 = $x['nilai_komposisi_additive'];
 			}
 
-			$komposisi_300_18_4 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			$komposisi_300_18_4 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additive, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additive')
 			->from('rak r')
 			->join('pmm_agregat pk', 'r.komposisi_300_18 = pk.id','left')
 			->where("r.tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
@@ -9410,11 +9411,11 @@ class Reports extends CI_Controller {
 				$total_nilai_batu1020_300_18_4 = $x['nilai_komposisi_batu1020'];
 				$total_volume_batu2030_300_18_4 = $x['vol_komposisi_batu2030'];
 				$total_nilai_batu2030_300_18_4 = $x['nilai_komposisi_batu2030'];
-				$total_volume_additve_300_18_4 = $x['vol_komposisi_additve'];
-				$total_nilai_additve_300_18_4 = $x['nilai_komposisi_additve'];
+				$total_volume_additive_300_18_4 = $x['vol_komposisi_additive'];
+				$total_nilai_additive_300_18_4 = $x['nilai_komposisi_additive'];
 			}
 
-			$komposisi_300_18_5 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additve, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additve')
+			$komposisi_300_18_5 = $this->db->select('(r.vol_produk_b * pk.presentase_a) as vol_komposisi_semen, (r.vol_produk_b * pk.presentase_a) * pk.price_a as nilai_komposisi_semen, (r.vol_produk_b * pk.presentase_b) as vol_komposisi_pasir, (r.vol_produk_b * pk.presentase_b) * pk.price_b as nilai_komposisi_pasir, (r.vol_produk_b * pk.presentase_c) as vol_komposisi_batu1020, (r.vol_produk_b * pk.presentase_c) * pk.price_c as nilai_komposisi_batu1020, (r.vol_produk_b * pk.presentase_d) as vol_komposisi_batu2030, (r.vol_produk_b * pk.presentase_d) * pk.price_d as nilai_komposisi_batu2030, (r.vol_produk_b * pk.presentase_e) as vol_komposisi_additive, (r.vol_produk_b * pk.presentase_e) * pk.price_e as nilai_komposisi_additive')
 			->from('rak r')
 			->join('pmm_agregat pk', 'r.komposisi_300_18 = pk.id','left')
 			->where("r.tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
@@ -9432,8 +9433,8 @@ class Reports extends CI_Controller {
 				$total_nilai_batu1020_300_18_5 = $x['nilai_komposisi_batu1020'];
 				$total_volume_batu2030_300_18_5 = $x['vol_komposisi_batu2030'];
 				$total_nilai_batu2030_300_18_5 = $x['nilai_komposisi_batu2030'];
-				$total_volume_additve_300_18_5 = $x['vol_komposisi_additve'];
-				$total_nilai_additve_300_18_5 = $x['nilai_komposisi_additve'];
+				$total_volume_additive_300_18_5 = $x['vol_komposisi_additive'];
+				$total_nilai_additive_300_18_5 = $x['nilai_komposisi_additive'];
 			}
 			?>
 
@@ -9627,8 +9628,8 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300,0,',','.');?></th>
 			</tr>
 			<?php
-			$total_volume_additive_300 = $total_volume_additve_300_1 + $total_volume_additve_300_2 + $total_volume_additve_300_3 + $total_volume_additve_300_4 + $total_volume_additve_300_5;
-			$total_nilai_additive_300 = $total_nilai_additve_300_1 + $total_nilai_additve_300_2 + $total_nilai_additve_300_3 + $total_nilai_additve_300_4 + $total_nilai_additve_300_5;
+			$total_volume_additive_300 = $total_volume_additive_300_1 + $total_volume_additive_300_2 + $total_volume_additive_300_3 + $total_volume_additive_300_4 + $total_volume_additive_300_5;
+			$total_nilai_additive_300 = $total_nilai_additive_300_1 + $total_nilai_additive_300_2 + $total_nilai_additive_300_3 + $total_nilai_additive_300_4 + $total_nilai_additive_300_5;
 			?>
 			<tr class="table-baris" id="hidethis6" style="display:none;">
 				<th class="text-center"></th>
@@ -9765,8 +9766,8 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_18,0,',','.');?></th>
 			</tr>
 			<?php
-			$total_volume_additive_300_18 = $total_volume_additve_300_18_1 + $total_volume_additve_300_18_2 + $total_volume_additve_300_18_3 + $total_volume_additve_300_18_4 + $total_volume_additve_300_18_5;
-			$total_nilai_additive_300_18 = $total_nilai_additve_300_18_1 + $total_nilai_additve_300_18_2 + $total_nilai_additve_300_18_3 + $total_nilai_additve_300_18_4 + $total_nilai_additve_300_18_5;
+			$total_volume_additive_300_18 = $total_volume_additive_300_18_1 + $total_volume_additive_300_18_2 + $total_volume_additive_300_18_3 + $total_volume_additive_300_18_4 + $total_volume_additive_300_18_5;
+			$total_nilai_additive_300_18 = $total_nilai_additive_300_18_1 + $total_nilai_additive_300_18_2 + $total_nilai_additive_300_18_3 + $total_nilai_additive_300_18_4 + $total_nilai_additive_300_18_5;
 			?>
 			<tr class="table-baris" id="hidethis13" style="display:none;">
 				<th class="text-center"></th>
