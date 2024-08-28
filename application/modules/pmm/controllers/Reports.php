@@ -10171,6 +10171,29 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_volume_overhead,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_overhead,0,',','.');?></th>
 			</tr>
+			<?php
+			$jumlah_biaya_1 = $jumlah_bahan_1 + $jumlah_bahan2_1 + $jumlah_alat_1 + $total_nilai_overhead_1;
+			$jumlah_biaya_2 = $jumlah_bahan_2 + $jumlah_bahan2_2 + $jumlah_alat_2 + $total_nilai_overhead_2;
+			$jumlah_biaya_3 = $jumlah_bahan_3 + $jumlah_bahan2_3 + $jumlah_alat_3 + $total_nilai_overhead_3;
+			$jumlah_biaya_4 = $jumlah_bahan_4 + $jumlah_bahan2_4 + $jumlah_alat_4 + $total_nilai_overhead_4;
+			$jumlah_biaya_5 = $jumlah_bahan_5 + $jumlah_bahan2_5 + $jumlah_alat_5 + $total_nilai_overhead_5;
+			$jumlah_biaya = $jumlah_bahan_300 + $jumlah_bahan_300_18 + $jumlah_alat + $total_nilai_overhead;
+			?>
+			<tr class="table-total">
+				<th class="text-right" colspan="4">JUMLAH BAHAN + ALAT + OVERHEAD</th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_biaya_1,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_biaya_2,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_biaya_3,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_biaya_4,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_biaya_5,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_biaya,0,',','.');?></th>
+			</tr>
 		</table>
 		<?php
 	}
