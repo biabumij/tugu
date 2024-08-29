@@ -10195,6 +10195,29 @@ class Reports extends CI_Controller {
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($jumlah_biaya,0,',','.');?></th>
 			</tr>
+			<?php
+			$laba_1 = $jumlah_2 - $jumlah_biaya_1;
+			$laba_2 = $jumlah_4 - $jumlah_biaya_2;
+			$laba_3 = $jumlah_6 - $jumlah_biaya_3;
+			$laba_4 = $jumlah_8 - $jumlah_biaya_4;
+			$laba_5 = $jumlah_10 - $jumlah_biaya_5;
+			$laba = $jumlah_12 - $jumlah_biaya;
+			?>
+			<tr class="table-total">
+				<th class="text-right" colspan="4">LABA</th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($laba_1,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($laba_2,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($laba_3,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($laba_4,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($laba_5,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($laba,0,',','.');?></th>
+			</tr>
 		</table>
 		<?php
 	}
