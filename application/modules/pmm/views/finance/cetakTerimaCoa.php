@@ -102,7 +102,7 @@
                 <td width="5%"></td>
                 <td width="90%">
                     <table width="100%" border="1" cellpadding="2">
-                        <tr class="table-active3">
+                        <tr>
                             <td align="center" >
                                 Dibuat Oleh
                             </td>
@@ -116,7 +116,7 @@
                                 Diketahui Oleh
                             </td>
                         </tr>
-                        <tr class="">
+                        <tr>
                             <td align="center" height="75px">
                                 
                             </td>
@@ -155,13 +155,13 @@
                                  <b><?= $created_group['admin_group_name']?></b>
                             </td>
                             <td align="center" >
-                                <b>Pj. Keuangan & SDM</b>
+                                <b>Keuangan Proyek</b>
                             </td>
                             <td align="center" >
                                 <b>Ka. Plant</b>
                             </td>
                             <td align="center" >
-                                <b>Dir. Keuangan</b>
+                                <b>Dir. Keuangan & SDM</b>
                             </td>
                         </tr>
                     </table>
