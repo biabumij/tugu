@@ -5,9 +5,9 @@
       <?= include 'lib.php'; ?>
       
       <style type="text/css">
-        body {
-			font-family: helvetica;
-		}
+        body{
+            font-family: helvetica;
+        }
         table.minimalistBlack {
           border: 0px solid #000000;
           width: 100%;
@@ -104,23 +104,17 @@
         </table>
         <br />
         <br />
-        <br />
-        <br />
-        <br />  
-        <table width="98%" border="0" cellpadding="0">
+        <table width="98%" border="0" cellpadding="30">
             <tr >
                 <td width="5%"></td>
                 <td width="90%">
-                    <table width="100%" border="1" cellpadding="2">
+                    <table width="100%" border="1" cellpadding="3">
                         <tr class="table-active3">
                             <td align="center" >
                                 Dibuat Oleh
                             </td>
                             <td align="center" >
-                                Diperiksa Oleh
-                            </td>
-                            <td align="center" >
-                                Disetujui Oleh
+                                Diperiksa dan Disetujui Oleh
                             </td>
                             <td align="center" >
                                 Diketahui Oleh
@@ -136,22 +130,16 @@
                             <td align="center">
                                 
                             </td>
-                            <td align="center">
-                                
-                            </td>
                         </tr>
                         <tr class="table-active3">
                             <td align="center" >
                                 <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$pembayaran['created_by']),'admin_name'); ?>
                             </td>
                             <td align="center" >
-                                Rifka Dian Bethary
-                            </td>
-                            <td align="center" >
-                                Tri Wahyu Rahadi
-                            </td>
-                            <td align="center" >
                                 Erika Sinaga
+                            </td>
+                            <td align="center" >
+                                Deddy Sarwobiso
                             </td>
                         </tr>
                         <tr class="table-active3">
@@ -162,16 +150,13 @@
                             $this->db->where('a.admin_id',$pembayaran['created_by']);
                             $created_group = $this->db->get('tbl_admin a')->row_array();
                             ?>
-                                 <b><?= $created_group['admin_group_name']?></b>
-                            </td>
-                            <td align="center" >
-                                <b>Pj. Keuangan & SDM</b>
-                            </td>
-                            <td align="center" >
-                                <b>Ka. Plant</b>
+                                <b><?= $created_group['admin_group_name']?></b>
                             </td>
                             <td align="center" >
                                 <b>Dir. Keuangan</b>
+                            </td>
+                            <td align="center" >
+                                <b>Direktur Utama</b>
                             </td>
                         </tr>
                     </table>
@@ -179,9 +164,5 @@
                 <td width="5%"></td>
             </tr>
         </table>
-
-            
-        
-
     </body>
 </html>
