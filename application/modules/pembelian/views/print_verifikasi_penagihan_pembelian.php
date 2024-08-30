@@ -375,8 +375,6 @@
 				$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 				$this->db->where('a.admin_id',$ttd_pusat['pusat']);
 				$pusat = $this->db->get('tbl_admin a')->row_array();
-
-				
 			?>
             <tr border="1">
                 <td width="100%">
@@ -414,19 +412,19 @@
                         </tr>
                         <tr>
                             <td align="center">
-								<?= $verifikator['admin_name'];?>
+								<b><?= $verifikator['admin_name'];?></b>
                             </td>
                             <td align="center">
-								<?= $logistik['admin_name'];?>
+								<b><?= $logistik['admin_name'];?></b>
                             </td>
 							<td align="center">
-								Debi Khania
+								<b>Debi Khania</b>
                             </td>
                             <td align="center">
-								<?= $unit_head['admin_name'];?>
+								<b><?= $unit_head['admin_name'];?></b>
                             </td>
 							<td align="center">
-								Erika Sinaga
+								<b>Erika Sinaga</b>
                             </td>
                         </tr>
                         <tr>
