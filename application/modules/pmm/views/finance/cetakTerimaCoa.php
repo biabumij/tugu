@@ -132,7 +132,7 @@
                         </tr>
                         <tr class="table-active3">
                             <td align="center" >
-                                <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$pembayaran['created_by']),'admin_name'); ?>
+                                <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$detail['created_by']),'admin_name'); ?>
                             </td>
                             <td align="center" >
                                 Rifka Dian Bethary
