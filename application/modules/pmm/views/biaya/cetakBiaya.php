@@ -177,24 +177,24 @@
                         </tr>
                         <tr class="">
                             <td align="center">
-                                <?=  $admin['admin_name'];?>
+                                <b><?=  $admin['admin_name'];?></b>
                             </td>
                             <td align="center">
-                                <?=  $keu['admin_name'];?>
+                                <b><?=  $keu['admin_name'];?></b>
                             </td>
                             <td align="center">
-                                <?=  $unit_head['admin_name'];?>
+                                <b><?=  $unit_head['admin_name'];?></b>
                             </td>
                         </tr>
                         <tr class="">
                             <td align="center">
-                                <?= $admin['admin_group_name']?>
+                                <b><?= $admin['admin_group_name']?></b>
                             </td>
                             <td align="center">
-                                <?= $keu['admin_group_name']?>
+                                <b><?= $keu['admin_group_name']?></b>
                             </td>
                             <td align="center">
-                                <?= $unit_head['admin_group_name']?>
+                                <b><?= $unit_head['admin_group_name']?></b>
                             </td>
                         </tr>
                     </table>
