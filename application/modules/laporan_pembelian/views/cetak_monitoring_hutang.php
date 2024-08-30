@@ -221,13 +221,13 @@
 					<table width="100%" border="0" cellpadding="3">
 						<tr>
 							<td align="center" >
-								Disetujui Oleh
+								Dibuat Oleh
 							</td>
 							<td align="center" >
 								Diperiksa Oleh
 							</td>
 							<td align="center">
-								Dibuat Oleh
+								Disetujui Oleh
 							</td>
 						</tr>
 						<tr class="">
@@ -243,16 +243,16 @@
 						</tr>
 						<tr>
 							<td align="center">
-								<b><u>Tri Wahyu Rahadi</u><br />
-								Ka. Plant</b>
+							<b><u>Iva Widya Kumala</u><br />
+								Keuangan Proyek</b>
 							</td>
 							<td align="center">
 							<b><u>Rifka Dian Bethary</u><br />
-								Pj. Keuangan & SDM</b>
+								Keuangan Proyek</b>
 							</td>
 							<td align="center">
-							<b><u>Iva Widya Kumala</u><br />
-								Keuangan Proyek</b>
+								<b><u>Tri Wahyu Rahadi</u><br />
+								Ka. Plant</b>
 							</td>
 						</tr>
 					</table>
