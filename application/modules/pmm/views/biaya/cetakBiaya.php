@@ -138,13 +138,18 @@
                 <?php
                     $this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
                     $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                    $this->db->where('a.admin_id',$biaya['unit_head']);
-                    $unit_head = $this->db->get('tbl_admin a')->row_array();
+                    $this->db->where('a.admin_id',$biaya['admin']);
+                    $admin = $this->db->get('tbl_admin a')->row_array();
 
                     $this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
                     $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                    $this->db->where('a.admin_id',$biaya['admin']);
-                    $admin = $this->db->get('tbl_admin a')->row_array();
+                    $this->db->where('a.admin_id',$biaya['keu']);
+                    $keu = $this->db->get('tbl_admin a')->row_array();
+
+                    $this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
+                    $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                    $this->db->where('a.admin_id',$biaya['unit_head']);
+                    $unit_head = $this->db->get('tbl_admin a')->row_array();
                 ?>
                 <td width="100%">
                     <table width="100%" border="1" cellpadding="2">
@@ -153,21 +158,21 @@
                                 Dibuat Oleh
                             </td>
                             <td align="center">
-                                Diperiksa & Disetujui Oleh
+                                Diperiksa Oleh
                             </td>
                             <td align="center" >
-                                Diterima Oleh
+                                Disetujui Oleh
                             </td>
                         </tr>
                         <tr class="">
                             <td align="center" height="75px">
-                                <!--<img src="<?= $admin['admin_ttd']?>" width="100px">-->
+                            
                             </td>
                             <td align="center">
-                                <!--<img src="<?= $unit_head['admin_ttd']?>" width="100px">-->  
+
                             </td>
                             <td align="center">
-                                
+                            
                             </td>
                         </tr>
                         <tr class="">
@@ -175,10 +180,10 @@
                                 <?=  $admin['admin_name'];?>
                             </td>
                             <td align="center">
-                                <?=  $unit_head['admin_name'];?>
+                                <?=  $keu['admin_name'];?>
                             </td>
                             <td align="center">
-                                <?= $biaya["penerima"] ?>
+                                <?=  $unit_head['admin_name'];?>
                             </td>
                         </tr>
                         <tr class="">
@@ -186,10 +191,10 @@
                                 <?= $admin['admin_group_name']?>
                             </td>
                             <td align="center">
-                                Ka. Plant
+                                <?= $keu['admin_group_name']?>
                             </td>
                             <td align="center">
-                                Penerima
+                                <?= $unit_head['admin_group_name']?>
                             </td>
                         </tr>
                     </table>
