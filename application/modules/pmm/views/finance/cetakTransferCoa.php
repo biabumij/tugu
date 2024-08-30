@@ -98,28 +98,26 @@
         <br />
         <br />
         <table width="98%" border="0" cellpadding="0">
-            <tr>
-                <td width="100%">
+            <tr >
+                <td width="5%"></td>
+                <td width="90%">
                     <table width="100%" border="1" cellpadding="2">
-                        <tr class="">
-                            <td align="center">
+                        <tr>
+                            <td align="center" >
                                 Dibuat Oleh
                             </td>
-                            <td align="center" colspan="2">
+                            <td align="center" >
                                 Diperiksa Oleh
                             </td>
                             <td align="center" >
-                                Disetujui
+                                Disetujui Oleh
                             </td>
                             <td align="center" >
-                                Diketahui
+                                Diketahui Oleh
                             </td>
                         </tr>
-                        <tr class="">
+                        <tr>
                             <td align="center" height="75px">
-                                
-                            </td>
-                            <td align="center">
                                 
                             </td>
                             <td align="center">
@@ -133,57 +131,43 @@
                             </td>
                         </tr>
                         <tr class="table-active3">
-                            <?php
-                            $keuangan_proyek = $this->pmm_model->GetNameGroup(10);
-                            $ka_plant = $this->pmm_model->GetNameGroup(8);
-                            $manager_keuangan = $this->pmm_model->GetNameGroup(5);
-                            $direksi = $this->pmm_model->GetNameGroup(6);
-                            ?>  
-                            <td align="center">
+                            <td align="center" >
                                 <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$detail['created_by']),'admin_name'); ?>
                             </td>
-                            <td align="center">
-                                <?=  $keuangan_proyek['admin_name'];?>
-                            </td>
-                            <td align="center">
-                                <?=  $ka_plant['admin_name'];?>
-                            </td>
-                            <td align="center">
-                                <?=  $manager_keuangan['admin_name'];?>
+                            <td align="center" >
+                                Rifka Dian Bethary
                             </td>
                             <td align="center" >
-                                <?=  $direksi['admin_name'];?>
+                                Tri Wahyu Rahadi
+                            </td>
+                            <td align="center" >
+                                Erika Sinaga
                             </td>
                         </tr>
-                         <tr class="table-active3">
-                            <td align="center">
-                                <?php
-                                $this->db->select('g.admin_group_name');
-                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$detail['created_by']);
-                                $created_group = $this->db->get('tbl_admin a')->row_array();
-                                ?>
-                                <?= $created_group['admin_group_name']?>
-                            </td>
-                            <td align="center">
-                                <?=  $keuangan_proyek['admin_group_name'];?>
-                            </td>
-                            <td align="center">
-                                <?=  $ka_plant['admin_group_name'];?>
-                            </td>
-                            <td align="center">
-                                <?=  $manager_keuangan['admin_group_name'];?>
+                        <tr class="table-active3">
+                            <td align="center" >
+                            <?php
+                            $this->db->select('g.admin_group_name');
+                            $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                            $this->db->where('a.admin_id',$detail['created_by']);
+                            $created_group = $this->db->get('tbl_admin a')->row_array();
+                            ?>
+                                 <b><?= $created_group['admin_group_name']?></b>
                             </td>
                             <td align="center" >
-                                <?=  $direksi['admin_group_name'];?>
+                                <b>Keuangan Proyek</b>
+                            </td>
+                            <td align="center" >
+                                <b>Ka. Plant</b>
+                            </td>
+                            <td align="center" >
+                                <b>Dir. Keuangan & SDM</b>
                             </td>
                         </tr>
                     </table>
                 </td>
+                <td width="5%"></td>
             </tr>
         </table>
-            
-        
-
     </body>
 </html>
