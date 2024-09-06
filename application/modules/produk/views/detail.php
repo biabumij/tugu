@@ -234,7 +234,7 @@
                                     if($this->session->userdata('admin_id') == 1 || $this->session->userdata('admin_id') == 12){
                                         ?>
                                         <a  href="<?= base_url('produk/buat_baru/'.$row['id']) ?>" class="btn btn-default" style="width:10%; font-weight:bold; border-radius:10px;">EDIT</a>
-                                        <a class="btn btn-default" style="width:10%; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('produk/hapus/'.$row['id']);?>')">HAPUS</a>
+                                        <!--<a class="btn btn-default" style="width:10%; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('produk/hapus/'.$row['id']);?>')">HAPUS</a>-->
                                         <?php
                                     }
                                     ?>
