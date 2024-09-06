@@ -71,10 +71,10 @@
                                                         <p><h5><b>Buku Besar</b></h5></p>
                                                         <a href="#buku_besar" aria-controls="buku_besar" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>										
                                                     </div>
-                                                    <!--<div class="col-sm-5">
+                                                    <div class="col-sm-5">
                                                         <p><h5><b>Cash Flow</b></h5></p>
                                                         <a href="#cash_flow" aria-controls="cash_flow" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>										
-                                                    </div>-->
+                                                    </div>
                                                     <?php
                                                     }
                                                     ?>	

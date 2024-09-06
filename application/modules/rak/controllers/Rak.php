@@ -595,7 +595,6 @@ class Rak extends Secure_Controller {
 		$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
 		$overhead =  str_replace('.', '', $this->input->post('overhead'));
 		$termin =  str_replace('.', '', $this->input->post('termin'));
-		$biaya_persiapan =  str_replace('.', '', $this->input->post('biaya_persiapan'));
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
@@ -607,7 +606,6 @@ class Rak extends Secure_Controller {
 			'biaya_bank' => $biaya_bank,
 			'overhead' => $overhead,
 			'termin' => $termin,
-			'biaya_persiapan' => $biaya_persiapan,
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')

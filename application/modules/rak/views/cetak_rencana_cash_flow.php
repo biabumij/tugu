@@ -162,11 +162,6 @@
 				<td align="left" class="table-border-pojok-tengah">Termin</td>
 				<td align="right" class="table-border-pojok-kanan"><?= number_format($rak['termin'],0,',','.'); ?></td>
 			</tr>
-			<tr class="table-baris1">
-				<td align="center" class="table-border-pojok-kiri">6.</td>
-				<td align="left" class="table-border-pojok-tengah">Biaya Persiapan</td>
-				<td align="right" class="table-border-pojok-kanan"><?= number_format($rak['biaya_persiapan'],0,',','.'); ?></td>
-			</tr>
 		</table>
 	</body>
 </html>
