@@ -9672,7 +9672,7 @@ class Reports extends CI_Controller {
 			$laba_5 = $jumlah_10 - $jumlah_biaya_5;
 			$laba = $jumlah_12 - $jumlah_biaya;
 			?>
-			<tr class="table-total">
+			<!--<tr class="table-total">
 				<th class="text-right" colspan="4">LABA</th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($laba_1,0,',','.');?></th>
@@ -9686,7 +9686,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($laba_5,0,',','.');?></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($laba,0,',','.');?></th>
-			</tr>
+			</tr>-->
 		</table>
 		<?php
 	}
