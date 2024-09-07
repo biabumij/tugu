@@ -231,7 +231,7 @@
                                 <div class="col-sm-12 text-center">
                                     <a href="<?= base_url('admin/produk') ?>" class="btn btn-info" style="width:10%; font-weight:bold; border-radius:10px;">KEMBALI</a>
                                     <?php
-                                    if($this->session->userdata('admin_id') == 1 || $this->session->userdata('admin_id') == 12){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4){
                                         ?>
                                         <a  href="<?= base_url('produk/buat_baru/'.$row['id']) ?>" class="btn btn-default" style="width:10%; font-weight:bold; border-radius:10px;">EDIT</a>
                                         <!--<a class="btn btn-default" style="width:10%; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('produk/hapus/'.$row['id']);?>')">HAPUS</a>-->
