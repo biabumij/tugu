@@ -216,7 +216,7 @@ class Rap extends Secure_Controller {
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4){
 				$row['edit'] = '<a href="'.site_url().'rap/sunting_komposisi/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px;"><i class="fa fa-edit"></i> </a>';
 				}else {
-					$row['edit'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
+					$row['edit'] = '-';
 				}
 				$row['print'] = '<a href="'.site_url().'rap/cetak_komposisi/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px;"><i class="fa fa-print"></i> </a>';
 				if($this->session->userdata('admin_group_id') == 1){
@@ -545,7 +545,7 @@ class Rap extends Secure_Controller {
 				if($this->session->userdata('admin_group_id') == 1){
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAlat('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
-					$row['actions'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
+					$row['actions'] = '-';
 				}
 
                 $data[] = $row;
@@ -931,7 +931,7 @@ class Rap extends Secure_Controller {
 				if($this->session->userdata('admin_group_id') == 1){
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataBUA('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
-					$row['actions'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
+					$row['actions'] = '-';
 				}
 
                 $data[] = $row;
