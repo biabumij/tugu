@@ -2906,7 +2906,6 @@ class Reports extends CI_Controller {
 			$jumlah_posisi_2_3_4 = $jumlah_termin_4 - $jumlah_pengeluaran_4;
 			$jumlah_2_3 = $jumlah_jumlah_termin - $jumlah_pengeluaran;
 			$sisa_2_3 = $jumlah_sisa_termin - $sisa_pengeluaran;
-
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-center" style="vertical-align:middle">IV</th>
@@ -2952,54 +2951,125 @@ class Reports extends CI_Controller {
 				<th class="text-center" rowspan="4" style="vertical-align:middle">V</th>
 				<th class="text-left" colspan="10"><u>PAJAK</u></th>
 			</tr>
+			<?php
+			$rencana_pajak_keluaran = ($rencana_termin * 11) / 100;
+			$pajak_keluaran_sd_bulan_lalu = ($termin_sd_bulan_lalu * 11) / 100;
+			$pajak_keluaran_bulan_ini = ($termin_bulan_ini * 11) / 100;
+			$pajak_keluaran_bulan_ini_sd = ($termin_bulan_ini_sd * 11) / 100;
+			$pajak_keluaran_2 = ($termin_2 * 11) / 100;
+			$pajak_keluaran_3 = ($termin_3 * 11) / 100;
+			$pajak_keluaran_4 = ($termin_4 * 11) / 100;
+			$jumlah_pajak_keluaran = ($jumlah_termin * 11) / 100;
+			$sisa_pajak_keluaran = ($sisa_termin * 11) / 100;
+			?>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;1. Pajak Keluaran</th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_pajak_keluaran,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_keluaran_sd_bulan_lalu,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_keluaran_bulan_ini,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_keluaran_bulan_ini_sd,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_keluaran_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_keluaran_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_keluaran_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pajak_keluaran,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($sisa_pajak_keluaran,0,',','.');?></th>
 			</tr>
+			<?php
+			$rencana_pajak_masukan = ($rencana_biaya_bahan * 11) / 100;
+			$pajak_masukan_sd_bulan_lalu = ($bahan_sd_bulan_lalu * 11) / 100;
+			$pajak_masukan_bulan_ini = ($bahan_bulan_ini * 11) / 100;
+			$pajak_masukan_bulan_ini_sd = ($bahan_bulan_ini_sd * 11) / 100;
+			$pajak_masukan_2 = ($bahan_2 * 11) / 100;
+			$pajak_masukan_3 = ($bahan_3 * 11) / 100;
+			$pajak_masukan_4 = ($bahan_4 * 11) / 100;
+			$jumlah_pajak_masukan = ($jumlah_bahan * 11) / 100;
+			$sisa_pajak_masukan = ($sisa_bahan * 11) / 100;
+			?>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;2. Pajak Masukan</th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_pajak_masukan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_masukan_sd_bulan_lalu,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_masukan_bulan_ini,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_masukan_bulan_ini_sd,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_masukan_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_masukan_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_masukan_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pajak_masukan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($sisa_pajak_masukan,0,',','.');?></th>
 			</tr>
+			<?php
+			$rencana_jumlah_pajak = $rencana_pajak_keluaran - $rencana_pajak_masukan;
+			$jumlah_pajak_sd_bulan_lalu = $pajak_keluaran_sd_bulan_lalu - $pajak_masukan_sd_bulan_lalu;
+			$jumlah_pajak_bulan_ini = $pajak_keluaran_bulan_ini - $pajak_masukan_bulan_ini;
+			$jumlah_pajak_bulan_ini_sd = $pajak_keluaran_bulan_ini_sd - $pajak_masukan_bulan_ini_sd;
+			$jumlah_pajak_2 = $pajak_keluaran_2 - $pajak_masukan_2;
+			$jumlah_pajak_3 = $pajak_keluaran_3 - $pajak_masukan_3;
+			$jumlah_pajak_4 = $pajak_keluaran_4 - $pajak_masukan_4;
+			$jumlah_pajak = $jumlah_pajak_keluaran - $jumlah_pajak_masukan;
+			$sisa_pajak = $sisa_pajak_keluaran - $sisa_pajak_masukan;
+			?>
 			<tr class="table-active2-csf">
 				<th class="text-left">JUMLAH V</th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_jumlah_pajak,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pajak_sd_bulan_lalu,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pajak_bulan_ini,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pajak_bulan_ini_sd,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pajak_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pajak_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pajak_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pajak,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($sisa_pajak,0,',','.');?></th>
 			</tr>
+			<?php
+			$rencana_posisi_4_5 = $rencana_posisi_2_3 - $rencana_jumlah_pajak;
+			$jumlah_posisi_4_5_sd_bulan_lalu = $jumlah_posisi_2_3_sd_bulan_lalu - $jumlah_pajak_sd_bulan_lalu;
+			$jumlah_posisi_4_5_bulan_ini = $jumlah_posisi_2_3_bulan_ini - $jumlah_pajak_bulan_ini;
+			$jumlah_posisi_4_5_bulan_ini_sd = $jumlah_posisi_2_3_bulan_ini_sd - $jumlah_pajak_bulan_ini_sd;
+			$jumlah_posisi_4_5_2 = $jumlah_posisi_2_3_2 - $jumlah_pajak_2;
+			$jumlah_posisi_4_5_3 = $jumlah_posisi_2_3_3 - $jumlah_pajak_3;
+			$jumlah_posisi_4_5_4 = $jumlah_posisi_2_3_4 - $jumlah_pajak_4;
+			$jumlah_4_5 = $jumlah_2_3 - $jumlah_pajak;
+			$sisa_4_5 = $sisa_2_3 - $sisa_pajak;
+			?>
 			<tr class="table-active3-csf">
 				<th class="text-center" style="vertical-align:middle">VI</th>
 				<th class="text-left">POSISI ( IV + V )</th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
+				<?php
+				$styleColor = $rencana_posisi_4_5 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $rencana_posisi_4_5 < 0 ? "(".number_format(-$rencana_posisi_4_5,0,',','.').")" : number_format($rencana_posisi_4_5,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_sd_bulan_lalu < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_sd_bulan_lalu < 0 ? "(".number_format(-$jumlah_posisi_4_5_sd_bulan_lalu,0,',','.').")" : number_format($jumlah_posisi_4_5_sd_bulan_lalu,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_bulan_ini < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_bulan_ini < 0 ? "(".number_format(-$jumlah_posisi_4_5_bulan_ini,0,',','.').")" : number_format($jumlah_posisi_4_5_bulan_ini,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_bulan_ini_sd < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_bulan_ini_sd < 0 ? "(".number_format(-$jumlah_posisi_4_5_bulan_ini_sd,0,',','.').")" : number_format($jumlah_posisi_4_5_bulan_ini_sd,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_2 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_2 < 0 ? "(".number_format(-$jumlah_posisi_4_5_2,0,',','.').")" : number_format($jumlah_posisi_4_5_2,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_3 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_3 < 0 ? "(".number_format(-$jumlah_posisi_4_5_3,0,',','.').")" : number_format($jumlah_posisi_4_5_3,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_4 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_4 < 0 ? "(".number_format(-$jumlah_posisi_4_5_4,0,',','.').")" : number_format($jumlah_posisi_4_5_4,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_4_5 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_4_5 < 0 ? "(".number_format(-$jumlah_4_5,0,',','.').")" : number_format($jumlah_4_5,0,',','.');?></th>
+				<?php
+				$styleColor = $sisa_4_5 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $sisa_4_5 < 0 ? "(".number_format(-$sisa_4_5,0,',','.').")" : number_format($sisa_4_5,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-center" rowspan="4" style="vertical-align:middle">VII</th>
@@ -3044,41 +3114,122 @@ class Reports extends CI_Controller {
 			<tr class="table-active3-csf">
 				<th class="text-center" style="vertical-align:middle">VIII</th>
 				<th class="text-left">POSISI ( VI + VII )</th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
+				<?php
+				$styleColor = $rencana_posisi_4_5 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $rencana_posisi_4_5 < 0 ? "(".number_format(-$rencana_posisi_4_5,0,',','.').")" : number_format($rencana_posisi_4_5,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_sd_bulan_lalu < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_sd_bulan_lalu < 0 ? "(".number_format(-$jumlah_posisi_4_5_sd_bulan_lalu,0,',','.').")" : number_format($jumlah_posisi_4_5_sd_bulan_lalu,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_bulan_ini < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_bulan_ini < 0 ? "(".number_format(-$jumlah_posisi_4_5_bulan_ini,0,',','.').")" : number_format($jumlah_posisi_4_5_bulan_ini,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_bulan_ini_sd < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_bulan_ini_sd < 0 ? "(".number_format(-$jumlah_posisi_4_5_bulan_ini_sd,0,',','.').")" : number_format($jumlah_posisi_4_5_bulan_ini_sd,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_2 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_2 < 0 ? "(".number_format(-$jumlah_posisi_4_5_2,0,',','.').")" : number_format($jumlah_posisi_4_5_2,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_3 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_3 < 0 ? "(".number_format(-$jumlah_posisi_4_5_3,0,',','.').")" : number_format($jumlah_posisi_4_5_3,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_4 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_4 < 0 ? "(".number_format(-$jumlah_posisi_4_5_4,0,',','.').")" : number_format($jumlah_posisi_4_5_4,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_4_5 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_4_5 < 0 ? "(".number_format(-$jumlah_4_5,0,',','.').")" : number_format($jumlah_4_5,0,',','.');?></th>
+				<?php
+				$styleColor = $sisa_4_5 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $sisa_4_5 < 0 ? "(".number_format(-$sisa_4_5,0,',','.').")" : number_format($sisa_4_5,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-center" style="vertical-align:middle">IX</th>
 				<th class="text-left">KAS AWAL</th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
+				<?php
+				$styleColor = $rencana_posisi_4_5 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $rencana_posisi_4_5 < 0 ? "(".number_format(-$rencana_posisi_4_5,0,',','.').")" : number_format($rencana_posisi_4_5,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_sd_bulan_lalu < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_sd_bulan_lalu < 0 ? "(".number_format(-$jumlah_posisi_4_5_sd_bulan_lalu,0,',','.').")" : number_format($jumlah_posisi_4_5_sd_bulan_lalu,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_bulan_ini < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_bulan_ini < 0 ? "(".number_format(-$jumlah_posisi_4_5_bulan_ini,0,',','.').")" : number_format($jumlah_posisi_4_5_bulan_ini,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_bulan_ini_sd < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_bulan_ini_sd < 0 ? "(".number_format(-$jumlah_posisi_4_5_bulan_ini_sd,0,',','.').")" : number_format($jumlah_posisi_4_5_bulan_ini_sd,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_2 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_2 < 0 ? "(".number_format(-$jumlah_posisi_4_5_2,0,',','.').")" : number_format($jumlah_posisi_4_5_2,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_3 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_3 < 0 ? "(".number_format(-$jumlah_posisi_4_5_3,0,',','.').")" : number_format($jumlah_posisi_4_5_3,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_4 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_4 < 0 ? "(".number_format(-$jumlah_posisi_4_5_4,0,',','.').")" : number_format($jumlah_posisi_4_5_4,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_4_5 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_4_5 < 0 ? "(".number_format(-$jumlah_4_5,0,',','.').")" : number_format($jumlah_4_5,0,',','.');?></th>
+				<?php
+				$styleColor = $sisa_4_5 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $sisa_4_5 < 0 ? "(".number_format(-$sisa_4_5,0,',','.').")" : number_format($sisa_4_5,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-center" style="vertical-align:middle">X</th>
 				<th class="text-left">KAS AKHIR</th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
+				<?php
+				$styleColor = $rencana_posisi_4_5 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $rencana_posisi_4_5 < 0 ? "(".number_format(-$rencana_posisi_4_5,0,',','.').")" : number_format($rencana_posisi_4_5,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_sd_bulan_lalu < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_sd_bulan_lalu < 0 ? "(".number_format(-$jumlah_posisi_4_5_sd_bulan_lalu,0,',','.').")" : number_format($jumlah_posisi_4_5_sd_bulan_lalu,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_bulan_ini < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_bulan_ini < 0 ? "(".number_format(-$jumlah_posisi_4_5_bulan_ini,0,',','.').")" : number_format($jumlah_posisi_4_5_bulan_ini,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_bulan_ini_sd < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_bulan_ini_sd < 0 ? "(".number_format(-$jumlah_posisi_4_5_bulan_ini_sd,0,',','.').")" : number_format($jumlah_posisi_4_5_bulan_ini_sd,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_2 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_2 < 0 ? "(".number_format(-$jumlah_posisi_4_5_2,0,',','.').")" : number_format($jumlah_posisi_4_5_2,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_3 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_3 < 0 ? "(".number_format(-$jumlah_posisi_4_5_3,0,',','.').")" : number_format($jumlah_posisi_4_5_3,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_4_5_4 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_4_5_4 < 0 ? "(".number_format(-$jumlah_posisi_4_5_4,0,',','.').")" : number_format($jumlah_posisi_4_5_4,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_4_5 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_4_5 < 0 ? "(".number_format(-$jumlah_4_5,0,',','.').")" : number_format($jumlah_4_5,0,',','.');?></th>
+				<?php
+				$styleColor = $sisa_4_5 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $sisa_4_5 < 0 ? "(".number_format(-$sisa_4_5,0,',','.').")" : number_format($sisa_4_5,0,',','.');?></th>
 			</tr>
 	    </table>
 		<?php
@@ -9584,7 +9735,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Batching Plant</th>
-				<th class="text-right"><?php echo number_format($volume_rap_alat_bp,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_rap_alat_bp,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_bp_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_bp_1,0,',','.');?></th>
