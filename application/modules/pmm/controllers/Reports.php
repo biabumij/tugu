@@ -2669,17 +2669,70 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_alat,0,',','.');?></th>
 			</tr>
+			<?php
+			$rencana_biaya_bank = 0;
+			$bank_sd_bulan_lalu = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 110")
+			->where("pb.status = 'PAID'")
+			->where("pb.tanggal_transaksi between '$date_awal' and '$last_opname'")
+			->get()->row_array();
+			$bank_sd_bulan_lalu = $bank_sd_bulan_lalu['total'];
+
+			$bank_bulan_ini = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 110")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+			$bank_bulan_ini = $bank_bulan_ini['total'];
+
+			$bank_bulan_ini_sd = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran_penagihan_pembelian pm')
+			->join('pmm_penagihan_pembelian ppp','pm.penagihan_pembelian_id = ppp.id','left')
+			->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left')
+			->where("pm.tanggal_pembayaran between '$date_awal' and '$date_1_akhir'")
+			->where("ppo.kategori_id = '5'")
+			->where("pm.memo <> 'PPN'")
+			->get()->row_array();
+			$bank_bulan_ini_sd = $bank_bulan_ini_sd['total'];
+
+			$bank_2 = $this->db->select('SUM(biaya_bank) as total')
+			->from('rencana_cash_flow')
+			->where("tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
+			->get()->row_array();
+			$bank_2 = $bank_2['total'];
+
+			$bank_3 = $this->db->select('SUM(biaya_bank) as total')
+			->from('rencana_cash_flow')
+			->where("tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
+			->get()->row_array();
+			$bank_3 = $bank_3['total'];
+
+			$bank_4 = $this->db->select('SUM(biaya_bank) as total')
+			->from('rencana_cash_flow')
+			->where("tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
+			->get()->row_array();
+			$bank_4 = $bank_4['total'];
+
+			$jumlah_bank = $bank_bulan_ini_sd + $bank_2 + $bank_3 + $bank_4;
+			$sisa_bank = $rencana_biaya_bank - $jumlah_bank;
+			?>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;3. Biaya Bank</th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_biaya_bank,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($bank_sd_bulan_lalu,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($bank_bulan_ini,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($bank_bulan_ini_sd,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($bank_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($bank_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($bank_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_bank,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($sisa_bank,0,',','.');?></th>
 			</tr>
 			<?php
 			$rencana_biaya_bua = 399242263;
@@ -2820,30 +2873,80 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_ppn_masukan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_ppn_masukan,0,',','.');?></th>
 			</tr>
+			<?php
+			$rencana_jumlah_pengeluaran = $rencana_biaya_bahan + $rencana_biaya_alat + $rencana_biaya_bank + $rencana_biaya_bua + $rencana_ppn_masukan;
+			$jumlah_pengeluaran_sd_bulan_lalu = $bahan_sd_bulan_lalu + $alat_sd_bulan_lalu + $bank_sd_bulan_lalu + $bua_sd_bulan_lalu + $ppn_masukan_sd_bulan_lalu;
+			$jumlah_pengeluaran_bulan_ini = $bahan_bulan_ini + $alat_bulan_ini + $bank_bulan_ini + $bua_bulan_ini + $ppn_masukan_bulan_ini;
+			$jumlah_pengeluaran_bulan_ini_sd = $bahan_bulan_ini_sd + $alat_bulan_ini_sd + $bank_bulan_ini_sd + $bua_bulan_ini_sd + $ppn_masukan_bulan_ini_sd;
+			$jumlah_pengeluaran_2 = $bahan_2 + $alat_2 + $bank_2 + $bua_2 + $ppn_masukan_2;
+			$jumlah_pengeluaran_3 = $bahan_3 + $alat_3 + $bank_3 + $bua_3 + $ppn_masukan_3;
+			$jumlah_pengeluaran_4 = $bahan_4 + $alat_4 + $bank_4 + $bua_4 + $ppn_masukan_4;
+			$jumlah_pengeluaran = $jumlah_bahan + $jumlah_alat + $jumlah_bank + $jumlah_bua + $jumlah_ppn_masukan;
+			$sisa_pengeluaran = $sisa_bahan + $sisa_alat + $sisa_bank + $sisa_bua + $sisa_ppn_masukan;
+			?>
 			<tr class="table-active2-csf">
 				<th class="text-left">JUMLAH III</th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_jumlah_pengeluaran,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pengeluaran_sd_bulan_lalu,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pengeluaran_bulan_ini,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pengeluaran_bulan_ini_sd,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pengeluaran_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pengeluaran_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pengeluaran_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pengeluaran,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($sisa_pengeluaran,0,',','.');?></th>
 			</tr>
+			<?php
+			$rencana_posisi_2_3 = $rencana_jumlah_penerimaan - $rencana_jumlah_pengeluaran;
+			$jumlah_posisi_2_3_sd_bulan_lalu = $jumlah_termin_sd_bulan_lalu - $jumlah_pengeluaran_sd_bulan_lalu;
+			$jumlah_posisi_2_3_bulan_ini = $jumlah_termin_bulan_ini - $jumlah_pengeluaran_bulan_ini;
+			$jumlah_posisi_2_3_bulan_ini_sd = $jumlah_termin_bulan_ini_sd - $jumlah_pengeluaran_bulan_ini_sd;
+			$jumlah_posisi_2_3_2 = $jumlah_termin_2 - $jumlah_pengeluaran_2;
+			$jumlah_posisi_2_3_3 = $jumlah_termin_3 - $jumlah_pengeluaran_3;
+			$jumlah_posisi_2_3_4 = $jumlah_termin_4 - $jumlah_pengeluaran_4;
+			$jumlah_2_3 = $jumlah_jumlah_termin - $jumlah_pengeluaran;
+			$sisa_2_3 = $jumlah_sisa_termin - $sisa_pengeluaran;
+
+			?>
 			<tr class="table-active3-csf">
 				<th class="text-center" style="vertical-align:middle">IV</th>
 				<th class="text-left">POSISI ( II - III )</th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
+				<?php
+				$styleColor = $rencana_posisi_2_3 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $rencana_posisi_2_3 < 0 ? "(".number_format(-$rencana_posisi_2_3,0,',','.').")" : number_format($rencana_posisi_2_3,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_2_3_sd_bulan_lalu < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_2_3_sd_bulan_lalu < 0 ? "(".number_format(-$jumlah_posisi_2_3_sd_bulan_lalu,0,',','.').")" : number_format($jumlah_posisi_2_3_sd_bulan_lalu,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_2_3_bulan_ini < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_2_3_bulan_ini < 0 ? "(".number_format(-$jumlah_posisi_2_3_bulan_ini,0,',','.').")" : number_format($jumlah_posisi_2_3_bulan_ini,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_2_3_bulan_ini_sd < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_2_3_bulan_ini_sd < 0 ? "(".number_format(-$jumlah_posisi_2_3_bulan_ini_sd,0,',','.').")" : number_format($jumlah_posisi_2_3_bulan_ini_sd,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_2_3_2 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_2_3_2 < 0 ? "(".number_format(-$jumlah_posisi_2_3_2,0,',','.').")" : number_format($jumlah_posisi_2_3_2,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_2_3_3 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_2_3_3 < 0 ? "(".number_format(-$jumlah_posisi_2_3_3,0,',','.').")" : number_format($jumlah_posisi_2_3_3,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_posisi_2_3_4 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_posisi_2_3_4 < 0 ? "(".number_format(-$jumlah_posisi_2_3_4,0,',','.').")" : number_format($jumlah_posisi_2_3_4,0,',','.');?></th>
+				<?php
+				$styleColor = $jumlah_2_3 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_2_3 < 0 ? "(".number_format(-$jumlah_2_3,0,',','.').")" : number_format($jumlah_2_3,0,',','.');?></th>
+				<?php
+				$styleColor = $sisa_2_3 < 0 ? 'color:red' : 'color:black';
+				?>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $sisa_2_3 < 0 ? "(".number_format(-$sisa_2_3,0,',','.').")" : number_format($sisa_2_3,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-center" rowspan="4" style="vertical-align:middle">V</th>
