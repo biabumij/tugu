@@ -9521,10 +9521,10 @@ class Reports extends CI_Controller {
 			->from('rap_alat')
 			->order_by('id','desc')->limit(1)
 			->get()->row_array();
-			$volume_rap_alat_bp = ($volume_rap_alat['vol_batching_plant'] * $volume_rak_1['harga_bp']) / 200;
-			$volume_rap_alat_tm = ($volume_rap_alat['vol_truck_mixer'] * $volume_rak_1['harga_tm']) / 200;
-			$volume_rap_alat_wl = ($volume_rap_alat['vol_wheel_loader'] * $volume_rak_1['harga_wl']) / 200;
-			$volume_rap_alat_solar = ($volume_rap_alat['vol_bbm_solar'] * $volume_rak_1['harga_solar']);
+			$volume_rap_alat_bp = $volume_rap_alat['batching_plant'];
+			$volume_rap_alat_tm = $volume_rap_alat['truck_mixer'];
+			$volume_rap_alat_wl = $volume_rap_alat['wheel_loader'];
+			$volume_rap_alat_solar = $volume_rap_alat['bbm_solar'];
 
 			$total_volume_bp_1 = $volume_rak_1['volume'];
 			$total_volume_bp_2 = $volume_rak_2['volume'];
@@ -9584,7 +9584,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Batching Plant</th>
-				<th class="text-right"><?php echo number_format($volume_rap_alat_bp,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_rap_alat_bp,2,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_bp_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_bp_1,0,',','.');?></th>
