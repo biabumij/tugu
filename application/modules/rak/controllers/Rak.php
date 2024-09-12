@@ -288,7 +288,6 @@ class Rak extends Secure_Controller {
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['updated_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['updated_by']),'admin_name');
                 $row['updated_on'] = date('d/m/Y H:i:s',strtotime($row['updated_on']));
-				$row['print'] = '<a href="'.site_url().'rak/cetak_rencana_kerja/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px;"><i class="fa fa-print"></i> </a>';
 				
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4){
 				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_kerja/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px;"><i class="fa fa-edit"></i> </a>';
@@ -331,28 +330,6 @@ class Rak extends Secure_Controller {
 			}
 		}
 		echo json_encode($output);
-	}
-	
-	public function cetak_rencana_kerja($id){
-
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-		$pdf->setPrintFooter(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		$pdf->AddPage('P');
-
-		$data['rak'] = $this->db->get_where('rak',array('id'=>$id))->row_array();
-        $html = $this->load->view('rak/cetak_rencana_kerja',$data,TRUE);
-        $rak = $this->db->get_where('rak',array('id'=>$id))->row_array();
-
-		$pdf->SetTitle('BBJ - Rencana Kerja');
-        $pdf->nsi_html($html);
-        $pdf->Output('rencana_kerja.pdf', 'I');
 	}
 
 	public function sunting_rencana_kerja($id)
@@ -689,7 +666,6 @@ class Rak extends Secure_Controller {
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['updated_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['updated_by']),'admin_name');
                 $row['updated_on'] = date('d/m/Y H:i:s',strtotime($row['updated_on']));
-				$row['print'] = '<a href="'.site_url().'rak/cetak_rencana_cash_flow/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px;"><i class="fa fa-print"></i> </a>';
 				
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4){
 				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_cash_flow/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px;"><i class="fa fa-edit"></i> </a>';
@@ -732,28 +708,6 @@ class Rak extends Secure_Controller {
 			}
 		}
 		echo json_encode($output);
-	}
-
-	public function cetak_rencana_cash_flow($id){
-
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-		$pdf->setPrintFooter(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		$pdf->AddPage('P');
-
-		$data['rak'] = $this->db->get_where('rencana_cash_flow',array('id'=>$id))->row_array();
-        $html = $this->load->view('rak/cetak_rencana_cash_flow',$data,TRUE);
-        $rak = $this->db->get_where('rencana_cash_flow',array('id'=>$id))->row_array();
-
-		$pdf->SetTitle('BBJ - Rencana Cash Flow');
-        $pdf->nsi_html($html);
-        $pdf->Output('rencana_cash_flow.pdf', 'I');
 	}
 
 	public function sunting_rencana_cash_flow($id)
