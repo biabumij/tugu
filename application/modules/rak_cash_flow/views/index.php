@@ -50,7 +50,6 @@
                                                         <th>No.</th>
 														<th>Tanggal</th>
                                                         <th>Lampiran</th>
-                                                        <th>Cetak</th>
 														<th>Edit</th>
                                                         <th>Hapus</th>
 													</tr>
@@ -114,9 +113,6 @@
                 {
                     "data": "lampiran"
                 },
-                {
-					"data": "print"
-				},
                 {
 					"data": "edit"
 				},
