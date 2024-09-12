@@ -263,7 +263,7 @@
 				</th>	
 			</tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">1.</th>	
+				<th align="center" class="table-border-pojok-kiri">1</th>	
 				<th align="left" class="table-border-pojok-tengah">Semen</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_semen,2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah">Ton</th>
@@ -271,7 +271,7 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_semen * $rak['harga_semen'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">2.</th>	
+				<th align="center" class="table-border-pojok-kiri">2</th>	
 				<th align="left" class="table-border-pojok-tengah">Pasir</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pasir,2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah">M3</th>
@@ -279,7 +279,7 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_pasir * $rak['harga_pasir'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">3.</th>	
+				<th align="center" class="table-border-pojok-kiri">3</th>	
 				<th align="left" class="table-border-pojok-tengah">Batu Split 10-20</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu1020,2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah">M3</th>
@@ -287,7 +287,7 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_batu1020 * $rak['harga_batu1020'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">4.</th>	
+				<th align="center" class="table-border-pojok-kiri">4</th>	
 				<th align="left" class="table-border-pojok-tengah">Batu Split 20-30</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu2030,2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah">M3</th>
@@ -295,7 +295,7 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_batu2030 * $rak['harga_batu2030'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">5.</th>	
+				<th align="center" class="table-border-pojok-kiri">5</th>	
 				<th align="left" class="table-border-pojok-tengah">Additive</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_additive,2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah">M3</th>
@@ -315,7 +315,7 @@
 				</th>	
 			</tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">1.</th>	
+				<th align="center" class="table-border-pojok-kiri">1</th>	
 				<th align="left" class="table-border-pojok-tengah">Batching Plant</th>
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="center" class="table-border-pojok-tengah"></th>
@@ -323,7 +323,7 @@
 				<th align="right" class="table-border-pojok-kanan"></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">2.</th>	
+				<th align="center" class="table-border-pojok-kiri">2</th>	
 				<th align="left" class="table-border-pojok-tengah">Truck Mixer</th>
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="center" class="table-border-pojok-tengah"></th>
@@ -331,7 +331,7 @@
 				<th align="right" class="table-border-pojok-kanan"></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">3.</th>	
+				<th align="center" class="table-border-pojok-kiri">3</th>	
 				<th align="left" class="table-border-pojok-tengah">Wheel Loader</th>
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="center" class="table-border-pojok-tengah"></th>
@@ -339,7 +339,7 @@
 				<th align="right" class="table-border-pojok-kanan"></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">4.</th>	
+				<th align="center" class="table-border-pojok-kiri">4</th>	
 				<th align="left" class="table-border-pojok-tengah">BBM Solar</th>
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="center" class="table-border-pojok-tengah"></th>
