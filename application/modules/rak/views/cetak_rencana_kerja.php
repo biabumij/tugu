@@ -314,38 +314,116 @@
 				<div align="left" style="display: block;font-weight: bold;font-size: 9px;text-transform:uppercase;">2.2. ALAT</div>
 				</th>	
 			</tr>
+			<?php
+			$total = 0;
+			$total = $rak['vol_produk_a'] + $rak['vol_produk_b'];
+
+			$harsat_rap_alat = $this->db->select('*')
+			->from('rap_alat')
+			->order_by('id','desc')->limit(1)
+			->get()->row_array();
+			$harsat_rap_alat_bp = $harsat_rap_alat['batching_plant'];
+			$harsat_rap_alat_tm = $harsat_rap_alat['truck_mixer'];
+			$harsat_rap_alat_wl = $harsat_rap_alat['wheel_loader'];
+			$harsat_rap_alat_solar = $harsat_rap_alat['bbm_solar'];
+
+			$rak_alat = $this->db->select('r.*, (r.vol_produk_a + r.vol_produk_b) as total_produksi')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja = '$tanggal_rencana_kerja'")
+			->get()->row_array();
+
+			$rak_alat_bp = $rak_alat['penawaran_id_bp'];
+			$rak_alat_tm = $rak_alat['penawaran_id_tm'];
+			$rak_alat_wl = $rak_alat['penawaran_id_wl'];
+			$rak_alat_solar = $rak_alat['penawaran_id_solar'];
+
+			$produk_bp = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->where("ppp.id = '$rak_alat_bp'")
+			->where("ppd.material_id = 11")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$produk_tm = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->where("ppp.id = '$rak_alat_tm'")
+			->where("ppd.material_id = 12")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$produk_wl = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->where("ppp.id = '$rak_alat_wl'")
+			->where("ppd.material_id = 13")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$produk_solar = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->where("ppp.id = '$rak_alat_solar'")
+			->where("ppd.material_id = 5")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_rak_alat = ($total * $harsat_rap_alat_bp) + ($total * $harsat_rap_alat_tm) + ($total * $harsat_rap_alat_wl) + ($total * $harsat_rap_alat_solar);
+
+			?>
+			<?php $no=1; foreach ($produk_bp as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">1</th>	
-				<th align="left" class="table-border-pojok-tengah">Batching Plant</th>
-				<th align="right" class="table-border-pojok-tengah"></th>
-				<th align="center" class="table-border-pojok-tengah"></th>
-				<th align="right" class="table-border-pojok-tengah"></th>
-				<th align="right" class="table-border-pojok-kanan"></th>
+				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($harsat_rap_alat_bp,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total * $harsat_rap_alat_bp,0,',','.');?></th>
 	        </tr>
+			<?php endforeach; ?>
+			<?php foreach ($produk_tm as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">2</th>	
-				<th align="left" class="table-border-pojok-tengah">Truck Mixer</th>
-				<th align="right" class="table-border-pojok-tengah"></th>
-				<th align="center" class="table-border-pojok-tengah"></th>
-				<th align="right" class="table-border-pojok-tengah"></th>
-				<th align="right" class="table-border-pojok-kanan"></th>
+				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($harsat_rap_alat_tm,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total * $harsat_rap_alat_tm,0,',','.');?></th>
 	        </tr>
+			<?php endforeach; ?>
+			<?php foreach ($produk_wl as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">3</th>	
-				<th align="left" class="table-border-pojok-tengah">Wheel Loader</th>
-				<th align="right" class="table-border-pojok-tengah"></th>
-				<th align="center" class="table-border-pojok-tengah"></th>
-				<th align="right" class="table-border-pojok-tengah"></th>
-				<th align="right" class="table-border-pojok-kanan"></th>
+				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($harsat_rap_alat_wl,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total * $harsat_rap_alat_wl,0,',','.');?></th>
 	        </tr>
+			<?php endforeach; ?>
+			<?php foreach ($produk_solar as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">4</th>	
-				<th align="left" class="table-border-pojok-tengah">BBM Solar</th>
-				<th align="right" class="table-border-pojok-tengah"></th>
-				<th align="center" class="table-border-pojok-tengah"></th>
-				<th align="right" class="table-border-pojok-tengah"></th>
-				<th align="right" class="table-border-pojok-kanan"></th>
+				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($harsat_rap_alat_solar,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total * $harsat_rap_alat_solar,0,',','.');?></th>
 	        </tr>
+			<?php endforeach; ?>
 			<tr class="table-total2">	
 				<th align="right" colspan="5" class="table-border-spesial-kiri">TOTAL KEBUTUHAN BIAYA ALAT</th>
 				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_rak_alat,0,',','.');?></th>

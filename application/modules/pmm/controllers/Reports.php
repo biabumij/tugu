@@ -2537,14 +2537,14 @@ class Reports extends CI_Controller {
 			->where("tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
 			->get()->row_array();
 
-			$volume_rap_alat = $this->db->select('*')
+			$harsat_rap_alat = $this->db->select('*')
 			->from('rap_alat')
 			->order_by('id','desc')->limit(1)
 			->get()->row_array();
-			$volume_rap_alat_bp = ($volume_rap_alat['vol_batching_plant'] * $volume_rak_1['harga_bp']) / 200;
-			$volume_rap_alat_tm = ($volume_rap_alat['vol_truck_mixer'] * $volume_rak_1['harga_tm']) / 200;
-			$volume_rap_alat_wl = ($volume_rap_alat['vol_wheel_loader'] * $volume_rak_1['harga_wl']) / 200;
-			$volume_rap_alat_solar = ($volume_rap_alat['vol_bbm_solar'] * $volume_rak_1['harga_solar']);
+			$harsat_rap_alat_bp = $harsat_rap_alat['batching_plant'];
+			$harsat_rap_alat_tm = $harsat_rap_alat['truck_mixer'];
+			$harsat_rap_alat_wl = $harsat_rap_alat['wheel_loader'];
+			$harsat_rap_alat_solar = $harsat_rap_alat['bbm_solar'];
 
 			$total_volume_bp_1 = $volume_rak_1['volume'];
 			$total_volume_bp_2 = $volume_rak_2['volume'];
@@ -2552,11 +2552,11 @@ class Reports extends CI_Controller {
 			$total_volume_bp_4 = $volume_rak_4['volume'];
 			$total_volume_bp_5 = $volume_rak_5['volume'];
 			
-			$total_nilai_bp_1 = $volume_rak_1['volume'] * $volume_rap_alat_bp;
-			$total_nilai_bp_2 = $volume_rak_2['volume'] * $volume_rap_alat_bp;
-			$total_nilai_bp_3 = $volume_rak_3['volume'] * $volume_rap_alat_bp;
-			$total_nilai_bp_4 = $volume_rak_4['volume'] * $volume_rap_alat_bp;
-			$total_nilai_bp_5 = $volume_rak_5['volume'] * $volume_rap_alat_bp;
+			$total_nilai_bp_1 = $volume_rak_1['volume'] * $harsat_rap_alat_bp;
+			$total_nilai_bp_2 = $volume_rak_2['volume'] * $harsat_rap_alat_bp;
+			$total_nilai_bp_3 = $volume_rak_3['volume'] * $harsat_rap_alat_bp;
+			$total_nilai_bp_4 = $volume_rak_4['volume'] * $harsat_rap_alat_bp;
+			$total_nilai_bp_5 = $volume_rak_5['volume'] * $harsat_rap_alat_bp;
 
 			$total_volume_tm_1 = $volume_rak_1['volume'];
 			$total_volume_tm_2 = $volume_rak_2['volume'];
@@ -2564,11 +2564,11 @@ class Reports extends CI_Controller {
 			$total_volume_tm_4 = $volume_rak_4['volume'];
 			$total_volume_tm_5 = $volume_rak_5['volume'];
 
-			$total_nilai_tm_1 = $volume_rak_1['volume'] * $volume_rap_alat_tm;
-			$total_nilai_tm_2 = $volume_rak_2['volume'] * $volume_rap_alat_tm;
-			$total_nilai_tm_3 = $volume_rak_3['volume'] * $volume_rap_alat_tm;
-			$total_nilai_tm_4 = $volume_rak_4['volume'] * $volume_rap_alat_tm;
-			$total_nilai_tm_5 = $volume_rak_5['volume'] * $volume_rap_alat_tm;
+			$total_nilai_tm_1 = $volume_rak_1['volume'] * $harsat_rap_alat_tm;
+			$total_nilai_tm_2 = $volume_rak_2['volume'] * $harsat_rap_alat_tm;
+			$total_nilai_tm_3 = $volume_rak_3['volume'] * $harsat_rap_alat_tm;
+			$total_nilai_tm_4 = $volume_rak_4['volume'] * $harsat_rap_alat_tm;
+			$total_nilai_tm_5 = $volume_rak_5['volume'] * $harsat_rap_alat_tm;
 
 			$total_volume_wl_1 = $volume_rak_1['volume'];
 			$total_volume_wl_2 = $volume_rak_2['volume'];
@@ -2576,11 +2576,11 @@ class Reports extends CI_Controller {
 			$total_volume_wl_4 = $volume_rak_4['volume'];
 			$total_volume_wl_5 = $volume_rak_5['volume'];
 
-			$total_nilai_wl_1 = $volume_rak_1['volume'] * $volume_rap_alat_wl;
-			$total_nilai_wl_2 = $volume_rak_2['volume'] * $volume_rap_alat_wl;
-			$total_nilai_wl_3 = $volume_rak_3['volume'] * $volume_rap_alat_wl;
-			$total_nilai_wl_4 = $volume_rak_4['volume'] * $volume_rap_alat_wl;
-			$total_nilai_wl_5 = $volume_rak_5['volume'] * $volume_rap_alat_wl;
+			$total_nilai_wl_1 = $volume_rak_1['volume'] * $harsat_rap_alat_wl;
+			$total_nilai_wl_2 = $volume_rak_2['volume'] * $harsat_rap_alat_wl;
+			$total_nilai_wl_3 = $volume_rak_3['volume'] * $harsat_rap_alat_wl;
+			$total_nilai_wl_4 = $volume_rak_4['volume'] * $harsat_rap_alat_wl;
+			$total_nilai_wl_5 = $volume_rak_5['volume'] * $harsat_rap_alat_wl;
 
 			$total_volume_solar_1 = $volume_rak_1['volume'];
 			$total_volume_solar_2 = $volume_rak_2['volume'];
@@ -2588,11 +2588,11 @@ class Reports extends CI_Controller {
 			$total_volume_solar_4 = $volume_rak_4['volume'];
 			$total_volume_solar_5 = $volume_rak_5['volume'];
 
-			$total_nilai_solar_1 = $volume_rak_1['volume'] * $volume_rap_alat['bbm_solar'];
-			$total_nilai_solar_2 = $volume_rak_2['volume'] * $volume_rap_alat['bbm_solar'];
-			$total_nilai_solar_3 = $volume_rak_3['volume'] * $volume_rap_alat['bbm_solar'];
-			$total_nilai_solar_4 = $volume_rak_4['volume'] * $volume_rap_alat['bbm_solar'];
-			$total_nilai_solar_5 = $volume_rak_5['volume'] * $volume_rap_alat['bbm_solar'];
+			$total_nilai_solar_1 = $volume_rak_1['volume'] * $harsat_rap_alat_solar;
+			$total_nilai_solar_2 = $volume_rak_2['volume'] * $harsat_rap_alat_solar;
+			$total_nilai_solar_3 = $volume_rak_3['volume'] * $harsat_rap_alat_solar;
+			$total_nilai_solar_4 = $volume_rak_4['volume'] * $harsat_rap_alat_solar;
+			$total_nilai_solar_5 = $volume_rak_5['volume'] * $harsat_rap_alat_solar;
 
 			$total_nilai_bp = $total_nilai_bp_1 + $total_nilai_bp_2 + $total_nilai_bp_3 +  + $total_nilai_bp_4 +  + $total_nilai_bp_5;
 			$total_nilai_tm = $total_nilai_tm_1 + $total_nilai_tm_2 + $total_nilai_tm_3 +  + $total_nilai_tm_4 +  + $total_nilai_tm_5;
@@ -9668,14 +9668,14 @@ class Reports extends CI_Controller {
 			->where("tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
 			->get()->row_array();
 
-			$volume_rap_alat = $this->db->select('*')
+			$harsat_rap_alat = $this->db->select('*')
 			->from('rap_alat')
 			->order_by('id','desc')->limit(1)
 			->get()->row_array();
-			$volume_rap_alat_bp = $volume_rap_alat['batching_plant'];
-			$volume_rap_alat_tm = $volume_rap_alat['truck_mixer'];
-			$volume_rap_alat_wl = $volume_rap_alat['wheel_loader'];
-			$volume_rap_alat_solar = $volume_rap_alat['bbm_solar'];
+			$harsat_rap_alat_bp = $harsat_rap_alat['batching_plant'];
+			$harsat_rap_alat_tm = $harsat_rap_alat['truck_mixer'];
+			$harsat_rap_alat_wl = $harsat_rap_alat['wheel_loader'];
+			$harsat_rap_alat_solar = $harsat_rap_alat['bbm_solar'];
 
 			$total_volume_bp_1 = $volume_rak_1['volume'];
 			$total_volume_bp_2 = $volume_rak_2['volume'];
@@ -9683,11 +9683,11 @@ class Reports extends CI_Controller {
 			$total_volume_bp_4 = $volume_rak_4['volume'];
 			$total_volume_bp_5 = $volume_rak_5['volume'];
 			
-			$total_nilai_bp_1 = $volume_rak_1['volume'] * $volume_rap_alat_bp;
-			$total_nilai_bp_2 = $volume_rak_2['volume'] * $volume_rap_alat_bp;
-			$total_nilai_bp_3 = $volume_rak_3['volume'] * $volume_rap_alat_bp;
-			$total_nilai_bp_4 = $volume_rak_4['volume'] * $volume_rap_alat_bp;
-			$total_nilai_bp_5 = $volume_rak_5['volume'] * $volume_rap_alat_bp;
+			$total_nilai_bp_1 = $volume_rak_1['volume'] * $harsat_rap_alat_bp;
+			$total_nilai_bp_2 = $volume_rak_2['volume'] * $harsat_rap_alat_bp;
+			$total_nilai_bp_3 = $volume_rak_3['volume'] * $harsat_rap_alat_bp;
+			$total_nilai_bp_4 = $volume_rak_4['volume'] * $harsat_rap_alat_bp;
+			$total_nilai_bp_5 = $volume_rak_5['volume'] * $harsat_rap_alat_bp;
 
 			$total_volume_tm_1 = $volume_rak_1['volume'];
 			$total_volume_tm_2 = $volume_rak_2['volume'];
@@ -9695,11 +9695,11 @@ class Reports extends CI_Controller {
 			$total_volume_tm_4 = $volume_rak_4['volume'];
 			$total_volume_tm_5 = $volume_rak_5['volume'];
 
-			$total_nilai_tm_1 = $volume_rak_1['volume'] * $volume_rap_alat_tm;
-			$total_nilai_tm_2 = $volume_rak_2['volume'] * $volume_rap_alat_tm;
-			$total_nilai_tm_3 = $volume_rak_3['volume'] * $volume_rap_alat_tm;
-			$total_nilai_tm_4 = $volume_rak_4['volume'] * $volume_rap_alat_tm;
-			$total_nilai_tm_5 = $volume_rak_5['volume'] * $volume_rap_alat_tm;
+			$total_nilai_tm_1 = $volume_rak_1['volume'] * $harsat_rap_alat_tm;
+			$total_nilai_tm_2 = $volume_rak_2['volume'] * $harsat_rap_alat_tm;
+			$total_nilai_tm_3 = $volume_rak_3['volume'] * $harsat_rap_alat_tm;
+			$total_nilai_tm_4 = $volume_rak_4['volume'] * $harsat_rap_alat_tm;
+			$total_nilai_tm_5 = $volume_rak_5['volume'] * $harsat_rap_alat_tm;
 
 			$total_volume_wl_1 = $volume_rak_1['volume'];
 			$total_volume_wl_2 = $volume_rak_2['volume'];
@@ -9707,11 +9707,11 @@ class Reports extends CI_Controller {
 			$total_volume_wl_4 = $volume_rak_4['volume'];
 			$total_volume_wl_5 = $volume_rak_5['volume'];
 
-			$total_nilai_wl_1 = $volume_rak_1['volume'] * $volume_rap_alat_wl;
-			$total_nilai_wl_2 = $volume_rak_2['volume'] * $volume_rap_alat_wl;
-			$total_nilai_wl_3 = $volume_rak_3['volume'] * $volume_rap_alat_wl;
-			$total_nilai_wl_4 = $volume_rak_4['volume'] * $volume_rap_alat_wl;
-			$total_nilai_wl_5 = $volume_rak_5['volume'] * $volume_rap_alat_wl;
+			$total_nilai_wl_1 = $volume_rak_1['volume'] * $harsat_rap_alat_wl;
+			$total_nilai_wl_2 = $volume_rak_2['volume'] * $harsat_rap_alat_wl;
+			$total_nilai_wl_3 = $volume_rak_3['volume'] * $harsat_rap_alat_wl;
+			$total_nilai_wl_4 = $volume_rak_4['volume'] * $harsat_rap_alat_wl;
+			$total_nilai_wl_5 = $volume_rak_5['volume'] * $harsat_rap_alat_wl;
 
 			$total_volume_solar_1 = $volume_rak_1['volume'];
 			$total_volume_solar_2 = $volume_rak_2['volume'];
@@ -9719,11 +9719,11 @@ class Reports extends CI_Controller {
 			$total_volume_solar_4 = $volume_rak_4['volume'];
 			$total_volume_solar_5 = $volume_rak_5['volume'];
 
-			$total_nilai_solar_1 = $volume_rak_1['volume'] * $volume_rap_alat['bbm_solar'];
-			$total_nilai_solar_2 = $volume_rak_2['volume'] * $volume_rap_alat['bbm_solar'];
-			$total_nilai_solar_3 = $volume_rak_3['volume'] * $volume_rap_alat['bbm_solar'];
-			$total_nilai_solar_4 = $volume_rak_4['volume'] * $volume_rap_alat['bbm_solar'];
-			$total_nilai_solar_5 = $volume_rak_5['volume'] * $volume_rap_alat['bbm_solar'];
+			$total_nilai_solar_1 = $volume_rak_1['volume'] * $harsat_rap_alat_solar;
+			$total_nilai_solar_2 = $volume_rak_2['volume'] * $harsat_rap_alat_solar;
+			$total_nilai_solar_3 = $volume_rak_3['volume'] * $harsat_rap_alat_solar;
+			$total_nilai_solar_4 = $volume_rak_4['volume'] * $harsat_rap_alat_solar;
+			$total_nilai_solar_5 = $volume_rak_5['volume'] * $harsat_rap_alat_solar;
 			?>
 			<tr class="table-baris">
 				<th class="text-left" colspan="16"><b>D. TOTAL BIAYA PERALATAN</b></th>
@@ -9735,7 +9735,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Batching Plant</th>
-				<th class="text-right"><?php echo number_format($volume_rap_alat_bp,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_alat_bp,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_bp_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_bp_1,0,',','.');?></th>
@@ -9757,7 +9757,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Truck Mixer</th>
-				<th class="text-right"><?php echo number_format($volume_rap_alat_tm,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_alat_tm,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_tm_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_tm_1,0,',','.');?></th>
@@ -9779,7 +9779,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Wheel Loader</th>
-				<th class="text-right"><?php echo number_format($volume_rap_alat_wl,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_alat_wl,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_wl_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_wl_1,0,',','.');?></th>
@@ -9801,7 +9801,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Solar</th>
-				<th class="text-right"><?php echo number_format($volume_rap_alat_solar,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_alat_solar,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_solar_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_solar_1,0,',','.');?></th>
