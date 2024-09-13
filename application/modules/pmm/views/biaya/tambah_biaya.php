@@ -27,14 +27,6 @@
                                 </div>
                             </div>
                             <div class="panel-content">
-                            <?php
-                            $kunci_bahan_baku = $this->db->select('pp.date')
-                            ->from('kunci_bahan_baku pp')
-                            ->order_by('pp.date','desc')->limit(1)
-                            ->get()->row_array();
-                            $last_opname = $kunci_bahan_baku['date'];
-                            $last_opname = date('Y-m-d', strtotime('+1 days 0 months', strtotime($last_opname)));
-                            ?>
                                 <form method="POST" action="<?php echo site_url('pmm/biaya/submit_biaya');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <div class="row">
                                         <div class="col-sm-3">

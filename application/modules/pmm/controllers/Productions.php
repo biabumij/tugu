@@ -49,8 +49,8 @@ class Productions extends Secure_Controller {
 		$sales_po_id = $this->input->post('salesPo_id');
 		$w_date = $this->input->post('filter_date');
 
-		$date_kunci = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('kunci_bahan_baku')->row_array();
-        $last_opname = date('Y-m-d', strtotime('0 days', strtotime($date_kunci['date'])));
+		$kunci_rakor = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('kunci_rakor')->row_array();
+        $last_opname = date('d-m-Y', strtotime('+1 days', strtotime($kunci_rakor['date'])));
 
 		$this->db->select('*');
 		if (!empty($client_id)) {
