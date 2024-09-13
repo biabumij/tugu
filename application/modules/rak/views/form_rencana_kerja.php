@@ -351,7 +351,7 @@
                                                     </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="price_solar" name="price_solar" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="text" id="price_solar" name="price_solar" class="form-control rupiahformat text-right" value="0"  readonly="" autocomplete="off">
                                                         <input type="hidden" id="measure_solar" name="measure_solar" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                         <input type="hidden" id="tax_id_solar" name="tax_id_solar" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                         <input type="hidden" id="pajak_id_solar" name="pajak_id_solar" class="form-control text-right" value=""  readonly="" autocomplete="off">
