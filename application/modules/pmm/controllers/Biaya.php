@@ -46,44 +46,6 @@ class Biaya extends CI_Controller {
 		echo json_encode(array('data'=>$data));
     }
 
-    public function table_biaya_2(){
-        $data = array();
-		$filter_date = $this->input->post('filter_date');
-
-        $date_now = date('Y-m-01');
-        $last_opname = date('Y-m-d', strtotime('+1 days -0 months', strtotime($date_now)));
-
-		if(!empty($filter_date)){
-			$arr_date = explode(' - ', $filter_date);
-			$this->db->where('b.tanggal_transaksi >=',date('Y-m-d',strtotime($arr_date[0])));
-			$this->db->where('b.tanggal_transaksi <=',date('Y-m-d',strtotime($arr_date[1])));
-		}
-
-        $this->db->select('b.*, p.nama as penerima');
-        $this->db->join('penerima p','b.penerima = p.id','left');
-        $this->db->where('b.tanggal_transaksi >=', $last_opname);
-        $this->db->order_by('b.tanggal_transaksi','desc');
-        $this->db->order_by('b.created_on','desc');
-		$query = $this->db->get('pmm_biaya b');
-
-		if($query->num_rows() > 0){
-			foreach ($query->result_array() as $key => $row) {
-				$row['no'] = $key+1;
-				// $row['coa'] = '' 
-                $row['saldo'] = 0;
-                $row['tanggal'] = date('d/m/Y',strtotime($row['tanggal_transaksi']));
-                $row['saldo_bank'] = 0;
-                $row['nomor_transaksi'] = "<a  href='".base_url('pmm/biaya/detail_biaya_2/'.$row['id'])."' >".$row['nomor_transaksi']."</a>";
-				$row['jumlah_total'] = number_format($row['total'],2,',','.');
-                $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
-                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
-				$data[] = $row;
-			}
-
-		}
-		echo json_encode(array('data'=>$data));
-    }
-
 	public function tambah_biaya(){
 		$check = $this->m_admin->check_login();
 		if($check == true){		
@@ -328,28 +290,6 @@ class Biaya extends CI_Controller {
             $this->db->join('pmm_coa c','b.akun = c.id','left');
             $data['detail'] = $this->db->get_where('pmm_detail_biaya b',array('b.biaya_id'=>$id))->result_array();            
             $this->load->view('pmm/biaya/detail_biaya',$data);
-            
-        }else {
-            redirect('admin');
-        }
-    }
-
-    public function detail_biaya_2($id)
-    {
-        $check = $this->m_admin->check_login();
-        if($check == true){     
-
-            $this->db->select('b.*,p.nama as penerima');
-            $this->db->join('penerima p','b.penerima = p.id','left');
-            $this->db->where('b.id',$id);
-            $query = $this->db->get('pmm_biaya b');
-            $data['row'] = $query->row_array();
-
-
-            $this->db->select('b.*, c.coa as akun, c.coa_number as kode_akun');
-            $this->db->join('pmm_coa c','b.akun = c.id','left');
-            $data['detail'] = $this->db->get_where('pmm_detail_biaya b',array('b.biaya_id'=>$id))->result_array();            
-            $this->load->view('pmm/biaya/detail_biaya_2',$data);
             
         }else {
             redirect('admin');
