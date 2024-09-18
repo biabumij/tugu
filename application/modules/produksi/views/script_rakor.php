@@ -55,7 +55,7 @@
         ],
         pageLength: 25,
         "columnDefs": [
-            { "width": "5%", "targets": [0,1], "className": 'text-center'},
+            { "width": "5%", "targets": [0,2], "className": 'text-center'},
         ],
     });
 
