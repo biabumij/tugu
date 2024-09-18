@@ -875,7 +875,7 @@
 				<th align="right" style="<?php echo $styleColorDD ?>"><?php echo $evaluasi_nilai_d < 0 ? "(".number_format(-$evaluasi_nilai_d,0,',','.').")" : number_format($evaluasi_nilai_d,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="center" style="vertical-align:middle">4.</th>			
+				<th align="center" style="vertical-align:middle">5.</th>			
 				<th align="left">Additive</th>
 				<th align="center">Liter</th>
 				<th align="right"><?php echo number_format($volume_e,2,',','.');?></th>
