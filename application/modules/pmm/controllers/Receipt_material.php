@@ -1216,7 +1216,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->group_by('ppo.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_purchase_order ppo');
-		file_put_contents("D:\\test.txt", $this->db->last_query());
 		$no = 1;
 		if($query->num_rows() > 0){
 

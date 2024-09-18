@@ -1385,7 +1385,6 @@ class Pmm extends CI_Controller {
 			$this->db->where('date <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
 		$query = $this->db->get('pmm_remaining_materials_cat');
-		file_put_contents("D:\\test.txt", $this->db->last_query());
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key+1;
