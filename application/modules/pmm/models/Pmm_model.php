@@ -3897,7 +3897,7 @@ class Pmm_model extends CI_Model {
         }
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         $this->db->order_by('p.nama_produk','asc');
-        $this->db;
+        $this->db->group_by('prm.material_id');
         $query = $this->db->get('pmm_receipt_material prm');
         $output = $query->result_array();
 		
@@ -3932,7 +3932,7 @@ class Pmm_model extends CI_Model {
         }
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         $this->db->order_by('p.nama_produk','asc');
-        $this->db;
+        $this->db->group_by('prm.material_id');
         $query = $this->db->get('pmm_receipt_material prm');
         $output = $query->result_array();
 		
