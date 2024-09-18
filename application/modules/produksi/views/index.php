@@ -71,7 +71,13 @@
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li role="presentation" class="active"><a href="#material_on_site" aria-controls="material_on_site" role="tab" data-toggle="tab" style="border-radius:10px; font-weight:bold;">STOCK OPNAME</a></li>
                                         <li role="presentation"><a href="#pemakaian" aria-controls="pemakaian" role="tab" data-toggle="tab" style="border-radius:10px; font-weight:bold;">PEMAKAIAN MATERIAL</a></li>
+                                        <?php
+                                        if(in_array($this->session->userdata('admin_group_id'), array(1))){
+                                        ?>
                                         <li role="presentation"><a href="#rakor" aria-controls="rakor" role="tab" data-toggle="tab" style="border-radius:10px; font-weight:bold;">KUNCI DATA RAKOR</a></li>
+                                        <?php
+                                        }
+                                        ?>
                                     </ul>
                                     <div class="tab-content">
                                         <br />
