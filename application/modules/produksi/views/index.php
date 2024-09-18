@@ -71,6 +71,7 @@
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li role="presentation" class="active"><a href="#material_on_site" aria-controls="material_on_site" role="tab" data-toggle="tab" style="border-radius:10px; font-weight:bold;">STOCK OPNAME</a></li>
                                         <li role="presentation"><a href="#pemakaian" aria-controls="pemakaian" role="tab" data-toggle="tab" style="border-radius:10px; font-weight:bold;">PEMAKAIAN MATERIAL</a></li>
+                                        <li role="presentation"><a href="#rakor" aria-controls="rakor" role="tab" data-toggle="tab" style="border-radius:10px; font-weight:bold;">KUNCI DATA RAKOR</a></li>
                                     </ul>
                                     <div class="tab-content">
                                         <br />
@@ -79,6 +80,9 @@
                                         </div>
                                         <div role="tabpanel" class="tab-pane" id="pemakaian">
                                             <?php include_once "pemakaian.php"; ?>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="rakor">
+                                            <?php include_once "rakor.php"; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -100,6 +104,6 @@
         <script src="https://kit.fontawesome.com/591a1bf2f6.js" crossorigin="anonymous"></script>
         <?php include_once("script_material_on_site.php"); ?>
         <?php include_once("script_pemakaian.php"); ?>
-
+        <?php include_once("script_rakor.php"); ?>
     </body>
 </html>

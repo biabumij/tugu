@@ -177,5 +177,90 @@ class Produksi extends Secure_Controller {
 		}
 	}
 
+	public function table_rakor()
+	{   
+        $data = array();
+		$filter_date = $this->input->post('filter_date');
+		if(!empty($filter_date)){
+			$arr_date = explode(' - ', $filter_date);
+			$this->db->where('date >=',date('Y-m-d',strtotime($arr_date[0])));
+			$this->db->where('date <=',date('Y-m-d',strtotime($arr_date[1])));
+		}
+        $this->db->select('*');
+		$this->db->order_by('date','desc');
+		$query = $this->db->get('kunci_rakor');
+		
+       if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['date'] = date('d F Y',strtotime($row['date']));
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+
+				if($this->session->userdata('admin_group_id') == 1){
+				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataRakor('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
+				}else {
+					$row['actions'] = '-';
+				}
+                $data[] = $row;
+            }
+
+        }
+        echo json_encode(array('data'=>$data));
+    }
+
+	public function delete_rakor()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+			$this->db->delete('kunci_rakor',array('id'=>$id));
+			{
+				$output['output'] = true;
+			}
+		}
+		echo json_encode($output);
+	}
+
+	public function form_rakor()
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'kategori_produk' => 1))->result_array();
+			$this->load->view('produksi/form_rakor', $data);
+		} else {
+			redirect('admin');
+		}
+	}
+
+	public function submit_rakor()
+	{
+		$date = $this->input->post('date');
+
+		$this->db->trans_start(); # Starting Transaction
+		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
+
+		$arr_insert = array(
+			'date' => date('Y-m-d', strtotime($date)),
+			'created_by' => $this->session->userdata('admin_id'),
+			'created_on' => date('Y-m-d H:i:s'),
+		);
+
+		$this->db->insert('kunci_rakor', $arr_insert);
+
+		if ($this->db->trans_status() === FALSE) {
+			# Something went wrong.
+			$this->db->trans_rollback();
+			$this->session->set_flashdata('notif_error','<b>ERROR</b>');
+			redirect('/stock_opname#rakor');
+		} else {
+			# Everything is Perfect. 
+			# Committing data to the database.
+			$this->db->trans_commit();
+			$this->session->set_flashdata('notif_success','<b>SAVED</b>');
+			redirect('admin/stock_opname');
+		}
+	}
+
 }
 ?>
