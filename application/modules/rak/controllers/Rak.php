@@ -673,7 +673,7 @@ class Rak extends Secure_Controller {
 					$row['edit'] = '-';
 				}
 
-				if($this->session->userdata('admin_group_id') == 1){
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4){
 				$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteDataRencanaCashFlow('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['delete'] = '-';
