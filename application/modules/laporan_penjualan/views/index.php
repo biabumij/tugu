@@ -707,7 +707,7 @@
                                         $('#daftar-penerimaan tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-left">' + row.nomor_transaksi + '</td></td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-right">' + row.penerimaan + '</td></tr>');
                                     });
                                 });
-                                $('#daftar-penerimaan tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
+                                $('#daftar-penerimaan tbody').append('<tr style="background-color:#cccccc;"><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
                             } else {
                                 $('#daftar-penerimaan tbody').append('<tr><td class="text-center" colspan="5"><b>Tidak Ada Data</b></td></tr>');
                             }
