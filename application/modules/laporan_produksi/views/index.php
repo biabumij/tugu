@@ -24,57 +24,55 @@
             color: black;
 		}
 
-        blink {
-        -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
-        animation: 2s linear infinite kedip;
-        }
-        /* for Safari 4.0 - 8.0 */
-        @-webkit-keyframes kedip { 
-        0% {
-            visibility: hidden;
-        }
-        50% {
-            visibility: hidden;
-        }
-        100% {
-            visibility: visible;
-        }
-        }
-        @keyframes kedip {
-        0% {
-            visibility: hidden;
-        }
-        50% {
-            visibility: hidden;
-        }
-        100% {
-            visibility: visible;
-        }
-        }
+		button {
+			border: none;
+			border-radius: 5px;
+			padding: 5px;
+			font-size: 12px;
+			text-transform: uppercase;
+			cursor: pointer;
+			color: white;
+			background-color: #2196f3;
+			box-shadow: 0 0 4px #999;
+			outline: none;
+		}
+
+		.ripple {
+			background-position: center;
+			transition: background 0.8s;
+		}
+		.ripple:hover {
+			background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+		}
+		.ripple:active {
+			background-color: #6eb9f7;
+			background-size: 100%;
+			transition: background 0s;
+		}
     </style>
 </head>
 
 <body>
-    <div class="wrap">
-        <?php echo $this->Templates->PageHeader(); ?>
-        <div class="page-body">
-            <div class="content">
-                <div class="row animated fadeInUp">
-                    <div class="col-sm-12 col-lg-12">
-                        <div class="panel">
-                            <div class="panel-content">
-								<h3 class="section-subtitle" style="font-weight:bold; text-transform:uppercase;"><?php echo $row[0]->menu_name; ?></h3>
-								<div class="text-left">
-									<a href="<?php echo site_url('admin');?>">
-									<button style="color:white; background-color:#5bc0de; border:1px solid black; border-radius:10px; line-height:30px;"><b><i class="fa-solid fa-rotate-left"></i> KEMBALI</b></button></a>
+	<div class="wrap">
+		<?php echo $this->Templates->PageHeader(); ?>
+		<div class="page-body">
+			<div class="content">
+				<div class="row animated fadeInUp">
+					<div class="col-sm-12 col-lg-12">
+						<div class="panel">
+							<div class="panel-content">
+								<div class="panel-header">
+									<h3 class="section-subtitle" style="font-weight:bold; text-transform:uppercase;"><?php echo $row[0]->menu_name; ?></h3>
+									<div class="text-left">
+										<a href="<?php echo site_url('admin');?>">
+										<button class="ripple"><b><i class="fa-solid fa-rotate-left"></i> KEMBALI</b></button></a>
+									</div>
 								</div>
                                 <div class="tab-content">
-									
-									<!-- Laporan Laba Rugi -->
-                                    <div role="tabpanel" class="tab-pane active" id="laba_rugi">
-                                        <br />
-                                        <div class="row">
-                                            <div width="100%">
+                                        <div role="tabpanel" class="tab-pane active">
+                                            <br />
+                                            <div class="row">
+                                                <div width="100%">
 												<?php
 												if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,5,6,7,8))){
 												?>  
