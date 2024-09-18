@@ -2006,9 +2006,8 @@ class Reports extends CI_Controller {
 			$jumlah_nilai_K300_18 = $rak_1_nilai_K300_18 + $rak_2_nilai_K300_18 + $rak_3_nilai_K300_18 + $rak_4_nilai_K300_18 + $rak_5_nilai_K300_18;
 			$rencana_pendapatan = $jumlah_nilai_K300 + $jumlah_nilai_K300_18;
 
-			$date_kunci = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('kunci_bahan_baku')->row_array();
-			$last_opname = date('Y-m-d', strtotime('0 days', strtotime($date_kunci['date'])));
-			$date_awal = date('2024-08-01');
+			$kunci_rakor = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('kunci_bahan_baku')->row_array();
+			$last_opname = date('d-m-Y', strtotime('+1 days', strtotime($kunci_rakor['date'])));
 
 			$penjualan_sd_bulan_lalu = $this->db->select('SUM(pp.display_price) as total')
 			->from('pmm_productions pp')
