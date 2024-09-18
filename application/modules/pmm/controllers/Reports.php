@@ -1869,7 +1869,7 @@ class Reports extends CI_Controller {
 				}
 			</style>
 			<?php
-			$kunci_rakor = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('kunci_rakor')->row_array();
+			$kunci_rakor = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('kunci_bahan_baku')->row_array();
 			$last_opname = date('d-m-Y', strtotime('+1 days', strtotime($kunci_rakor['date'])));
 			$date_1_awal = date('Y-m-01', strtotime('+1 days +0 months', strtotime($last_opname)));
 			$date_1_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_1_awal)));
