@@ -207,23 +207,27 @@ class Rap extends Secure_Controller {
 				$row['lampiran'] = '<a href="' . base_url('uploads/agregat/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';           
                 $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
+				$row['print'] = '<a href="'.site_url().'rap/cetak_komposisi/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px;"><i class="fa fa-print"></i> </a>';
+
 				if($this->session->userdata('admin_group_id') == 1){
-				$row['closed'] = '<a href="'.site_url().'rap/closed_komposisi/'.$row['id'].'" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-briefcase"></i> </a>';
+					$row['closed'] = '<a href="'.site_url().'rap/closed_komposisi/'.$row['id'].'" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-briefcase"></i> </a>';
 				}else {
 					$row['closed'] = '-';
 				}
-				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
+				
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4){
-				$row['edit'] = '<a href="'.site_url().'rap/sunting_komposisi/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px;"><i class="fa fa-edit"></i> </a>';
+					$row['edit'] = '<a href="'.site_url().'rap/sunting_komposisi/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px;"><i class="fa fa-edit"></i> </a>';
 				}else {
 					$row['edit'] = '-';
 				}
-				$row['print'] = '<a href="'.site_url().'rap/cetak_komposisi/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px;"><i class="fa fa-print"></i> </a>';
+				
 				if($this->session->userdata('admin_group_id') == 1){
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataBahan('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
+					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataBahan('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
 				}
+
 				$data[] = $row;
             }
 
@@ -543,7 +547,7 @@ class Rap extends Secure_Controller {
 				$row['print'] = '<a href="'.site_url().'rap/cetak_rap_alat/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px;"><i class="fa fa-print"></i> </a>';
 				
 				if($this->session->userdata('admin_group_id') == 1){
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAlat('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
+					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAlat('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
 				}
@@ -929,7 +933,7 @@ class Rap extends Secure_Controller {
 				$row['print'] = '<a href="'.site_url().'rap/cetak_rap_bua/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px;"><i class="fa fa-print"></i> </a>';
 				
 				if($this->session->userdata('admin_group_id') == 1){
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataBUA('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
+					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataBUA('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
 				}
