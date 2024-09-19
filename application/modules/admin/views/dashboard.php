@@ -111,6 +111,32 @@
         /* Animation */
         @keyframes Gradient{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
         #flippy_menu{text-align:center;margin:auto;display:inline}#flippy_menu button{border-color:rgba(0,0,0,0.0);background:#fff;background-image:linear-gradient(to right,#0b5394 0%,#333333 51%,#0b5394 100%);background-size:200% auto;color:#fff;display:block;width:80%;padding:15px;font-weight:700;font-size:14px;text-align:center;text-transform:uppercase;letter-spacing:0.5px;margin:10px auto;border-radius:10px;box-shadow:0 2px 3px rgba(0,0,0,0.06),0 2px 3px rgba(0,0,0,0.1);transition:all .3s}#flippy_menu button:hover,#flippy_menu button:focus{background-position: right center;outline:none;opacity:1;color:#fff}#flippanel{display:none;padding:10px 0;text-align:left;background:#fff;margin:10px 0 0 0}#flippanel img{background:#f5f5f5;margin:10px auto}
+    
+        button {
+			border: none;
+			border-radius: 5px;
+			padding: 5px;
+			font-size: 12px;
+			text-transform: uppercase;
+			cursor: pointer;
+			color: white;
+			background-color: none;
+			box-shadow: 0 0 4px #999;
+			outline: none;
+		}
+
+		.ripple {
+			background-position: center;
+			transition: background 0.8s;
+		}
+		.ripple:hover {
+			background: #eeeeee radial-gradient(circle, transparent 1%, #eeeeee 1%) center/15000%;
+		}
+		.ripple:active {
+			background-color: #e1e1e1;
+			background-size: 100%;
+			transition: background 0s;
+		}
     </style>
     <body onload = "JavaScript:AutoRefresh(360000);">
     <body>
@@ -227,7 +253,7 @@
                             <table width="100%" style="margin-top:100px;">
                                 <tr>
                                     <th width="25%" class="text-center" data-toggle="collapse" data-target="#produksi" aria-expanded="false" aria-controls="sc">
-                                        <ul class="row text-center list-inline  wowload bounceIn">
+                                        <ul class="row text-center list-inline  wowload bounceIn ripple" style="border-radius:20px;">
                                             <li style="background: linear-gradient(110deg, #40c9fe 20%, #40c9fe 40%, #2ea4d7 80%);">
                                                 <a>
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-person-digging"></i><b>PRODUKSI</b></span></a>
@@ -235,7 +261,7 @@
                                         </ul>
                                     </th>
                                     <th width="25%" class="text-center" data-toggle="collapse" data-target="#keuangan" aria-expanded="false" aria-controls="kp">
-                                        <ul class="row text-center list-inline  wowload bounceIn">
+                                        <ul class="row text-center list-inline  wowload bounceIn ripple" style="border-radius:20px;">
                                             <li style="background: linear-gradient(110deg, #8dea57 20%, #8dea57 40%, #57d762 80%);">
                                                 <a>
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-money-bill"></i><b>KEUANGAN</b></span></a>
@@ -243,7 +269,7 @@
                                         </ul>
                                     </th>
                                     <th width="25%" class="text-center" data-toggle="collapse" data-target="#rencana" aria-expanded="false" aria-controls="beton">
-                                        <ul class="row text-center list-inline  wowload bounceIn">
+                                        <ul class="row text-center list-inline  wowload bounceIn ripple" style="border-radius:20px;">
                                             <li class="text-center" style="background: linear-gradient(110deg, #cf9231 20%, #cf9231 40%, #ca861b 80%);">
                                                 <a>
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-calendar-week"></i><b>RENCANA</b></span></a>
@@ -353,7 +379,7 @@
                             <table width="100%">
                                 <tr>
                                     <th width="25%" class="text-center" data-toggle="collapse" data-target="#laporan" aria-expanded="false" aria-controls="beton">
-                                        <ul class="row text-center list-inline  wowload bounceIn">
+                                        <ul class="row text-center list-inline  wowload bounceIn ripple" style="border-radius:20px;">
                                             <li style="background: linear-gradient(110deg, #38761d 20%, #38761d 40%, #6aa84f 80%);">
                                                 <a>
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-chart-line"></i><b>LAPORAN</b></span></a>
@@ -361,7 +387,7 @@
                                         </ul>
                                     </th>
                                     <th width="25%" class="text-center" data-toggle="collapse" data-target="#form" aria-expanded="false" aria-controls="beton">
-                                        <ul class="row text-center list-inline  wowload bounceIn">
+                                        <ul class="row text-center list-inline  wowload bounceIn ripple" style="border-radius:20px;">
                                             <li style="background: linear-gradient(110deg, #7163b8 20%, #7163b8 40%, #6252b1 80%);">
                                                 <a>
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-book"></i><b>FORM</b></span></a>
@@ -369,7 +395,7 @@
                                         </ul>
                                     </th>
                                     <th width="25%" class="text-center" data-toggle="collapse" data-target="#master" aria-expanded="false" aria-controls="beton">
-                                        <ul class="row text-center list-inline  wowload bounceIn">
+                                        <ul class="row text-center list-inline  wowload bounceIn ripple" style="border-radius:20px;">
                                             <li style="background: linear-gradient(110deg, #d11212 20%, #d11212 40%, #b30f15 80%);">
                                                 <a>
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-database"></i><b>MASTER<br />DATA</b></span></a>
@@ -465,7 +491,7 @@
                                         
                                     </th>
                                     <th width="25%" class="text-center" data-toggle="collapse" data-target="#settings" aria-expanded="false" aria-controls="beton">
-                                        <ul class="row text-center list-inline  wowload bounceIn">
+                                        <ul class="row text-center list-inline  wowload bounceIn ripple" style="border-radius:20px;">
                                             <li class="text-center" style="background: linear-gradient(110deg, #848484 20%, #757575 40%, #666666 80%);">
                                                 <a>
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-gear"></i><b>SETTINGS</b></span></a>

@@ -196,7 +196,7 @@ p {
 	height: 7em;
 	/* border: 1px solid #e69500; */
 	padding: 0px;
-	border-radius: 10%;
+	border-radius: 20%;
 	margin: 0 1.25em;
 	line-height: 10em;
 	color: #e69500;
@@ -222,7 +222,6 @@ p {
 	display: block;
 	font-size: 10px;
 }
-
 
 /*testimonials*/
 .partners img {
