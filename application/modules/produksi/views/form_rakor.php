@@ -35,7 +35,7 @@
 									</div>
 									<br /><br /><br />
 									<div class="text-center">
-										<a href="<?= site_url('admin/stock_opname#rakor');?>" class="btn btn-danger" style="margin-bottom:0; font-weight:bold; border-radius:10px;">BATAL</a>
+										<a href="<?= site_url('admin/produksi#rakor');?>" class="btn btn-danger" style="margin-bottom:0; font-weight:bold; border-radius:10px;">BATAL</a>
 										<button type="submit" class="btn btn-success" style="font-weight:bold; border-radius:10px;">KIRIM</button>
 									</div>
 								</form>

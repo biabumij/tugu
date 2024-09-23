@@ -254,13 +254,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error','<b>ERROR</b>');
-			redirect('/stock_opname#rakor');
+			redirect('/produksi#rakor');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success','<b>SAVED</b>');
-			redirect('admin/stock_opname');
+			redirect('admin/produksi');
 		}
 	}
 
