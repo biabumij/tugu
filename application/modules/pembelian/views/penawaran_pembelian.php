@@ -66,6 +66,7 @@
                                                 <option value="7">7 hari</option>
                                                 <option value="14">14 hari</option>
                                                 <option value="30">30 hari</option>
+                                                <option value="45">45 hari</option>
                                                 <option value="60">60 hari</option>
                                                 <option value="90">90 hari</option>
                                                 <option value="120">120 hari</option>
