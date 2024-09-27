@@ -3075,17 +3075,65 @@ class Reports extends CI_Controller {
 				<th class="text-center" rowspan="4" style="vertical-align:middle">VII</th>
 				<th class="text-left" colspan="10"><u>PINJAMAN</u></th>
 			</tr>
+			<?php
+			$rencana_penerimaan_pinjaman = 0;
+
+			$penerimaan_pinjaman_sd_bulan_lalu = $this->db->select('sum(jumlah) as total')
+			->from('pmm_terima_uang')
+			->where("terima_dari = 147")
+			->where("status = 'PAID'")
+			->where("(tanggal_transaksi between '$date_awal' and '$last_opname')")
+			->get()->row_array();
+			$penerimaan_pinjaman_sd_bulan_lalu = $penerimaan_pinjaman_sd_bulan_lalu['total'];
+
+			$penerimaan_pinjaman = $this->db->select('sum(jumlah) as total')
+			->from('pmm_terima_uang')
+			->where("terima_dari = 147")
+			->where("status = 'PAID'")
+			->where("(tanggal_transaksi between '$date_1_awal' and '$date_1_akhir')")
+			->get()->row_array(); 
+			$penerimaan_pinjaman_bulan_ini = $penerimaan_pinjaman['total'];
+
+			$penerimaan_pinjaman_bulan_ini_sd = $this->db->select('sum(jumlah) as total')
+			->from('pmm_terima_uang')
+			->where("terima_dari = 147")
+			->where("status = 'PAID'")
+			->where("(tanggal_transaksi between '$date_awal' and '$date_1_akhir')")
+			->get()->row_array(); 
+			$penerimaan_pinjaman_bulan_ini_sd = $penerimaan_pinjaman_bulan_ini_sd['total'];
+
+			$penerimaan_pinjaman_2 = $this->db->select('SUM(penerimaan) as total')
+			->from('rencana_cash_flow')
+			->where("tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
+			->get()->row_array();
+			$penerimaan_pinjaman_2 = $penerimaan_pinjaman_2['total'];
+
+			$penerimaan_pinjaman_3 = $this->db->select('SUM(penerimaan) as total')
+			->from('rencana_cash_flow')
+			->where("tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
+			->get()->row_array();
+			$penerimaan_pinjaman_3 = $penerimaan_pinjaman_3['total'];
+
+			$penerimaan_pinjaman_4 = $this->db->select('SUM(penerimaan) as total')
+			->from('rencana_cash_flow')
+			->where("tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
+			->get()->row_array();
+			$penerimaan_pinjaman_4 = $penerimaan_pinjaman_4['total'];
+
+			$jumlah_penerimaan_pinjaman = $penerimaan_pinjaman_bulan_ini_sd + $penerimaan_pinjaman_2 + $penerimaan_pinjaman_3 + $penerimaan_pinjaman_4;
+			$sisa_penerimaan_pinjaman = $rencana_penerimaan_pinjaman - $jumlah_penerimaan_pinjaman;
+			?>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;1. Penerimaan Pinjaman</th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($test,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_penerimaan_pinjaman,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($penerimaan_pinjaman_sd_bulan_lalu,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($penerimaan_pinjaman_bulan_ini,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($penerimaan_pinjaman_bulan_ini_sd,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($penerimaan_pinjaman_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($penerimaan_pinjaman_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($penerimaan_pinjaman_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_penerimaan_pinjaman,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($sisa_penerimaan_pinjaman,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;2. Pengembalian Pinjaman</th>
