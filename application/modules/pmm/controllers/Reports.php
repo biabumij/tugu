@@ -9283,7 +9283,6 @@ class Reports extends CI_Controller {
 				$harsat_rap_beton_batu2030 = $harsat_rap_beton['price_d'];
 				$harsat_rap_beton_additive = $harsat_rap_beton['price_e'];
 				?>
-
 				<th class="text-right"><?php echo number_format($harsat_rap_beton_semen,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_300_1,2,',','.');?></th>
