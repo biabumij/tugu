@@ -82,6 +82,20 @@
                                                     <input type="text" id="termin" name="termin" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td class="text-center">6.</td>
+                                                    <td>Penerimaan Pinjaman</td>
+													<td>
+                                                    <input type="text" id="penerimaan" name="penerimaan" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">7.</td>
+                                                    <td>Pengembelian Pinjaman</td>
+													<td>
+                                                    <input type="text" id="pengembalian" name="pengembalian" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                 
                                         </table>    
