@@ -305,6 +305,11 @@ class Rap extends Secure_Controller {
 			$presentase_c = str_replace(',', '.', $this->input->post('presentase_c'));
 			$presentase_d = str_replace(',', '.', $this->input->post('presentase_d'));
 			$presentase_e = str_replace(',', '.', $this->input->post('presentase_e'));
+			$presentase_a = str_replace(',', '.', $this->input->post('presentase_a'));
+			$presentase_b = str_replace(',', '.', $this->input->post('presentase_b'));
+			$presentase_c = str_replace(',', '.', $this->input->post('presentase_c'));
+			$presentase_d = str_replace(',', '.', $this->input->post('presentase_d'));
+			$presentase_e = str_replace(',', '.', $this->input->post('presentase_e'));
 			$price_a = str_replace('.', '', $this->input->post('price_a'));
 			$price_b = str_replace('.', '', $this->input->post('price_b'));
 			$price_c = str_replace('.', '', $this->input->post('price_c'));
@@ -323,6 +328,11 @@ class Rap extends Secure_Controller {
 				'presentase_c' => $presentase_c,
 				'presentase_d' => $presentase_d,
 				'presentase_e' => $presentase_e,
+				'penawaran_semen' => $penawaran_semen,
+				'penawaran_pasir' => $penawaran_pasir,
+				'penawaran_1020' => $penawaran_1020,
+				'penawaran_2030' => $penawaran_2030,
+				'penawaran_additive' => $penawaran_additive,
 				'price_a' => $price_a,
 				'price_b' => $price_b,
 				'price_c' => $price_c,

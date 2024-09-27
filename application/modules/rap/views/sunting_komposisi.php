@@ -121,7 +121,7 @@
 											<td class="text-center"><?= $agregat["measure_a"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$agregat['measure_a']),'measure_name'); ?></td>
 											<td class="text-center"><input type="text" id="presentase_a" name="presentase_a" class="form-control text-center" value="<?= $agregat['presentase_a'] ?>" onchange="changeData(1)" required="" autocomplete="off"></td>
                                             <td class="text-center">
-                                                <select id="penawaran_semen" class="form-control">
+                                                <select id="penawaran_semen" name="penawaran_semen" class="form-control">
                                                 <option value="">Pilih Penawaran</option>
                                                 <?php
 
