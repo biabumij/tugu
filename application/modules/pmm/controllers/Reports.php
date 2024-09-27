@@ -2956,11 +2956,27 @@ class Reports extends CI_Controller {
 			$pajak_keluaran_sd_bulan_lalu = ($termin_sd_bulan_lalu * 11) / 100;
 			$pajak_keluaran_bulan_ini = ($termin_bulan_ini * 11) / 100;
 			$pajak_keluaran_bulan_ini_sd = ($termin_bulan_ini_sd * 11) / 100;
-			$pajak_keluaran_2 = ($termin_2 * 11) / 100;
-			$pajak_keluaran_3 = ($termin_3 * 11) / 100;
-			$pajak_keluaran_4 = ($termin_4 * 11) / 100;
-			$jumlah_pajak_keluaran = ($jumlah_termin * 11) / 100;
-			$sisa_pajak_keluaran = ($sisa_termin * 11) / 100;
+
+			$pajak_keluaran_2 = $this->db->select('SUM(pajak_keluaran) as total')
+			->from('rencana_cash_flow')
+			->where("tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
+			->get()->row_array();
+			$pajak_keluaran_2 = $pajak_keluaran_2['total'];
+
+			$pajak_keluaran_3 = $this->db->select('SUM(pajak_keluaran) as total')
+			->from('rencana_cash_flow')
+			->where("tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
+			->get()->row_array();
+			$pajak_keluaran_3 = $pajak_keluaran_3['total'];
+
+			$pajak_keluaran_4 = $this->db->select('SUM(pajak_keluaran) as total')
+			->from('rencana_cash_flow')
+			->where("tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
+			->get()->row_array();
+			$pajak_keluaran_4 = $pajak_keluaran_4['total'];
+
+			$jumlah_pajak_keluaran = $pajak_keluaran_bulan_ini_sd + $pajak_keluaran_2 + $pajak_keluaran_3 + $pajak_keluaran_4;
+			$sisa_pajak_keluaran = $rencana_pajak_keluaran - $jumlah_pajak_keluaran;
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;1. Pajak Keluaran</th>
@@ -2979,11 +2995,26 @@ class Reports extends CI_Controller {
 			$pajak_masukan_sd_bulan_lalu = ($bahan_sd_bulan_lalu * 11) / 100;
 			$pajak_masukan_bulan_ini = ($bahan_bulan_ini * 11) / 100;
 			$pajak_masukan_bulan_ini_sd = ($bahan_bulan_ini_sd * 11) / 100;
-			$pajak_masukan_2 = ($bahan_2 * 11) / 100;
-			$pajak_masukan_3 = ($bahan_3 * 11) / 100;
-			$pajak_masukan_4 = ($bahan_4 * 11) / 100;
-			$jumlah_pajak_masukan = ($jumlah_bahan * 11) / 100;
-			$sisa_pajak_masukan = ($sisa_bahan * 11) / 100;
+			$pajak_masukan_2 = $this->db->select('SUM(pajak_masukan) as total')
+			->from('rencana_cash_flow')
+			->where("tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
+			->get()->row_array();
+			$pajak_masukan_2 = $pajak_masukan_2['total'];
+
+			$pajak_masukan_3 = $this->db->select('SUM(pajak_masukan) as total')
+			->from('rencana_cash_flow')
+			->where("tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
+			->get()->row_array();
+			$pajak_masukan_3 = $pajak_masukan_3['total'];
+
+			$pajak_masukan_4 = $this->db->select('SUM(pajak_masukan) as total')
+			->from('rencana_cash_flow')
+			->where("tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
+			->get()->row_array();
+			$pajak_masukan_4 = $pajak_masukan_4['total'];
+
+			$jumlah_pajak_masukan = $pajak_masukan_bulan_ini_sd + $pajak_masukan_2 + $pajak_masukan_3 + $pajak_masukan_4;
+			$sisa_pajak_masukan = $rencana_pajak_masukan - $jumlah_pajak_masukan;
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;2. Pajak Masukan</th>

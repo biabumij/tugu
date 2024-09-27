@@ -572,6 +572,8 @@ class Rak extends Secure_Controller {
 		$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
 		$overhead =  str_replace('.', '', $this->input->post('overhead'));
 		$termin =  str_replace('.', '', $this->input->post('termin'));
+		$pajak_keluaran =  str_replace('.', '', $this->input->post('pajak_keluaran'));
+		$pajak_masukan =  str_replace('.', '', $this->input->post('pajak_masukan'));
 		$penerimaan =  str_replace('.', '', $this->input->post('penerimaan'));
 		$pengembalian =  str_replace('.', '', $this->input->post('pengembalian'));
 
@@ -585,6 +587,8 @@ class Rak extends Secure_Controller {
 			'biaya_bank' => $biaya_bank,
 			'overhead' => $overhead,
 			'termin' => $termin,
+			'pajak_keluaran' => $pajak_keluaran,
+			'pajak_masukan' => $pajak_masukan,
 			'penerimaan' => $penerimaan,
 			'pengembalian' => $pengembalian,
 			'status' => 'PUBLISH',
@@ -739,7 +743,10 @@ class Rak extends Secure_Controller {
 			$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
 			$overhead =  str_replace('.', '', $this->input->post('overhead'));
 			$termin =  str_replace('.', '', $this->input->post('termin'));
-			$biaya_persiapan =  str_replace('.', '', $this->input->post('biaya_persiapan'));
+			$pajak_keluaran =  str_replace('.', '', $this->input->post('pajak_keluaran'));
+			$pajak_masukan =  str_replace('.', '', $this->input->post('pajak_masukan'));
+			$penerimaan =  str_replace('.', '', $this->input->post('penerimaan'));
+			$pengembalian =  str_replace('.', '', $this->input->post('pengembalian'));
 
 			$arr_update = array(
 				'biaya_bahan' => $biaya_bahan,
@@ -747,7 +754,10 @@ class Rak extends Secure_Controller {
 				'biaya_bank' => $biaya_bank,
 				'overhead' => $overhead,
 				'termin' => $termin,
-				'biaya_persiapan' => $biaya_persiapan,
+				'pajak_keluaran' => $pajak_keluaran,
+				'pajak_masukan' => $pajak_masukan,
+				'penerimaan' => $penerimaan,
+				'pengembalian' => $pengembalian,
 				'status' => 'PUBLISH',
 				'updated_by' => $this->session->userdata('admin_id'),
 				'updated_on' => date('Y-m-d H:i:s')

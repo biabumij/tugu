@@ -127,11 +127,21 @@
                                             </tr>
                                             <tr>
                                                 <td class="text-center">6.</td>
+                                                <td class="text-left">Pajak Keluaran</td>
+                                                <td class="text-right"><input type="text" id="pajak_keluaran" name="pajak_keluaran" class="form-control rupiahformat text-right" value="<?= $rak['pajak_keluaran'] ?>" required="" autocomplete="off"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">7.</td>
+                                                <td class="text-left">Pajak Masukan</td>
+                                                <td class="text-right"><input type="text" id="pajak_masukan" name="pajak_masukan" class="form-control rupiahformat text-right" value="<?= $rak['pajak_masukan'] ?>" required="" autocomplete="off"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">8.</td>
                                                 <td class="text-left">Penerimaan Pinjaman</td>
                                                 <td class="text-right"><input type="text" id="penerimaan" name="penerimaan" class="form-control rupiahformat text-right" value="<?= $rak['penerimaan'] ?>" required="" autocomplete="off"></td>
                                             </tr>
                                             <tr>
-                                                <td class="text-center">7.</td>
+                                                <td class="text-center">9.</td>
                                                 <td class="text-left">Pengembalian Pinjaman</td>
                                                 <td class="text-right"><input type="text" id="pengembalian" name="pengembalian" class="form-control rupiahformat text-right" value="<?= $rak['pengembalian'] ?>" required="" autocomplete="off"></td>
                                             </tr>
