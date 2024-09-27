@@ -9274,7 +9274,6 @@ class Reports extends CI_Controller {
 				//HARSAT RAP
 				$harsat_rap_beton = $this->db->select('*')
 				->from('pmm_agregat')
-				->where("mutu_beton = 9")
 				->order_by('id','desc')->limit(1)
 				->get()->row_array();
 				$harsat_rap_beton_semen = $harsat_rap_beton['price_a'];
