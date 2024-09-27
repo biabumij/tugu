@@ -386,14 +386,14 @@
                                             </li>
                                         </ul>
                                     </th>
-                                    <th width="25%" class="text-center" data-toggle="collapse" data-target="#form" aria-expanded="false" aria-controls="beton">
+                                    <!--<th width="25%" class="text-center" data-toggle="collapse" data-target="#form" aria-expanded="false" aria-controls="beton">
                                         <ul class="row text-center list-inline  wowload bounceIn ripple" style="border-radius:20px;">
                                             <li style="background: linear-gradient(110deg, #7163b8 20%, #7163b8 40%, #6252b1 80%);">
                                                 <a>
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-book"></i><b>FORM</b></span></a>
                                             </li>
                                         </ul>
-                                    </th>
+                                    </th>-->
                                     <th width="25%" class="text-center" data-toggle="collapse" data-target="#master" aria-expanded="false" aria-controls="beton">
                                         <ul class="row text-center list-inline  wowload bounceIn ripple" style="border-radius:20px;">
                                             <li style="background: linear-gradient(110deg, #d11212 20%, #d11212 40%, #b30f15 80%);">
@@ -402,6 +402,32 @@
                                             </li>
                                         </ul>
                                     </th>
+                                    <?php
+                                    if(in_array($this->session->userdata('admin_group_id'), array(2,3,4,5,6,7,8))){
+                                    ?>
+                                    <th width="25%" class="text-center">
+                                        <ul class="row text-center list-inline  wowload bounceInUp collapse" id="settings">
+                        
+                                        </ul>
+                                    </th>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    <?php
+                                    if(in_array($this->session->userdata('admin_group_id'), array(1))){
+                                    ?>
+                                    <th width="25%" class="text-center" data-toggle="collapse" data-target="#settings" aria-expanded="false" aria-controls="beton">
+                                        <ul class="row text-center list-inline  wowload bounceIn ripple" style="border-radius:20px;">
+                                            <li class="text-center" style="background: linear-gradient(110deg, #848484 20%, #757575 40%, #666666 80%);">
+                                                <a>
+                                                <span style="color:#fffdd0;"><i class="fa-solid fa-gear"></i><b>SETTINGS</b></span></a>
+                                            </li>
+                                        </ul>
+                                    </th>
+                                    <?php
+                                    }
+                                    ?>
                                 </tr>
                             </table>
                             <table width="100%">
@@ -434,14 +460,14 @@
                                             </li>
                                         </ul>
                                     </th>
-                                    <th width="25%" class="text-center">
+                                    <!--<th width="25%" class="text-center">
                                         <ul class="row text-center list-inline  wowload bounceInUp collapse" id="form">
                                             <li class="text-center" style="background: linear-gradient(110deg, #7163b8 20%, #7163b8 40%, #6252b1 80%);">
                                                 <a href="<?php echo site_url('admin/form');?>">
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-file"></i><b>PERUBAHAN<br />SISTEM</b></span></a>
                                             </li>
                                         </ul>
-                                    </th>
+                                    </th>-->
                                     <th width="25%" class="text-center">
                                         <ul class="row text-center list-inline  wowload bounceInUp collapse" id="master">
                                             <li class="text-center" style="background: linear-gradient(110deg, #d11212 20%, #d11212 40%, #b30f15 80%);">
@@ -480,33 +506,6 @@
                                             ?>
                                         </ul>
                                     </th>
-                                </tr>
-                            </table>
-                            <?php
-                            if(in_array($this->session->userdata('admin_group_id'), array(1))){
-                            ?>
-                            <table width="100%">
-                                <tr>
-                                    <th width="25%" class="text-center" data-toggle="collapse" data-target="#" aria-expanded="false" aria-controls="beton">
-                                        
-                                    </th>
-                                    <th width="25%" class="text-center" data-toggle="collapse" data-target="#settings" aria-expanded="false" aria-controls="beton">
-                                        <ul class="row text-center list-inline  wowload bounceIn ripple" style="border-radius:20px;">
-                                            <li class="text-center" style="background: linear-gradient(110deg, #848484 20%, #757575 40%, #666666 80%);">
-                                                <a>
-                                                <span style="color:#fffdd0;"><i class="fa-solid fa-gear"></i><b>SETTINGS</b></span></a>
-                                            </li>
-                                        </ul>
-                                    </th>
-                                    <th width="25%" class="text-center" data-toggle="collapse" data-target="#" aria-expanded="false" aria-controls="beton">
-                                    
-                                    </th>
-                                </tr>
-                            </table>
-                            <table width="100%">
-                                <tr>
-                                    <th width="25%" class="text-center">
-                                    </th>
                                     <th width="25%" class="text-center">
                                         <ul class="row text-center list-inline  wowload bounceInUp collapse" id="settings">
                                             <li class="text-center" style="background: linear-gradient(110deg, #848484 20%, #757575 40%, #666666 80%);">
@@ -523,13 +522,8 @@
                                             </li>
                                         </ul>
                                     </th>
-                                    <th width="25%" class="text-center">
-                                    </th>
                                 </tr>
                             </table>
-                            <?php
-                            }
-                            ?>
                         </div>
                     </div>
                     <br /><br /><br /><br /><br />
