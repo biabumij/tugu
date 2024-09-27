@@ -9270,7 +9270,21 @@ class Reports extends CI_Controller {
 			<tr class="table-baris" id="hidethis2" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Semen</th>
-				<th class="text-right"><?php echo number_format(1120000,0,',','.');?></th>
+				<?php
+				//HARSAT RAP
+				$harsat_rap_beton = $this->db->select('*')
+				->from('pmm_agregat')
+				->where("mutu_beton = 9")
+				->order_by('id','desc')->limit(1)
+				->get()->row_array();
+				$harsat_rap_beton_semen = $harsat_rap_beton['price_a'];
+				$harsat_rap_beton_pasir = $harsat_rap_beton['price_b'];
+				$harsat_rap_beton_batu1020 = $harsat_rap_beton['price_c'];
+				$harsat_rap_beton_batu2030 = $harsat_rap_beton['price_d'];
+				$harsat_rap_beton_additive = $harsat_rap_beton['price_e'];
+				?>
+
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_semen,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_300_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_semen_300_1,0,',','.');?></th>
@@ -9292,7 +9306,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris" id="hidethis3" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Pasir</th>
-				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_pasir,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_pasir_300_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_1,0,',','.');?></th>
@@ -9314,7 +9328,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris" id="hidethis4" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Batu Split 10 - 20</th>
-				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_batu1020,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_1,0,',','.');?></th>
@@ -9336,7 +9350,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris" id="hidethis5" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Batu Split 20 - 30</th>
-				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_batu2030,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_1,0,',','.');?></th>
@@ -9358,7 +9372,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris" id="hidethis6" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Additive</th>
-				<th class="text-right"><?php echo number_format(12000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_additive,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_additive_300_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_additive_300_1,0,',','.');?></th>
@@ -9408,7 +9422,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris" id="hidethis9" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Semen</th>
-				<th class="text-right"><?php echo number_format(1120000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_semen,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_300_18_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_semen_300_18_1,0,',','.');?></th>
@@ -9430,7 +9444,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris" id="hidethis10" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Pasir</th>
-				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_pasir,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_pasir_300_18_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_18_1,0,',','.');?></th>
@@ -9452,7 +9466,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris" id="hidethis11" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Batu Split 10 - 20</th>
-				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_batu1020,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_18_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_18_1,0,',','.');?></th>
@@ -9474,7 +9488,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris" id="hidethis12" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Batu Split 20 - 30</th>
-				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_batu2030,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_18_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_18_1,0,',','.');?></th>
@@ -9496,7 +9510,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris" id="hidethis13" style="display:none;">
 				<th class="text-center"></th>
 				<th class="text-left">Additive</th>
-				<th class="text-right"><?php echo number_format(12000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_additive,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_additive_300_18_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_additive_300_18_1,0,',','.');?></th>
@@ -9540,7 +9554,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Semen</th>
-				<th class="text-right"><?php echo number_format(1120000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_semen,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_300_1 +$total_volume_semen_300_18_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_semen_300_1 + $total_nilai_semen_300_18_1,0,',','.');?></th>
@@ -9558,7 +9572,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Pasir</th>
-				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_pasir,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_pasir_300_1 +$total_volume_pasir_300_18_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_1 + $total_nilai_pasir_300_18_1,0,',','.');?></th>
@@ -9576,7 +9590,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Batu Split 10 - 20</th>
-				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_batu1020,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_1 +$total_volume_batu1020_300_18_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_1 + $total_nilai_batu1020_300_18_1,0,',','.');?></th>
@@ -9593,8 +9607,8 @@ class Reports extends CI_Controller {
 			</tr>
 			<tr class="table-baris">
 				<th class="text-center"></th>
-				<th class="text-left">Batu Split 10 - 20</th>
-				<th class="text-right"><?php echo number_format(200000,0,',','.');?></th>
+				<th class="text-left">Batu Split 20 - 30</th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_batu1020,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_1 +$total_volume_batu2030_300_18_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_1 + $total_nilai_batu2030_300_18_1,0,',','.');?></th>
@@ -9612,7 +9626,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Additive</th>
-				<th class="text-right"><?php echo number_format(12000,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_additive,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_additive_300_1 +$total_volume_additive_300_18_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_additive_300_1 + $total_nilai_additive_300_18_1,0,',','.');?></th>
