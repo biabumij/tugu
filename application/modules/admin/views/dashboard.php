@@ -145,7 +145,7 @@
             <div class="page-body">
                 <div id="about" class="container spacer about">
                     <div class="col-sm-12" style="background:#fff;background-image:linear-gradient(to right,#999999 0%,#333333 51%,#666666 100%); font-size:18px; border-radius: 10px; padding:10px; margin-bottom:50px;">
-                        <p style="align:center; font-weight:bold; color:white;">PROYEK BENDUNGAN TUGU</p>
+                        <p style="ext-align:center; font-weight:bold; color:white;">PROYEK BENDUNGAN TUGU</p>
                         <?php
                         if(in_array($this->session->userdata('admin_group_id'), array(1,2,3))){
                         ?>
