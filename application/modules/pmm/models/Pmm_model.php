@@ -6372,11 +6372,11 @@ class Pmm_model extends CI_Model {
         return $data;
     }
 
-    function get110001($date1,$date2)
+    function get110008($date1,$date2)
     {   
         $total = 0;
 
-        $akun_110001_biaya = $this->db->select('b.bayar_dari as id, sum(pdb.jumlah) as total')
+        $akun_110008_biaya = $this->db->select('b.bayar_dari as id, sum(pdb.jumlah) as total')
         ->from('pmm_biaya b')
         ->join('pmm_detail_biaya pdb', 'b.id = pdb.biaya_id','left')
         ->where("b.tanggal_transaksi between '$date1' and '$date2'")
@@ -6385,16 +6385,16 @@ class Pmm_model extends CI_Model {
         ->order_by('b.tanggal_transaksi','asc')
         ->get()->row_array();
 
-        $akun_110001_jurnal = $this->db->select('pdj.akun as id, sum(pdj.kredit) as total')
+        $akun_110008_jurnal = $this->db->select('pdj.akun as id, sum(pdj.kredit) as total')
         ->from('pmm_jurnal_umum j')
         ->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
         ->where("j.tanggal_transaksi between '$date1' and '$date2'")
         ->where("pdj.akun = 1")
         ->group_by('pdj.akun')
         ->get()->row_array();
-        $akun_110001 = $akun_110001_biaya['total'] + $akun_110001_jurnal['total'];
+        $akun_110008 = $akun_110008_biaya['total'] + $akun_110008_jurnal['total'];
         
-        $query = $akun_110001;
+        $query = $akun_110008;
         
         if(!empty($query)){
             $total = $query;

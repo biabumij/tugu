@@ -12643,20 +12643,20 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active4">
 	            <th width="100%" class="text-left" colspan="3">&nbsp;&nbsp;ASET LANCAR</th>
-	        </tr>
+			</tr>
 				<?php
 				$akun_110002 = $this->pmm_model->get110002($date1,$date2);
-				$akun_110001 = $this->pmm_model->get110001($date1,$date2);
-				$akun_110001 = $akun_110002 - $akun_110001;
+				$akun_110008 = $this->pmm_model->get110008($date1,$date2);
+				$akun_110008 = $akun_110002 - $akun_110008;
 				?>
 			<tr class="table-active3">
-	            <th width="10%" class="text-center">1-10001</th>
+	            <th width="10%" class="text-center">1-10008</th>
 				<th class="text-left">Kas</th>
 				<!--<th class="text-right"><a target="_blank" href="<?= base_url("pmm/reports/detail_transaction/".$date1."/".$date2."/".'1'."") ?>"><?php echo $akun_1_10001 < 0 ? "(".number_format(-$akun_1_10001,0,',','.').")" : number_format($akun_1_10001,0,',','.');?></a></th>-->
 				<?php
-				$styleColor = $akun_110001 < 0 ? 'color:red' : 'color:black';
+				$styleColor = $akun_110008 < 0 ? 'color:red' : 'color:black';
 				?>
-				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $akun_110001 < 0 ? "(".number_format(-$akun_110001,0,',','.').")" : number_format($akun_110001,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $akun_110008 < 0 ? "(".number_format(-$akun_110008,0,',','.').")" : number_format($akun_110008,0,',','.');?></th>
 			</tr>
 				<?php
 				$akun_110100 = $this->pmm_model->get110100($date1,$date2);
@@ -12913,7 +12913,7 @@ class Reports extends CI_Controller {
 				?>
 			<tr class="table-active3">
 				<th width="10%" class="text-center">3-30000</th>
-				<th class="text-left">Modal Saham</th>
+				<th class="text-left">Modal</th>
 				<?php
 				$styleColor = $akun_330000 < 0 ? 'color:red' : 'color:black';
 				?>
