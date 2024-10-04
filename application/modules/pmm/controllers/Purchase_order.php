@@ -391,25 +391,32 @@ class Purchase_order extends CI_Controller {
 	{
 		$output['output'] = false;
 		$id = $this->input->post('id');
+		$no_po = $this->input->post('no_po');
 		$status = $this->input->post('status');
+		$subject = $this->input->post('subject');
+		$date_po = $this->input->post('date_po');
+		
 		if(!empty($id)){
-			$no_po = $this->input->post('no_po');
 			$arr_data = array(
 				'no_po' => $no_po,
-				'status' => $status
+				'status' => $status,
+				'subject' => $subject,
+				'date_po' => date('Y-m-d', strtotime($date_po)),
  			);
 				
-			// $check_po = $this->db->get_where('pmm_purchase_order',array('no_po'=>$no_po))->num_rows();
-			// if($check_po > 0){
-				// $output['err'] = 'No Po has been added';
-			// }else {
+			$check_po = $this->db->get_where('pmm_purchase_order',array('no_po'=>$no_po))->num_rows();
+			if($check_po > 0){
+				$output['err'] = 'No. Pesanan Pembelian Sudah Terdaftar';
+				echo json_encode($output);
+				exit();
+			}else {
 				if($this->db->update('pmm_purchase_order',$arr_data,array('id'=>$id))){
 					$output['output'] = true;
 				}	
-			// }
+			}
 			
 		}
-		echo json_encode($output);	
+		echo json_encode($output);
 	}
 
 

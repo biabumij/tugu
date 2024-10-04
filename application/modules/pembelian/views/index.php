@@ -316,22 +316,30 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="modal fade bd-example-modal-lg" id="modalEditPo" tabindex="-1" role="dialog">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <span class="modal-title"><b>Edit No. Pesanan Pembelian</b></span>
+                                                <span class="modal-title"><b>Edit Pesanan Pembelian</b></span>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="form-horizontal" method="POST" style="padding: 0 10px 0 20px;">
+                                                <form class="form-horizontal" method="POST" style="padding: 0 10px 0 20px;" onsubmit="setTimeout(function () { window.location.reload(); }, 3000)">
                                                     <input type="hidden" name="id" id="id_po">
+                                                    <div class="form-group">
+                                                        <label>Subject</label>
+                                                        <input type="text" id="subject_po_edit" name="subject" class="form-control" required="" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Tgl. Pesanan Pembelian</label>
+                                                        <input type="text" id="date_po_edit" name="date_po" class="form-control dtpicker-single" required="" />
+                                                    </div>
                                                     <div class="form-group">
                                                         <label>No. Pesanan Pembelian</label>
                                                         <input type="text" id="no_po_edit" name="no_po" class="form-control" required="" />
-                                                        <input type="hidden" name="status" id="change_status" value="WAITING">
                                                     </div>
                                                     
                                                     <?php
@@ -351,7 +359,7 @@
                                                         <?php
                                                         }   
                                                     ?>
-                                                    
+
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-success" id="btn-no_po"> SIMPAN</button>
                                                     </div>
@@ -1708,12 +1716,13 @@
         $('#id_doc').val(id);
     }
 
-    function EditNoPo(id, no_po, status) {
-
+    function EditNoPo(id, no_po, status, subject, date_po) {
         $('#modalEditPo').modal('show');
         $('#id_po').val(id);
         $('#no_po_edit').val(no_po);
         $('#change_status').val(status);
+        $('#subject_po_edit').val(subject);
+        $('#date_po_edit').val(date_po);
     }
 
     $('#modalDoc form').submit(function(event) {

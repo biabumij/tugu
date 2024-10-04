@@ -1589,23 +1589,13 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
-
     function TableCustomMaterial($supplier_id)
     {
         $data = array();
-
-        /*$status = $this->input->post('status');
-        $schedule_id = $this->input->post('schedule_id');*/
         $w_date = $this->input->post('filter_date');
-
-        //$this->db->where('status !=','DELETED');
         if($supplier_id !== 0){
             $this->db->where('supplier_id',$supplier_id);
         }
-        
-        /*if(!empty($status)){
-            $this->db->where('status',$status);
-        }*/
         if(!empty($w_date)){
             $arr_date = explode(' - ', $w_date);
             $start_date = $arr_date[0];
@@ -1613,7 +1603,6 @@ class Pmm_model extends CI_Model {
             $this->db->where('date_po  >=',date('Y-m-d',strtotime($start_date)));   
             $this->db->where('date_po <=',date('Y-m-d',strtotime($end_date)));  
         }
-		
 		$this->db->order_by('created_on','DESC');
         $query = $this->db->get('pmm_purchase_order');
         if($query->num_rows() > 0){
@@ -1624,49 +1613,33 @@ class Pmm_model extends CI_Model {
                 $row['document_po'] = '<a href="'.base_url().'uploads/purchase_order/'.$row['document_po'].'" target="_blank">'.$row['document_po'].'</a>';
                 $row['date_po'] = date('d/m/Y',strtotime($row['date_po']));
                 $row['supplier'] = $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');
-
                 $total_volume = $this->db->select('SUM(volume) as total,measure,SUM(volume * price) as total_tanpa_ppn')->get_where('pmm_purchase_order_detail',array('purchase_order_id'=>$row['id']))->row_array();
                 $row['volume'] = number_format($total_volume['total'],2,',','.');
                 $row['measure'] = $total_volume['measure'];
                 $row['total_val'] = intval($row['total']);
                 $row['total'] = number_format($total_volume['total_tanpa_ppn'],0,',','.');
-                
-
                 $receipt = $this->db->select('SUM(volume) as total')->get_where('pmm_receipt_material',array('purchase_order_id'=>$row['id']))->row_array();
                 $total_receipt = $this->pmm_model->GetTotalReceipt($row['id']);
-               //$row['receipt'] = '<a href="'.site_url('pmm/purchase_order/receipt_material_pdf/'.$row['id']).'" target="_blank" >'.number_format($receipt['total'],2,',','.').'</a>';
                 $row['receipt'] = number_format($receipt['total'],2,',','.');
-                
                 $presentase = ($receipt['total'] / $total_volume['total']) * 100;
 				$row['presentase'] = number_format($presentase,0,',','.').' %';
-                
                 $row['total_receipt'] = number_format($total_receipt,0,',','.');
                 $row['total_receipt_val'] = $total_receipt;
-
                 $row['document_po'] = '<a href="' . base_url('uploads/purchase_order/' . $row['id']) .'" target="_blank">' . $row['document_po'] . '</a>';        
-
                 $delete = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-                if($row['status'] == 'DRAFT'){
-                    
-                    $edit = '<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';
-                }else {
-
-                    $edit = false;
-                }
-
                 $upload_document = false;
                 if($row['status'] == 'PUBLISH' || $row['status'] == 'CLOSED'){
                     $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" style="border-radius:10px;" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
                 }
                 $edit_no_po = false;
                 $status = "'".$row['status']."'";
+                $subject = "'".$row['subject']."'";
+                $date_po = "'".date('d-m-Y',strtotime($row['date_po']))."'";
                 if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4))){
-                     $edit_no_po = '<a href="javascript:void(0);" onclick="EditNoPo('.$row['id'].','.$no_po.','.$status.')" class="btn btn-primary" style="border-radius:10px;" title="Edit Nomor PO" ><i class="fa fa-edit"></i> </a>';
-                }   
+                     $edit_no_po = '<a href="javascript:void(0);" onclick="EditNoPo('.$row['id'].','.$no_po.','.$status.','.$subject.','.$date_po.')" class="btn btn-primary" style="border-radius:10px;" title="Edit Nomor PO" ><i class="fa fa-edit"></i> </a>';
+                }
                 $row['status'] = $this->pmm_model->GetStatus($row['status']);
-                
                 $row['actions'] = $edit.' '.$edit_no_po;
-
                 $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 
@@ -1676,8 +1649,6 @@ class Pmm_model extends CI_Model {
 
         return $data;
     }
-
-
 
     function GetPlanningMat($material_id,$start_date=false,$end_date=false)
     {
