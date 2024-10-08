@@ -22,10 +22,11 @@ class M_laporan extends CI_Model {
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
         $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
         $this->db->where("c.coa_category in ('15','17')");
-        $this->db->where("c.id <> 138 "); //Biaya Maintenance BP
-        $this->db->where("c.id <> 124 "); //Biaya TM
-        $this->db->where("c.id <> 140 "); //Biaya Maintenance WL
         $this->db->where("c.id <> 110 "); //Biaya Diskonto Bank
+        $this->db->where("c.id <> 131 "); //Biaya Persiapan
+        $this->db->where("c.id <> 124 "); //Biaya Maintenance Truck Mixer
+        $this->db->where("c.id <> 138 "); //Biaya Maintenance Batching Plant
+        $this->db->where("c.id <> 140 "); //Biaya Maintenance Wheel Loader
         $this->db->where('b.status','PAID');
         $this->db->group_by('c.coa_parent');
         $this->db->order_by('c.coa_number','asc');
@@ -46,10 +47,11 @@ class M_laporan extends CI_Model {
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
         $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
         $this->db->where("c.coa_category in ('15','17')");
-        $this->db->where("c.id <> 138 "); //Biaya Maintenance BP
-        $this->db->where("c.id <> 124 "); //Biaya TM
-        $this->db->where("c.id <> 140 "); //Biaya Maintenance WL
         $this->db->where("c.id <> 110 "); //Biaya Diskonto Bank
+        $this->db->where("c.id <> 131 "); //Biaya Persiapan
+        $this->db->where("c.id <> 124 "); //Biaya Maintenance Truck Mixer
+        $this->db->where("c.id <> 138 "); //Biaya Maintenance Batching Plant
+        $this->db->where("c.id <> 140 "); //Biaya Maintenance Wheel Loader
         $this->db->group_by('c.coa');
         $this->db->order_by('c.coa_number','asc');
         $query = $this->db->get('pmm_biaya b');
@@ -69,10 +71,11 @@ class M_laporan extends CI_Model {
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
         $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
         $this->db->where("c.coa_category in ('15','17')");
-        $this->db->where("c.id <> 138 "); //Biaya Maintenance BP
-        $this->db->where("c.id <> 124 "); //Biaya TM
-        $this->db->where("c.id <> 140 "); //Biaya Maintenance WL
         $this->db->where("c.id <> 110 "); //Biaya Diskonto Bank
+        $this->db->where("c.id <> 131 "); //Biaya Persiapan
+        $this->db->where("c.id <> 124 "); //Biaya Maintenance Truck Mixer
+        $this->db->where("c.id <> 138 "); //Biaya Maintenance Batching Plant
+        $this->db->where("c.id <> 140 "); //Biaya Maintenance Wheel Loader
         $this->db->where('b.status','PAID');
         $this->db->group_by('c.coa_parent');
         $this->db->order_by('c.coa_number','asc');
@@ -93,10 +96,11 @@ class M_laporan extends CI_Model {
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
         $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
         $this->db->where("c.coa_category in ('15','17')");
-        $this->db->where("c.id <> 138 "); //Biaya Maintenance BP
-        $this->db->where("c.id <> 124 "); //Biaya TM
-        $this->db->where("c.id <> 140 "); //Biaya Maintenance WL
         $this->db->where("c.id <> 110 "); //Biaya Diskonto Bank
+        $this->db->where("c.id <> 131 "); //Biaya Persiapan
+        $this->db->where("c.id <> 124 "); //Biaya Maintenance Truck Mixer
+        $this->db->where("c.id <> 138 "); //Biaya Maintenance Batching Plant
+        $this->db->where("c.id <> 140 "); //Biaya Maintenance Wheel Loader
         $this->db->group_by('c.coa');
         $this->db->order_by('c.coa_number','asc');
         $query = $this->db->get('pmm_jurnal_umum b');
