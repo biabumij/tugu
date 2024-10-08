@@ -993,10 +993,7 @@ class Rap extends Secure_Controller {
 		// add a page
 		$pdf->AddPage('P');
 		$pdf->setPrintHeader(true);
-		$pdf->setPrintFooter(true);
-		$pdf->SetY(10);
-		$pdf->SetX(10);
-		$pdf->SetMargins(10, 10);   
+		$pdf->setPrintFooter(true); 
 
 		$data['id'] = $id;
         $html = $this->load->view('rap/cetak_rap_bua',$data,TRUE);
