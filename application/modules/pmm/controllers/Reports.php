@@ -13753,122 +13753,14 @@ class Reports extends CI_Controller {
 			?>
 
 			<?php
-			$rap_gaji_upah = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_bua = $this->db->select('sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
-			->where("det.coa in ('114','115')")
 			->where("rap.tanggal_rap_bua < '$date2'")
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
-
-			$rap_konsumsi = $this->db->select('rap.*,sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 116")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
-			$rap_listrik_internet = $this->db->select('rap.*,sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 118")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
-			$rap_keamanan_kebersihan = $this->db->select('rap.*,sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 97")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
-			$rap_pengobatan = $this->db->select('rap.*,sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 70")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
-			$rap_bensin_tol_parkir = $this->db->select('rap.*,sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 78")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
-			$rap_perjalanan_dinas_penjualan = $this->db->select('rap.*,sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 62")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
-			$rap_pakaian_dinas = $this->db->select('rap.*,sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 87")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
-			$rap_alat_tulis_kantor = $this->db->select('rap.*,sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 96")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
-			$rap_perlengkapan_kantor = $this->db->select('rap.*,sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 98")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
-			$rap_beban_lain_lain = $this->db->select('rap.*,sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 94")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
-			$rap_biaya_sewa_kendaraan = $this->db->select('rap.*,sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 100")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
-			$rap_thr_bonus = $this->db->select('rap.*,sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 117")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
+			$rap_bua = $rap_bua['total'];
 			
 			//REALISASI
 			$overhead_biaya = $this->db->select('sum(pdb.jumlah) as total')
@@ -13901,7 +13793,14 @@ class Reports extends CI_Controller {
 			$total_nilai_realisasi_bua = $overhead_biaya['total'] + $overhead_jurnal['total'];
 
 			$total_volume_rap_bua = $total_volume;
-			$total_nilai_rap_bua = ($rap_gaji_upah['total'] + $rap_konsumsi['total'] + $rap_biaya_sewa_mess['total'] + $rap_listrik_internet['total'] + $rap_pengujian_material_laboratorium['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_donasi['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas_penjualan['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_beban_kirim['total'] + $rap_beban_lain_lain['total'] + $rap_biaya_sewa_kendaraan['total'] + $rap_thr_bonus['total'] + $rap_biaya_admin_bank['total']) / 24;
+			$rap_bua = $this->db->select('sum(det.jumlah) as total')
+			->from('rap_bua rap')
+			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
+			->where("rap.status = 'PUBLISH'")
+			->where("rap.tanggal_rap_bua < '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
+			->get()->row_array();
+			$rap_bua = $rap_bua['total'];
 			$total_harsat_rap_bua = $total_nilai_rap_bua / $total_volume_rap_bua;
 			
 			$total_volume_realisasi_bua = $total_volume;

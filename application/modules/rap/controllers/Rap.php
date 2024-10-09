@@ -1001,7 +1001,6 @@ class Rap extends Secure_Controller {
         $pdf->nsi_html($html);
 		$pdf->Output('rap_bua.pdf', 'I');
 	}
-	
 
 }
 ?>
