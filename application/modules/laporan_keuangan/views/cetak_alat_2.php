@@ -43,38 +43,23 @@
 	  <style type="text/css">
 		body {
 			font-family: helvetica;
-			font-size: 7px;
+			font-size: 8px;
 		}
-
 		table tr.table-judul{
 			background-color: #e69500;
-			font-weight:bold; 
-			font-size: 7px;
-			color: black;
+			font-weight: bold;
+			font-size: 8px;
 		}
 			
 		table tr.table-baris1{
-			background-color: none;
-			font-size: 7px;
-		}
-
-		table tr.table-baris1-bold{
-			background-color: none;
-			font-size: 7px;
-			font-weight:bold; 
+			background-color: #F0F0F0;
+			font-size: 8px;
 		}
 			
 		table tr.table-total{
-			font-weight:bold; 
-			font-size: 7px;
-			color: black;
-		}
-
-		table tr.table-total2{
 			background-color: #cccccc;
-			font-weight:bold; 
-			font-size: 7px;
-			color: black;
+			font-weight: bold;
+			font-size: 8px;
 		}
 	  </style>
 
@@ -501,10 +486,10 @@
 				<th align="right" style="border-right:1px solid black;"><?php echo number_format($pemakaian_nilai_solar,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">		
-				<th align="right" colspan="3" style="background-color:#FFFF00; border:1px solid black;">TOTAL</th>
-				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"></th>
-				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"></th>
-				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black; border-right:1px solid black;"><?php echo number_format($total_nilai_realisasi_alat,0,',','.');?></th>
+				<th align="right" colspan="3" style="border:1px solid black;">TOTAL</th>
+				<th align="right" style="border-top:1px solid black; border-bottom:1px solid black;"></th>
+				<th align="right" style="border-top:1px solid black; border-bottom:1px solid black;"></th>
+				<th align="right" style="border-top:1px solid black; border-bottom:1px solid black; border-right:1px solid black;"><?php echo number_format($total_nilai_realisasi_alat,0,',','.');?></th>
 	        </tr>
 	    </table>
 		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
