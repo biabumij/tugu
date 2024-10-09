@@ -500,8 +500,8 @@
                         "selectRow": true
                     }
                 },
-                { "width": "5%", "targets": [1,11], "className": 'text-center'},
-                { "targets": 10, "className": 'text-right'},
+                { "width": "5%", "targets": [1,12], "className": 'text-center'},
+                { "targets": 11, "className": 'text-right'},
             ],
         });
 
