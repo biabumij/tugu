@@ -1361,7 +1361,7 @@
                     "selectRow": true
                 }
             },
-            { "width": "5%", "targets": 1, "className": 'text-center'},
+            { "width": "5%", "targets": [1,11], "className": 'text-center'},
             { "targets": 10, "className": 'text-right'},
         ],
     });
