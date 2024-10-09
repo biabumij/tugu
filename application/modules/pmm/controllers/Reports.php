@@ -13793,14 +13793,7 @@ class Reports extends CI_Controller {
 			$total_nilai_realisasi_bua = $overhead_biaya['total'] + $overhead_jurnal['total'];
 
 			$total_volume_rap_bua = $total_volume;
-			$rap_bua = $this->db->select('sum(det.jumlah) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-			$rap_bua = $rap_bua['total'];
+			$total_nilai_rap_bua = $rap_bua / 24;
 			$total_harsat_rap_bua = $total_nilai_rap_bua / $total_volume_rap_bua;
 			
 			$total_volume_realisasi_bua = $total_volume;
