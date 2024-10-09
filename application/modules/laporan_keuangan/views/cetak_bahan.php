@@ -432,7 +432,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">3.</th>
-				<th align="left">Batu Split 10-20</th>
+				<th align="left">Batu Split 10 - 20</th>
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($pemakaian_volume_1020,2,',','.');?></th>
 				<th align="right"><?php echo number_format($pemakaian_nilai_1020 / $pemakaian_volume_1020,0,',','.');?></th>
@@ -440,7 +440,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">4.</th>
-				<th align="left">Batu Split 20-30</th>
+				<th align="left">Batu Split 20 - 30</th>
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($pemakaian_volume_2030,2,',','.');?></th>
 				<th align="right"><?php echo number_format($pemakaian_nilai_2030 / $pemakaian_volume_2030,0,',','.');?></th>
