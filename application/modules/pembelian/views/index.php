@@ -340,6 +340,7 @@
                                                     <div class="form-group">
                                                         <label>No. Pesanan Pembelian</label>
                                                         <input type="text" id="no_po_edit" name="no_po" class="form-control" required="" />
+                                                        <input type="hidden" name="status" id="change_status" value="WAITING">
                                                     </div>
                                                     
                                                     <?php
