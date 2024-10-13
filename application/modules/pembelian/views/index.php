@@ -327,7 +327,6 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <!--<form class="form-horizontal" method="POST" style="padding: 0 10px 0 20px;" onsubmit="setTimeout(function () { window.location.reload(); }, 3000)">-->
                                                 <form class="form-horizontal" method="POST" style="padding: 0 10px 0 20px;">
                                                     <input type="hidden" name="id" id="id_po">
                                                     <div class="form-group">
