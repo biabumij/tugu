@@ -285,6 +285,7 @@ class Pembelian extends Secure_Controller
             $this->db->where('tanggal_penawaran <=', date('Y-m-d', strtotime($end_date)));
         }
 
+        $this->db->where("status <> 'REJECTED'");
         $this->db->order_by('created_on', 'DESC');
         $query = $this->db->get('pmm_penawaran_pembelian');
 
