@@ -35,7 +35,7 @@
 	<body>
 		<div class="wrap">
 			<div class="page-body animated slideInDown">
-				<div class="box" style="background-color: rgba(255, 255, 255, 0.9); margin-top:10%;  border: 1px solid black;">
+				<div class="box" style="background-color: rgba(255, 255, 255, 0.9); margin-top:10%;">
 					<table width="100%" border="0">
 						<tr>
 							<th width="50%" class="text-center">
