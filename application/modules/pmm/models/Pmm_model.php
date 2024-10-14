@@ -1604,6 +1604,7 @@ class Pmm_model extends CI_Model {
             $this->db->where('date_po <=',date('Y-m-d',strtotime($end_date)));  
         }
         $this->db->where("status <> 'REJECTED'");
+        $this->db->order_by('status','DESC');
 		$this->db->order_by('created_on','DESC');
         $query = $this->db->get('pmm_purchase_order');
         if($query->num_rows() > 0){
