@@ -248,8 +248,8 @@
 								<th align="left" width="20%">
 									<span>Rp.</span>
 								</th>
-								<th align="center" width="80%">
-									<span><?php echo number_format($total_penjualan_all,0,',','.');?></span>
+								<th align="right" width="80%">
+									<span><?php echo number_format($total_penjualan_all,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -260,8 +260,8 @@
 								<th align="left" width="20%">
 									<span>Rp.</span>
 								</th>
-								<th align="center" width="80%">
-									<span><?php echo number_format($total_penjualan_all_2,0,',','.');?></span>
+								<th align="right" width="80%">
+									<span><?php echo number_format($total_penjualan_all_2,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -276,8 +276,8 @@
 								<th align="left" width="20%">
 									<span><b>Rp.</b></span>
 								</th>
-								<th align="center" width="80%">
-									<span><b><?php echo number_format($total_penjualan_all,0,',','.');?></b></span>
+								<th align="right" width="80%">
+									<span><b><?php echo number_format($total_penjualan_all,0,',','.');?></b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -288,8 +288,8 @@
 								<th align="left" width="20%">
 									<span><b>Rp.</b></span>
 								</th>
-								<th align="center" width="80%">
-									<span><b><?php echo number_format($total_penjualan_all_2,0,',','.');?></b></span>
+								<th align="right" width="80%">
+									<span><b><?php echo number_format($total_penjualan_all_2,0,',','.');?></b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -310,8 +310,8 @@
 								<th align="left" width="20%">
 									<span>Rp.</span>
 								</th>
-								<th align="center" width="80%">
-									<span><?php echo number_format($bahan,0,',','.');?></span>
+								<th align="right" width="80%">
+									<span><?php echo number_format($bahan,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -322,8 +322,8 @@
 								<th align="left" width="20%">
 									<span>Rp.</span>
 								</th>
-								<th align="center" width="80%">
-									<span><?php echo number_format($bahan_2,0,',','.');?></span>
+								<th align="right" width="80%">
+									<span><?php echo number_format($bahan_2,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -338,8 +338,8 @@
 								<th align="left" width="20%">
 									<span>Rp.</span>
 								</th>
-								<th align="center" width="80%">
-									<span><?php echo number_format($alat,0,',','.');?></span>
+								<th align="right" width="80%">
+									<span><?php echo number_format($alat,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -350,8 +350,8 @@
 								<th align="left" width="20%">
 									<span>Rp.</span>
 								</th>
-								<th align="center" width="80%">
-									<span><?php echo number_format($alat_2,0,',','.');?></span>
+								<th align="right" width="80%">
+									<span><?php echo number_format($alat_2,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -366,8 +366,8 @@
 								<th align="left" width="20%">
 									<span>Rp.</span>
 								</th>
-								<th align="center" width="80%">
-									<span><?php echo number_format($overhead,0,',','.');?></span>
+								<th align="right" width="80%">
+									<span><?php echo number_format($overhead,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -378,8 +378,8 @@
 								<th align="left" width="20%">
 									<span>Rp.</span>
 								</th>
-								<th align="center" width="80%">
-									<span><?php echo number_format($overhead_2,0,',','.');?></span>
+								<th align="right" width="80%">
+									<span><?php echo number_format($overhead_2,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -394,8 +394,8 @@
 								<th align="left" width="20%">
 									<span>Rp.</span>
 								</th>
-								<th align="center" width="80%">
-									<span><?php echo number_format($diskonto,0,',','.');?></span>
+								<th align="right" width="80%">
+									<span><?php echo number_format($diskonto,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -406,8 +406,8 @@
 								<th align="left" width="20%">
 									<span>Rp.</span>
 								</th>
-								<th align="center" width="80%">
-									<span><?php echo number_format($diskonto_2,0,',','.');?></span>
+								<th align="right" width="80%">
+									<span><?php echo number_format($diskonto_2,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -421,8 +421,8 @@
 								<th align="left" width="20%">
 									<span><b>Rp.</b></span>
 								</th>
-								<th align="center" width="80%">
-									<span><b><?php echo number_format($total_biaya_operasional,0,',','.');?></b></span>
+								<th align="right" width="80%">
+									<span><b><?php echo number_format($total_biaya_operasional,0,',','.');?></b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -433,8 +433,8 @@
 								<th align="left" width="20%">
 									<span><b>Rp.</b></span>
 								</th>
-								<th align="center" width="80%">
-									<span><b><?php echo number_format($total_biaya_operasional_2,0,',','.');?></b></span>
+								<th align="right" width="80%">
+									<span><b><?php echo number_format($total_biaya_operasional_2,0,',','.');?></b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -457,8 +457,8 @@
 								<th align="left" width="20%">
 									<span><b>Rp.</b></span>
 								</th>
-								<th align="center" width="80%">
-									<span><b><?php echo $laba_kotor < 0 ? "(".number_format(-$laba_kotor,0,',','.').")" : number_format($laba_kotor,0,',','.');?></b></span>
+								<th align="right" width="80%">
+									<span><b><?php echo $laba_kotor < 0 ? "(".number_format(-$laba_kotor,0,',','.').")" : number_format($laba_kotor,0,',','.');?></b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -469,8 +469,8 @@
 								<th align="left" width="20%">
 									<span><b>Rp.</b></span>
 								</th>
-								<th align="center" width="80%">
-									<span><b><?php echo $laba_kotor_2 < 0 ? "(".number_format(-$laba_kotor_2,0,',','.').")" : number_format($laba_kotor_2,0,',','.');?></b></span>
+								<th align="right" width="80%">
+									<span><b><?php echo $laba_kotor_2 < 0 ? "(".number_format(-$laba_kotor_2,0,',','.').")" : number_format($laba_kotor_2,0,',','.');?></b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -487,7 +487,7 @@
 								<th align="left" width="20%">
 									<span><b>Rp.</b></span>
 								</th>
-								<th align="center" width="80%">
+								<th align="right" width="80%">
 									<span><b>-</b></span>
 								</th>
 							</tr>
@@ -499,7 +499,7 @@
 								<th align="left" width="20%">
 									<span><b>Rp.</b></span>
 								</th>
-								<th align="center" width="80%">
+								<th align="right" width="80%">
 									<span><b>-</b></span>
 								</th>
 							</tr>
@@ -517,8 +517,8 @@
 								<th align="left" width="20%">
 									<span><b>Rp.</b></span>
 								</th>
-								<th align="center" width="80%">
-									<span><b><?php echo $laba_usaha < 0 ? "(".number_format(-$laba_usaha,0,',','.').")" : number_format($laba_usaha,0,',','.');?></b></span>
+								<th align="right" width="80%">
+									<span><b><?php echo $laba_usaha < 0 ? "(".number_format(-$laba_usaha,0,',','.').")" : number_format($laba_usaha,0,',','.');?></b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -529,8 +529,8 @@
 								<th align="left" width="20%">
 									<span><b>Rp.</b></span>
 								</th>
-								<th align="center" width="80%">
-									<span><b><?php echo $laba_usaha_2 < 0 ? "(".number_format(-$laba_usaha_2,0,',','.').")" : number_format($laba_usaha_2,0,',','.');?></b></span>
+								<th align="right" width="80%">
+									<span><b><?php echo $laba_usaha_2 < 0 ? "(".number_format(-$laba_usaha_2,0,',','.').")" : number_format($laba_usaha_2,0,',','.');?></b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
