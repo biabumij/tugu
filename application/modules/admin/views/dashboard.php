@@ -19,7 +19,7 @@
     <style type="text/css">
         body {
             font-family: helvetica;
-            background-color: #eeeeee !important;
+            background-color: #fff !important;
         }
 
         a:hover {
