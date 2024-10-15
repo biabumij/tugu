@@ -19,7 +19,7 @@
     <style type="text/css">
         body {
             font-family: helvetica;
-            background-color: #fff !important;
+            background-color: #eeeeee !important;
         }
 
         a:hover {
@@ -140,7 +140,7 @@
     </style>
     <body onload = "JavaScript:AutoRefresh(360000);">
     <body>
-        <div class="wrap">
+        <div class="wrap-dashboard">
             <?php echo $this->Templates->PageHeader();?>
             <div class="page-body">
                 <div id="about" class="container spacer about">
