@@ -8,6 +8,32 @@
         body {
 			font-family: helvetica;
 		}
+
+        button {
+			border: none;
+			border-radius: 5px;
+			padding: 5px;
+			font-size: 12px;
+			text-transform: uppercase;
+			cursor: pointer;
+			color: white;
+			background-color: #2196f3;
+			box-shadow: 0 0 4px #999;
+			outline: none;
+		}
+
+		.ripple {
+			background-position: center;
+			transition: background 0.8s;
+		}
+		.ripple:hover {
+			background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+		}
+		.ripple:active {
+			background-color: #6eb9f7;
+			background-size: 100%;
+			transition: background 0s;
+		}
     </style>
 </head>
 
@@ -21,9 +47,11 @@
                         <div class="panel">
                             <div class="panel-header">
                                 <div>
-                                    <h3>
-                                        <b>DETAIL TAGIHAN PEMBALIAN <?php echo $this->pmm_model->GetStatus3($row['status']);?></b>
-                                    </h3>
+                                    <h3><b>DETAIL TAGIHAN PEMBALIAN <?php echo $this->pmm_model->GetStatus3($row['status']);?></b></h3>
+                                    <div class="text-left">
+                                        <a href="<?php echo site_url('admin/pembelian');?>">
+                                        <button class="ripple"><b><i class="fa-solid fa-rotate-left"></i> KEMBALI</b></button></a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="panel-content">
