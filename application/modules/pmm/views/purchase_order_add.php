@@ -376,6 +376,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
     <script src="<?php echo base_url();?>assets/back/theme/vendor/bootbox.min.js"></script>
     <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://kit.fontawesome.com/591a1bf2f6.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
         
