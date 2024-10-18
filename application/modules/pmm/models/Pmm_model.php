@@ -1612,7 +1612,7 @@ class Pmm_model extends CI_Model {
                 $no_po = "'".$row['no_po']."'";
                 $row['no_po'] = '<a href="'.site_url('pmm/purchase_order/manage/'.$row['id']).'">'.$row['no_po'].'</a>';
                 $row['document_po'] = '<a href="'.base_url().'uploads/purchase_order/'.$row['document_po'].'" target="_blank">'.$row['document_po'].'</a>';
-                $row['date_po'] = date('d/m/Y',strtotime($row['date_po']));
+                $row['date'] = date('d/m/Y',strtotime($row['date_po']));
                 $row['supplier'] = $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');
                 $total_volume = $this->db->select('SUM(volume) as total,measure,SUM(volume * price) as total_tanpa_ppn')->get_where('pmm_purchase_order_detail',array('purchase_order_id'=>$row['id']))->row_array();
                 $row['volume'] = number_format($total_volume['total'],2,',','.');
@@ -1628,16 +1628,17 @@ class Pmm_model extends CI_Model {
                 $row['total_receipt_val'] = $total_receipt;
                 $row['document_po'] = '<a href="' . base_url('uploads/purchase_order/' . $row['id']) .'" target="_blank">' . $row['document_po'] . '</a>';        
                 $delete = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-                $upload_document = false;
-                if($row['status'] == 'PUBLISH' || $row['status'] == 'CLOSED'){
+                $edit = false;
+                $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" style="border-radius:10px;" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
+                /*if($row['status'] == 'PUBLISH' || $row['status'] == 'CLOSED'){
                     $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" style="border-radius:10px;" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
-                }
+                }*/
                 $edit_no_po = false;
                 $status = "'".$row['status']."'";
                 $subject = "'".$row['subject']."'";
                 $date_po = "'".date('d-m-Y',strtotime($row['date_po']))."'";
                 if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4))){
-                     $edit_no_po = '<a href="javascript:void(0);" onclick="EditNoPo('.$row['id'].','.$no_po.','.$status.','.$subject.','.$date_po.')" class="btn btn-primary" style="border-radius:10px;" title="Edit Nomor PO" ><i class="fa fa-edit"></i> </a>';
+                    $edit_no_po = '<a href="javascript:void(0);" onclick="EditNoPo('.$row['id'].','.$no_po.','.$status.','.$subject.','.$date_po.')" class="btn btn-primary" style="border-radius:10px;" title="Edit Nomor PO" ><i class="fa fa-edit"></i> </a>';
                 }
                 $row['status'] = $this->pmm_model->GetStatus($row['status']);
                 $row['actions'] = $edit.' '.$edit_no_po;

@@ -178,34 +178,34 @@
                                                         <input type="hidden" name="id" id="id_po">
                                                         <div class="form-group">
                                                             <label>Jenis Pekerjaan</label>
-                                                            <input type="text" id="jobs_type_edit" name="jobs_type" class="form-control" required="" />
+                                                            <input type="text" id="jobs_type_edit" name="jobs_type" class="form-control" required=""/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Tgl. Sales Order</label>
-                                                            <input type="text" id="contract_date_edit" name="contract_date" class="form-control dtpicker-po" required="" />
+                                                            <input type="text" id="contract_date_edit" name="contract_date" class="form-control dtpicker-po" required=""/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>No. Sales Order</label>
-                                                            <input type="text" id="contract_number_edit" name="contract_number" class="form-control" required="" />
-                                                            <input type="hidden" name="status" id="change_status" required="" >
+                                                            <input type="text" id="contract_number_edit" name="contract_number" class="form-control" required=""/>
+                                                            <input type="hidden" name="status" id="change_status" required="">
                                                         </div>
                                                         
+                                                        <!--<?php
+                                                        if($this->session->userdata('admin_group_id') == 1){
+                                                        ?>
+                                                            <div class="form-group">
+                                                                <label>Status Sales Order</label>
+                                                                <select name="status" id="change_status" class="form-control">
+                                                                    <option value="OPEN">OPEN</option>
+                                                                    <option value="DELETED">DELETED</option>
+                                                                    <option value="REJECT">REJECT</option>
+                                                                    <option value="DRAFT">DRAFT</option>
+                                                                    <option value="CLOSED">CLOSED</option>
+                                                                </select>
+                                                            </div>
                                                         <?php
-                                                            if($this->session->userdata('admin_group_id') == 1){
-                                                        ?>
-                                                                <div class="form-group">
-                                                                    <label>Status Sales Order</label>
-                                                                    <select name="status" class="form-control">
-                                                                        <option value="OPEN">OPEN</option>
-                                                                        <option value="DELETED">DELETED</option>
-                                                                        <option value="REJECT">REJECT</option>
-                                                                        <option value="DRAFT">DRAFT</option>
-                                                                        <option value="CLOSED">CLOSED</option>
-                                                                    </select>
-                                                                </div>
-                                                            <?php
-                                                            }   
-                                                        ?>
+                                                        }   
+                                                        ?>-->
 
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn-success" id="btn-no_po"> SIMPAN</button>

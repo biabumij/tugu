@@ -366,26 +366,26 @@
                                                     <div class="form-group">
                                                         <label>No. Pesanan Pembelian</label>
                                                         <input type="text" id="no_po_edit" name="no_po" class="form-control" required="" />
-                                                        <input type="hidden" name="status" id="change_status" value="WAITING">
+                                                        <input type="text" name="status" id="change_status"  required="">
                                                     </div>
                                                     
+                                                    <!--<?php
+                                                    if($this->session->userdata('admin_group_id') == 1){
+                                                    ?>
+                                                        <div class="form-group">
+                                                            <label>Status Pesanan Pembelian</label>
+                                                            <select id="change_status" name="status" class="form-control">
+                                                                <option value="WAITING">WAITING</option>
+                                                                <option value="PUBLISH">PUBLISH</option>
+                                                                <option value="UNPUBLISH">UNPUBLISH</option>
+                                                                <option value="REJECTED">REJECTED</option>
+                                                                <option value="DRAFT">DRAFT</option>
+                                                                <option value="CLOSED">CLOSED</option>
+                                                            </select>
+                                                        </div>
                                                     <?php
-                                                        if($this->session->userdata('admin_group_id') == 1){
-                                                    ?>
-                                                            <div class="form-group">
-                                                                <label>Status Pesanan Pembelian</label>
-                                                                <select id="change_status" name="status" class="form-control">
-                                                                    <option value="WAITING">WAITING</option>
-                                                                    <option value="PUBLISH">PUBLISH</option>
-                                                                    <option value="UNPUBLISH">UNPUBLISH</option>
-                                                                    <option value="REJECTED">REJECTED</option>
-                                                                    <option value="DRAFT">DRAFT</option>
-                                                                    <option value="CLOSED">CLOSED</option>
-                                                                </select>
-                                                            </div>
-                                                        <?php
-                                                        }   
-                                                    ?>
+                                                    }   
+                                                    ?>-->
 
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-success" id="btn-no_po"> SIMPAN</button>
@@ -1275,7 +1275,7 @@
                 "data": "status"
             },
             {
-                "data": "date_po"
+                "data": "date"
             },
             {
                 "data": "supplier"
