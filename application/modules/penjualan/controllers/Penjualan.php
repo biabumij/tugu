@@ -396,28 +396,20 @@ class Penjualan extends Secure_Controller
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key + 1;
-				$ppn = $this->pmm_finance->getSalesPoPpn($row['id']);
-				$nilai_pekerjaan = $row['total'] - $ppn;
-
-				$row['saldo'] = 0;
+				$row['status_po'] = $this->pmm_model->GetStatus2($row['status']);
 				$row['date_po'] = date('d/m/Y', strtotime($row['contract_date']));
 				$row['nomor_link'] = "<a href=" . base_url('penjualan/dataSalesPO/' . $row["id"]) . ">" . $row["contract_number"] . "</a>";
-				$row['action'] = '<a class="btn btn-success" href=' . site_url("penjualan/dataSalesPO/" . $row["id"]) . '>Detail</a>';
-				
+				$row['client_name'] = $row['client_name'];
+				$row['jobs_type'] = $row['jobs_type'];
 				$total_volume = $this->db->select('SUM(qty) as total,measure,SUM(qty *price) as total_tanpa_ppn')->get_where('pmm_sales_po_detail',array('sales_po_id'=>$row['id']))->row_array();
 				$row['qty'] = number_format($total_volume['total'],2,',','.');
 				$row['jumlah_total'] = number_format($total_volume['total_tanpa_ppn'],0,',','.');
-				
 				$receipt = $this->db->select('SUM(volume) as volume')->get_where('pmm_productions',array('salesPo_id'=>$row['id'],'status'=>'PUBLISH'))->row_array();
-				//$row['receipt'] = '<a href="'.site_url('pmm/purchase_order/production_material_pdf/'.$row['id']).'" target="_blank" >'.number_format($receipt['volume'],2,',','.').'</a>';
 				$row['receipt'] = number_format($receipt['volume'],2,',','.');
-
 				$presentase = ($receipt['volume'] / $total_volume['total']) * 100;
 				$row['presentase'] = number_format($presentase,0,',','.').' %';
-								
 				$total_receipt = $this->db->select('SUM(price) as price')->get_where('pmm_productions',array('salesPo_id'=>$row['id'],'status'=>'PUBLISH'))->row_array();
 				$row['total_receipt'] = number_format($total_receipt['price'],0,',','.');
-				$row['status'] = $this->pmm_model->GetStatus2($row['status']);
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				
@@ -426,8 +418,9 @@ class Penjualan extends Secure_Controller
 				$jobs_type = "'".$row['jobs_type']."'";
 				$contract_date = "'".date('d-m-Y',strtotime($row['contract_date']))."'";
 				$contract_number = "'".$row['contract_number']."'";
+				$status = "'".$row['status']."'";
 				if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4))){
-					$edit_no_po = '<a href="javascript:void(0);" onclick="EditNoPo('.$row['id'].','.$jobs_type.','.$contract_date.','.$contract_number.')" class="btn btn-primary" style="border-radius:10px;" title="Edit No. Sales Order"><i class="fa fa-edit"></i> </a>';
+					$edit_no_po = '<a href="javascript:void(0);" onclick="EditNoPo('.$row['id'].','.$jobs_type.','.$contract_date.','.$contract_number.','.$status.')" class="btn btn-primary" style="border-radius:10px;" title="Edit No. Sales Order"><i class="fa fa-edit"></i> </a>';
 			    }
 				
 				$row['uploads_po'] = $uploads_po.' '.$edit_no_po;

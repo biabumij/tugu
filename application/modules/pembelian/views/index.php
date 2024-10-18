@@ -393,7 +393,7 @@
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><b>CLOSE</b></button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:black; border-radius:10px;"><b>CLOSE</b></button>
                                             </div>
                                         </div>
                                     </div>
