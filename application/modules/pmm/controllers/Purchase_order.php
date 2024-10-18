@@ -403,6 +403,22 @@ class Purchase_order extends CI_Controller {
 				'subject' => $subject,
 				'date_po' => date('Y-m-d', strtotime($date_po)),
  			);
+
+			$this->db->set("no_po", $no_po);
+			$this->db->set("tanggal_po", date('Y-m-d', strtotime($date_po)));
+			$this->db->where("purchase_order_id", $id);
+			$this->db->update("pmm_penagihan_pembelian");
+
+			$penagihan_pembelian_id = $this->db->select('id')
+			->from('pmm_penagihan_pembelian')
+			->where("purchase_order_id = $id")
+			->get()->row_array();
+
+			$this->db->set("nomor_po", $no_po);
+			$this->db->set("nama_barang_jasa", $subject);
+			$this->db->set("tanggal_po", date('Y-m-d', strtotime($date_po)));
+			$this->db->where("penagihan_pembelian_id", $penagihan_pembelian_id['id']);
+			$this->db->update("pmm_verifikasi_penagihan_pembelian");
 				
 			// $check_po = $this->db->get_where('pmm_purchase_order',array('no_po'=>$no_po))->num_rows();
 			// if($check_po > 0){

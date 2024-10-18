@@ -1965,6 +1965,11 @@ class Penjualan extends Secure_Controller
 				'jobs_type' => $jobs_type,
 				'contract_date' => date('Y-m-d', strtotime($contract_date)),
  			);
+
+			$this->db->set("nomor_kontrak", $contract_number);
+			$this->db->set("tanggal_kontrak", date('Y-m-d', strtotime($contract_date)));
+			$this->db->where("sales_po_id", $id);
+			$this->db->update("pmm_penagihan_penjualan");
 				
 			// $check_po = $this->db->get_where('pmm_sales_po',array('contract_number'=>$contract_number))->num_rows();
 			// if($check_po > 0){
