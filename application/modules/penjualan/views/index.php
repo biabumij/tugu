@@ -126,7 +126,7 @@
                                                         <th>Kirim</th>
 														<th>Total Sales Order</th>
 														<th>Total Kirim</th>
-                                                        <th>Upload Doc.</th>
+                                                        <th>Tindakan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -159,6 +159,61 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade bd-example-modal-lg" id="modalEditPo" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <span class="modal-title"><b>Edit Sales Order</b></span>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal" method="POST" style="padding: 0 10px 0 20px;">
+                                                        <input type="hidden" name="id" id="id_po">
+                                                        <div class="form-group">
+                                                            <label>Jenis Pekerjaan</label>
+                                                            <input type="text" id="jobs_type_edit" name="jobs_type" class="form-control" required="" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Tgl. Sales Order</label>
+                                                            <input type="text" id="contract_date_edit" name="contract_date" class="form-control dtpicker-po" required="" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>No. Sales Order</label>
+                                                            <input type="text" id="contract_number_edit" name="contract_number" class="form-control" required="" />
+                                                            <input type="hidden" name="status" id="change_status" required="" >
+                                                        </div>
+                                                        
+                                                        <?php
+                                                            if($this->session->userdata('admin_group_id') == 1){
+                                                        ?>
+                                                                <div class="form-group">
+                                                                    <label>Status Sales Order</label>
+                                                                    <select name="status" class="form-control">
+                                                                        <option value="OPEN">OPEN</option>
+                                                                        <option value="DELETED">DELETED</option>
+                                                                        <option value="REJECT">REJECT</option>
+                                                                        <option value="DRAFT">DRAFT</option>
+                                                                        <option value="CLOSED">CLOSED</option>
+                                                                    </select>
+                                                                </div>
+                                                            <?php
+                                                            }   
+                                                        ?>
+
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-success" id="btn-no_po"> SIMPAN</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><b>CLOSE</b></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -352,6 +407,7 @@
     </script>
     
     <script type="text/javascript">
+        
         $('input#contract').number(true, 2, ',', '.');
 
         var table_penawaran = $('#table_penawaran').DataTable( {"bAutoWidth": false,
@@ -415,7 +471,7 @@
                     "data": "status"
                 },
                 {
-                    "data": "contract_date"
+                    "data": "date_po"
                 },
                 {
                     "data": "nomor_link"
@@ -756,10 +812,32 @@
 
         });
 
+        $('.dtpicker-po').daterangepicker({
+            autoUpdateInput: false,
+            singleDatePicker: true,
+            showDropdowns: false,
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+        });
+
+        $('.dtpicker-po').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
+        });
+
         function UploadDocPO(id) {
 
         $('#modalDocPO').modal('show');
         $('#id_doc_po').val(id);
+        }
+
+        function EditNoPo(id, jobs_type, contract_date, contract_number, status) {
+            $('#modalEditPo').modal('show');
+            $('#id_po').val(id);
+            $('#jobs_type_edit').val(jobs_type);
+            $('#contract_date_edit').val(contract_date);
+            $('#contract_number_edit').val(contract_number);
+            $('#change_status').val(status);   
         }
 
         $('#modalDocPO form').submit(function(event) {
@@ -783,6 +861,40 @@
                         table_po.ajax.reload();
 
                         $('#modalDocPO').modal('hide');
+                    } else if (result.err) {
+                        bootbox.alert(result.err);
+                    }
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+            event.preventDefault();
+
+        });
+
+        $('#modalEditPo form').submit(function(event) {
+            $('#btn-no_po').button('loading');
+
+            var form = $(this);
+            var formdata = false;
+            if (window.FormData) {
+                formdata = new FormData(form[0]);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo site_url('penjualan/edit_no_po'); ?>/" + Math.random(),
+                dataType: 'json',
+                data: formdata ? formdata : form.serialize(),
+                success: function(result) {
+                    $('#btn-no_po').button('reset');
+                    if (result.output) {
+                        $("#modalEditPo form").trigger("reset");
+                        table_po.ajax.reload();
+
+                        $('#modalEditPo').modal('hide');
                     } else if (result.err) {
                         bootbox.alert(result.err);
                     }

@@ -400,7 +400,7 @@ class Penjualan extends Secure_Controller
 				$nilai_pekerjaan = $row['total'] - $ppn;
 
 				$row['saldo'] = 0;
-				$row['contract_date'] = date('d/m/Y', strtotime($row['contract_date']));
+				$row['date_po'] = date('d/m/Y', strtotime($row['contract_date']));
 				$row['nomor_link'] = "<a href=" . base_url('penjualan/dataSalesPO/' . $row["id"]) . ">" . $row["contract_number"] . "</a>";
 				$row['action'] = '<a class="btn btn-success" href=' . site_url("penjualan/dataSalesPO/" . $row["id"]) . '>Detail</a>';
 				
@@ -420,8 +420,17 @@ class Penjualan extends Secure_Controller
 				$row['status'] = $this->pmm_model->GetStatus2($row['status']);
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				
 				$uploads_po = '<a href="javascript:void(0);" onclick="UploadDocPO('.$row['id'].')" class="btn btn-primary" style="border-radius:10px;" title="Upload Surat Jalan" ><i class="fa fa-upload"></i> </a>';
-				$row['uploads_po'] = $uploads_po.' ';
+				$edit_no_po = false;
+				$jobs_type = "'".$row['jobs_type']."'";
+				$contract_date = "'".date('d-m-Y',strtotime($row['contract_date']))."'";
+				$contract_number = "'".$row['contract_number']."'";
+				if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4))){
+					$edit_no_po = '<a href="javascript:void(0);" onclick="EditNoPo('.$row['id'].','.$jobs_type.','.$contract_date.','.$contract_number.')" class="btn btn-primary" style="border-radius:10px;" title="Edit No. Sales Order"><i class="fa fa-edit"></i> </a>';
+			    }
+				
+				$row['uploads_po'] = $uploads_po.' '.$edit_no_po;
 
 				$data[] = $row;
 			}
@@ -1943,6 +1952,37 @@ class Penjualan extends Secure_Controller
 			if($this->db->insert('pmm_lampiran_sales_po',$arr_data)){
 				$output['output'] = true;
 			}
+		}
+		echo json_encode($output);
+	}
+
+	public function edit_no_po()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		$contract_number = $this->input->post('contract_number');
+		$status = $this->input->post('status');
+		$jobs_type = $this->input->post('jobs_type');
+		$contract_date = $this->input->post('contract_date');
+		
+		if(!empty($id)){
+			$arr_data = array(
+				'contract_number' => $contract_number,
+				'status' => $status,
+				'jobs_type' => $jobs_type,
+				'contract_date' => date('Y-m-d', strtotime($contract_date)),
+ 			);
+				
+			// $check_po = $this->db->get_where('pmm_sales_po',array('contract_number'=>$contract_number))->num_rows();
+			// if($check_po > 0){
+				// $output['err'] = 'No sales order has been added';
+			// }else {
+				if($this->db->update('pmm_sales_po',$arr_data,array('id'=>$id))){
+					
+					$output['output'] = true;
+				}	
+			// }
+			
 		}
 		echo json_encode($output);
 	}
