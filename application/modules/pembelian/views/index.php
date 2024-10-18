@@ -221,7 +221,7 @@
 														<input type="text" id="request_date" name="request_date" class="form-control dtpicker-single" required="" autocomplete="off" value="<?php echo date('d-m-Y');?>" />
 													</div>
 													<div class="form-group">
-														<label>Subjek<span class="required" aria-required="true">*</span></label>
+														<label>Subyek<span class="required" aria-required="true">*</span></label>
 														<input type="text" id="subject" name="subject" class="form-control" required="" autocomplete="off"/>
 													</div>
 													<div class="form-group">

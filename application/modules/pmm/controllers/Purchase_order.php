@@ -433,7 +433,6 @@ class Purchase_order extends CI_Controller {
 		echo json_encode($output);
 	}
 
-
 	public function table_dashboard()
 	{
 		$data = array();
