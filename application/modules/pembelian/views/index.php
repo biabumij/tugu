@@ -356,7 +356,7 @@
                                                 <form class="form-horizontal" method="POST" style="padding: 0 10px 0 20px;">
                                                     <input type="hidden" name="id" id="id_po">
                                                     <div class="form-group">
-                                                        <label>Subject</label>
+                                                        <label>Subyek</label>
                                                         <input type="text" id="subject_po_edit" name="subject" class="form-control" required="" />
                                                     </div>
                                                     <div class="form-group">
