@@ -5626,15 +5626,55 @@ class Pmm_model extends CI_Model {
         }
         $total_vol_excavator = $pembelian_excavator['volume'];
 
-        //SPESIAL
-        $pemakaian_solar = $this->db->select('date, SUM(vol_solar) as vol_total, SUM(nilai_solar) as total')
-        ->from('kunci_bahan_baku')
-        ->where("(date between '$date3' and '$date2')")
+        $date1_ago = date('2020-01-01');
+        $date2_ago = date('Y-m-d', strtotime('-1 days', strtotime($date3)));
+        $date3_ago = date('Y-m-d', strtotime('-1 months', strtotime($date3)));
+        $tanggal_opening_balance = date('Y-m-d', strtotime('-1 days', strtotime($date3)));
+
+        $stock_opname_solar_ago = $this->db->select('cat.volume as volume, cat.total as nilai')
+        ->from('pmm_remaining_materials_cat cat ')
+        ->where("(cat.date <= '$tanggal_opening_balance')")
+        ->where("cat.material_id = 5")
+        ->where("cat.status = 'PUBLISH'")
+        ->order_by('date','desc')->limit(1)
         ->get()->row_array();
-        $pemakaian_volume_solar = $pemakaian_solar['vol_total'];
-        $pemakaian_nilai_solar = $pemakaian_solar['total'];
+
+        $stok_volume_solar_lalu = $stock_opname_solar_ago['volume'];
+        $stok_nilai_solar_lalu = $stock_opname_solar_ago['nilai'];
+        $stok_harsat_solar_lalu = (round($stok_volume_solar_lalu,2)!=0)?$stok_nilai_solar_lalu / round($stok_volume_solar_lalu,2) * 1:0;
+
+        $pembelian_solar = $this->db->select('prm.display_measure as satuan, SUM(prm.display_volume) as volume, (prm.display_price / prm.display_volume) as harga, SUM(prm.display_price) as nilai')
+        ->from('pmm_receipt_material prm')
+        ->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+        ->join('produk p', 'prm.material_id = p.id','left')
+        ->where("prm.date_receipt between '$date3' and '$date2'")
+        ->where("p.kategori_bahan = 5")
+        ->get()->row_array();
+    
+        $pembelian_volume_solar = $pembelian_solar['volume'];
+        $pembelian_nilai_solar = $pembelian_solar['nilai'];
+        $pembelian_harga_solar = (round($pembelian_volume_solar,2)!=0)?$pembelian_nilai_solar / round($pembelian_volume_solar,2) * 1:0;
+
+        $total_stok_volume_solar = $stok_volume_solar_lalu + $pembelian_volume_solar;
+        $total_stok_nilai_solar = $stok_nilai_solar_lalu + $pembelian_nilai_solar;
+
+        $stock_opname_solar_now = $this->db->select('cat.volume as volume, cat.total as nilai, cat.pemakaian_custom, cat.reset, cat.reset_pemakaian')
+        ->from('pmm_remaining_materials_cat cat ')
+        ->where("(cat.date <= '$date2')")
+        ->where("cat.material_id = 5")
+        ->where("cat.status = 'PUBLISH'")
+        ->order_by('date','desc')->limit(1)
+        ->get()->row_array();
+
+        $volume_stock_opname_solar_now = $stock_opname_solar_now['volume'];
+        $nilai_stock_opname_solar_now = $stock_opname_solar_now['nilai'];
+
+        $vol_pemakaian_solar_now = ($stok_volume_solar_lalu + $pembelian_volume_solar) - $volume_stock_opname_solar_now;
+        $nilai_pemakaian_solar_now = $stock_opname_solar_now['nilai'];
+
+        $pemakaian_volume_solar = $vol_pemakaian_solar_now;
+        $pemakaian_nilai_solar = (($total_stok_nilai_solar - $nilai_stock_opname_solar_now) * $stock_opname_solar_now['reset']) + ($stock_opname_solar_now['pemakaian_custom'] * $stock_opname_solar_now['reset_pemakaian']);
         $pemakaian_harsat_solar = $pemakaian_nilai_solar / $pemakaian_volume_solar;
-        //SPESIAL
 
         $penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
         ->from('pmm_productions pp')
