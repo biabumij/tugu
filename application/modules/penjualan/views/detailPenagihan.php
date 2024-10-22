@@ -8,6 +8,32 @@
         body {
             font-family: helvetica;
         }
+
+        button {
+			border: none;
+			border-radius: 5px;
+			padding: 5px;
+			font-size: 12px;
+			text-transform: uppercase;
+			cursor: pointer;
+			color: white;
+			background-color: #2196f3;
+			box-shadow: 0 0 4px #999;
+			outline: none;
+		}
+
+		.ripple {
+			background-position: center;
+			transition: background 0.8s;
+		}
+		.ripple:hover {
+			background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+		}
+		.ripple:active {
+			background-color: #6eb9f7;
+			background-size: 100%;
+			transition: background 0s;
+		}
     </style>
 </head>
 
@@ -22,6 +48,10 @@
                             <div class="panel-header">
                                 <div>
                                     <h3><b>DETAIL TAGIHAN PENJUALAN <?php echo $this->pmm_model->GetStatus2($penagihan['status']);?></b></h3>
+                                    <div class="text-left">
+                                        <a href="<?php echo site_url('admin/penjualan');?>">
+                                        <button class="ripple"><b><i class="fa-solid fa-rotate-left"></i> KEMBALI</b></button></a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="panel-content">
@@ -409,6 +439,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
     <script src="<?php echo base_url();?>assets/back/theme/vendor/bootbox.min.js"></script>
     <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://kit.fontawesome.com/591a1bf2f6.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
         $('.form-approval').submit(function(e) {

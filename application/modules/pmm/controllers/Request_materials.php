@@ -50,7 +50,6 @@ class Request_materials extends CI_Controller {
 		$schedule_id = $this->input->post('schedule_id');
 		$supplier_id = $this->input->post('supplier_id');
 		$w_date = $this->input->post('filter_date');
-
 		$this->db->select('prm.*');
 		if(!empty($supplier_id)){
 			$this->db->where('prm.supplier_id',$supplier_id);
@@ -62,7 +61,7 @@ class Request_materials extends CI_Controller {
 			$this->db->where('request_date  >=',date('Y-m-d',strtotime($start_date)));	
 			$this->db->where('request_date <=',date('Y-m-d',strtotime($end_date)));	
 		}
-
+		$this->db->where("status <> 'REJECTED'");
 		$this->db->order_by('created_on','DESC');
 		$query = $this->db->get('pmm_request_materials prm');
 		if($query->num_rows() > 0){

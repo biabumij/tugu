@@ -1379,12 +1379,14 @@ class Reports extends CI_Controller {
 			$total_nilai = $bahan;
 
 			//BAHAN_2
-			$bahan_2 = $this->db->select('date, SUM(nilai_semen + nilai_pasir + nilai_1020 + nilai_2030 + nilai_additive) as total')
+			/*$bahan_2 = $this->db->select('date, SUM(nilai_semen + nilai_pasir + nilai_1020 + nilai_2030 + nilai_additive) as total')
 			->from('kunci_bahan_baku')
 			->where("(date between '$date3' and '$date2')")
 			->get()->row_array();
+			$total_nilai_2= $bahan_2['total'];*/
+			$bahan_2 = $this->pmm_model->getBahan2($date3,$date2);
 			$total_nilai_2 = 0;
-			$total_nilai_2= $bahan_2['total'];
+			$total_nilai_2= $bahan_2;
 
 			//ALAT
 			$alat = $this->pmm_model->getAlat($date1,$date2);

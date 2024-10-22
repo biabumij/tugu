@@ -285,6 +285,8 @@ class Pembelian extends Secure_Controller
             $this->db->where('tanggal_penawaran <=', date('Y-m-d', strtotime($end_date)));
         }
 
+        $this->db->where("status <> 'REJECT'");
+        $this->db->order_by('status','DESC');
         $this->db->order_by('created_on', 'DESC');
         $query = $this->db->get('pmm_penawaran_pembelian');
 
@@ -1723,7 +1725,15 @@ class Pembelian extends Secure_Controller
 	{
 		$this->db->set("status", "REJECT");
 		$this->db->where("id", $id);
-        $this->db->update('pmm_purchase_order', array('status' => 'REJECT'), array('id' => $id));
+        $this->db->update('pmm_purchase_order', array('status' => 'REJECTED'), array('id' => $id));
+
+        $permintaan_bahan_alat = $this->db->select('(request_material_id) as id')
+        ->from('pmm_purchase_order')
+        ->where('id', $id)
+        ->get()->row_array();
+        $permintaan_bahan_alat_id = $permintaan_bahan_alat['id'];
+        $this->db->update('pmm_request_materials', array('status' => 'REJECTED'), array('id' => $permintaan_bahan_alat_id));
+
 		$this->session->set_flashdata('notif_reject','<b>REJECTED</b>');
 		redirect("admin/pembelian");
 	}

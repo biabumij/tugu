@@ -65,6 +65,32 @@
             visibility: visible;
         }
         }
+
+        button {
+			border: none;
+			border-radius: 5px;
+			padding: 5px;
+			font-size: 12px;
+			text-transform: uppercase;
+			cursor: pointer;
+			color: white;
+			background-color: #2196f3;
+			box-shadow: 0 0 4px #999;
+			outline: none;
+		}
+        
+        .ripple {
+			background-position: center;
+			transition: background 0.8s;
+		}
+		.ripple:hover {
+			background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+		}
+		.ripple:active {
+			background-color: #6eb9f7;
+			background-size: 100%;
+			transition: background 0s;
+		}
     </style>
 </head>
 
@@ -83,7 +109,7 @@
                                 </h3>
                                 <div class="text-left">
                                     <a href="<?php echo site_url('admin');?>">
-                                    <button style="color:white; background-color:#5bc0de; border:1px solid black; border-radius:10px; line-height:30px;"><b><i class="fa-solid fa-rotate-left"></i> KEMBALI</b></button></a>
+                                    <button class="ripple"><b><i class="fa-solid fa-rotate-left"></i> KEMBALI</b></button></a>
                                 </div>
                             </div>
                             <div class="panel-content">
@@ -195,7 +221,7 @@
 														<input type="text" id="request_date" name="request_date" class="form-control dtpicker-single" required="" autocomplete="off" value="<?php echo date('d-m-Y');?>" />
 													</div>
 													<div class="form-group">
-														<label>Subjek<span class="required" aria-required="true">*</span></label>
+														<label>Subyek<span class="required" aria-required="true">*</span></label>
 														<input type="text" id="subject" name="subject" class="form-control" required="" autocomplete="off"/>
 													</div>
 													<div class="form-group">
@@ -327,10 +353,10 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="form-horizontal" method="POST" style="padding: 0 10px 0 20px;" onsubmit="setTimeout(function () { window.location.reload(); }, 3000)">
+                                                <form class="form-horizontal" method="POST" style="padding: 0 10px 0 20px;">
                                                     <input type="hidden" name="id" id="id_po">
                                                     <div class="form-group">
-                                                        <label>Subject</label>
+                                                        <label>Subyek</label>
                                                         <input type="text" id="subject_po_edit" name="subject" class="form-control" required="" />
                                                     </div>
                                                     <div class="form-group">
@@ -340,25 +366,26 @@
                                                     <div class="form-group">
                                                         <label>No. Pesanan Pembelian</label>
                                                         <input type="text" id="no_po_edit" name="no_po" class="form-control" required="" />
+                                                        <input type="hidden" name="status" id="change_status"  required="">
                                                     </div>
                                                     
+                                                    <!--<?php
+                                                    if($this->session->userdata('admin_group_id') == 1){
+                                                    ?>
+                                                        <div class="form-group">
+                                                            <label>Status Pesanan Pembelian</label>
+                                                            <select id="change_status" name="status" class="form-control">
+                                                                <option value="WAITING">WAITING</option>
+                                                                <option value="PUBLISH">PUBLISH</option>
+                                                                <option value="UNPUBLISH">UNPUBLISH</option>
+                                                                <option value="REJECTED">REJECTED</option>
+                                                                <option value="DRAFT">DRAFT</option>
+                                                                <option value="CLOSED">CLOSED</option>
+                                                            </select>
+                                                        </div>
                                                     <?php
-                                                        if($this->session->userdata('admin_group_id') == 1){
-                                                    ?>
-                                                            <div class="form-group">
-                                                                <label>Status Pesanan Pembelian</label>
-                                                                <select id="change_status" name="status" class="form-control">
-                                                                    <option value="WAITING">WAITING</option>
-                                                                    <option value="PUBLISH">PUBLISH</option>
-                                                                    <option value="UNPUBLISH">UNPUBLISH</option>
-                                                                    <option value="REJECTED">REJECTED</option>
-                                                                    <option value="DRAFT">DRAFT</option>
-                                                                    <option value="CLOSED">CLOSED</option>
-                                                                </select>
-                                                            </div>
-                                                        <?php
-                                                        }   
-                                                    ?>
+                                                    }   
+                                                    ?>-->
 
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-success" id="btn-no_po"> SIMPAN</button>
@@ -366,7 +393,7 @@
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><b>CLOSE</b></button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:black; border-radius:10px;"><b>CLOSE</b></button>
                                             </div>
                                         </div>
                                     </div>
@@ -1248,7 +1275,7 @@
                 "data": "status"
             },
             {
-                "data": "date_po"
+                "data": "date"
             },
             {
                 "data": "supplier"

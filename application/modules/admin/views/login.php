@@ -5,9 +5,8 @@
 <html lang="en" class="fixed accounts sign-in">
 	<head>
 	    <meta charset="UTF-8">
-		<meta name="description" key="description" content="Sistem Produksi Beton">
-		<meta name="title" key="title" content="TUGU">
-		<meta name="author" content="Ginanjar Bayu Bimantoro">
+		<meta name="description" key="description" content="Sistem Beton Readymix">
+		<meta name="title" key="title" content="Beton Readymix">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	    <title><?php echo $this->m_themes->GetThemes('site_name');?> - LOGIN</title>
 	    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url().$this->m_themes->GetThemes('site_favico');?>">
@@ -35,7 +34,7 @@
 	<body>
 		<div class="wrap">
 			<div class="page-body animated slideInDown">
-				<div class="box" style="background-color: rgba(255, 255, 255, 0.9); margin-top:10%;  border: 1px solid black;">
+				<div class="box" style="background-color: rgba(255, 255, 255, 0.9); margin-top:10%;">
 					<table width="100%" border="0">
 						<tr>
 							<th width="50%" class="text-center">
