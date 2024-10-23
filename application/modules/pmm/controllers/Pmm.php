@@ -1365,16 +1365,15 @@ class Pmm extends CI_Controller {
 	{	
 		$data = array();
 
-		$last_opname = $this->db->select('date,material_id')
-		->from('pmm_remaining_materials_cat')
-		->where("material_id = 1")
+		$last_opname = $this->db->select('date')
+		->from('kunci_rakor')
 		->order_by('date','desc')->limit(1)
 		//->order_by('date','desc')->limit(1,2)
 		->get()->row_array();
 		$last_opname = date('Y-m-d', strtotime($last_opname['date']));
 
 		$this->db->where('status','PUBLISH');
-		$this->db->where("date >= '$last_opname'");
+		$this->db->where("date > '$last_opname'");
 		$this->db->order_by('date','desc');
 		$this->db->order_by('id','desc');
 		if(!empty($this->input->post('material_id'))){
