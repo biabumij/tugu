@@ -1390,17 +1390,13 @@ class Reports extends CI_Controller {
 
 			//ALAT
 			$alat = $this->pmm_model->getAlat($date1,$date2);
-			$alat = $alat;
+			$solar = $this->pmm_model->getSolar($date1,$date2);
+			$alat = $alat + $solar;
 
 			//ALAT_2
-			$alat_2 = $this->pmm_model->getAlat($date3,$date2);
-			$kunci_nilai_solar = $this->db->select('SUM(nilai_solar) as total')
-			->from('kunci_bahan_baku')
-			->where("(date between '$date1' and '$date2')")
-			->order_by('date','desc')->limit(1)
-			->get()->row_array();
-			$kunci_nilai_solar = $kunci_nilai_solar['total'];
-			$alat_2 = $kunci_nilai_solar + $alat_2;
+			$alat_2 = $this->pmm_model->getAkumulasiAlat($date3,$date2);
+			$solar_2 = $this->pmm_model->getSolar2($date3,$date4);
+			$alat_2 = ($alat_2 + $solar_2) + $solar;
 
 			//OVERHEAD
 			$overhead = $this->pmm_model->getOverheadLabaRugi($date1,$date2);

@@ -5227,6 +5227,7 @@ class Pmm_model extends CI_Model {
         foreach ($pembelian_transfer_semen as $x){
             $total_nilai_transfer_semen += $x['price'];
         }
+        $total_vol_transfer_semen = $pembelian_transfer_semen['volume'];
 
         $pembelian_excavator = $this->db->select('
         pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
@@ -5245,59 +5246,7 @@ class Pmm_model extends CI_Model {
         foreach ($pembelian_excavator as $x){
             $total_nilai_excavator += $x['price'];
         }
-
-        $date1_ago = date('2020-01-01');
-        $date2_ago = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
-        $date3_ago = date('Y-m-d', strtotime('-1 months', strtotime($date1)));
-        $tanggal_opening_balance = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
-
-        $stock_opname_solar_ago = $this->db->select('cat.volume as volume, cat.total as nilai')
-        ->from('pmm_remaining_materials_cat cat ')
-        ->where("(cat.date <= '$tanggal_opening_balance')")
-        ->where("cat.material_id = 5")
-        ->where("cat.status = 'PUBLISH'")
-        ->order_by('date','desc')->limit(1)
-        ->get()->row_array();
-
-        $stok_volume_solar_lalu = $stock_opname_solar_ago['volume'];
-        $stok_nilai_solar_lalu = $stock_opname_solar_ago['nilai'];
-        $stok_harsat_solar_lalu = (round($stok_volume_solar_lalu,2)!=0)?$stok_nilai_solar_lalu / round($stok_volume_solar_lalu,2) * 1:0;
-
-        $pembelian_solar = $this->db->select('prm.display_measure as satuan, SUM(prm.display_volume) as volume, (prm.display_price / prm.display_volume) as harga, SUM(prm.display_price) as nilai')
-        ->from('pmm_receipt_material prm')
-        ->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
-        ->join('produk p', 'prm.material_id = p.id','left')
-        ->where("prm.date_receipt between '$date1' and '$date2'")
-        ->where("p.kategori_bahan = 5")
-        ->get()->row_array();
-    
-        $pembelian_volume_solar = $pembelian_solar['volume'];
-        $pembelian_nilai_solar = $pembelian_solar['nilai'];
-        $pembelian_harga_solar = (round($pembelian_volume_solar,2)!=0)?$pembelian_nilai_solar / round($pembelian_volume_solar,2) * 1:0;
-
-        $total_stok_volume_solar = $stok_volume_solar_lalu + $pembelian_volume_solar;
-        $total_stok_nilai_solar = $stok_nilai_solar_lalu + $pembelian_nilai_solar;
-
-        $stock_opname_solar_now = $this->db->select('cat.volume as volume, cat.total as nilai, cat.pemakaian_custom, cat.reset, cat.reset_pemakaian')
-        ->from('pmm_remaining_materials_cat cat ')
-        ->where("(cat.date <= '$date2')")
-        ->where("cat.material_id = 5")
-        ->where("cat.status = 'PUBLISH'")
-        ->order_by('date','desc')->limit(1)
-        ->get()->row_array();
-
-        $volume_stock_opname_solar_now = $stock_opname_solar_now['volume'];
-        $nilai_stock_opname_solar_now = $stock_opname_solar_now['nilai'];
-
-        $vol_pemakaian_solar_now = ($stok_volume_solar_lalu + $pembelian_volume_solar) - $volume_stock_opname_solar_now;
-        $nilai_pemakaian_solar_now = $stock_opname_solar_now['nilai'];
-
-        $pemakaian_volume_solar = $vol_pemakaian_solar_now;
-        $pemakaian_nilai_solar = (($total_stok_nilai_solar - $nilai_stock_opname_solar_now) * $stock_opname_solar_now['reset']) + ($stock_opname_solar_now['pemakaian_custom'] * $stock_opname_solar_now['reset_pemakaian']);
-        $pemakaian_harsat_solar = $pemakaian_nilai_solar / $pemakaian_volume_solar;	
-
         $total_vol_excavator = $pembelian_excavator['volume'];
-        $total_vol_transfer_semen = $pembelian_transfer_semen['volume'];
 
         $penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
         ->from('pmm_productions pp')
@@ -5328,7 +5277,6 @@ class Pmm_model extends CI_Model {
             $vol_rap_truck_mixer = $x['vol_truck_mixer'];
             $vol_rap_excavator = $x['vol_excavator'];
             $vol_rap_transfer_semen = $x['vol_transfer_semen'];
-            $vol_rap_bbm_solar = $x['vol_bbm_solar'];
             $harsat_batching_plant = $x['batching_plant'];
             $harsat_pemeliharaan_batching_plant = $x['pemeliharaan_batching_plant'];
             $harsat_penyusutan_batching_plant = $x['batching_plant'] - $x['pemeliharaan_batching_plant'];
@@ -5338,7 +5286,6 @@ class Pmm_model extends CI_Model {
             $harsat_truck_mixer = $x['truck_mixer'];
             $harsat_excavator = $x['excavator'];
             $harsat_transfer_semen = $x['transfer_semen'];
-            $harsat_bbm_solar = $x['vol_bbm_solar'] * $x['harsat_bbm_solar'];
             
         }
 
@@ -5351,7 +5298,6 @@ class Pmm_model extends CI_Model {
         $vol_truck_mixer = $total_volume;
         $vol_excavator = $total_volume;
         $vol_transfer_semen = $total_volume;
-        $vol_bbm_solar = $total_volume;
 
         $batching_plant = $harsat_batching_plant * $total_volume;
         $pemeliharaan_batching_plant = $harsat_pemeliharaan_batching_plant * $total_volume;
@@ -5362,15 +5308,13 @@ class Pmm_model extends CI_Model {
         $truck_mixer = $harsat_truck_mixer * $total_volume;
         $excavator = $harsat_excavator * $total_volume;
         $transfer_semen = $harsat_transfer_semen * $total_volume;
-        $bbm_solar = $harsat_bbm_solar * $vol_bbm_solar;
 
         $harsat_batching_plant = ($vol_batching_plant!=0)?$batching_plant / $vol_batching_plant * 1:0;
         $harsat_truck_mixer = ($vol_truck_mixer!=0)?$truck_mixer / $vol_truck_mixer * 1:0;
         $harsat_wheel_loader = ($wheel_loader!=0)?$wheel_loader / $vol_wheel_loader * 1:0;
         $harsat_excavator = ($excavator!=0)?$excavator / $vol_excavator * 1:0;
         $harsat_transfer_semen = ($transfer_semen!=0)?$transfer_semen / $vol_transfer_semen * 1:0;
-        $harsat_bbm_solar = ($vol_bbm_solar!=0)?$bbm_solar / $vol_bbm_solar * 1:0;
-        $total_nilai_rap_alat = $batching_plant + $truck_mixer + $wheel_loader + $excavator + $transfer_semen + $bbm_solar;
+        $total_nilai_rap_alat = $batching_plant + $truck_mixer + $wheel_loader + $excavator + $transfer_semen;
 
         $pemakaian_vol_batching_plant = 0;
         $pemakaian_vol_pemeliharaan_batching_plant = 0;
@@ -5381,7 +5325,6 @@ class Pmm_model extends CI_Model {
         $pemakaian_vol_penyusutan_wheel_loader = $pemakaian_vol_pemeliharaan_wheel_loader;
         $pemakaian_vol_excavator = $total_vol_excavator;
         $pemakaian_vol_transfer_semen = $total_vol_transfer_semen;
-        $pemakaian_vol_bbm_solar = $total_volume_pemakaian_solar;
         
         //SPESIAL//
         $total_pemakaian_pemeliharaan_batching_plant = $total_nilai_pemeliharaan_batching_plant;
@@ -5393,7 +5336,6 @@ class Pmm_model extends CI_Model {
         $total_pemakaian_wheel_loader = $total_nilai_wheel_loader + $total_pemakaian_penyusutan_wheel_loader;
         $total_pemakaian_excavator = $total_nilai_excavator;
         $total_pemakaian_transfer_semen = $total_nilai_transfer_semen;
-        $total_pemakaian_bbm_solar = $total_akumulasi_bbm;
         //SPESIAL//
 
         $total_vol_evaluasi_batching_plant = ($pemakaian_vol_batching_plant!=0)?$vol_batching_plant - $pemakaian_vol_batching_plant * 1:0;
@@ -5414,15 +5356,13 @@ class Pmm_model extends CI_Model {
         $total_nilai_evaluasi_excavator = ($total_pemakaian_excavator!=0)?$excavator - $total_pemakaian_excavator * 1:0;
         $total_vol_evaluasi_transfer_semen = ($pemakaian_vol_transfer_semen!=0)?$vol_transfer_semen - $pemakaian_vol_transfer_semen * 1:0;
         $total_nilai_evaluasi_transfer_semen = ($total_pemakaian_transfer_semen!=0)?$transfer_semen - $total_pemakaian_transfer_semen * 1:0;
-        $total_vol_evaluasi_bbm_solar = ($pemakaian_volume_solar!=0)?($vol_rap_bbm_solar * $total_volume) - $pemakaian_volume_solar * 1:0;
-        $total_nilai_evaluasi_bbm_solar = ($pemakaian_nilai_solar!=0)?$bbm_solar - $pemakaian_nilai_solar * 1:0;
 
         $total_vol_rap_alat = $total_volume;
-        $total_nilai_rap_alat = $batching_plant + $truck_mixer + $wheel_loader + $excavator + $transfer_semen + $bbm_solar;
-        $total_vol_realisasi_alat = $pemakaian_vol_batching_plant + $pemakaian_vol_truck_mixer + $pemakaian_vol_wheel_loader + $pemakaian_vol_excavator + $pemakaian_vol_transfer_semen + $pemakaian_volume_solar;
-        $total_nilai_realisasi_alat = $total_pemakaian_batching_plant + $total_pemakaian_truck_mixer + $total_pemakaian_wheel_loader + $total_pemakaian_excavator + $total_nilai_transfer_semen + $pemakaian_nilai_solar;
-        $total_vol_evaluasi_alat = $total_vol_evaluasi_batching_plant + $total_vol_evaluasi_truck_mixer + $total_vol_evaluasi_wheel_loader + $total_vol_evaluasi_excavator + $total_vol_evaluasi_transfer_semen + $total_vol_evaluasi_bbm_solar;
-        $total_nilai_evaluasi_alat = $total_nilai_evaluasi_batching_plant + $total_nilai_evaluasi_truck_mixer + $total_nilai_evaluasi_wheel_loader + $total_nilai_evaluasi_excavator + $total_nilai_evaluasi_transfer_semen + $total_nilai_evaluasi_bbm_solar;
+        $total_nilai_rap_alat = $batching_plant + $truck_mixer + $wheel_loader + $excavator + $transfer_semen;
+        $total_vol_realisasi_alat = $pemakaian_vol_batching_plant + $pemakaian_vol_truck_mixer + $pemakaian_vol_wheel_loader + $pemakaian_vol_excavator + $pemakaian_vol_transfer_semen;
+        $total_nilai_realisasi_alat = $total_pemakaian_batching_plant + $total_pemakaian_truck_mixer + $total_pemakaian_wheel_loader + $total_pemakaian_excavator + $total_nilai_transfer_semen;
+        $total_vol_evaluasi_alat = $total_vol_evaluasi_batching_plant + $total_vol_evaluasi_truck_mixer + $total_vol_evaluasi_wheel_loader + $total_vol_evaluasi_excavator + $total_vol_evaluasi_transfer_semen;
+        $total_nilai_evaluasi_alat = $total_nilai_evaluasi_batching_plant + $total_nilai_evaluasi_truck_mixer + $total_nilai_evaluasi_wheel_loader + $total_nilai_evaluasi_excavator + $total_nilai_evaluasi_transfer_semen;
         
         $query = $total_nilai_realisasi_alat;
 
@@ -5626,56 +5566,6 @@ class Pmm_model extends CI_Model {
         }
         $total_vol_excavator = $pembelian_excavator['volume'];
 
-        $date1_ago = date('2020-01-01');
-        $date2_ago = date('Y-m-d', strtotime('-1 days', strtotime($date3)));
-        $date3_ago = date('Y-m-d', strtotime('-1 months', strtotime($date3)));
-        $tanggal_opening_balance = date('Y-m-d', strtotime('-1 days', strtotime($date3)));
-
-        $stock_opname_solar_ago = $this->db->select('cat.volume as volume, cat.total as nilai')
-        ->from('pmm_remaining_materials_cat cat ')
-        ->where("(cat.date <= '$tanggal_opening_balance')")
-        ->where("cat.material_id = 5")
-        ->where("cat.status = 'PUBLISH'")
-        ->order_by('date','desc')->limit(1)
-        ->get()->row_array();
-
-        $stok_volume_solar_lalu = $stock_opname_solar_ago['volume'];
-        $stok_nilai_solar_lalu = $stock_opname_solar_ago['nilai'];
-        $stok_harsat_solar_lalu = (round($stok_volume_solar_lalu,2)!=0)?$stok_nilai_solar_lalu / round($stok_volume_solar_lalu,2) * 1:0;
-
-        $pembelian_solar = $this->db->select('prm.display_measure as satuan, SUM(prm.display_volume) as volume, (prm.display_price / prm.display_volume) as harga, SUM(prm.display_price) as nilai')
-        ->from('pmm_receipt_material prm')
-        ->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
-        ->join('produk p', 'prm.material_id = p.id','left')
-        ->where("prm.date_receipt between '$date3' and '$date2'")
-        ->where("p.kategori_bahan = 5")
-        ->get()->row_array();
-    
-        $pembelian_volume_solar = $pembelian_solar['volume'];
-        $pembelian_nilai_solar = $pembelian_solar['nilai'];
-        $pembelian_harga_solar = (round($pembelian_volume_solar,2)!=0)?$pembelian_nilai_solar / round($pembelian_volume_solar,2) * 1:0;
-
-        $total_stok_volume_solar = $stok_volume_solar_lalu + $pembelian_volume_solar;
-        $total_stok_nilai_solar = $stok_nilai_solar_lalu + $pembelian_nilai_solar;
-
-        $stock_opname_solar_now = $this->db->select('cat.volume as volume, cat.total as nilai, cat.pemakaian_custom, cat.reset, cat.reset_pemakaian')
-        ->from('pmm_remaining_materials_cat cat ')
-        ->where("(cat.date <= '$date2')")
-        ->where("cat.material_id = 5")
-        ->where("cat.status = 'PUBLISH'")
-        ->order_by('date','desc')->limit(1)
-        ->get()->row_array();
-
-        $volume_stock_opname_solar_now = $stock_opname_solar_now['volume'];
-        $nilai_stock_opname_solar_now = $stock_opname_solar_now['nilai'];
-
-        $vol_pemakaian_solar_now = ($stok_volume_solar_lalu + $pembelian_volume_solar) - $volume_stock_opname_solar_now;
-        $nilai_pemakaian_solar_now = $stock_opname_solar_now['nilai'];
-
-        $pemakaian_volume_solar = $vol_pemakaian_solar_now;
-        $pemakaian_nilai_solar = (($total_stok_nilai_solar - $nilai_stock_opname_solar_now) * $stock_opname_solar_now['reset']) + ($stock_opname_solar_now['pemakaian_custom'] * $stock_opname_solar_now['reset_pemakaian']);
-        $pemakaian_harsat_solar = $pemakaian_nilai_solar / $pemakaian_volume_solar;
-
         $penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
         ->from('pmm_productions pp')
         ->join('penerima p', 'pp.client_id = p.id','left')
@@ -5705,7 +5595,6 @@ class Pmm_model extends CI_Model {
             $vol_rap_truck_mixer = $x['vol_truck_mixer'];
             $vol_rap_excavator = $x['vol_excavator'];
             $vol_rap_transfer_semen = $x['vol_transfer_semen'];
-            $vol_rap_bbm_solar = $x['vol_bbm_solar'];
             $harsat_batching_plant = $x['batching_plant'];
             $harsat_pemeliharaan_batching_plant = $x['pemeliharaan_batching_plant'];
             $harsat_penyusutan_batching_plant = $x['batching_plant'] - $x['pemeliharaan_batching_plant'];
@@ -5715,7 +5604,6 @@ class Pmm_model extends CI_Model {
             $harsat_truck_mixer = $x['truck_mixer'];
             $harsat_excavator = $x['excavator'];
             $harsat_transfer_semen = $x['transfer_semen'];
-            $harsat_bbm_solar = $x['vol_bbm_solar'] * $x['harsat_bbm_solar'];
             
         }
 
@@ -5728,7 +5616,6 @@ class Pmm_model extends CI_Model {
         $vol_truck_mixer = $total_volume;
         $vol_excavator = $total_volume;
         $vol_transfer_semen = $total_volume;
-        $vol_bbm_solar = $total_volume;
 
         $batching_plant = $harsat_batching_plant * $total_volume;
         $pemeliharaan_batching_plant = $harsat_pemeliharaan_batching_plant * $total_volume;
@@ -5739,15 +5626,13 @@ class Pmm_model extends CI_Model {
         $truck_mixer = $harsat_truck_mixer * $total_volume;
         $excavator = $harsat_excavator * $total_volume;
         $transfer_semen = $harsat_transfer_semen * $total_volume;
-        $bbm_solar = $harsat_bbm_solar * $vol_bbm_solar;
 
         $harsat_batching_plant = ($vol_batching_plant!=0)?$batching_plant / $vol_batching_plant * 1:0;
         $harsat_truck_mixer = ($vol_truck_mixer!=0)?$truck_mixer / $vol_truck_mixer * 1:0;
         $harsat_wheel_loader = ($wheel_loader!=0)?$wheel_loader / $vol_wheel_loader * 1:0;
         $harsat_excavator = ($excavator!=0)?$excavator / $vol_excavator * 1:0;
         $harsat_transfer_semen = ($transfer_semen!=0)?$transfer_semen / $vol_transfer_semen * 1:0;
-        $harsat_bbm_solar = ($vol_bbm_solar!=0)?$bbm_solar / $vol_bbm_solar * 1:0;
-        $total_nilai_rap_alat = $batching_plant + $truck_mixer + $wheel_loader + $excavator + $transfer_semen + $bbm_solar;
+        $total_nilai_rap_alat = $batching_plant + $truck_mixer + $wheel_loader + $excavator + $transfer_semen;
 
         $pemakaian_vol_batching_plant = 0;
         $pemakaian_vol_pemeliharaan_batching_plant = 0;
@@ -5758,7 +5643,6 @@ class Pmm_model extends CI_Model {
         $pemakaian_vol_penyusutan_wheel_loader = $pemakaian_vol_pemeliharaan_wheel_loader;
         $pemakaian_vol_excavator = $total_vol_excavator;
         $pemakaian_vol_transfer_semen = $total_vol_transfer_semen;
-        $pemakaian_vol_bbm_solar = $total_volume_pemakaian_solar;
         
         //SPESIAL//
         $total_pemakaian_pemeliharaan_batching_plant = $total_nilai_pemeliharaan_batching_plant;
@@ -5770,7 +5654,6 @@ class Pmm_model extends CI_Model {
         $total_pemakaian_wheel_loader = $total_nilai_wheel_loader + $total_pemakaian_penyusutan_wheel_loader;
         $total_pemakaian_excavator = $total_nilai_excavator;
         $total_pemakaian_transfer_semen = $total_nilai_transfer_semen;
-        $total_pemakaian_bbm_solar = $total_akumulasi_bbm;
         //SPESIAL//
 
         $total_vol_evaluasi_batching_plant = ($pemakaian_vol_batching_plant!=0)?$vol_batching_plant - $pemakaian_vol_batching_plant * 1:0;
@@ -5791,18 +5674,97 @@ class Pmm_model extends CI_Model {
         $total_nilai_evaluasi_excavator = ($total_pemakaian_excavator!=0)?$excavator - $total_pemakaian_excavator * 1:0;
         $total_vol_evaluasi_transfer_semen = ($pemakaian_vol_transfer_semen!=0)?$vol_transfer_semen - $pemakaian_vol_transfer_semen * 1:0;
         $total_nilai_evaluasi_transfer_semen = ($total_pemakaian_transfer_semen!=0)?$transfer_semen - $total_pemakaian_transfer_semen * 1:0;
-        $total_vol_evaluasi_bbm_solar = ($pemakaian_volume_solar!=0)?($vol_rap_bbm_solar * $total_volume) - $pemakaian_volume_solar * 1:0;
-        $total_nilai_evaluasi_bbm_solar = ($pemakaian_nilai_solar!=0)?$bbm_solar - $pemakaian_nilai_solar * 1:0;
 
         $total_vol_rap_alat = $total_volume;
-        $total_nilai_rap_alat = $batching_plant + $truck_mixer + $wheel_loader + $excavator + $transfer_semen + $bbm_solar;
-        $total_vol_realisasi_alat = $pemakaian_vol_batching_plant + $pemakaian_vol_truck_mixer + $pemakaian_vol_wheel_loader + $pemakaian_vol_excavator + $pemakaian_vol_transfer_semen + $pemakaian_volume_solar;
-        $total_nilai_realisasi_alat = $total_pemakaian_batching_plant + $total_pemakaian_truck_mixer + $total_pemakaian_wheel_loader + $total_pemakaian_excavator + $total_nilai_transfer_semen + $pemakaian_nilai_solar;
-        $total_vol_evaluasi_alat = $total_vol_evaluasi_batching_plant + $total_vol_evaluasi_truck_mixer + $total_vol_evaluasi_wheel_loader + $total_vol_evaluasi_excavator + $total_vol_evaluasi_transfer_semen + $total_vol_evaluasi_bbm_solar;
-        $total_nilai_evaluasi_alat = $total_nilai_evaluasi_batching_plant + $total_nilai_evaluasi_truck_mixer + $total_nilai_evaluasi_wheel_loader + $total_nilai_evaluasi_excavator + $total_nilai_evaluasi_transfer_semen + $total_nilai_evaluasi_bbm_solar;
+        $total_nilai_rap_alat = $batching_plant + $truck_mixer + $wheel_loader + $excavator + $transfer_semen;
+        $total_vol_realisasi_alat = $pemakaian_vol_batching_plant + $pemakaian_vol_truck_mixer + $pemakaian_vol_wheel_loader + $pemakaian_vol_excavator + $pemakaian_vol_transfer_semen;
+        $total_nilai_realisasi_alat = $total_pemakaian_batching_plant + $total_pemakaian_truck_mixer + $total_pemakaian_wheel_loader + $total_pemakaian_excavator + $total_nilai_transfer_semen;
+        $total_vol_evaluasi_alat = $total_vol_evaluasi_batching_plant + $total_vol_evaluasi_truck_mixer + $total_vol_evaluasi_wheel_loader + $total_vol_evaluasi_excavator + $total_vol_evaluasi_transfer_semen;
+        $total_nilai_evaluasi_alat = $total_nilai_evaluasi_batching_plant + $total_nilai_evaluasi_truck_mixer + $total_nilai_evaluasi_wheel_loader + $total_nilai_evaluasi_excavator + $total_nilai_evaluasi_transfer_semen;
         
         $query = $total_nilai_realisasi_alat;
         
+        if(!empty($query)){
+            $total = $query;
+        }
+        return $total;
+    }
+
+    function getSolar($date1,$date2)
+    {   
+        $total = 0;
+
+        $date1_ago = date('2020-01-01');
+        $date2_ago = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
+        $date3_ago = date('Y-m-d', strtotime('-1 months', strtotime($date1)));
+        $tanggal_opening_balance = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
+
+        $stock_opname_solar_ago = $this->db->select('cat.volume as volume, cat.total as nilai')
+        ->from('pmm_remaining_materials_cat cat ')
+        ->where("(cat.date <= '$tanggal_opening_balance')")
+        ->where("cat.material_id = 5")
+        ->where("cat.status = 'PUBLISH'")
+        ->order_by('date','desc')->limit(1)
+        ->get()->row_array();
+
+        $stok_volume_solar_lalu = $stock_opname_solar_ago['volume'];
+        $stok_nilai_solar_lalu = $stock_opname_solar_ago['nilai'];
+        $stok_harsat_solar_lalu = (round($stok_volume_solar_lalu,2)!=0)?$stok_nilai_solar_lalu / round($stok_volume_solar_lalu,2) * 1:0;
+
+        $pembelian_solar = $this->db->select('prm.display_measure as satuan, SUM(prm.display_volume) as volume, (prm.display_price / prm.display_volume) as harga, SUM(prm.display_price) as nilai')
+        ->from('pmm_receipt_material prm')
+        ->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+        ->join('produk p', 'prm.material_id = p.id','left')
+        ->where("prm.date_receipt between '$date1' and '$date2'")
+        ->where("p.kategori_bahan = 5")
+        ->get()->row_array();
+    
+        $pembelian_volume_solar = $pembelian_solar['volume'];
+        $pembelian_nilai_solar = $pembelian_solar['nilai'];
+        $pembelian_harga_solar = (round($pembelian_volume_solar,2)!=0)?$pembelian_nilai_solar / round($pembelian_volume_solar,2) * 1:0;
+
+        $total_stok_volume_solar = $stok_volume_solar_lalu + $pembelian_volume_solar;
+        $total_stok_nilai_solar = $stok_nilai_solar_lalu + $pembelian_nilai_solar;
+
+        $stock_opname_solar_now = $this->db->select('cat.volume as volume, cat.total as nilai, cat.pemakaian_custom, cat.reset, cat.reset_pemakaian')
+        ->from('pmm_remaining_materials_cat cat ')
+        ->where("(cat.date <= '$date2')")
+        ->where("cat.material_id = 5")
+        ->where("cat.status = 'PUBLISH'")
+        ->order_by('date','desc')->limit(1)
+        ->get()->row_array();
+
+        $volume_stock_opname_solar_now = $stock_opname_solar_now['volume'];
+        $nilai_stock_opname_solar_now = $stock_opname_solar_now['nilai'];
+
+        $vol_pemakaian_solar_now = ($stok_volume_solar_lalu + $pembelian_volume_solar) - $volume_stock_opname_solar_now;
+        $nilai_pemakaian_solar_now = $stock_opname_solar_now['nilai'];
+
+        $pemakaian_volume_solar = $vol_pemakaian_solar_now;
+        $pemakaian_nilai_solar = (($total_stok_nilai_solar - $nilai_stock_opname_solar_now) * $stock_opname_solar_now['reset']) + ($stock_opname_solar_now['pemakaian_custom'] * $stock_opname_solar_now['reset_pemakaian']);
+        $pemakaian_harsat_solar = $pemakaian_nilai_solar / $pemakaian_volume_solar;
+        
+        $query = $pemakaian_nilai_solar;
+
+        if(!empty($query)){
+            $total = $query;
+        }
+        return $total;
+    }
+
+    function getSolar2($date3,$date4)
+    {   
+        $total = 0;
+
+        $kunci_nilai_solar = $this->db->select('SUM(nilai_solar) as total')
+        ->from('kunci_bahan_baku')
+        ->where("(date between '$date3' and '$date4')")
+        ->order_by('date','desc')->limit(1)
+        ->get()->row_array();
+        $kunci_nilai_solar = $kunci_nilai_solar['total'];
+        
+        $query = $kunci_nilai_solar;
+
         if(!empty($query)){
             $total = $query;
         }

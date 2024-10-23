@@ -255,8 +255,10 @@
 			->get()->result_array();
 
 			$total_nilai_transfer_semen = 0;
+			$total_vol_transfer_semen = 0;
 			foreach ($pembelian_transfer_semen as $x){
 				$total_nilai_transfer_semen += $x['price'];
+				$total_vol_transfer_semen += $x['volume'];
 			}
 
 			$pembelian_excavator = $this->db->select('
@@ -273,8 +275,10 @@
 			->get()->result_array();
 
 			$total_nilai_excavator = 0;
+			$total_vol_excavator = 0;
 			foreach ($pembelian_excavator as $x){
 				$total_nilai_excavator += $x['price'];
+				$total_vol_excavator += $x['volume'];
 			}
 
 			$date1_ago = date('2020-01-01');
@@ -326,9 +330,6 @@
 			$pemakaian_volume_solar = $vol_pemakaian_solar_now;
 			$pemakaian_nilai_solar = (($total_stok_nilai_solar - $nilai_stock_opname_solar_now) * $stock_opname_solar_now['reset']) + ($stock_opname_solar_now['pemakaian_custom'] * $stock_opname_solar_now['reset_pemakaian']);
 			$pemakaian_harsat_solar = $pemakaian_nilai_solar / $pemakaian_volume_solar;	
-
-			$total_vol_excavator = $pembelian_excavator['volume'];
-			$total_vol_transfer_semen = $pembelian_transfer_semen['volume'];
 
 			$penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
 			->from('pmm_productions pp')
