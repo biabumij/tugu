@@ -4745,13 +4745,13 @@ class Pmm_model extends CI_Model {
     {   
         $total = 0;
 
-        $bkunci_bahan = $this->db->select('date, SUM(nilai_semen + nilai_pasir + nilai_1020 + nilai_2030 + nilai_additive) as total')
+        $kunci_bahan = $this->db->select('date, SUM(nilai_semen + nilai_pasir + nilai_1020 + nilai_2030 + nilai_additive) as total')
         ->from('kunci_bahan_baku')
         ->where("(date between '$date3' and '$date4')")
         ->get()->row_array();
-        $bkunci_bahan = $bkunci_bahan['total'];
+        $kunci_bahan = $kunci_bahan['total'];
         
-        $query = $bkunci_bahan;
+        $query = $kunci_bahan;
 
         if(!empty($query)){
             $total = $query;

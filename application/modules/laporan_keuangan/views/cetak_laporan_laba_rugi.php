@@ -158,8 +158,8 @@
 			$total_nilai = $bahan;
 
 			//BAHAN_2
+			$date4 = date('Y-m-d', strtotime('-5 days', strtotime($date2)));
 			$bahan_2 = $this->pmm_model->getBahan2($date3,$date4);
-			$total_nilai_2 = 0;
 			$total_nilai_2= $bahan_2 + $bahan;
 
 			//ALAT
@@ -310,7 +310,7 @@
 									<span>Rp.</span>
 								</th>
 								<th align="right" width="80%">
-									<span><?php echo number_format($bahan,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+									<span><?php echo number_format($total_nilai,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
@@ -322,7 +322,7 @@
 									<span>Rp.</span>
 								</th>
 								<th align="right" width="80%">
-									<span><?php echo number_format($bahan_2,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+									<span><?php echo number_format($total_nilai_2,0,',','.');?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
 								</th>
 							</tr>
 					</table>
