@@ -48,38 +48,38 @@
 											<tr>
 												<td>1.</td>
 												<td>Semen</td>
-												<td><input type="text" id="vol_semen" name="vol_semen" class="form-control numberformat text-center" value="" required="" autocomplete="off"></td>
-												<td><input type="text" id="nilai_semen" name="nilai_semen" class="form-control rupiahformat text-center" value="" required="" autocomplete="off"></td>
+												<td><input type="text" id="vol_semen" name="vol_semen" class="form-control numberformat text-center" value="" required="" placeholder="Isikan 0 jika tidak ada data" autocomplete="off"></td>
+												<td><input type="text" id="nilai_semen" name="nilai_semen" class="form-control rupiahformat text-center" value="" required="" placeholder="Isikan 0 jika tidak ada data" autocomplete="off"></td>
 											</tr>
 											<tr>
 												<td>2.</td>
 												<td>Pasir</td>
-												<td><input type="text" id="vol_pasir" name="vol_pasir" class="form-control numberformat text-center" value="" required="" autocomplete="off"></td>
-												<td><input type="text" id="nilai_pasir" name="nilai_pasir" class="form-control rupiahformat text-center" value="" required="" autocomplete="off"></td>
+												<td><input type="text" id="vol_pasir" name="vol_pasir" class="form-control numberformat text-center" value="" required="" placeholder="Isikan 0 jika tidak ada data" autocomplete="off"></td>
+												<td><input type="text" id="nilai_pasir" name="nilai_pasir" class="form-control rupiahformat text-center" value="" required="" placeholder="Isikan 0 jika tidak ada data" autocomplete="off"></td>
 											</tr>
 											<tr>
 												<td>3.</td>
 												<td>Batu Split 10-20</td>
-												<td><input type="text" id="vol_1020" name="vol_1020" class="form-control numberformat text-center" value="" required="" autocomplete="off"></td>
-												<td><input type="text" id="nilai_1020" name="nilai_1020" class="form-control rupiahformat text-center" value="" required="" autocomplete="off"></td>
+												<td><input type="text" id="vol_1020" name="vol_1020" class="form-control numberformat text-center" value="" required="" placeholder="Isikan 0 jika tidak ada data" autocomplete="off"></td>
+												<td><input type="text" id="nilai_1020" name="nilai_1020" class="form-control rupiahformat text-center" value="" required="" placeholder="Isikan 0 jika tidak ada data" autocomplete="off"></td>
 											</tr>
 											<tr>
 												<td>4.</td>
 												<td>Batu Split 20-30</td>
-												<td><input type="text" id="vol_2030" name="vol_2030" class="form-control numberformat text-center" value="" required="" autocomplete="off"></td>
-												<td><input type="text" id="nilai_2030" name="nilai_2030" class="form-control rupiahformat text-center" value="" required="" autocomplete="off"></td>
+												<td><input type="text" id="vol_2030" name="vol_2030" class="form-control numberformat text-center" value="" required="" placeholder="Isikan 0 jika tidak ada data" autocomplete="off"></td>
+												<td><input type="text" id="nilai_2030" name="nilai_2030" class="form-control rupiahformat text-center" value="" required="" placeholder="Isikan 0 jika tidak ada data" autocomplete="off"></td>
 											</tr>
 											<tr>
 												<td>5.</td>
 												<td>Additive</td>
-												<td><input type="text" id="vol_additive" name="vol_additive" class="form-control numberformat text-center" value="" required="" autocomplete="off"></td>
-												<td><input type="text" id="nilai_additive" name="nilai_additive" class="form-control rupiahformat text-center" value="" required="" autocomplete="off"></td>
+												<td><input type="text" id="vol_additive" name="vol_additive" class="form-control numberformat text-center" value="" required="" placeholder="Isikan 0 jika tidak ada data" autocomplete="off"></td>
+												<td><input type="text" id="nilai_additive" name="nilai_additive" class="form-control rupiahformat text-center" value="" required="" placeholder="Isikan 0 jika tidak ada data" autocomplete="off"></td>
 											</tr>
 											<tr>
 												<td>6.</td>
 												<td>Solar</td>
-												<td><input type="text" id="vol_solar" name="vol_solar" class="form-control numberformat text-center" value="" required="" autocomplete="off"></td>
-												<td><input type="text" id="nilai_solar" name="nilai_solar" class="form-control rupiahformat text-center" value="" required="" autocomplete="off"></td>
+												<td><input type="text" id="vol_solar" name="vol_solar" class="form-control numberformat text-center" value="" required="" placeholder="Isikan 0 jika tidak ada data" autocomplete="off"></td>
+												<td><input type="text" id="nilai_solar" name="nilai_solar" class="form-control rupiahformat text-center" value="" required="" placeholder="Isikan 0 jika tidak ada data" autocomplete="off"></td>
 											</tr>
 										</tbody>
 										<tfoot>
