@@ -60,7 +60,7 @@
                             <option value="">Pilih Produk</option>
                             <?php
                             $this->db->where('status', 'PUBLISH');
-                            $materials = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'kategori_produk' => 1))->result_array();
+                            $materials = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'kategori_produk' => 1, 'stock_opname' => 1))->result_array();
                             foreach ($materials as $mat) {
                             ?>
                                 <option value="<?php echo $mat['id']; ?>" data-measure="<?php echo $mat['satuan'];?>"><?php echo $mat['nama_produk']; ?></option>
