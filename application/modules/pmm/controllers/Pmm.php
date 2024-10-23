@@ -1365,9 +1365,11 @@ class Pmm extends CI_Controller {
 	{	
 		$data = array();
 
-		$last_opname = $this->db->select('date')
-		->from('kunci_bahan_baku')
-		->order_by('date','desc')
+		$last_opname = $this->db->select('date,material_id')
+		->from('pmm_remaining_materials_cat')
+		->where("material_id = 1")
+		->order_by('date','desc')->limit(1)
+		//->order_by('date','desc')->limit(1,2)
 		->get()->row_array();
 		$last_opname = date('Y-m-d', strtotime($last_opname['date']));
 
