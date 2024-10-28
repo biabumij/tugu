@@ -502,8 +502,8 @@
                 },
             ],
             "columnDefs": [
-                { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "targets": [7, 8, 9, 10], "className": 'text-right'},
+                { "width": "5%", "targets": [0, 11], "className": 'text-center'},
+                { "targets": [6, 7, 8, 9, 10], "className": 'text-right'},
             ],
             responsive: true,
         });
