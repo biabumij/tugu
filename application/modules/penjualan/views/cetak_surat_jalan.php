@@ -66,7 +66,7 @@
 		<br />
 		<br />
 		<table class="minimalistBlack" cellpadding="1" width="98%">
-		<tr>
+			<tr>
                 <th align="center" width="5%">No</th>
 				<th align="center" width="10%">Hari</th>
                 <th align="center" width="10%">Tanggal</th>
