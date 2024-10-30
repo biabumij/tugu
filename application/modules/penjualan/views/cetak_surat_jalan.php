@@ -66,14 +66,14 @@
 		<br />
 		<br />
 		<table class="minimalistBlack" cellpadding="1" width="98%">
-			<tr>
+		<tr>
                 <th align="center" width="5%">No</th>
-				<th align="center" width="15%">Hari</th>
-                <th align="center" width="15%">Tanggal</th>
-				<th align="center" width="21%">Produk</th>
-				<th align="center" width="15%">No. Kendaraan</th>
+				<th align="center" width="10%">Hari</th>
+                <th align="center" width="10%">Tanggal</th>
+				<th align="center" width="20%">Produk</th>
+				<th align="center" width="35%">No. Kendaraan</th>
 				<th align="center" width="15%">Volume</th>
-				<th align="center" width="15%">Satuan</th>
+				<th align="center" width="5%">Satuan</th>
             </tr>
             <?php
             $total = 0;
@@ -102,7 +102,7 @@
             			<td><?php echo tglIndonesia(date('D',strtotime($row['date_production'])));?></td>
 						<td><?php echo date('d-m-Y',strtotime($row['date_production']));?></td>
 						<td><?php echo $row['product_id'] = $this->crud_global->GetField('produk',array('id'=>$row['product_id']),'nama_produk');?></td>
-						<td><?php echo $row['nopol_truck'];?></td>
+						<td align="left"><?php echo $row['nopol_truck'];?></td>
 						<td><?php echo number_format($row['volume'],2,',','.');?></td>
 						<td><?php echo $row['measure'];?></td>
             		</tr>

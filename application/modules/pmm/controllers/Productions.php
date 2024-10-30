@@ -1079,10 +1079,10 @@ class Productions extends Secure_Controller {
 	public function cetak_surat_jalan()
 	{
 		$this->load->library('pdf');
-	
 
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
+        $pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
         $pdf->SetTopMargin(5);
         $pdf->SetFont('helvetica','',7); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
@@ -1092,8 +1092,8 @@ class Productions extends Secure_Controller {
 		$pdf->AddPage('P');
 		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
-		$pdf->SetY(45);
-		$pdf->SetX(6);
+		$pdf->SetY(5);
+		$pdf->SetX(5);
 		$pdf->SetMargins(10, 10);
 
 		$w_date = $this->input->get('filter_date');
