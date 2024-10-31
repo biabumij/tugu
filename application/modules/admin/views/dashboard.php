@@ -304,7 +304,7 @@
                                         </ul>
                                     </th>
                                     <?php
-                                    if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,6,7,8))){
+                                    if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,6,7,8,9))){
                                     ?>
                                     <th width="25%" class="text-center">
                                         <ul class="row text-center list-inline  wowload bounceInUp collapse" id="keuangan">
@@ -333,7 +333,7 @@
                                     ?>
 
                                     <?php
-                                    if(in_array($this->session->userdata('admin_group_id'), array(5))){
+                                    if(in_array($this->session->userdata('admin_group_id'), array(5,9))){
                                     ?>
                                     <th width="25%" class="text-center">
                                         <ul class="row text-center list-inline  wowload bounceInUp collapse" id="keuangan">
