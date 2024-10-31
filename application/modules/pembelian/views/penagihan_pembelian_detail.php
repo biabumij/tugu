@@ -345,7 +345,7 @@
                                 if ($row['verifikasi_dok'] == 'BELUM') { ?>
                                     <blink><p style='color:red; font-weight:bold;'>VERIFIKASI DOKUMEN TERLEBIH DAHULU !!</p></blink>
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 8){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 8 || $this->session->userdata('admin_group_id') == 9){
                                     ?>
                                     <a class="btn btn-default" style="width:150px; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"> HAPUS</a>
                                     <?php
@@ -355,7 +355,7 @@
                                 <br />
                                 <?php if ($row["verifikasi_dok"] === "SUDAH") : ?>
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 8){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 8 || $this->session->userdata('admin_group_id') == 9){
                                     ?>
                                     <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-default" style="width:150px; font-weight:bold; border-radius:10px;"> KIRIM PEMBAYARAN</a>
                                     <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-default" style="width:150px; font-weight:bold; border-radius:10px;"> PEMBAYARAN LUNAS</a>
@@ -364,7 +364,7 @@
                                     ?>
 
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 8){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 8 || $this->session->userdata('admin_group_id') == 9){
                                     ?>
                                     <a href="<?= base_url('pembelian/sunting_tagihan/' . $row["id"]) ?>" class="btn btn-default" style="width:150px; font-weight:bold; border-radius:10px;"> EDIT TAGIHAN</a>
                                     <a href="<?= base_url('pembelian/sunting_verifikasi/' . $row["id"]) ?>" class="btn btn-default" style="width:150px; font-weight:bold; border-radius:10px;"> EDIT VERIFIKASI</a>
@@ -377,7 +377,7 @@
 
                                 <?php if ($row["verifikasi_dok"] === "LENGKAP") : ?>
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 8){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 8 || $this->session->userdata('admin_group_id') == 9){
                                     ?>
                                     <a href="<?= site_url('pembelian/open_penagihan/' . $row['id']); ?>" class="btn btn-default" style="width:20%; font-weight:bold; border-radius:10px;"> PEMBAYARAN BELUM LUNAS</a>
                                     <?php
