@@ -816,7 +816,7 @@
 		$total_nilai_realisasi_bua = $overhead_biaya['total'] + $overhead_jurnal['total'];
 
 		$total_volume_rap_bua = $total_volume;
-		$total_nilai_rap_bua = $rap_bua / 24;
+		$total_nilai_rap_bua = $rap_bua / 3;
 		$total_harsat_rap_bua = $total_nilai_rap_bua / $total_volume_rap_bua;
 		
 		$total_volume_realisasi_bua = $total_volume;
