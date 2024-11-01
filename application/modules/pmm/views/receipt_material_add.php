@@ -65,6 +65,26 @@
                                 <input type="hidden" name="new_price" id="new_price" value="">
                                 
                                 <div class="row">
+                                <?php
+                                $kunci_rakor = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('kunci_rakor')->row_array();
+                                $last_opname = date('d-m-Y', strtotime('+1 days', strtotime($kunci_rakor['date'])));
+
+                                $date_po = $this->db->get_where('pmm_purchase_order',array('id'=>$data['id']))->row_array();
+                                $last_date_po = date('d-m-Y', strtotime('+0 days', strtotime($date_po['date_po'])));
+
+                                $date1 = date_create($last_opname);
+                                $date2 = date_create($last_date_po);
+                                $diff_ok = date_diff($date1,$date2);
+                                if ($diff_ok <= 0) $diff_ok = 0;
+
+                                echo $diff_ok->format("%R%a");
+                                
+                                $selisih = $diff_ok->days;
+
+                                $test = date('Y-m-d', strtotime(+$selisih.'days', strtotime($last_opname)));
+                                $ok = date('d-m-Y', strtotime('+0 days', strtotime($test)));
+                                ?>
+                                <?php echo $ok; ?>
 									<div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Tanggal<span class="required" aria-required="true">*</span></label>
                                         <input type="text" id="date_receipt" name="date_receipt" class="form-control dtpicker" required="" autocomplete="off" placeholder="Tanggal Penerimaan" value="<?php echo date('d-m-Y');?>"" />
@@ -377,14 +397,29 @@
         <?php
         $kunci_rakor = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('kunci_rakor')->row_array();
         $last_opname = date('d-m-Y', strtotime('+1 days', strtotime($kunci_rakor['date'])));
+
+        $date_po = $this->db->get_where('pmm_purchase_order',array('id'=>$data['id']))->row_array();
+        $last_date_po = date('d-m-Y', strtotime('+0 days', strtotime($date_po['date_po'])));
+
+        $date1 = date_create($last_opname);
+        $date2 = date_create($last_date_po);
+        $diff_ok = date_diff($date1,$date2);
+        echo $diff_ok->format("%R%a");
+        
+        $selisih = $diff_ok->format("%R%a");
+        if ($selisih <= 0) $selisih = 0;
+
+        $test = date('Y-m-d', strtotime(+$selisih.'days', strtotime($last_opname)));
+        $ok = date('d-m-Y', strtotime('+0 days', strtotime($test)));
         ?>
+        
         $('input.numberformat').number( true, 2,',','.' );
         $('.dtpicker').daterangepicker({
             singleDatePicker: true,
             locale: {
                 format: 'DD-MM-YYYY'
             },
-            minDate: '<?php echo $last_opname;?>',
+            minDate: '<?php echo $ok;?>',
 			//maxDate: moment().add(+0, 'd').toDate(),
             //minDate: moment().startOf('month').toDate(),
 			maxDate: moment().endOf('month').toDate(),

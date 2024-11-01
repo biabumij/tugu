@@ -324,9 +324,24 @@
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/jquery.number.min.js"></script>
     <script type="text/javascript">
         <?php
-        $kunci_rakor = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('kunci_rakor')->row_array();
-        $last_opname = date('d-m-Y', strtotime('+1 days', strtotime($kunci_rakor['date'])));
+       $kunci_rakor = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('kunci_rakor')->row_array();
+       $last_opname = date('d-m-Y', strtotime('+1 days', strtotime($kunci_rakor['date'])));
+
+       $date_po = $this->db->get_where('pmm_sales_po',array('id'=>$data['id']))->row_array();
+       $last_date_po = date('d-m-Y', strtotime('+0 days', strtotime($date_po['contract_date'])));
+
+        $date1 = date_create($last_opname);
+        $date2 = date_create($last_date_po);
+        $diff_ok = date_diff($date1,$date2);
+        echo $diff_ok->format("%R%a");
+        
+        $selisih = $diff_ok->format("%R%a");
+        if ($selisih <= 0) $selisih = 0;
+
+        $test = date('Y-m-d', strtotime(+$selisih.'days', strtotime($last_opname)));
+        $ok = date('d-m-Y', strtotime('+0 days', strtotime($test)));
         ?>
+
         $('.form-select2').select2();
         $('input.numberformat').number(true, 2, ',', '.');
         $('.dtpicker').daterangepicker({
@@ -334,7 +349,7 @@
             locale: {
                 format: 'DD-MM-YYYY'
             },
-            minDate: '<?php echo $last_opname;?>',
+            minDate: '<?php echo $ok;?>',
 			//maxDate: moment().add(+0, 'd').toDate(),
             //minDate: moment().startOf('month').toDate(),
 			maxDate: moment().endOf('month').toDate(),
