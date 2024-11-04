@@ -5005,14 +5005,17 @@ class Pmm_model extends CI_Model {
         $vol_transfer_semen = $total_volume;
 
         $batching_plant = $harsat_batching_plant * $total_volume;
-        $pemeliharaan_batching_plant = $harsat_pemeliharaan_batching_plant * $total_volume;
-        $penyusutan_batching_plant = $batching_plant - $pemeliharaan_batching_plant;
-        $wheel_loader = ($harsat_wheel_loader * $vol_wheel_loader) + $total_nilai_pemeliharaan_wheel_loader;
-        $pemeliharaan_wheel_loader = $harsat_pemeliharaan_wheel_loader * $vol_pemeliharaan_wheel_loader;
-        $penyusutan_wheel_loader = $wheel_loader - $pemeliharaan_wheel_loader;
-        $truck_mixer = $harsat_truck_mixer * $total_volume;
-        $excavator = $harsat_excavator * $total_volume;
-        $transfer_semen = $harsat_transfer_semen * $total_volume;
+		$pemeliharaan_batching_plant = $harsat_pemeliharaan_batching_plant * $total_volume;
+		//$penyusutan_batching_plant = $batching_plant - $pemeliharaan_batching_plant;
+		$penyusutan_batching_plant = 0;
+		$wheel_loader = ($harsat_wheel_loader * $vol_wheel_loader) + $total_nilai_pemeliharaan_wheel_loader;
+		$pemeliharaan_wheel_loader = $harsat_pemeliharaan_wheel_loader * $vol_pemeliharaan_wheel_loader;
+		//$penyusutan_wheel_loader = $wheel_loader - $pemeliharaan_wheel_loader;
+		$penyusutan_wheel_loader = 0;
+		$truck_mixer = $harsat_truck_mixer * $total_volume;
+		$excavator = $harsat_excavator * $total_volume;
+		$transfer_semen = $harsat_transfer_semen * $total_volume;
+		$bbm_solar = $harsat_bbm_solar * $vol_bbm_solar;
 
         $harsat_batching_plant = ($vol_batching_plant!=0)?$batching_plant / $vol_batching_plant * 1:0;
         $harsat_truck_mixer = ($vol_truck_mixer!=0)?$truck_mixer / $vol_truck_mixer * 1:0;
@@ -5323,14 +5326,17 @@ class Pmm_model extends CI_Model {
         $vol_transfer_semen = $total_volume;
 
         $batching_plant = $harsat_batching_plant * $total_volume;
-        $pemeliharaan_batching_plant = $harsat_pemeliharaan_batching_plant * $total_volume;
-        $penyusutan_batching_plant = $batching_plant - $pemeliharaan_batching_plant;
-        $wheel_loader = ($harsat_wheel_loader * $vol_wheel_loader) + $total_nilai_pemeliharaan_wheel_loader;
-        $pemeliharaan_wheel_loader = $harsat_pemeliharaan_wheel_loader * $vol_pemeliharaan_wheel_loader;
-        $penyusutan_wheel_loader = $wheel_loader - $pemeliharaan_wheel_loader;
-        $truck_mixer = $harsat_truck_mixer * $total_volume;
-        $excavator = $harsat_excavator * $total_volume;
-        $transfer_semen = $harsat_transfer_semen * $total_volume;
+		$pemeliharaan_batching_plant = $harsat_pemeliharaan_batching_plant * $total_volume;
+		//$penyusutan_batching_plant = $batching_plant - $pemeliharaan_batching_plant;
+		$penyusutan_batching_plant = 0;
+		$wheel_loader = ($harsat_wheel_loader * $vol_wheel_loader) + $total_nilai_pemeliharaan_wheel_loader;
+		$pemeliharaan_wheel_loader = $harsat_pemeliharaan_wheel_loader * $vol_pemeliharaan_wheel_loader;
+		//$penyusutan_wheel_loader = $wheel_loader - $pemeliharaan_wheel_loader;
+		$penyusutan_wheel_loader = 0;
+		$truck_mixer = $harsat_truck_mixer * $total_volume;
+		$excavator = $harsat_excavator * $total_volume;
+		$transfer_semen = $harsat_transfer_semen * $total_volume;
+		$bbm_solar = $harsat_bbm_solar * $vol_bbm_solar;
 
         $harsat_batching_plant = ($vol_batching_plant!=0)?$batching_plant / $vol_batching_plant * 1:0;
         $harsat_truck_mixer = ($vol_truck_mixer!=0)?$truck_mixer / $vol_truck_mixer * 1:0;
