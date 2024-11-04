@@ -930,7 +930,7 @@ class Receipt_material extends CI_Controller {
 			'volume' => $volume,
 			'price'	=> $volume * $price,
 			'surat_jalan' => $surat_jalan,
-			/'surat_jalan_file' => $file,
+			'surat_jalan_file' => $file,
 			'no_kendaraan' => $no_kendaraan,
 			'driver' => $driver,
 			'display_measure' => $display_measure,

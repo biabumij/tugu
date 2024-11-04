@@ -311,6 +311,37 @@
         </div>
     </div>
 
+    <div class="modal fade bd-example-modal-lg" id="modalForm" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title">Edit Surat Jalan Pengiriman</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" style="padding: 0 20px 0 20px;" method="POST" action="<?php echo site_url('pmm/productions/edit_process');?>"  enctype="multipart/form-data" onsubmit="setTimeout(function () { window.location.reload(); }, 1000)">
+                        <input type="hidden" name="id_edit" id="id_edit">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="text" id="edit_date" name="edit_date" class="form-control dtpicker" required="" autocomplete="off" />
+                        </div>
+                        <div class="form-group">
+                            <label>Memo</label>
+                            <input type="text" id="edit_memo" name="edit_memo" class="form-control" autocomplete="off" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold; border-radius:10px"> Kirim</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; border-radius:10px">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script type="text/javascript">
         var form_control = '';
@@ -682,6 +713,57 @@
         }
 
         document.getElementById("test").style.display = "none";
+
+        $('#modalForm form').submit(function(event){
+            $('#btn-form').button('loading');
+            var form = $(this);
+            var formdata = false;
+            if (window.FormData){
+                formdata = new FormData(form[0]);
+            }
+            $.ajax({
+                type    : "POST",
+                url     : $(this).attr('action')+"/"+Math.random(),
+                dataType : 'json',
+                data: formdata ? formdata : form.serialize(),
+                success : function(result){
+                    $('#btn-form').button('reset');
+                    if(result.output){
+                        table.ajax.reload();
+                        $("#modalForm").modal('hide');
+                    }else if(result.err){
+                        bootbox.alert(result.err);
+                    }
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+            event.preventDefault();
+            
+        });
+        
+        function EditDataNew(id)
+        {
+            $.ajax({
+                type    : "POST",
+                url     : "<?php echo site_url('pmm/productions/edit_data_detail_new'); ?>",
+                dataType : 'json',
+                data: {id:id},
+                success : function(result){
+                    if(result.data){
+                        $("#modalForm").modal('show');
+                        var data = result.data;
+                        $('#id_edit').val(data.id);
+                        $('#edit_date').val(data.date_production);
+                    }else if(result.err){
+                        bootbox.alert(result.err);
+                    }
+                }
+            });
+            
+        }
         
 		
     </script>

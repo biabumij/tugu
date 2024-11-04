@@ -94,9 +94,11 @@ class Productions extends Secure_Controller {
 				$row['edits'] = '<a href="'.site_url().'pmm/productions/sunting_komposisi/'.$row['id'].'" class="btn btn-warning" style="font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> </a>';
 				$edit = false;
 				$edit = '<a href="javascript:void(0);" onclick="EditData('.$row['id'].')" class="btn btn-warning" style="font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> </a>';	
+				$edit_new = false;
+				$edit_new = '<a href="javascript:void(0);" onclick="EditDataNew('.$row['id'].')" class="btn btn-primary" style="font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> </a>';
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5){
-					//$row['delete'] = $edit.' <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
-					$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
+					$row['delete'] = $edit_new.' <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
+					//$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['delete'] = '-';
 				}
@@ -106,6 +108,52 @@ class Productions extends Secure_Controller {
 
 		}
 		echo json_encode(array('data'=>$data));
+	}
+
+	public function edit_data_detail_new()
+	{
+		$id = $this->input->post('id');
+		$this->db->select('pp.*');
+		$data = $this->db->get_where('pmm_productions pp',array('pp.id'=>$id))->row_array();
+		$data['date_production'] = date('d-m-Y',strtotime($data['date_production']));
+		echo json_encode(array('data'=>$data));		
+	}
+
+	public function edit_process()
+	{
+		$output['output'] = false;
+
+		$this->db->trans_start(); # Starting Transaction
+		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
+
+		$id = $this->input->post('id_edit');
+		$date_production = $this->input->post('edit_date');
+		$memo = $this->input->post('edit_memo');
+
+		$data_p = array(
+			'id' => $id,
+			'date_production' => date('Y-m-d',strtotime($date_production)),
+			'memo' => $memo,
+		);
+
+		$data_p['updated_on'] = date('Y-m-d H:i:s');
+		$data_p['updated_by'] = $this->session->userdata('admin_id');
+		
+		$this->db->update('pmm_productions',$data_p,array('id'=>$id));
+		
+
+		if ($this->db->trans_status() === FALSE) {
+			# Something went wrong.
+			$this->db->trans_rollback();
+			$output['output'] = false;
+		} 
+		else {
+			# Everything is Perfect. 
+			# Committing data to the database.
+			$this->db->trans_commit();
+			$output['output'] = true;
+		}
+		echo json_encode($output);	
 	}
 
 	public function sunting_komposisi($id)
