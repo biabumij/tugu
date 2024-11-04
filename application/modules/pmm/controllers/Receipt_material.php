@@ -923,9 +923,10 @@ class Receipt_material extends CI_Controller {
 		$display_price = $price;
 
 		$data_p = array(
-			'purchase_order_id' => $purchase_order_id,
+			'id' => $id,
 			'date_receipt' => date('Y-m-d',strtotime($date_receipt)),
 			/*'material_id' => $material_id,
+			'purchase_order_id' => $purchase_order_id,
 			'measure' => $measure,
 			'volume' => $volume,
 			'price'	=> $volume * $price,

@@ -5,234 +5,234 @@
 </head>
 
 <body>
-<div class="wrap">
-    
-    <?php echo $this->Templates->PageHeader();?>
+    <div class="wrap">
+        
+        <?php echo $this->Templates->PageHeader();?>
 
-    <div class="page-body">
-        <div class="content">
-            <div class="row animated fadeInUp">
-                <div class="col-sm-12 col-lg-12">
-                    <div class="panel">
-                        <div class="panel-header">
-                            <h4 class="section-subtitle">
-                               <b>SURAT JALAN PENERIMAAN PEMBELIAN</b>
-                            </h4>
-                        </div>
-                        <div class="panel-content">
-                            <table class="table">
-                                <tr>
-                                    <th>Rekanan<span class="required" aria-required="true">*</span></th>
-                                    <th>:</th>
-                                    <td>
-                                        <select id="supplier_id" class="form-control select2">
-                                            <option value="">Pilih Rekanan</option>
-                                            <?php
-                                            foreach ($suppliers as $key => $supplier) {
-                                                $selected = false;
-                                                ?>
-                                                <option value="<?php echo $supplier['id'];?>" <?= $selected;?>><?php echo $supplier['nama'];?></option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th width="200px">No. Pesanan Pembelian<span class="required" aria-required="true">*</span></th>
-                                    <th width="20px">:</th>
-                                    <td >
-                                        <select id="purchase_order" class="form-control select2">
-                                            <option value="">Pilih No.Pesanan Pembelian</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </table>
-  
-                            <div id="alert-receipt-material" class="row">
-                                
+        <div class="page-body">
+            <div class="content">
+                <div class="row animated fadeInUp">
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="panel">
+                            <div class="panel-header">
+                                <h4 class="section-subtitle">
+                                <b>SURAT JALAN PENERIMAAN PEMBELIAN</b>
+                                </h4>
                             </div>
-                            <form id="form-product" class="form-horizontal" action="<?php echo site_url('pmm/receipt_material/process'); ?>"  enctype="multipart/form-data" onsubmit="setTimeout(function () { window.location.reload(); }, 3000)">
-                                <input type="hidden" name="purchase_order_id" id="purchase_order_id" value="">
-                                <input type="hidden" id="date_receipt_val" name="date_receipt_val" value="<?php echo date('d-m-Y');?>">
-                                <input type="hidden" name="receipt_material_id" id="receipt_material_id" value="">
-                                <input type="hidden" name="supplier_id" id="form_supplier_id" value="">
-                                <input type="hidden" name="select_operation" id="select_operation" value="*">
-                                <input type="hidden" name="jumlah_hari" id="jumlah_hari" value="25">
-                                <input type="hidden" id="tax_id" name="tax_id" value="">
-                                <input type="hidden" id="pajak_id" name="pajak_id" value="">
-                                <input type="hidden" name="harsat" id="harsat" value="">
-                                <input type="hidden" name="new_price" id="new_price" value="">
-                                
-                                <div class="row">
-									<div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Tanggal<span class="required" aria-required="true">*</span></label>
-                                        <input type="text" id="date_receipt" name="date_receipt" class="form-control dtpicker" required="" autocomplete="off" placeholder="Tanggal Penerimaan" value="<?php echo date('d-m-Y');?>"" />
-                                    </div>
-                                    <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">No. Surat Jalan<span class="required" aria-required="true">*</span></label>
-                                        <input type="text" id="surat_jalan" name="surat_jalan" class="form-control" required="" autocomplete="off" placeholder="No. Surat Jalan" />
-                                    </div>
-                                </div>
-                                <div class="row">
-									<div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">No. Kendaraan<span class="required" aria-required="true">*</span></label>
-                                        <input type="text" id="no_kendaraan" name="no_kendaraan" class="form-control" autocomplete="off" placeholder="No. Kendaraan"/>
-                                    </div>
-                                    <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Supir<span class="required" aria-required="true">*</span></label>
-                                        <input type="text" id="driver" name="driver" class="form-control" autocomplete="off" placeholder="Supir" />
-                                    </div>
-                                </div>
-                                <br /><br /> 
-                                <div class="row">
-                                    <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Pilih Produk<span class="required" aria-required="true">*</span></label>
-                                        <select id="material_id" name="material_id" class="form-control" required="" >
-                                            <option value="">Pilih Produk</option>
-                                            
-                                        </select>
-                                    </div>
-                                </div>    
-                                <div class="row">
-                                    <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Volume<span class="required" aria-required="true">*</span></label>
-										<input type="text" id="volume" name="volume" class="form-control numberformat" value="" placeholder="Volume" required="" autocomplete="off">
-                                    </div>
-                                    <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Satuan (Satuan berdasarkan PO)<span class="required" aria-required="true">*</span></label>
-                                        <select id="measure_id" name="measure_id" class="form-control" readonly="" required="">
-                                            <option value="">Pilih Satuan</option>
-                                            <?php
-                                            $arr_mes = $this->db->get_where('pmm_measures',array('status'=>'PUBLISH'))->result_array();
-                                            foreach ($arr_mes as $key => $mes) {
-                                                ?>
-                                                <option value="<?php echo $mes['measure_name'];?>"><?php echo $mes['measure_name'];?></option>
+                            <div class="panel-content">
+                                <table class="table">
+                                    <tr>
+                                        <th>Rekanan<span class="required" aria-required="true">*</span></th>
+                                        <th>:</th>
+                                        <td>
+                                            <select id="supplier_id" class="form-control select2">
+                                                <option value="">Pilih Rekanan</option>
                                                 <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Konversi<span class="required" aria-required="true">*</span></label>
-										<input type="text" id="berat_isi" name="berat_isi" class="form-control numberformat" value="1" placeholder="Konversi" required="" autocomplete="off">
-                                    </div>
-                                    <div class="col-sm-6">
-                                    <label for="inputEmail3" class="control-label">Konversi Satuan<span class="required" aria-required="true">*</span></label>
-                                        <select class="form-control" id="konversi_hari" name="konversi_hari" required="">
-                                                <option value="">Pilih Konversi</option>
-                                                <option value="1">Tidak di Konversi</option>
-                                                <option value="2">Konversi ke Hari</option>
+                                                foreach ($suppliers as $key => $supplier) {
+                                                    $selected = false;
+                                                    ?>
+                                                    <option value="<?php echo $supplier['id'];?>" <?= $selected;?>><?php echo $supplier['nama'];?></option>
+                                                    <?php
+                                                }
+                                                ?>
                                             </select>
-                                    </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th width="200px">No. Pesanan Pembelian<span class="required" aria-required="true">*</span></th>
+                                        <th width="20px">:</th>
+                                        <td >
+                                            <select id="purchase_order" class="form-control select2">
+                                                <option value="">Pilih No.Pesanan Pembelian</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+    
+                                <div id="alert-receipt-material" class="row">
+                                    
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Volume Konversi<span class="required" aria-required="true">*</span></label>
-										<input type="text" id="display_volume" name="display_volume" class="form-control numberformat" value="" placeholder="Volume Konversi" required="" autocomplete="off">
+                                <form id="form-product" class="form-horizontal" action="<?php echo site_url('pmm/receipt_material/process'); ?>"  enctype="multipart/form-data" onsubmit="setTimeout(function () { window.location.reload(); }, 3000)">
+                                    <input type="hidden" name="purchase_order_id" id="purchase_order_id" value="">
+                                    <input type="hidden" id="date_receipt_val" name="date_receipt_val" value="<?php echo date('d-m-Y');?>">
+                                    <input type="hidden" name="receipt_material_id" id="receipt_material_id" value="">
+                                    <input type="hidden" name="supplier_id" id="form_supplier_id" value="">
+                                    <input type="hidden" name="select_operation" id="select_operation" value="*">
+                                    <input type="hidden" name="jumlah_hari" id="jumlah_hari" value="25">
+                                    <input type="hidden" id="tax_id" name="tax_id" value="">
+                                    <input type="hidden" id="pajak_id" name="pajak_id" value="">
+                                    <input type="hidden" name="harsat" id="harsat" value="">
+                                    <input type="hidden" name="new_price" id="new_price" value="">
+                                    
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label for="inputEmail3" class="control-label">Tanggal<span class="required" aria-required="true">*</span></label>
+                                            <input type="text" id="date_receipt" name="date_receipt" class="form-control dtpicker" required="" autocomplete="off" placeholder="Tanggal Penerimaan" value="<?php echo date('d-m-Y');?>"" />
                                         </div>
-                                    <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Satuan Konversi<span class="required" aria-required="true">*</span></label>
-                                        <select id="display_measure" name="display_measure" class="form-control" required="">
-                                            <option value="">Pilih Satuan</option>
-                                            <?php
-                                            $arr_mes = $this->db->get_where('pmm_measures',array('status'=>'PUBLISH'))->result_array();
-                                            foreach ($arr_mes as $key => $mes) {
-                                                ?>
-                                                <option value="<?php echo $mes['measure_name'];?>"><?php echo $mes['measure_name'];?></option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <br /><br /> 
-                                <div class="row">
-                                    <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Upload Surat Jalan </label>
-                                        <input type="file" id="surat_jalan_file" name="surat_jalan_file" class="form-control" />
-                                    </div>
-                                    <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Memo </label>
-                                        <input type="text" id="memo" name="memo" class="form-control" autocomplete="off" placeholder="Memo" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                        <div class="col-sm-12 text-right">
-                                            <a href="<?php echo site_url('pmm/purchase_order/manage/' .$id); ?>" class="btn btn-info" style="margin-top:10px; width:100px; font-weight:bold; border-radius:10px;"> KEMBALI</a>
-                                            <button type="submit" name="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;"> KIRIM</button>
-                                             <!-- <button type="button" id="btn-unedit" class="btn btn-info" style="display:none"><i class="fa fa-undo" ></i></button> -->
+                                        <div class="col-sm-6">
+                                            <label for="inputEmail3" class="control-label">No. Surat Jalan<span class="required" aria-required="true">*</span></label>
+                                            <input type="text" id="surat_jalan" name="surat_jalan" class="form-control" required="" autocomplete="off" placeholder="No. Surat Jalan" />
                                         </div>
-                                </div>
-                            </form>
-                            <br />
-                            <div class="text-right">
-                                <button class="btn btn-default" id="btn-view" style="width:250px; font-weight:bold; font-weight:bold; border-radius:10px;"> EDIT & HAPUS SURAT JALAN</button>
-                            </div>
-                            <div id="box-view" style="display:none;">
-                                <div style="color:red; font-weight:bold;"> * Data yang tampil adalah data surat jalan dengan status UNCREATED / belum ditagihkan.<br />
-                                * Data yang tampil adalah data surat jalan periode berjalan.<br />
-                                * Untuk melihat data surat jalan keseluruhan, bisa lihat di tab penerimaan pembelian.
-                                </div><br />
-                                <div class="row">
-                                    <form action="<?php echo site_url('pmm/receipt_material/print_pdf');?>" method="GET" target="_blank">
-                                        <input type="hidden" name="supplier_id" id="print_supplier_id">
-                                        <input type="hidden" name="purchase_order_id" id="print_purchase_id">
-                                        <div class="col-sm-3">
-                                            <input type="text" id="filter_date"  name="filter_date" class="form-control filterdate" placeholder="Filter By Date" autocomplete="off">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label for="inputEmail3" class="control-label">No. Kendaraan<span class="required" aria-required="true">*</span></label>
+                                            <input type="text" id="no_kendaraan" name="no_kendaraan" class="form-control" autocomplete="off" placeholder="No. Kendaraan"/>
                                         </div>
-                                        <div class="col-sm-3">
-                                            <select id="filter_material" name="filter_material" class="form-control">
+                                        <div class="col-sm-6">
+                                            <label for="inputEmail3" class="control-label">Supir<span class="required" aria-required="true">*</span></label>
+                                            <input type="text" id="driver" name="driver" class="form-control" autocomplete="off" placeholder="Supir" />
+                                        </div>
+                                    </div>
+                                    <br /><br /> 
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label for="inputEmail3" class="control-label">Pilih Produk<span class="required" aria-required="true">*</span></label>
+                                            <select id="material_id" name="material_id" class="form-control" required="" >
                                                 <option value="">Pilih Produk</option>
                                                 
                                             </select>
                                         </div>
+                                    </div>    
+                                    <div class="row">
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;">PRINT</button>
+                                            <label for="inputEmail3" class="control-label">Volume<span class="required" aria-required="true">*</span></label>
+                                            <input type="text" id="volume" name="volume" class="form-control numberformat" value="" placeholder="Volume" required="" autocomplete="off">
                                         </div>
-                                    </form>
-                                </div>
+                                        <div class="col-sm-6">
+                                            <label for="inputEmail3" class="control-label">Satuan (Satuan berdasarkan PO)<span class="required" aria-required="true">*</span></label>
+                                            <select id="measure_id" name="measure_id" class="form-control" readonly="" required="">
+                                                <option value="">Pilih Satuan</option>
+                                                <?php
+                                                $arr_mes = $this->db->get_where('pmm_measures',array('status'=>'PUBLISH'))->result_array();
+                                                foreach ($arr_mes as $key => $mes) {
+                                                    ?>
+                                                    <option value="<?php echo $mes['measure_name'];?>"><?php echo $mes['measure_name'];?></option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label for="inputEmail3" class="control-label">Konversi<span class="required" aria-required="true">*</span></label>
+                                            <input type="text" id="berat_isi" name="berat_isi" class="form-control numberformat" value="1" placeholder="Konversi" required="" autocomplete="off">
+                                        </div>
+                                        <div class="col-sm-6">
+                                        <label for="inputEmail3" class="control-label">Konversi Satuan<span class="required" aria-required="true">*</span></label>
+                                            <select class="form-control" id="konversi_hari" name="konversi_hari" required="">
+                                                    <option value="">Pilih Konversi</option>
+                                                    <option value="1">Tidak di Konversi</option>
+                                                    <option value="2">Konversi ke Hari</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label for="inputEmail3" class="control-label">Volume Konversi<span class="required" aria-required="true">*</span></label>
+                                            <input type="text" id="display_volume" name="display_volume" class="form-control numberformat" value="" placeholder="Volume Konversi" required="" autocomplete="off">
+                                            </div>
+                                        <div class="col-sm-6">
+                                            <label for="inputEmail3" class="control-label">Satuan Konversi<span class="required" aria-required="true">*</span></label>
+                                            <select id="display_measure" name="display_measure" class="form-control" required="">
+                                                <option value="">Pilih Satuan</option>
+                                                <?php
+                                                $arr_mes = $this->db->get_where('pmm_measures',array('status'=>'PUBLISH'))->result_array();
+                                                foreach ($arr_mes as $key => $mes) {
+                                                    ?>
+                                                    <option value="<?php echo $mes['measure_name'];?>"><?php echo $mes['measure_name'];?></option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br /><br /> 
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label for="inputEmail3" class="control-label">Upload Surat Jalan </label>
+                                            <input type="file" id="surat_jalan_file" name="surat_jalan_file" class="form-control" />
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="inputEmail3" class="control-label">Memo </label>
+                                            <input type="text" id="memo" name="memo" class="form-control" autocomplete="off" placeholder="Memo" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-sm-12 text-right">
+                                                <a href="<?php echo site_url('pmm/purchase_order/manage/' .$id); ?>" class="btn btn-info" style="margin-top:10px; width:100px; font-weight:bold; border-radius:10px;"> KEMBALI</a>
+                                                <button type="submit" name="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;"> KIRIM</button>
+                                                <!-- <button type="button" id="btn-unedit" class="btn btn-info" style="display:none"><i class="fa fa-undo" ></i></button> -->
+                                            </div>
+                                    </div>
+                                </form>
                                 <br />
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-hover table-bordered" id="guest-table" style="width:100%;">
-                                        <thead>
-                                            <tr>
-                                                <th>No.</th>
-                                                <th>Tanggal</th>
-                                                <th>Rekanan</th>
-												<th>No. Pesanan Pembelian</th>
-                                                <th>No. Surat Jalan</th>
-                                                <th>No. Kendaraan</th>
-                                                <th>Supir</th>
-                                                <th>File</th>
-                                                <th>Memo</th>
-                                                <th>Produk</th>
-                                                <th>Volume</th>
-                                                <th>Satuan</th>
-												<th>Harga Satuan</th>
-												<th>Nilai</th>
-                                                <th>Tindakan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                           
-                                        </tbody>
-                                        <tfoot>
-                                
-                                        </tfoot>
-                                    </table>
+                                <div class="text-right">
+                                    <button class="btn btn-default" id="btn-view" style="width:250px; font-weight:bold; font-weight:bold; border-radius:10px;"> EDIT & HAPUS SURAT JALAN</button>
+                                </div>
+                                <div id="box-view" style="display:none;">
+                                    <div style="color:red; font-weight:bold;"> * Data yang tampil adalah data surat jalan dengan status UNCREATED / belum ditagihkan.<br />
+                                    * Data yang tampil adalah data surat jalan periode berjalan.<br />
+                                    * Untuk melihat data surat jalan keseluruhan, bisa lihat di tab penerimaan pembelian.
+                                    </div><br />
+                                    <div class="row">
+                                        <form action="<?php echo site_url('pmm/receipt_material/print_pdf');?>" method="GET" target="_blank">
+                                            <input type="hidden" name="supplier_id" id="print_supplier_id">
+                                            <input type="hidden" name="purchase_order_id" id="print_purchase_id">
+                                            <div class="col-sm-3">
+                                                <input type="text" id="filter_date"  name="filter_date" class="form-control filterdate" placeholder="Filter By Date" autocomplete="off">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <select id="filter_material" name="filter_material" class="form-control">
+                                                    <option value="">Pilih Produk</option>
+                                                    
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;">PRINT</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <br />
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover table-bordered" id="guest-table" style="width:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Rekanan</th>
+                                                    <th>No. Pesanan Pembelian</th>
+                                                    <th>No. Surat Jalan</th>
+                                                    <th>No. Kendaraan</th>
+                                                    <th>Supir</th>
+                                                    <th>File</th>
+                                                    <th>Memo</th>
+                                                    <th>Produk</th>
+                                                    <th>Volume</th>
+                                                    <th>Satuan</th>
+                                                    <th>Harga Satuan</th>
+                                                    <th>Nilai</th>
+                                                    <th>Tindakan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            
+                                            </tbody>
+                                            <tfoot>
+                                    
+                                            </tfoot>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
-        
     </div>
-</div>
 
     <div class="modal fade bd-example-modal-lg" id="modalForm" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document" >
@@ -249,23 +249,23 @@
                         <input type="hidden" name="edit_po_val" id="edit_po_val">
                         <input type="hidden" name="edit_material_val" id="edit_material_val">
 						<input type="hidden" name="edit_select_operation" id="edit_select_operation" value="*">
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label>Rekanan</label>
                             <input type="text" id="edit_rekanan" name="edit_rekanan" class="form-control" required="" autocomplete="off" readonly="" />
                         </div>
-                       <div class="form-group">
+                        <div class="form-group">
                             <label>Pesanan Pembelian</label>
                             <input type="text" id="edit_no_po" name="edit_no_po" class="form-control" autocomplete="off" readonly="" />
-                        </div>
-                        <div class="form-group">
-                            <label>Tanggal</label>
-                            <input type="text" id="edit_date" name="edit_date" class="form-control dtpicker" required="" autocomplete="off" />
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label>No. Surat Jalan</label>
                             <input type="text" id="edit_surat_jalan" name="edit_surat_jalan" class="form-control" autocomplete="off" readonly="" />
                         </div>
                         <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="text" id="edit_date" name="edit_date" class="form-control dtpicker" required="" autocomplete="off" />
+                        </div>
+                        <!--<div class="form-group">
                             <label>Produk</label>
                             <input type="text" id="edit_material" name="edit_material" class="form-control" required="" autocomplete="off" readonly="" />
                         </div>
@@ -297,7 +297,7 @@
                             <label>Supir</label>
                             <input type="text" id="edit_driver" name="edit_driver" class="form-control" autocomplete="off" readonly="" />
                         </div>
-                        <!--<div class="form-group">
+                        <div class="form-group">
                             <label>Upload Jalan File</label>
                             <input type="file" id="edit_surat_jalan_file" name="edit_surat_jalan_file" class="form-control"/>
                             <input type="hidden" name="edit_surat_jalan_file_val" id="edit_surat_jalan_file_val">
@@ -318,7 +318,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="modal fade bd-example-modal-lg" id="modalMat" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document" >
@@ -359,9 +358,6 @@
         </div>
     </div>
 
-
-    
-    
     <script type="text/javascript">
         var form_control = '';
         var base_url = '<?php echo base_url();?>';
