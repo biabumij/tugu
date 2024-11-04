@@ -339,7 +339,7 @@ class Receipt_material extends CI_Controller {
 
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5){
 					$row['actions'] = $edit.' <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
-					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
+					//$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
 				}
@@ -861,8 +861,6 @@ class Receipt_material extends CI_Controller {
 		echo json_encode(array('data'=>$data,'po'=>$po));		
 	}
 
-
-
 	public function edit_process()
 	{
 		$output['output'] = false;
@@ -927,12 +925,12 @@ class Receipt_material extends CI_Controller {
 		$data_p = array(
 			'purchase_order_id' => $purchase_order_id,
 			'date_receipt' => date('Y-m-d',strtotime($date_receipt)),
-			'material_id' => $material_id,
+			/*'material_id' => $material_id,
 			'measure' => $measure,
 			'volume' => $volume,
 			'price'	=> $volume * $price,
 			'surat_jalan' => $surat_jalan,
-			//'surat_jalan_file' => $file,
+			/'surat_jalan_file' => $file,
 			'no_kendaraan' => $no_kendaraan,
 			'driver' => $driver,
 			'display_measure' => $display_measure,
@@ -940,7 +938,7 @@ class Receipt_material extends CI_Controller {
 			'display_volume' => $display_volume,
 			'display_price' => $volume * $price,
 			'harga_satuan' => $price,
-			'display_harga_satuan' => ($volume * $price) / $display_volume,
+			'display_harga_satuan' => ($volume * $price) / $display_volume,*/
 			'memo' => $memo,
 		);
 
