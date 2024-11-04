@@ -426,7 +426,7 @@
 			$pemakaian_vol_truck_mixer = $total_vol_truck_mixer;
 			$pemakaian_vol_wheel_loader = 0;
 			$pemakaian_vol_pemeliharaan_wheel_loader = 0;
-			$pemakaian_vol_penyusutan_wheel_loader = $pemakaian_vol_pemeliharaan_wheel_loader;
+			$pemakaian_vol_penyusutan_wheel_loader = $total_volume;
 			$pemakaian_vol_excavator = $total_vol_excavator;
 			$pemakaian_vol_transfer_semen = $total_vol_transfer_semen;
 			$pemakaian_vol_bbm_solar = $total_volume_pemakaian_solar;
