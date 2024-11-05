@@ -754,18 +754,18 @@
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($akomodasi,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorO ?>"><?php echo $evaluasi_akomodasi < 0 ? "(".number_format(-$evaluasi_akomodasi,0,',','.').")" : number_format($evaluasi_akomodasi,0,',','.');?></th>
 	        </tr>
-			<tr clas
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">16</th>			
 				<th align="left" class="table-border-pojok-tengah">Biaya Kirim</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_kirim['total'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($kirim,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorP ?>"><?php echo $evaluasi_kirim < 0 ? "(".number_format(-$evaluasi_kirim,0,',','.').")" : number_format($evaluasi_kirim,0,',','.');?></th>
-	        </tr>s="table-total2">
+	        </tr>
+			<tr class="table-total2">
 				<th align="center" colspan="2" class="table-border-spesial-kiri">TOTAL</th>
 				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_rap,0,',','.');?></th>
 				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_realisasi,0,',','.');?></th>
-				<th align="right" class="table-border-spesial-kanan" style="<?php echo $styleColorQ ?>"><?php echo $total_evaluasi < 0 ? "(".number_format(-$total_evaluasi,0,',','.').")" : number_format($total_evaluasi,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-kanan" style="<?php echo $styleColorP ?>"><?php echo $total_evaluasi < 0 ? "(".number_format(-$total_evaluasi,0,',','.').")" : number_format($total_evaluasi,0,',','.');?></th>
 	        </tr>
 	    </table>
 		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
