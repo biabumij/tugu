@@ -781,6 +781,7 @@
 		$rap_bua = $this->db->select('sum(det.jumlah) as total')
 		->from('rap_bua rap')
 		->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
+		->where("det.coa <> 131 ")
 		->where("rap.status = 'PUBLISH'")
 		->where("rap.tanggal_rap_bua < '$date2'")
 		->order_by('rap.tanggal_rap_bua','asc')->limit(1)
