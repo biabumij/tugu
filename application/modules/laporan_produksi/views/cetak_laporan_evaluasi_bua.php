@@ -276,15 +276,6 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_thr_bonus = $this->db->select('rap.*,sum(det.harga_satuan) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 117")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
 			$rap_akomodasi = $this->db->select('rap.*,sum(det.harga_satuan) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
@@ -561,25 +552,6 @@
 			->get()->row_array();
 			$biaya_pengujian = $biaya_pengujian_biaya['total'] + $biaya_pengujian_jurnal['total'];
 
-			$thr_bonus_biaya = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 117")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-
-			$thr_bonus_jurnal = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 117")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-			$thr_bonus = $thr_bonus_biaya['total'] + $thr_bonus_jurnal['total'];
-
 			$akomodasi_biaya = $this->db->select('sum(pdb.jumlah) as total')
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -615,11 +587,10 @@
 			$evaluasi_biaya_sewa_kendaraan = $rap_biaya_sewa_kendaraan['total'] - $biaya_sewa_kendaraan;
 			$evaluasi_biaya_maintenance = $rap_biaya_maintenance['total'] - $biaya_maintenance;
 			$evaluasi_biaya_pengujian = $rap_biaya_pengujian['total'] - $biaya_pengujian;
-			$evaluasi_thr_bonus = $rap_thr_bonus['total'] - $thr_bonus;
 			$evaluasi_akomodasi = $rap_akomodasi['total'] - $akomodasi;
 
-			$total_rap = $rap_gaji['total'] + $rap_konsumsi['total'] + $rap_listrik_internet['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_biaya_lain_lain['total'] + $rap_biaya_sewa_kendaraan['total'] + $rap_biaya_maintenance['total'] + $rap_biaya_pengujian['total'] + $rap_thr_bonus['total'] + $rap_akomodasi['total'];
-			$total_realisasi = $gaji + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $biaya_lain_lain + $biaya_sewa_kendaraan + $biaya_maintenance + $biaya_pengujian + $thr_bonus + $akomodasi;
+			$total_rap = $rap_gaji['total'] + $rap_konsumsi['total'] + $rap_listrik_internet['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_biaya_lain_lain['total'] + $rap_biaya_sewa_kendaraan['total'] + $rap_biaya_maintenance['total'] + $rap_biaya_pengujian['total'] + $rap_akomodasi['total'];
+			$total_realisasi = $gaji + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $biaya_lain_lain + $biaya_sewa_kendaraan + $biaya_maintenance + $biaya_pengujian + $akomodasi;
 			$total_evaluasi = $total_rap - $total_realisasi;
 			?>
 			
@@ -645,7 +616,6 @@
 				$styleColorL = $evaluasi_biaya_sewa_kendaraan < 0 ? 'color:red' : 'color:black';
 				$styleColorM = $evaluasi_biaya_maintenance < 0 ? 'color:red' : 'color:black';
 				$styleColorN = $evaluasi_biaya_pengujian < 0 ? 'color:red' : 'color:black';
-				$styleColorO = $evaluasi_thr_bonus < 0 ? 'color:red' : 'color:black';
 				$styleColorP = $evaluasi_akomodasi < 0 ? 'color:red' : 'color:black';
 				$styleColorQ = $total_evaluasi < 0 ? 'color:red' : 'color:black';
 			?>
@@ -746,13 +716,6 @@
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_biaya_pengujian['total'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($biaya_pengujian,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorN ?>"><?php echo $evaluasi_biaya_pengujian < 0 ? "(".number_format(-$evaluasi_biaya_pengujian,0,',','.').")" : number_format($evaluasi_biaya_pengujian,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">15</th>			
-				<th align="left" class="table-border-pojok-tengah">THR & Bonus</th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_thr_bonus['total'],0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($thr_bonus,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorO ?>"><?php echo $evaluasi_thr_bonus < 0 ? "(".number_format(-$evaluasi_thr_bonus,0,',','.').")" : number_format($evaluasi_thr_bonus,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">16</th>			
