@@ -275,6 +275,7 @@
 			->where("rap.tanggal_rap_bua < '$date2'")
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
+			
 
 			$rap_akomodasi = $this->db->select('rap.*,sum(det.harga_satuan) as total')
 			->from('rap_bua rap')
