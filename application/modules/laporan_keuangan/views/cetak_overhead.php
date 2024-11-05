@@ -108,6 +108,7 @@
 			<tr class="table-active4">
 				<td align="left" width="100%"><b>BIAYA</b></td>
 			</tr>
+			<?php
 			$total_biaya_langsung  = 0;
 			if(!empty($biaya_langsung)){
 				foreach ($biaya_langsung as $key => $bl) {
