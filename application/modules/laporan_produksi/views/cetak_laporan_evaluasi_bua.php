@@ -275,7 +275,7 @@
 			->where("rap.tanggal_rap_bua < '$date2'")
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
-			
+
 
 			$rap_akomodasi = $this->db->select('rap.*,sum(det.harga_satuan) as total')
 			->from('rap_bua rap')
@@ -617,8 +617,8 @@
 				$styleColorL = $evaluasi_biaya_sewa_kendaraan < 0 ? 'color:red' : 'color:black';
 				$styleColorM = $evaluasi_biaya_maintenance < 0 ? 'color:red' : 'color:black';
 				$styleColorN = $evaluasi_biaya_pengujian < 0 ? 'color:red' : 'color:black';
-				$styleColorP = $evaluasi_akomodasi < 0 ? 'color:red' : 'color:black';
-				$styleColorQ = $total_evaluasi < 0 ? 'color:red' : 'color:black';
+				$styleColorO = $evaluasi_akomodasi < 0 ? 'color:red' : 'color:black';
+				$styleColorP = $total_evaluasi < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">1</th>			
@@ -719,17 +719,17 @@
 				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorN ?>"><?php echo $evaluasi_biaya_pengujian < 0 ? "(".number_format(-$evaluasi_biaya_pengujian,0,',','.').")" : number_format($evaluasi_biaya_pengujian,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">16</th>			
+				<th align="center" class="table-border-pojok-kiri">15</th>			
 				<th align="left" class="table-border-pojok-tengah">Akomodasi Tamu</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_akomodasi['total'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($akomodasi,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorP ?>"><?php echo $evaluasi_akomodasi < 0 ? "(".number_format(-$evaluasi_akomodasi,0,',','.').")" : number_format($evaluasi_akomodasi,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorO ?>"><?php echo $evaluasi_akomodasi < 0 ? "(".number_format(-$evaluasi_akomodasi,0,',','.').")" : number_format($evaluasi_akomodasi,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total2">
 				<th align="center" colspan="2" class="table-border-spesial-kiri">TOTAL</th>
 				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_rap,0,',','.');?></th>
 				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_realisasi,0,',','.');?></th>
-				<th align="right" class="table-border-spesial-kanan" style="<?php echo $styleColorQ ?>"><?php echo $total_evaluasi < 0 ? "(".number_format(-$total_evaluasi,0,',','.').")" : number_format($total_evaluasi,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-kanan" style="<?php echo $styleColorP ?>"><?php echo $total_evaluasi < 0 ? "(".number_format(-$total_evaluasi,0,',','.').")" : number_format($total_evaluasi,0,',','.');?></th>
 	        </tr>
 	    </table>
 		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
