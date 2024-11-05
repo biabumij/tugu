@@ -718,7 +718,7 @@
 				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorN ?>"><?php echo $evaluasi_akomodasi < 0 ? "(".number_format(-$evaluasi_akomodasi,0,',','.').")" : number_format($evaluasi_akomodasi,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">16</th>			
+				<th align="center" class="table-border-pojok-kiri">15</th>			
 				<th align="left" class="table-border-pojok-tengah">Biaya Kirim</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_kirim['total'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($kirim,0,',','.');?></th>
