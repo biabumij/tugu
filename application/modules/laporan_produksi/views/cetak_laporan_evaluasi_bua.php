@@ -616,7 +616,7 @@
 			$evaluasi_biaya_maintenance = $rap_biaya_maintenance['total'] - $biaya_maintenance;
 			$evaluasi_biaya_pengujian = $rap_biaya_pengujian['total'] - $biaya_pengujian;
 			$evaluasi_thr_bonus = $rap_thr_bonus['total'] - $thr_bonus;
-			$evaluasi_thr_bonus = $rap_akomodasi['total'] - $akomodasi;
+			$evaluasi_akomodasi = $rap_akomodasi['total'] - $akomodasi;
 
 			$total_rap = $rap_gaji['total'] + $rap_konsumsi['total'] + $rap_listrik_internet['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_biaya_lain_lain['total'] + $rap_biaya_sewa_kendaraan['total'] + $rap_biaya_maintenance['total'] + $rap_biaya_pengujian['total'] + $rap_thr_bonus['total'] + $rap_akomodasi['total'];
 			$total_realisasi = $gaji + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $biaya_lain_lain + $biaya_sewa_kendaraan + $biaya_maintenance + $biaya_pengujian + $thr_bonus + $akomodasi;
