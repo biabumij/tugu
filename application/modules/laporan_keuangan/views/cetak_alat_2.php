@@ -283,7 +283,7 @@
 				$total_vol_excavator += $x['volume'];
 			}
 
-			$date4 = date('Y-m-d', strtotime('-5 days', strtotime($date2)));
+			$date4 = date('Y-m-d', strtotime('+0 days -1 months', strtotime($date2)));
 			$date1_ago = date('2020-01-01');
 			$date2_ago = date('Y-m-d', strtotime('-1 days', strtotime($date4)));
 			$date3_ago = date('Y-m-d', strtotime('-1 months', strtotime($date4)));
@@ -296,6 +296,7 @@
 			->where("cat.status = 'PUBLISH'")
 			->order_by('date','desc')->limit(1)
 			->get()->row_array();
+			file_put_contents("D:\\test.txt", $this->db->last_query());
 
 			$stok_volume_solar_lalu = $stock_opname_solar_ago['volume'];
 			$stok_nilai_solar_lalu = $stock_opname_solar_ago['nilai'];
