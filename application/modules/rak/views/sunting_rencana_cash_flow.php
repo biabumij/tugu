@@ -49,39 +49,9 @@
                                 <form method="POST" action="<?php echo site_url('rak/submit_sunting_rencana_cash_flow');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <input type="hidden" name="id" value="<?= $rak["id"] ?>">
                                     <table class="table table-bordered table-striped">
-                                        <?php
-                                        $tanggal = $rak['tanggal_rencana_kerja'];
-                                        $date = date('Y-m-d',strtotime($tanggal));
-                                        ?>
-                                        <?php
-                                        function tgl_indo($date){
-                                            $bulan = array (
-                                                1 =>   'Januari',
-                                                'Februari',
-                                                'Maret',
-                                                'April',
-                                                'Mei',
-                                                'Juni',
-                                                'Juli',
-                                                'Agustus',
-                                                'September',
-                                                'Oktober',
-                                                'November',
-                                                'Desember'
-                                            );
-                                            $pecahkan = explode('-', $date);
-                                            
-                                            // variabel pecahkan 0 = tanggal
-                                            // variabel pecahkan 1 = bulan
-                                            // variabel pecahkan 2 = tahun
-                                        
-                                            return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
-                                            
-                                        }
-                                        ?>
                                         <tr>
                                             <th width="200px">Tanggal</th>
-                                            <td>: <?= tgl_indo(date($date)); ?></td>
+                                            <td><input type="text" class="form-control dtpicker" name="tanggal_rencana_kerja"  value="<?= $tanggal ?>" /></td>
                                         </tr>
                                         <tr>
                                             <th width="100px">Lampiran</th>

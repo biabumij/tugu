@@ -349,6 +349,8 @@ class Rak extends Secure_Controller {
 			$data['bp'] = $this->pmm_model->getMatByPenawaranRencanaKerjaBP();
 			$data['tm'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTM();
 			$data['wl'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
+			$rak = $this->db->get_where("rak", ["id" => $id])->row_array();
+			$data['tanggal'] = date('d-m-Y',strtotime($rak['tanggal_rencana_kerja']));
 			
 			$this->load->view('rak/sunting_rencana_kerja', $data);
 		} else {
@@ -725,6 +727,8 @@ class Rak extends Secure_Controller {
 			$data['tes'] = '';
 			$data['rak'] = $this->db->get_where("rencana_cash_flow", ["id" => $id])->row_array();
 			$data['lampiran'] = $this->db->get_where("lampiran_rencana_cash_flow", ["rencana_cash_flow_id" => $id])->result_array();
+			$rak = $this->db->get_where("rencana_cash_flow", ["id" => $id])->row_array();
+			$data['tanggal'] = date('d-m-Y',strtotime($rak['tanggal_rencana_kerja']));
 			$this->load->view('rak/sunting_rencana_cash_flow', $data);
 		} else {
 			redirect('admin');
@@ -738,6 +742,7 @@ class Rak extends Secure_Controller {
 		$this->db->trans_strict(FALSE); #
 
 			$id = $this->input->post('id');
+			$tanggal_rencana_kerja = $this->input->post('tanggal_rencana_kerja');
 			$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
 			$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));
 			$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
@@ -749,6 +754,7 @@ class Rak extends Secure_Controller {
 			$pengembalian =  str_replace('.', '', $this->input->post('pengembalian'));
 
 			$arr_update = array(
+				'tanggal_rencana_kerja' =>  date('Y-m-d', strtotime($tanggal_rencana_kerja)),
 				'biaya_bahan' => $biaya_bahan,
 				'biaya_alat' => $biaya_alat,
 				'biaya_bank' => $biaya_bank,
