@@ -858,6 +858,7 @@
                 $('#display_measure').prop('selectedIndex', 1).trigger('change');
             }, 1000);
         });
+
     </script>
 </body>
 </html>
