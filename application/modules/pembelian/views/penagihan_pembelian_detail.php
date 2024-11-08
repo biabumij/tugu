@@ -415,6 +415,7 @@
                                                         <th>Supir</th>
                                                         <th>Volume</th>
                                                         <th>Satuan</th>
+                                                        <th>Surat Jalan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -428,16 +429,17 @@
                                                     if (!empty($table_surat_jalan)) {
                                                         foreach ($table_surat_jalan as $sj) {
                                                     ?>
-                                                            <tr>
-                                                                <td><?= date('d/m/Y', strtotime($sj['date_receipt'])); ?></td>
-                                                                <td><?= $sj['surat_jalan']; ?></td>
-                                                                <td><?= $sj['nama_produk']; ?></td>
-                                                                <td><?= $sj['no_kendaraan']; ?></td>
-                                                                <td><?= $sj['driver']; ?></td>
-                                                                <td style="text-align: right !important;"><?= $this->filter->Rupiah($sj['volume']); ?></td>
-                                                                <td><?= $sj['measure']; ?></td>
-                                                            </tr>
-                                                    <?php
+                                                        <tr>
+                                                            <td><?= date('d/m/Y', strtotime($sj['date_receipt'])); ?></td>
+                                                            <td><?= $sj['surat_jalan']; ?></td>
+                                                            <td><?= $sj['nama_produk']; ?></td>
+                                                            <td><?= $sj['no_kendaraan']; ?></td>
+                                                            <td><?= $sj['driver']; ?></td>
+                                                            <td style="text-align: right !important;"><?= $this->filter->Rupiah($sj['volume']); ?></td>
+                                                            <td><?= $sj['measure']; ?></td>
+                                                            <td><?= $sj['surat_jalan_file'] = '<a href="'.base_url().'uploads/surat_jalan_penerimaan/'.$sj['surat_jalan_file'].'" target="_blank">'.$sj['surat_jalan_file'].'</a>'; ?></td>
+                                                        </tr>
+                                                        <?php
                                                         }
                                                     }
                                                     ?>
