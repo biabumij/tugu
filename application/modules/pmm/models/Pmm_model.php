@@ -3603,7 +3603,7 @@ class Pmm_model extends CI_Model {
 	function getMatByPenawaranPenjualan($id)
     {
 
-        $this->db->select('pp.id as penawaran_id, pp.nomor, ppd.id, ppd.product_id as product_id, pm.nama_produk as nama_produk, pms.measure_name as satuan, ppd.price as harga, ppd.tax_id as tax');
+        $this->db->select('pp.id as penawaran_id, pp.nomor, ppd.id, ppd.product_id as product_id, pm.nama_produk as nama_produk, pms.measure_name as satuan, ppd.price as harga, ppd.tax_id as tax, ppd.pajak_id as pajak');
         $this->db->join('pmm_penawaran_penjualan pp','ppd.penawaran_penjualan_id = pp.id','left');
         $this->db->join('produk pm','ppd.product_id = pm.id','left');
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');

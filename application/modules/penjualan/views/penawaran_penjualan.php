@@ -85,8 +85,9 @@
                                                     <th width="35%">Produk</th>
                                                     <th width="15%">Volume</th>
                                                     <th width="15%">Satuan</th>
-                                                    <th width="15%">Harga Satuan</th>
-													<th width="15%">Pajak</th>
+                                                    <th width="10%">Harga Satuan</th>
+													<th width="10%">Pajak</th>
+                                                    <th width="10%">Pajak (2)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -140,6 +141,20 @@
                                                             ?>
                                                         </select>
                                                     </td>
+                                                    <td>
+                                                        <select id="pajak-1" class="form-control form-select2" name="pajak_1" onchange="changeData(1)" required="">
+                                                            <option value="">Pilih Pajak (2)</option>
+                                                            <?php
+                                                            if(!empty($taxs_2)){
+                                                                foreach ($taxs_2 as $row) {
+                                                                    ?>
+                                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['tax_name'];?></option>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>
                                                         <input type="hidden" name="total_1" id="total-1" class="form-control numberformat"/>
                                                 </tr>
                                             </tbody>
@@ -169,6 +184,17 @@
 										}
 									}
 									?>
+
+                                    <?php
+                                    if(!empty($taxs)){
+                                        foreach ($taxs as $row) {
+                                            ?>
+                                            
+                                            <input type="hidden" id="pajak-val-<?php echo $row['id'];?>" name="pajak_val_<?php echo $row['id'];?>" value="0">
+                                            <?php
+                                        }
+                                    }
+                                    ?>
 									
 									<input type="hidden" id="total-val" name="total" value="0">
                                     <input type="hidden" name="total_product" id="total-product" value="1">
@@ -272,6 +298,7 @@
             var qty = $('#qty-'+id).val();
             var price = $('#price-'+id).val();
             var tax = $('#tax-'+id).val();
+            var pajak = $('#pajak-'+id).val();
             var total = $('#total-'+id).val();
 
             // console.log(measure_id);
@@ -298,16 +325,31 @@
         {
             var total_product = $('#total-product').val();
             var tax_total = $('#tax-val').val();
+            var pajak_total = $('#pajak-val').val();
+
             $('#sub-total-val').val(0);
             $('#tax-val-3').val(0);
             $('#tax-val-4').val(0);
             $('#tax-val-5').val(0);
             $('#tax-val-6').val(0);
+            $('#tax-val-7').val(0);
+            $('#pajak-val-3').val(0);
+            $('#pajak-val-4').val(0);
+            $('#pajak-val-5').val(0);
+            $('#pajak-val-6').val(0);
+            $('#pajak-val-7').val(0);
+
             var sub_total = $('#sub-total-val').val();
             var tax_3 = $('#tax-val-3').val();
             var tax_4 = $('#tax-val-4').val();
             var tax_5 = $('#tax-val-5').val();
             var tax_6 = $('#tax-val-6').val();
+            var tax_7 = $('#tax-val-7').val();
+            var pajak_3 = $('#pajak-val-3').val();
+            var pajak_4 = $('#pajak-val-4').val();
+            var pajak_5 = $('#pajak-val-5').val();
+            var pajak_6 = $('#pajak-val-6').val();
+            var pajak_7 = $('#pajak-val-7').val();
             var total_total = $('#total-val').val();
 
             for (var i = 1; i <= total_product; i++) {
@@ -315,6 +357,7 @@
                 // console.log()
                 // console.log($('#total-'+i).val());
                 var tax = $('#tax-'+i).val();
+                var pajak = $('#pajak-'+i).val();
                 if($('#total-'+i).val() > 0){
                     sub_total = parseInt(sub_total) + parseInt($('#total-'+i).val());
                 }
@@ -335,6 +378,30 @@
                     $('#tax-total-6').show();
                     tax_6 = parseInt(tax_6) + (parseInt($('#total-'+i).val()) * 11) / 100 ;
                 }
+                if(tax == 7){
+                    $('#tax-total-7').show();
+                    tax_7 = parseInt(tax_7) + (parseInt($('#total-'+i).val()) * 1.5) / 100 ;
+                }
+                if(pajak == 3){
+                    $('#pajak-total-3').show();
+                    pajak_3 = parseInt(pajak_3) + (parseInt($('#total-'+i).val()) * 10) / 100 ;
+                }
+                if(pajak == 4){
+                    $('#pajak-total-4').show();
+                    pajak_4 = parseInt(pajak_4) + (parseInt($('#total-'+i).val()) * 0) / 100 ;
+                }
+                if(pajak == 5){
+                    $('#pajak-total-5').show();
+                    pajak_5 = parseInt(pajak_5) + (parseInt($('#total-'+i).val()) * 2) / 100 ;
+                }
+                if(pajak == 6){
+                    $('#pajak-total-6').show();
+                    pajak_6 = parseInt(pajak_6) + (parseInt($('#total-'+i).val()) * 11) / 100 ;
+                }
+                if(pajak == 7){
+                    $('#pajak-total-7').show();
+                    pajak_7 = parseInt(pajak_7) + (parseInt($('#total-'+i).val()) * 1.5) / 100 ;
+                }
 
             }
             $('#sub-total-val').val(sub_total);
@@ -353,7 +420,25 @@
             $('#tax-val-6').val(tax_6);
             $('#tax-total-6 h5').text($.number( tax_6, 2,',','.' ));
 
-            total_total = parseInt(sub_total) + parseInt(tax_3) - parseInt(tax_4) - parseInt(tax_5) + parseInt(tax_6);
+            $('#tax-val-7').val(tax_7);
+            $('#tax-total-7 h5').text($.number( tax_7, 2,',','.' ));
+
+            $('#pajak-val-3').val(pajak_3);
+            $('#pajak-total-3 h5').text($.number( pajak_3, 2,',','.' ));
+
+            $('#pajak-val-4').val(pajak_4);
+            $('#pajak-total-4 h5').text($.number( pajak_4, 2,',','.' ));
+
+            $('#pajak-val-5').val(pajak_5);
+            $('#pajak-total-5 h5').text($.number( pajak_5, 2,',','.' ));
+
+            $('#pajak-val-6').val(pajak_6);
+            $('#pajak-total-6 h5').text($.number( pajak_6, 2,',','.' ));
+
+            $('#pajak-val-7').val(pajak_7);
+            $('#pajak-total-7 h5').text($.number( pajak_7, 2,',','.' ));
+
+            total_total = parseInt(sub_total) + parseInt(tax_3) - parseInt(tax_4) - parseInt(tax_5) - parseInt(tax_7) + parseInt(tax_6) + parseInt(pajak_3) - parseInt(pajak_4) - parseInt(pajak_5) - parseInt(pajak_7) + parseInt(pajak_6);
             $('#total-val').val(total_total);
             $('#total').text($.number( total_total, 0,',','.' ));
         }

@@ -109,6 +109,7 @@
                                         <div class="col-sm-2" id="test">
                                             <div class="form-group">
                                                 <input type="hidden" id="tax_id" name="tax_id" class="form-control" value="" required="" readonly="">
+                                                <input type="hidden" id="pajak_id" name="pajak_id" class="form-control" value="" required="" readonly="">
                                             </div>
                                         </div>
                                     </div>
@@ -563,7 +564,7 @@
                     $('#product_id').html('');
                     $('#alert-receipt-material-total').html('');
                     for (let i in result.data) {
-                        $('#product_id').append('<option value="'+ result.data[i].id +'"  data-tax_id="'+ result.data[i].tax_id +'" data-measure="'+ result.data[i].measure +'">'+ result.data[i].text +'</option>');
+                        $('#product_id').append('<option value="'+ result.data[i].id +'" data-tax_id="'+ result.data[i].tax_id +'" data-pajak_id="'+ result.data[i].pajak_id +'" data-measure="'+ result.data[i].measure +'">'+ result.data[i].text +'</option>');
                         $('#alert-receipt-material-total').append('<div class="col-sm-3">' +
                             '<div class="alert alert-danger text-center">' +
                             '<h5><strong>' + result.data2[i].nama_produk + '</strong></h5>' +
@@ -632,6 +633,8 @@
             $('#measure').val(measure);
             var tax_id = $(this).find(':selected').data('tax_id');
             $('#tax_id').val(tax_id);
+            var pajak_id = $(this).find(':selected').data('pajak_id');
+            $('#pajak_id').val(pajak_id);
         });
 
 

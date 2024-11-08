@@ -277,6 +277,7 @@ class Productions extends Secure_Controller {
 				'no_production' => $no_production,
 				'product_id' => $product_id,
 				'tax_id' => $this->input->post('tax_id'),
+				'pajak_id' => $this->input->post('pajak_id'),
 				'client_id' => $this->input->post('client_id'),
 				'no_production' => $this->input->post('no_production'),
 				'volume' => $volume,

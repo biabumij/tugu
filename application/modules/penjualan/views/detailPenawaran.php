@@ -115,9 +115,10 @@
                                             <th class="text-center" width="20%">Produk</th>
                                             <th class="text-center" width="15%">Volume</th>
                                             <th class="text-center" width="10%">Satuan</th>
-                                            <th class="text-center" width="20%">Harga Satuan</th>
-                                            <th class="text-center" width="20%">Nilai</th>
+                                            <th class="text-center" width="15%">Harga Satuan</th>
+                                            <th class="text-center" width="15%">Nilai</th>
                                             <th class="text-center" width="10%">Pajak</th>
+                                            <th class="text-center" width="10%">Pajak (2)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -125,6 +126,8 @@
                                         $subtotal = 0;
                                         $tax_pph = 0;
                                         $tax_ppn = 0;
+                                        $tax_pph22new = 0;
+                                        $tax_pph22 = 0;
                                         $tax_0 = false;
                                         $total = 0;
 
@@ -132,6 +135,7 @@
                                         <?php foreach($details as $no => $d) : ?>
                                             <?php
                                             $tax = $this->crud_global->GetField('pmm_taxs',array('id'=>$d['tax_id']),'tax_name');
+                                            $tax2 = $this->crud_global->GetField('pmm_taxs',array('id'=>$d['pajak_id']),'tax_name');
                                             $measure = $this->crud_global->GetField('pmm_measures',array('id'=>$d['measure']),'measure_name');
                                             ?>
                                             <tr>
@@ -142,6 +146,7 @@
                                                 <td class="text-right"><?= number_format($d['price'],0,',','.'); ?></td>
                                                 <td class="text-right"><?= number_format($d['total'],0,',','.'); ?></td>
                                                 <td class="text-center"><?= $tax; ?></td>
+                                                <td class="text-center"><?= $tax2; ?></td>
                                             </tr>
                                             <?php
                                             $subtotal += $d['total'];
@@ -153,6 +158,15 @@
                                             }
                                             if($d['tax_id'] == 5){
                                                 $tax_pph += $d['tax'];
+                                            }
+                                            if($d['tax_id'] == 6){
+                                                $tax_ppn11 += $d['tax'];
+                                            }
+                                            if($d['tax_id'] == 7){
+                                                $tax_pph22new = $d['tax'];
+                                            }
+                                            if($d['pajak_id'] == 7){
+                                                $tax_pph22 += $d['pajak'];
                                             }
                                             ?>
                                             <?php endforeach; ?>

@@ -125,6 +125,7 @@
                                                 <th class="text-center">Satuan</th>
                                                 <th class="text-right">Harga Satuan</th>
                                                 <th class="text-center">Pajak</th>
+                                                <th class="text-center">Pajak (2)</th>
                                                 <th class="text-right">Jumlah</th>
                                             </tr>
                                         </thead>
@@ -134,6 +135,8 @@
                                             $tax_pph = 0;
                                             $tax_ppn = 0;
                                             $tax_ppn11 = 0;
+                                            $tax_pph22new = 0;
+                                            $tax_pph22 = 0;
                                             $tax_0 = false;
                                             $total = 0;
                                             ?>
@@ -141,6 +144,7 @@
                                                 <?php
                                                 $product = $this->crud_global->GetField('produk', array('id' => $row['product_id']), 'nama_produk');
 												$taxs = $this->crud_global->GetField('pmm_taxs', array('id' => $row['tax_id']), 'Tax_name');
+                                                $taxs2 = $this->crud_global->GetField('pmm_taxs', array('id' => $row['pajak_id']), 'Tax_name');
                                                 ?>
                                                 <tr>
                                                     <td class="text-center"><?= $key + 1 ?>.</td>
@@ -149,6 +153,7 @@
                                                     <td class="text-center"><?= $row['measure']; ?></td>
                                                     <td class="text-right"><?= number_format($row['price'],0,',','.'); ?></td>
                                                     <td class="text-center"><?= $taxs; ?></td>
+                                                    <td class="text-center"><?= $taxs2; ?></td>
                                                     <td class="text-right"><?= number_format($row['total'],0,',','.'); ?></td>
                                                 </tr>
                                                 <?php
@@ -167,8 +172,14 @@
                                                     if($row['tax_id'] == 6){
 														$tax_ppn11 = $sub_total * 11 / 100;
 													}
+                                                    if($row['tax_id'] == 7){
+														$tax_pph22new = $sub_total * 1.5 / 100;
+													}
+                                                    if($row['pajak_id'] == 7){
+                                                        $tax_pph22 = $sub_total * 1.5 / 100;
+                                                    }
 													
-													$total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;
+													$total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11 - $tax_pph22new - $tax_pph22;
                                                 }
 												?>
                                         </tbody>
@@ -243,10 +254,33 @@
                                                                 <input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_ppn11;?>">
                                                         </div>
                                                 </div>
-                                            
-                                        <?php
-                                        }
-                                        $total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;
+                                                <?php
+                                            }
+
+                                            if($tax_pph22new > 0){
+                                                ?>
+                                                <div class="row">                                                   
+                                                    <label class="col-sm-7 control-label">PAJAK (PPh 22)</label>
+                                                        <div class="col-sm-5 text-right">															
+                                                            <label><?= number_format($tax_pph22new,0,',','.'); ?></label>
+                                                                <input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_pph22new;?>">
+                                                        </div>
+                                                </div>
+                                                <?php
+                                            }
+
+                                            if($tax_pph22 > 0){
+                                                ?>
+                                                <div class="row">                                                   
+                                                    <label class="col-sm-7 control-label">PAJAK (PPh 22)</label>
+                                                        <div class="col-sm-5 text-right">															
+                                                            <label><?= number_format($tax_pph22,0,',','.'); ?></label>
+                                                                <input type="hidden" id="pajak_1" name="pajak_1" value="<?= $tax_pph22;?>">
+                                                        </div>
+                                                </div>
+                                                <?php
+                                            }
+                                        $total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11 - $tax_pph22new - $tax_pph22;
                                         $sisa_tagihan = $this->pmm_finance->getTotalPembayaranPenagihanPenjualan($penagihan['id']);
                                         ?>
 

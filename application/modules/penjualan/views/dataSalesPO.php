@@ -126,6 +126,8 @@
                                     $tax_pph = 0;
                                     $tax_ppn = 0;
                                     $tax_ppn11 = 0;
+                                    $tax_pph22new = 0;
+                                    $tax_pph22 = 0;
                                     $tax_0 = false;
                                     $total = 0;
 
@@ -155,6 +157,12 @@
                                         }
                                         if($d['tax_id'] == 6){
                                             $tax_ppn11 += $d['tax'];
+                                        }
+                                        if($d['tax_id'] == 7){
+                                            $tax_pph22new += $d['tax'];
+                                        }
+                                        if($d['pajak_id'] == 7){
+                                            $tax_pph22 += $d['pajak'];
                                         }
                                         ?>
                                     <?php endforeach; ?>
@@ -203,7 +211,26 @@
                                         </tr>
                                         <?php
                                     }
-                                    $total = $subtotal + $tax_ppn - $tax_pph + $tax_ppn11;
+
+                                    if($tax_pph22new > 0){
+                                        ?>
+                                        <tr>
+                                            <th colspan="5" class="text-right">Pajak (PPh 22)</th>
+                                            <th  class="text-right"><?= number_format($tax_pph22new,0,',','.'); ?></th>
+                                        </tr>
+                                        <?php
+                                    }
+
+                                    if($tax_pph22 > 0){
+                                        ?>
+                                        <tr>
+                                            <th colspan="5" class="text-right">Pajak (PPh 22)</th>
+                                            <th  class="text-right"><?= number_format($tax_pph22,0,',','.'); ?></th>
+                                        </tr>
+                                        <?php
+                                    }
+                                    
+                                    $total = $subtotal + $tax_ppn - $tax_pph + $tax_ppn11 - $tax_pph22new - $tax_pph22;
                                     ?>
                                     
                                     <tr>
