@@ -284,6 +284,15 @@
 			->where("rap.tanggal_rap_bua < '$date2'")
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
+
+			$rap_adm = $this->db->select('rap.*,sum(det.harga_satuan) as total')
+			->from('rap_bua rap')
+			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
+			->where("rap.status = 'PUBLISH'")
+			->where("det.coa = 160")
+			->where("rap.tanggal_rap_bua < '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
+			->get()->row_array();
 			
 			//REALISASI
 			$gaji_biaya = $this->db->select('sum(pdb.jumlah) as total')
@@ -570,6 +579,25 @@
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 			$kirim = $kirim_biaya['total'] + $kirim_jurnal['total'];
+
+			$adm_biaya = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 160")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+
+			$adm_jurnal = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 160")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+			$adm = $adm_biaya['total'] + $adm_jurnal['total'];
 			?>
 
 			<?php
@@ -588,9 +616,10 @@
 			$evaluasi_biaya_pengujian = $rap_biaya_pengujian['total'] - $biaya_pengujian;
 			$evaluasi_akomodasi = $rap_akomodasi['total'] - $akomodasi;
 			$evaluasi_kirim = $rap_kirim['total'] - $kirim;
+			$evaluasi_adm = $rap_adm['total'] - $adm;
 
-			$total_rap = $rap_gaji['total'] + $rap_konsumsi['total'] + $rap_listrik_internet['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_biaya_lain_lain['total'] + $rap_biaya_maintenance['total'] + $rap_biaya_pengujian['total'] + $rap_akomodasi['total'] + $rap_kirim['total'];
-			$total_realisasi = $gaji + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $biaya_lain_lain + $biaya_maintenance + $biaya_pengujian + $akomodasi + $kirim;
+			$total_rap = $rap_gaji['total'] + $rap_konsumsi['total'] + $rap_listrik_internet['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_biaya_lain_lain['total'] + $rap_biaya_maintenance['total'] + $rap_biaya_pengujian['total'] + $rap_akomodasi['total'] + $rap_kirim['total'] + $rap_adm['total'];
+			$total_realisasi = $gaji + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $biaya_lain_lain + $biaya_maintenance + $biaya_pengujian + $akomodasi + $kirim + $adm;
 			$total_evaluasi = $total_rap - $total_realisasi;
 			?>
 			
@@ -617,7 +646,8 @@
 				$styleColorM = $evaluasi_biaya_pengujian < 0 ? 'color:red' : 'color:black';
 				$styleColorN = $evaluasi_akomodasi < 0 ? 'color:red' : 'color:black';
 				$styleColorO = $evaluasi_kirim < 0 ? 'color:red' : 'color:black';
-				$styleColorP = $total_evaluasi < 0 ? 'color:red' : 'color:black';
+				$styleColorP = $evaluasi_adm < 0 ? 'color:red' : 'color:black';
+				$styleColorQ = $total_evaluasi < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">1</th>			
@@ -723,6 +753,13 @@
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_kirim['total'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($kirim,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorO ?>"><?php echo $evaluasi_kirim < 0 ? "(".number_format(-$evaluasi_kirim,0,',','.').")" : number_format($evaluasi_kirim,0,',','.');?></th>
+	        </tr>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">16</th>			
+				<th align="left" class="table-border-pojok-tengah">Biaya Adm Bank</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_adm['total'],0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($adm,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorO ?>"><?php echo $evaluasi_adm < 0 ? "(".number_format(-$evaluasi_adm,0,',','.').")" : number_format($evaluasi_adm,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total2">
 				<th align="center" colspan="2" class="table-border-spesial-kiri">TOTAL</th>
