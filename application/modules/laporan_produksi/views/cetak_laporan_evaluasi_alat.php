@@ -435,7 +435,7 @@
 			//SPESIAL//
 			$total_pemakaian_pemeliharaan_batching_plant = $total_nilai_pemeliharaan_batching_plant;
 			$total_pemakaian_penyusutan_batching_plant = $penyusutan_batching_plant;
-			$total_pemakaian_batching_plant = $total_nilai_batching_plant + $total_pemakaian_penyusutan_batching_plant;
+			$total_pemakaian_batching_plant = $total_nilai_batching_plant + $total_pemakaian_pemeliharaan_batching_plant;
 			$total_pemakaian_truck_mixer = $total_nilai_truck_mixer;
 			$total_pemakaian_pemeliharaan_wheel_loader = $total_nilai_pemeliharaan_wheel_loader;
 			$total_pemakaian_penyusutan_wheel_loader = $penyusutan_wheel_loader;
@@ -499,7 +499,7 @@
 				<th align="right"><?php echo number_format($vol_batching_plant,2,',','.');?></th>
 				<th align="right"><?php echo number_format($harsat_batching_plant,0,',','.');?></th>
 				<th align="right" style="border-right:1px solid black;"><a target="_blank" href="<?= base_url("laporan/cetak_detail_bp?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($batching_plant,0,',','.');?></a></th>
-				<th align="right"><?php echo number_format($pemakaian_vol_batching_plant,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" style="border-right:1px solid black;"><a target="_blank" href="<?= base_url("laporan/cetak_detail_bp?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($total_pemakaian_batching_plant,0,',','.');?></a></th>
 				<?php
@@ -511,44 +511,6 @@
 				?>
 				<th align="right" style="<?php echo $styleColor ?>; border-right:1px solid black;"><?php echo $total_nilai_evaluasi_batching_plant < 0 ? "(".number_format(-$total_nilai_evaluasi_batching_plant,0,',','.').")" : number_format($total_nilai_evaluasi_batching_plant,0,',','.');?></th>
 	        </tr>
-			<!--<tr class="table-baris1">
-				<th align="center" style="border-left:1px solid black;"></th>			
-				<th align="left">&nbsp;&nbsp;Pemeliharaan</th>
-				<th align="center" style="border-right:1px solid black;">M3</th>
-				<th align="right"><?php echo number_format($vol_pemeliharaan_batching_plant,2,',','.');?></th>
-				<th align="right"><?php echo number_format($harsat_pemeliharaan_batching_plant,0,',','.');?></th>
-				<th align="right" style="border-right:1px solid black;"><?php echo number_format($pemeliharaan_batching_plant,0,',','.');?></th>
-				<th align="right"><?php echo number_format($pemakaian_vol_pemeliharaan_batching_plant,2,',','.');?></th>
-				<th align="right"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" style="border-right:1px solid black;"><?php echo number_format($total_pemakaian_pemeliharaan_batching_plant,0,',','.');?></th>
-				<?php
-				$styleColor = $total_vol_evaluasi_pemeliharaan_batching_plant < 0 ? 'color:red' : 'color:black';
-				?>
-				<th align="right" style="<?php echo $styleColor ?>"><?php echo $total_vol_evaluasi_pemeliharaan_batching_plant < 0 ? "(".number_format(-$total_vol_evaluasi_pemeliharaan_batching_plant,2,',','.').")" : number_format($total_vol_evaluasi_pemeliharaan_batching_plant,2,',','.');?></th>
-				<?php
-				$styleColor = $total_nilai_evaluasi_pemeliharaan_batching_plant < 0 ? 'color:red' : 'color:black';
-				?>
-				<th align="right" style="<?php echo $styleColor ?>; border-right:1px solid black;"><?php echo $total_nilai_evaluasi_pemeliharaan_batching_plant < 0 ? "(".number_format(-$total_nilai_evaluasi_pemeliharaan_batching_plant,0,',','.').")" : number_format($total_nilai_evaluasi_pemeliharaan_batching_plant,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center" style="border-left:1px solid black;"></th>			
-				<th align="left">&nbsp;&nbsp;Penyusutan</th>
-				<th align="center" style="border-right:1px solid black;">M3</th>
-				<th align="right"><?php echo number_format($vol_penyusutan_batching_plant,2,',','.');?></th>
-				<th align="right"><?php echo number_format($harsat_penyusutan_batching_plant,0,',','.');?></th>
-				<th align="right" style="border-right:1px solid black;"><?php echo number_format($penyusutan_batching_plant,0,',','.');?></th>
-				<th align="right"><?php echo number_format($pemakaian_vol_penyusutan_batching_plant,2,',','.');?></th>
-				<th align="right"><?php echo number_format($harsat_penyusutan_batching_plant,0,',','.');?></th>
-				<th align="right" style="border-right:1px solid black;"><?php echo number_format($total_pemakaian_penyusutan_batching_plant,0,',','.');?></th>
-				<?php
-				$styleColor = $total_vol_evaluasi_penyusutan_batching_plant < 0 ? 'color:red' : 'color:black';
-				?>
-				<th align="right" style="<?php echo $styleColor ?>"><?php echo $total_vol_evaluasi_penyusutan_batching_plant < 0 ? "(".number_format(-$total_vol_evaluasi_penyusutan_batching_plant,2,',','.').")" : number_format($total_vol_evaluasi_penyusutan_batching_plant,2,',','.');?></th>
-				<?php
-				$styleColor = $total_nilai_evaluasi_penyusutan_batching_plant < 0 ? 'color:red' : 'color:black';
-				?>
-				<th align="right" style="<?php echo $styleColor ?>; border-right:1px solid black;"><?php echo $total_nilai_evaluasi_penyusutan_batching_plant < 0 ? "(".number_format(-$total_nilai_evaluasi_penyusutan_batching_plant,0,',','.').")" : number_format($total_nilai_evaluasi_penyusutan_batching_plant,0,',','.');?></th>
-	        </tr>-->
 			<tr class="table-baris1">
 				<th align="center" style="border-left:1px solid black;">2.</th>			
 				<th align="left">Wheel Loader</th>
@@ -556,7 +518,7 @@
 				<th align="right"><?php echo number_format($vol_wheel_loader,2,',','.');?></th>
 				<th align="right"><?php echo number_format($harsat_wheel_loader,0,',','.');?></th>
 				<th align="right" style="border-right:1px solid black;"><a target="_blank" href="<?= base_url("laporan/cetak_detail_wl?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($wheel_loader,0,',','.');?></a></th>
-				<th align="right"><?php echo number_format($pemakaian_vol_wheel_loader,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" style="border-right:1px solid black;"><a target="_blank" href="<?= base_url("laporan/cetak_detail_wl?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($total_pemakaian_wheel_loader,0,',','.');?></a></th>
 				<?php
@@ -566,46 +528,8 @@
 				<?php
 				$styleColor = $total_nilai_evaluasi_wheel_loader < 0 ? 'color:red' : 'color:black';
 				?>
-				<th align="right" style="<?php echo $styleColorF ?>; border-right:1px solid black;"><?php echo $total_nilai_evaluasi_wheel_loader < 0 ? "(".number_format(-$total_nilai_evaluasi_wheel_loader,0,',','.').")" : number_format($total_nilai_evaluasi_wheel_loader,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColor ?>; border-right:1px solid black;"><?php echo $total_nilai_evaluasi_wheel_loader < 0 ? "(".number_format(-$total_nilai_evaluasi_wheel_loader,0,',','.').")" : number_format($total_nilai_evaluasi_wheel_loader,0,',','.');?></th>
 	        </tr>
-			<!--<tr class="table-baris1">
-				<th align="center" style="border-left:1px solid black;"></th>			
-				<th align="left">&nbsp;&nbsp;Pemeliharaan</th>
-				<th align="center" style="border-right:1px solid black;">M3</th>
-				<th align="right"><?php echo number_format($vol_pemeliharaan_wheel_loader,2,',','.');?></th>
-				<th align="right"><?php echo number_format($harsat_pemeliharaan_wheel_loader,0,',','.');?></th>
-				<th align="right" style="border-right:1px solid black;"><?php echo number_format($pemeliharaan_wheel_loader,0,',','.');?></th>
-				<th align="right"><?php echo number_format($pemakaian_vol_pemeliharaan_wheel_loader,2,',','.');?></th>
-				<th align="right"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" style="border-right:1px solid black;"><?php echo number_format($total_pemakaian_pemeliharaan_wheel_loader,0,',','.');?></th>
-				<?php
-				$styleColor = $total_vol_evaluasi_pemeliharaan_wheel_loader < 0 ? 'color:red' : 'color:black';
-				?>
-				<th align="right" style="<?php echo $styleColor ?>"><?php echo $total_vol_evaluasi_pemeliharaan_wheel_loader < 0 ? "(".number_format(-$total_vol_evaluasi_pemeliharaan_wheel_loader,2,',','.').")" : number_format($total_vol_evaluasi_pemeliharaan_wheel_loader,2,',','.');?></th>
-				<?php
-				$styleColor = $total_nilai_evaluasi_pemeliharaan_wheel_loader < 0 ? 'color:red' : 'color:black';
-				?>
-				<th align="right" style="<?php echo $styleColor ?>; border-right:1px solid black;"><?php echo $total_nilai_evaluasi_pemeliharaan_wheel_loader < 0 ? "(".number_format(-$total_nilai_evaluasi_pemeliharaan_wheel_loader,0,',','.').")" : number_format($total_nilai_evaluasi_pemeliharaan_wheel_loader,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center" style="border-left:1px solid black;"></th>			
-				<th align="left">&nbsp;&nbsp;Penyusutan</th>
-				<th align="center" style="border-right:1px solid black;">M3</th>
-				<th align="right"><?php echo number_format($vol_penyusutan_wheel_loader,2,',','.');?></th>
-				<th align="right"><?php echo number_format($harsat_penyusutan_wheel_loader,0,',','.');?></th>
-				<th align="right" style="border-right:1px solid black;"><?php echo number_format($penyusutan_wheel_loader,0,',','.');?></th>
-				<th align="right"><?php echo number_format($pemakaian_vol_penyusutan_wheel_loader,2,',','.');?></th>
-				<th align="right"><?php echo number_format($harsat_penyusutan_wheel_loader,0,',','.');?></th>
-				<th align="right" style="border-right:1px solid black;"><?php echo number_format($total_pemakaian_penyusutan_wheel_loader,0,',','.');?></th>
-				<?php
-				$styleColor = $total_vol_evaluasi_penyusutan_wheel_loader < 0 ? 'color:red' : 'color:black';
-				?>
-				<th align="right" style="<?php echo $styleColor ?>"><?php echo $total_vol_evaluasi_penyusutan_wheel_loader < 0 ? "(".number_format(-$total_vol_evaluasi_penyusutan_wheel_loader,2,',','.').")" : number_format($total_vol_evaluasi_penyusutan_wheel_loader,2,',','.');?></th>
-				<?php
-				$styleColor = $total_nilai_evaluasi_penyusutan_wheel_loader < 0 ? 'color:red' : 'color:black';
-				?>
-				<th align="right" style="<?php echo $styleColor ?>; border-right:1px solid black;"><?php echo $total_nilai_evaluasi_penyusutan_wheel_loader < 0 ? "(".number_format(-$total_nilai_evaluasi_penyusutan_wheel_loader,0,',','.').")" : number_format($total_nilai_evaluasi_penyusutan_wheel_loader,0,',','.');?></th>
-	        </tr>-->
 			<tr class="table-baris1">
 				<th align="center" style="border-left:1px solid black;">2.</th>			
 				<th align="left">Truck Mixer</th>
@@ -613,11 +537,8 @@
 				<th align="right"><?php echo number_format($vol_truck_mixer,2,',','.');?></th>
 				<th align="right"><?php echo number_format($harsat_truck_mixer,0,',','.');?></th>
 				<th align="right" style="border-right:1px solid black;"><?php echo number_format($truck_mixer,0,',','.');?></th>
-				<th align="right"><?php echo number_format($pemakaian_vol_truck_mixer,2,',','.');?></th>
-				<?php
-				$harsat_truck_mixer = (round($pemakaian_vol_truck_mixer,2)!=0)?($total_pemakaian_truck_mixer / $pemakaian_vol_truck_mixer) * 1:0;
-				?>
-				<th align="right"><?php echo number_format($harsat_truck_mixer,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" style="border-right:1px solid black;"><?php echo number_format($total_pemakaian_truck_mixer,0,',','.');?></th>
 				<?php
 				$styleColor = $total_vol_evaluasi_truck_mixer < 0 ? 'color:red' : 'color:black';

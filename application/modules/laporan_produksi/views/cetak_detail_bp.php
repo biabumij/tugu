@@ -434,7 +434,7 @@
 			//SPESIAL//
 			$total_pemakaian_pemeliharaan_batching_plant = $total_nilai_pemeliharaan_batching_plant;
 			$total_pemakaian_penyusutan_batching_plant = $penyusutan_batching_plant;
-			$total_pemakaian_batching_plant = $total_nilai_batching_plant + $total_pemakaian_penyusutan_batching_plant;
+			$total_pemakaian_batching_plant = $total_nilai_batching_plant + $total_pemakaian_pemeliharaan_batching_plant;
 			$total_pemakaian_truck_mixer = $total_nilai_truck_mixer;
 			$total_pemakaian_pemeliharaan_wheel_loader = $total_nilai_pemeliharaan_wheel_loader;
 			$total_pemakaian_penyusutan_wheel_loader = $penyusutan_wheel_loader;
@@ -496,8 +496,8 @@
 				<th align="right"><?php echo number_format($vol_batching_plant,2,',','.');?></th>
 				<th align="right"><?php echo number_format($harsat_batching_plant,0,',','.');?></th>
 				<th align="right" style="border-right:1px solid black;"><?php echo number_format($batching_plant,0,',','.');?></th>
-				<th align="right"><?php echo number_format($pemakaian_vol_batching_plant,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_pemakaian_batching_plant / $pemakaian_vol_batching_plant,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" style="border-right:1px solid black;"><?php echo number_format($total_pemakaian_batching_plant,0,',','.');?></th>
 				<?php
 				$styleColor = $total_vol_evaluasi_batching_plant < 0 ? 'color:red' : 'color:black';
@@ -532,9 +532,9 @@
 				<th align="right" style="border-bottom:1px solid black;"><?php echo number_format($vol_penyusutan_batching_plant,2,',','.');?></th>
 				<th align="right" style="border-bottom:1px solid black;"><?php echo number_format($harsat_penyusutan_batching_plant,0,',','.');?></th>
 				<th align="right" style="border-right:1px solid black; border-bottom:1px solid black;"><?php echo number_format($penyusutan_batching_plant,0,',','.');?></th>
-				<th align="right" style="border-bottom:1px solid black;"><?php echo number_format($pemakaian_vol_penyusutan_batching_plant,2,',','.');?></th>
-				<th align="right" style="border-bottom:1px solid black;"><?php echo number_format($total_pemakaian_penyusutan_batching_plant / $pemakaian_vol_penyusutan_batching_plant,0,',','.');?></th>
-				<th align="right" style="border-right:1px solid black; border-bottom:1px solid black;"><?php echo number_format($total_pemakaian_penyusutan_batching_plant,0,',','.');?></th>
+				<th align="right" style="border-bottom:1px solid black;"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right" style="border-bottom:1px solid black;"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" style="border-right:1px solid black; border-bottom:1px solid black;"><?php echo number_format(0,0,',','.');?></th>
 				<?php
 				$styleColor = $total_vol_evaluasi_penyusutan_batching_plant < 0 ? 'color:red' : 'color:black';
 				?>
