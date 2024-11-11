@@ -29,7 +29,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 140 "); //Biaya Maintenance Wheel Loader
         $this->db->where('b.status','PAID');
         $this->db->group_by('c.coa_parent');
-        $this->db->order_by('c.coa_number','asc');
+        $this->db->order_by('c.coa_number','asc')->limit(1);
         $query = $this->db->get('pmm_biaya b');
         return $query->result_array();
     }
@@ -78,7 +78,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 140 "); //Biaya Maintenance Wheel Loader
         $this->db->where('b.status','PAID');
         $this->db->group_by('c.coa_parent');
-        $this->db->order_by('c.coa_number','asc');
+        $this->db->order_by('c.coa_number','asc')->limit(1);
         $query = $this->db->get('pmm_jurnal_umum b');
         return $query->result_array();
     }
