@@ -365,15 +365,15 @@
                                     <div class="table-responsive">
                                         <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                             <tr>
-                                                <td style="vertical-align:middle" class="text-right" width="50%">Sudah Input Realisasi?</td>
+                                                <td style="vertical-align:middle" class="text-right" width="50%">Input Realisasi?</td>
                                                 <td width="50%">
                                                     <table width="100%">
                                                         <tr>
-                                                            <td width="20%">SUDAH </td>
+                                                            <td width="20%">Ya </td>
                                                             <td><input type="checkbox" name="realisasi" id="realisasi" value="0" <?= (isset($rak) && $rak['realisasi'] == 0) ? 'checked' : '' ;?> /></td>
                                                         </tr>
                                                         <tr>
-                                                            <td width="20%">BELUM </td>
+                                                            <td width="20%">Tidak </td>
                                                             <td><input type="checkbox" name="realisasi" id="realisasi" value="1"<?= (isset($rak) && $rak['realisasi'] == 1) ? 'checked' : '' ;?> /></td>
                                                         </tr>
                                                     </table>
