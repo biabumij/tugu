@@ -383,6 +383,147 @@
                                             </tbody>
                                         </table>    
                                     </div>
+
+                                    <div class="table-responsive">
+                                        <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                            <tr>
+                                                <td style="vertical-align:middle">Sudah realisasi?</td>
+                                                <td>
+                                                    <table width="100%">
+                                                        <tr>
+                                                            <td width="20%">YA </td>
+                                                            <td><input type="checkbox" name="realisasi" id="realisasi" value="0"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="20%">TIDAK </td>
+                                                            <td><input type="checkbox" name="realisasi" id="realisasi" value="1"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>    
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th width="5%">NO.</th>
+                                                    <th width="30%">URAIAN</th>
+                                                    <th width="35%">VOLUME</th>
+                                                    <th width="35%">NILAI</th>                                 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center">1.</td>
+                                                    <td class="text-left">Semen</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_a" name="vol_realisasi_a" class="form-control numberformat text-right" value="0" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_a" name="nilai_realisasi_a" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">2.</td>
+                                                    <td class="text-left">Pasir</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_b" name="vol_realisasi_b" class="form-control numberformat text-right" value="0" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_b" name="nilai_realisasi_b" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">3.</td>
+                                                    <td class="text-left">Batu 10-20</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_c" name="vol_realisasi_c" class="form-control numberformat text-right" value="0" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_c" name="nilai_realisasi_c" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">4.</td>
+                                                    <td class="text-left">Batu 20-30</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_d" name="vol_realisasi_d" class="form-control numberformat text-right" value="0" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_d" name="nilai_realisasi_d" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">5.</td>
+                                                    <td class="text-left">Additive</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_e" name="vol_realisasi_e" class="form-control numberformat text-right" value="0" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_e" name="nilai_realisasi_e" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>    
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th width="5%">NO.</th>
+                                                    <th width="30%">URAIAN</th>
+                                                    <th width="35%">VOLUME</th>
+                                                    <th width="35%">NILAI</th>                                 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center">1.</td>
+                                                    <td class="text-left">Batching Plant + Genset </td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_bp" name="vol_realisasi_bp" class="form-control numberformat text-right" value="0" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_bp" name="nilai_realisasi_bp" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">2.</td>
+                                                    <td class="text-left">Wheel Loader</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_tm" name="vol_realisasi_tm" class="form-control numberformat text-right" value="0" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_tm" name="nilai_realisasi_tm" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">3.</td>
+                                                    <td class="text-left">Truck Mixer</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_wl" name="vol_realisasi_wl" class="form-control numberformat text-right" value="0" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_wl" name="nilai_realisasi_wl" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">4.</td>
+                                                    <td class="text-left">BBM Solar</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_solar" name="vol_realisasi_solar" class="form-control numberformat text-right" value="0" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_solar" name="nilai_realisasi_solar" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>    
+                                    </div>
+
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="form-group">

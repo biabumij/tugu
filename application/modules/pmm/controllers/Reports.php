@@ -9700,107 +9700,260 @@ class Reports extends CI_Controller {
 				<th class="text-left" colspan="16"><b>C. TOTAL KEBUTUHAN BAHAN</b></th>
 			</tr>
 			<tr class="table-baris">
+			<?php
+				$realisasi_1 = $this->db->select('*')
+				->from('rak')
+				->where("tanggal_rencana_kerja between '$date_agustus24_awal' and '$date_agustus24_akhir'")
+				->get()->row_array();
+				$vol_realisasi_semen_1 = $realisasi_1['vol_realisasi_a'];
+				$nilai_realisasi_semen_1 = $realisasi_1['nilai_realisasi_a'];
+				$total_volume_semen_300_1_all = (($total_volume_semen_300_1 + $total_volume_semen_300_18_1) * $realisasi_1['realisasi']) + $vol_realisasi_semen_1;
+				$total_nilai_semen_300_1_all = (($total_nilai_semen_300_1 + $total_nilai_semen_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_semen_2;
+				
+				$vol_realisasi_pasir_1 = $realisasi_1['vol_realisasi_b'];
+				$nilai_realisasi_pasir_1 = $realisasi_1['nilai_realisasi_b'];
+				$total_volume_pasir_300_1_all = (($total_volume_pasir_300_1 + $total_volume_pasir_300_18_1) * $realisasi_1['realisasi']) + $vol_realisasi_pasir_1;
+				$total_nilai_pasir_300_1_all = (($total_nilai_pasir_300_1 + $total_nilai_pasir_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_pasir_2;
+
+				$vol_realisasi_batu1020_1 = $realisasi_1['vol_realisasi_c'];
+				$nilai_realisasi_batu1020_1 = $realisasi_1['nilai_realisasi_c'];
+				$total_volume_batu1020_300_1_all = (($total_volume_batu1020_300_1 + $total_volume_batu1020_300_18_1) * $realisasi_1['realisasi']) + $vol_realisasi_batu1020_1;
+				$total_nilai_batu1020_300_1_all = (($total_nilai_batu1020_300_1 + $total_nilai_batu1020_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_batu1020_2;
+
+				$vol_realisasi_batu2030_1 = $realisasi_1['vol_realisasi_d'];
+				$nilai_realisasi_batu2030_1 = $realisasi_1['nilai_realisasi_d'];
+				$total_volume_batu2030_300_1_all = (($total_volume_batu2030_300_1 + $total_volume_batu2030_300_18_1) * $realisasi_1['realisasi']) + $vol_realisasi_batu2030_1;
+				$total_nilai_batu2030_300_1_all = (($total_nilai_batu2030_300_1 + $total_nilai_batu2030_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_batu2030_2;
+
+				$vol_realisasi_additive_1 = $realisasi_1['vol_realisasi_e'];
+				$nilai_realisasi_additive_1 = $realisasi_1['nilai_realisasi_e'];
+				$total_volume_additive_300_1_all = (($total_volume_additive_300_1 + $total_volume_additive_300_18_1) * $realisasi_1['realisasi']) + $vol_realisasi_additive_1;
+				$total_nilai_additive_300_1_all = (($total_nilai_additive_300_1 + $total_nilai_additive_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_additive_2;
+
+				$realisasi_2 = $this->db->select('*')
+				->from('rak')
+				->where("tanggal_rencana_kerja between '$date_september24_awal' and '$date_september24_akhir'")
+				->get()->row_array();
+				$vol_realisasi_semen_2 = $realisasi_2['vol_realisasi_a'];
+				$nilai_realisasi_semen_2 = $realisasi_2['nilai_realisasi_a'];
+				$total_volume_semen_300_2_all = (($total_volume_semen_300_2 + $total_volume_semen_300_18_2) * $realisasi_2['realisasi']) + $vol_realisasi_semen_2;
+				$total_nilai_semen_300_2_all = (($total_nilai_semen_300_2 + $total_nilai_semen_300_18_2) * $realisasi_2['realisasi']) + $nilai_realisasi_semen_2;
+
+				$vol_realisasi_pasir_2 = $realisasi_2['vol_realisasi_b'];
+				$nilai_realisasi_pasir_2 = $realisasi_2['nilai_realisasi_b'];
+				$total_volume_pasir_300_2_all = (($total_volume_pasir_300_2 + $total_volume_pasir_300_18_2) * $realisasi_2['realisasi']) + $vol_realisasi_pasir_2;
+				$total_nilai_pasir_300_2_all = (($total_nilai_pasir_300_2 + $total_nilai_pasir_300_18_2) * $realisasi_2['realisasi']) + $nilai_realisasi_pasir_2;
+
+				$vol_realisasi_batu1020_2 = $realisasi_2['vol_realisasi_c'];
+				$nilai_realisasi_batu1020_2 = $realisasi_2['nilai_realisasi_c'];
+				$total_volume_batu1020_300_2_all = (($total_volume_batu1020_300_2 + $total_volume_batu1020_300_18_2) * $realisasi_2['realisasi']) + $vol_realisasi_batu1020_2;
+				$total_nilai_batu1020_300_2_all = (($total_nilai_batu1020_300_2 + $total_nilai_batu1020_300_18_2) * $realisasi_2['realisasi']) + $nilai_realisasi_batu1020_2;
+
+				$vol_realisasi_batu2030_2 = $realisasi_2['vol_realisasi_d'];
+				$nilai_realisasi_batu2030_2 = $realisasi_2['nilai_realisasi_d'];
+				$total_volume_batu2030_300_2_all = (($total_volume_batu2030_300_2 + $total_volume_batu2030_300_18_2) * $realisasi_2['realisasi']) + $vol_realisasi_batu2030_2;
+				$total_nilai_batu2030_300_2_all = (($total_nilai_batu2030_300_2 + $total_nilai_batu2030_300_18_2) * $realisasi_2['realisasi']) + $nilai_realisasi_batu2030_2;
+
+				$vol_realisasi_additive_2 = $realisasi_2['vol_realisasi_e'];
+				$nilai_realisasi_additive_2 = $realisasi_2['nilai_realisasi_e'];
+				$total_volume_additive_300_2_all = (($total_volume_additive_300_2 + $total_volume_additive_300_18_2) * $realisasi_2['realisasi']) + $vol_realisasi_additive_2;
+				$total_nilai_additive_300_2_all = (($total_nilai_additive_300_2 + $total_nilai_additive_300_18_2) * $realisasi_2['realisasi']) + $nilai_realisasi_additive_2;
+		
+				$realisasi_3 = $this->db->select('*')
+				->from('rak')
+				->where("tanggal_rencana_kerja between '$date_oktober24_awal' and '$date_oktober24_akhir'")
+				->get()->row_array();
+				$vol_realisasi_semen_3 = $realisasi_3['vol_realisasi_a'];
+				$nilai_realisasi_semen_3 = $realisasi_3['nilai_realisasi_a'];
+				$total_volume_semen_300_3_all = (($total_volume_semen_300_3 + $total_volume_semen_300_18_3) * $realisasi_3['realisasi']) + $vol_realisasi_semen_3;
+				$total_nilai_semen_300_3_all = (($total_nilai_semen_300_3 + $total_nilai_semen_300_18_3) * $realisasi_3['realisasi'] + $nilai_realisasi_semen_3);
+
+				$vol_realisasi_pasir_3 = $realisasi_3['vol_realisasi_b'];
+				$nilai_realisasi_pasir_3 = $realisasi_3['nilai_realisasi_b'];
+				$total_volume_pasir_300_3_all = (($total_volume_pasir_300_3 + $total_volume_pasir_300_18_3) * $realisasi_3['realisasi']) + $vol_realisasi_pasir_3;
+				$total_nilai_pasir_300_3_all = (($total_nilai_pasir_300_3 + $total_nilai_pasir_300_18_3) * $realisasi_3['realisasi'] + $nilai_realisasi_pasir_3);
+
+				$vol_realisasi_batu1020_3 = $realisasi_3['vol_realisasi_c'];
+				$nilai_realisasi_batu1020_3 = $realisasi_3['nilai_realisasi_c'];
+				$total_volume_batu1020_300_3_all = (($total_volume_batu1020_300_3 + $total_volume_batu1020_300_18_3) * $realisasi_3['realisasi']) + $vol_realisasi_batu1020_3;
+				$total_nilai_batu1020_300_3_all = (($total_nilai_batu1020_300_3 + $total_nilai_batu1020_300_18_3) * $realisasi_3['realisasi'] + $nilai_realisasi_batu1020_3);
+
+				$vol_realisasi_batu2030_3 = $realisasi_3['vol_realisasi_d'];
+				$nilai_realisasi_batu2030_3 = $realisasi_3['nilai_realisasi_d'];
+				$total_volume_batu2030_300_3_all = (($total_volume_batu2030_300_3 + $total_volume_batu2030_300_18_3) * $realisasi_3['realisasi']) + $vol_realisasi_batu2030_3;
+				$total_nilai_batu2030_300_3_all = (($total_nilai_batu2030_300_3 + $total_nilai_batu2030_300_18_3) * $realisasi_3['realisasi'] + $nilai_realisasi_batu2030_3);
+
+				$vol_realisasi_additive_3 = $realisasi_3['vol_realisasi_e'];
+				$nilai_realisasi_additive_3 = $realisasi_3['nilai_realisasi_e'];
+				$total_volume_additive_300_3_all = (($total_volume_additive_300_3 + $total_volume_additive_300_18_3) * $realisasi_3['realisasi']) + $vol_realisasi_additive_3;
+				$total_nilai_additive_300_3_all = (($total_nilai_additive_300_3 + $total_nilai_additive_300_18_3) * $realisasi_3['realisasi'] + $nilai_realisasi_additive_3);
+
+				$realisasi_4 = $this->db->select('*')
+				->from('rak')
+				->where("tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
+				->get()->row_array();
+				$vol_realisasi_semen_4 = $realisasi_4['vol_realisasi_a'];
+				$nilai_realisasi_semen_4 = $realisasi_4['nilai_realisasi_a'];
+				$total_volume_semen_300_4_all = (($total_volume_semen_300_4 + $total_volume_semen_300_18_4) * $realisasi_4['realisasi']) + $vol_realisasi_semen_4;
+				$total_nilai_semen_300_4_all = (($total_nilai_semen_300_4 + $total_nilai_semen_300_18_4) * $realisasi_4['realisasi']) + $nilai_realisasi_semen_4;
+
+				$vol_realisasi_pasir_4 = $realisasi_4['vol_realisasi_b'];
+				$nilai_realisasi_pasir_4 = $realisasi_4['nilai_realisasi_b'];
+				$total_volume_pasir_300_4_all = (($total_volume_pasir_300_4 + $total_volume_pasir_300_18_4) * $realisasi_4['realisasi']) + $vol_realisasi_pasir_4;
+				$total_nilai_pasir_300_4_all = (($total_nilai_pasir_300_4 + $total_nilai_pasir_300_18_4) * $realisasi_4['realisasi']) + $nilai_realisasi_pasir_4;
+
+				$vol_realisasi_batu1020_4 = $realisasi_4['vol_realisasi_c'];
+				$nilai_realisasi_batu1020_4 = $realisasi_4['nilai_realisasi_c'];
+				$total_volume_batu1020_300_4_all = (($total_volume_batu1020_300_4 + $total_volume_batu1020_300_18_4) * $realisasi_4['realisasi']) + $vol_realisasi_batu1020_4;
+				$total_nilai_batu1020_300_4_all = (($total_nilai_batu1020_300_4 + $total_nilai_batu1020_300_18_4) * $realisasi_4['realisasi']) + $nilai_realisasi_batu1020_4;
+
+				$vol_realisasi_batu2030_4 = $realisasi_4['vol_realisasi_d'];
+				$nilai_realisasi_batu2030_4 = $realisasi_4['nilai_realisasi_d'];
+				$total_volume_batu2030_300_4_all = (($total_volume_batu2030_300_4 + $total_volume_batu2030_300_18_4) * $realisasi_4['realisasi']) + $vol_realisasi_batu2030_4;
+				$total_nilai_batu2030_300_4_all = (($total_nilai_batu2030_300_4 + $total_nilai_batu2030_300_18_4) * $realisasi_4['realisasi']) + $nilai_realisasi_batu2030_4;
+
+				$vol_realisasi_additive_4 = $realisasi_4['vol_realisasi_e'];
+				$nilai_realisasi_additive_4 = $realisasi_4['nilai_realisasi_e'];
+				$total_volume_additive_300_4_all = (($total_volume_additive_300_4 + $total_volume_additive_300_18_4) * $realisasi_4['realisasi']) + $vol_realisasi_additive_4;
+				$total_nilai_additive_300_4_all = (($total_nilai_additive_300_4 + $total_nilai_additive_300_18_4) * $realisasi_4['realisasi']) + $nilai_realisasi_additive_4;
+
+				$realisasi_5 = $this->db->select('*')
+				->from('rak')
+				->where("tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
+				->get()->row_array();
+				$vol_realisasi_semen_5 = $realisasi_5['vol_realisasi_a'];
+				$nilai_realisasi_semen_5 = $realisasi_5['nilai_realisasi_a'];
+				$total_volume_semen_300_5_all = (($total_volume_semen_300_5 + $total_volume_semen_300_18_5) * $realisasi_5['realisasi']) + $vol_realisasi_semen_5;
+				$total_nilai_semen_300_5_all = (($total_nilai_semen_300_5 + $total_nilai_semen_300_18_5) * $realisasi_5['realisasi']) + $nilai_realisasi_semen_5;
+
+				$vol_realisasi_pasir_5 = $realisasi_5['vol_realisasi_b'];
+				$nilai_realisasi_pasir_5 = $realisasi_5['nilai_realisasi_b'];
+				$total_volume_pasir_300_5_all = (($total_volume_pasir_300_5 + $total_volume_pasir_300_18_5) * $realisasi_5['realisasi']) + $vol_realisasi_pasir_5;
+				$total_nilai_pasir_300_5_all = (($total_nilai_pasir_300_5 + $total_nilai_pasir_300_18_5) * $realisasi_5['realisasi']) + $nilai_realisasi_pasir_5;
+				
+				$vol_realisasi_batu1020_5 = $realisasi_5['vol_realisasi_c'];
+				$nilai_realisasi_batu1020_5 = $realisasi_5['nilai_realisasi_c'];
+				$total_volume_batu1020_300_5_all = (($total_volume_batu1020_300_5 + $total_volume_batu1020_300_18_5) * $realisasi_5['realisasi']) + $vol_realisasi_batu1020_5;
+				$total_nilai_batu1020_300_5_all = (($total_nilai_batu1020_300_5 + $total_nilai_batu1020_300_18_5) * $realisasi_5['realisasi']) + $nilai_realisasi_batu1020_5;
+
+				$vol_realisasi_batu2030_5 = $realisasi_5['vol_realisasi_d'];
+				$nilai_realisasi_batu2030_5 = $realisasi_5['nilai_realisasi_d'];
+				$total_volume_batu2030_300_5_all = (($total_volume_batu2030_300_5 + $total_volume_batu2030_300_18_5) * $realisasi_5['realisasi']) + $vol_realisasi_batu2030_5;
+				$total_nilai_batu2030_300_5_all = (($total_nilai_batu2030_300_5 + $total_nilai_batu2030_300_18_5) * $realisasi_5['realisasi']) + $nilai_realisasi_batu2030_5;
+
+				$vol_realisasi_additive_5 = $realisasi_5['vol_realisasi_e'];
+				$nilai_realisasi_additive_5 = $realisasi_5['nilai_realisasi_e'];
+				$total_volume_additive_300_5_all = (($total_volume_additive_300_5 + $total_volume_additive_300_18_5) * $realisasi_5['realisasi']) + $vol_realisasi_additive_5;
+				$total_nilai_additive_300_5_all = (($total_nilai_additive_300_5 + $total_nilai_additive_300_18_5) * $realisasi_5['realisasi']) + $nilai_realisasi_additive_5;
+				?>
 				<th class="text-center"></th>
 				<th class="text-left">Semen</th>
 				<th class="text-right"><?php echo number_format($harsat_rap_beton_semen,0,',','.');?></th>
-				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_semen_300_1 +$total_volume_semen_300_18_1,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_semen_300_1 + $total_nilai_semen_300_18_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_semen_300_2 + $total_volume_semen_300_18_2,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_semen_300_2 + $total_nilai_semen_300_18_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_semen_300_3 + $total_volume_semen_300_18_3,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_semen_300_3 + $total_nilai_semen_300_18_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_semen_300_4 + $total_volume_semen_300_18_4,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_semen_300_4 + $total_nilai_semen_300_18_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_semen_300_5 + $total_volume_semen_300_18_5,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_semen_300_5 + $total_nilai_semen_300_18_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_semen_300 + $total_volume_semen_300_18,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_semen_300 + $total_nilai_semen_300_18,0,',','.');?></th>
+				<th class="text-center">Ton</th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_1_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_1_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_2_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_2_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_3_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_3_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_4_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_4_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_5_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_5_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_semen_300_1_all + $total_volume_semen_300_2_all + $total_volume_semen_300_3_all + $total_volume_semen_300_4_all + $total_volume_semen_300_5_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_semen_300_1_all + $total_nilai_semen_300_2_all + $total_nilai_semen_300_3_all + $total_nilai_semen_300_4_all + $total_volume_semen_300_5_all,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Pasir</th>
 				<th class="text-right"><?php echo number_format($harsat_rap_beton_pasir,0,',','.');?></th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_pasir_300_1 +$total_volume_pasir_300_18_1,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_1 + $total_nilai_pasir_300_18_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_pasir_300_2 + $total_volume_pasir_300_18_2,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_2 + $total_nilai_pasir_300_18_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_pasir_300_3 + $total_volume_pasir_300_18_3,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_3 + $total_nilai_pasir_300_18_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_pasir_300_4 + $total_volume_pasir_300_18_4,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_4 + $total_nilai_pasir_300_18_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_pasir_300_5 + $total_volume_pasir_300_18_5,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_5 + $total_nilai_pasir_300_18_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_pasir_300 + $total_volume_pasir_300_18,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_pasir_300 + $total_nilai_pasir_300_18,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_1_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_1_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_2_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_2_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_3_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_3_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_4_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_4_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_5_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_5_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pasir_300_1_all + $total_volume_pasir_300_2_all + $total_volume_pasir_300_3_all + $total_volume_pasir_300_4_all + $total_volume_pasir_300_5_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pasir_300_1_all + $total_nilai_pasir_300_2_all + $total_nilai_pasir_300_3_all + $total_nilai_pasir_300_4_all + $total_nilai_pasir_300_5_all,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Batu Split 10 - 20</th>
 				<th class="text-right"><?php echo number_format($harsat_rap_beton_batu1020,0,',','.');?></th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_1 +$total_volume_batu1020_300_18_1,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_1 + $total_nilai_batu1020_300_18_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_2 + $total_volume_batu1020_300_18_2,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_2 + $total_nilai_batu1020_300_18_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_3 + $total_volume_batu1020_300_18_3,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_3 + $total_nilai_batu1020_300_18_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_4 + $total_volume_batu1020_300_18_4,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_4 + $total_nilai_batu1020_300_18_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_5 + $total_volume_batu1020_300_18_5,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_5 + $total_nilai_batu1020_300_18_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_batu1020_300 + $total_volume_batu1020_300_18,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300 + $total_nilai_batu1020_300_18,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_1_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_1_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_2_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_2_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_3_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_3_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_4_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_4_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_5_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_5_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu1020_300_1_all + $total_volume_batu1020_300_2_all + $total_volume_batu1020_300_3_all + $total_volume_batu1020_300_4_all + $total_volume_batu1020_300_5_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu1020_300_1_all + $total_nilai_batu1020_300_2_all + $total_nilai_batu1020_300_3_all + $total_nilai_batu1020_300_4_all + $total_nilai_batu1020_300_5_all,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Batu Split 20 - 30</th>
-				<th class="text-right"><?php echo number_format($harsat_rap_beton_batu1020,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harsat_rap_beton_batu2030,0,',','.');?></th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_1 +$total_volume_batu2030_300_18_1,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_1 + $total_nilai_batu2030_300_18_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_2 + $total_volume_batu2030_300_18_2,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_2 + $total_nilai_batu2030_300_18_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_3 + $total_volume_batu2030_300_18_3,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_3 + $total_nilai_batu2030_300_18_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_4 + $total_volume_batu2030_300_18_4,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_4 + $total_nilai_batu2030_300_18_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_5 + $total_volume_batu2030_300_18_5,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_5 + $total_nilai_batu2030_300_18_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_batu2030_300 + $total_volume_batu2030_300_18,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300 + $total_nilai_batu2030_300_18,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_1_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_1_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_2_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_2_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_3_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_3_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_4_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_4_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_5_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_5_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_batu2030_300_1_all + $total_volume_batu2030_300_2_all + $total_volume_batu2030_300_3_all + $total_volume_batu2030_300_4_all + $total_volume_batu2030_300_5_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_batu2030_300_1_all + $total_nilai_batu2030_300_2_all + $total_nilai_batu2030_300_3_all + $total_nilai_batu2030_300_4_all + $total_nilai_batu2030_300_5_all,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Additive</th>
 				<th class="text-right"><?php echo number_format($harsat_rap_beton_additive,0,',','.');?></th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_additive_300_1 +$total_volume_additive_300_18_1,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_additive_300_1 + $total_nilai_additive_300_18_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_additive_300_2 + $total_volume_additive_300_18_2,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_additive_300_2 + $total_nilai_additive_300_18_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_additive_300_3 + $total_volume_additive_300_18_3,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_additive_300_3 + $total_nilai_additive_300_18_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_additive_300_4 + $total_volume_additive_300_18_4,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_additive_300_4 + $total_nilai_additive_300_18_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_additive_300_5 + $total_volume_additive_300_18_5,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_additive_300_5 + $total_nilai_additive_300_18_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_additive_300 + $total_volume_additive_300_18,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_additive_300 + $total_nilai_additive_300_18,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_1_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_1_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_2_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_2_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_3_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_3_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_4_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_4_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_5_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_5_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_additive_300_1_all + $total_volume_additive_300_2_all + $total_volume_additive_300_3_all + $total_volume_additive_300_4_all + $total_volume_additive_300_5_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_additive_300_1_all + $total_nilai_additive_300_2_all + $total_nilai_additive_300_3_all + $total_nilai_additive_300_4_all + $total_nilai_additive_300_5_all,0,',','.');?></th>
 			</tr>
 			<tr class="table-total">
+				<?php
+				$jumlah_kebutuhan_bahan_1 = $total_nilai_semen_300_1_all + $total_nilai_pasir_300_1_all + $total_nilai_batu1020_300_1_all +  $total_nilai_batu2030_300_1_all + $total_nilai_additive_300_1_all;
+				$jumlah_kebutuhan_bahan_2 = $total_nilai_semen_300_2_all + $total_nilai_pasir_300_2_all + $total_nilai_batu1020_300_2_all +  $total_nilai_batu2030_300_2_all + $total_nilai_additive_300_2_all;
+				$jumlah_kebutuhan_bahan_3 = $total_nilai_semen_300_3_all + $total_nilai_pasir_300_3_all + $total_nilai_batu1020_300_3_all +  $total_nilai_batu2030_300_3_all + $total_nilai_additive_300_3_all;
+				$jumlah_kebutuhan_bahan_4 = $total_nilai_semen_300_4_all + $total_nilai_pasir_300_4_all + $total_nilai_batu1020_300_4_all +  $total_nilai_batu2030_300_4_all + $total_nilai_additive_300_4_all;
+				$jumlah_kebutuhan_bahan_5 = $total_nilai_semen_300_5_all + $total_nilai_pasir_300_5_all + $total_nilai_batu1020_300_5_all +  $total_nilai_batu2030_300_5_all + $total_nilai_additive_300_5_all;
+				?>
 				<th class="text-right" colspan="4">JUMLAH</th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($jumlah_bahan_1 + $jumlah_bahan2_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kebutuhan_bahan_1,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($jumlah_bahan_2 + $jumlah_bahan2_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kebutuhan_bahan_2,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($jumlah_bahan_3 + $jumlah_bahan2_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kebutuhan_bahan_3,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($jumlah_bahan_4 + $jumlah_bahan2_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kebutuhan_bahan_4,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($jumlah_bahan_5 + $jumlah_bahan2_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kebutuhan_bahan_5,0,',','.');?></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($jumlah_bahan_300 + $jumlah_bahan_300_18,0,',','.');?></th>
 			</tr>
@@ -9891,99 +10044,220 @@ class Reports extends CI_Controller {
 				<th class="text-left" colspan="16"><b>D. TOTAL BIAYA PERALATAN</b></th>
 			</tr>
 			<?php
-			$total_volume_bp = $total_volume_bp_1 + $total_volume_bp_2 + $total_volume_bp_3 + $total_volume_bp_4 + $total_volume_bp_5;
-			$total_nilai_bp = $total_nilai_bp_1 + $total_nilai_bp_2 + $total_nilai_bp_3 +  + $total_nilai_bp_4 +  + $total_nilai_bp_5;
+			$realisasi_1 = $this->db->select('*')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_agustus24_awal' and '$date_agustus24_akhir'")
+			->get()->row_array();
+			$vol_realisasi_bp_1 = $realisasi_1['vol_realisasi_bp'];
+			$nilai_realisasi_bp_1 = $realisasi_1['nilai_realisasi_bp'];
+			$vol_realisasi_bp_1 = ($total_volume_bp_1 * $realisasi_1['realisasi']) + $vol_realisasi_bp_1;
+			$nilai_realisasi_bp_1 = ($total_nilai_bp_1 * $realisasi_1['realisasi']) + $nilai_realisasi_bp_1;
+
+			$vol_realisasi_tm_1 = $realisasi_1['vol_realisasi_tm'];
+			$nilai_realisasi_tm_1 = $realisasi_1['nilai_realisasi_tm'];
+			$vol_realisasi_tm_1 = ($total_volume_tm_1 * $realisasi_1['realisasi']) + $vol_realisasi_tm_1;
+			$nilai_realisasi_tm_1 = ($total_nilai_tm_1 * $realisasi_1['realisasi']) + $nilai_realisasi_tm_1;
+
+			$vol_realisasi_wl_1 = $realisasi_1['vol_realisasi_wl'];
+			$nilai_realisasi_wl_1 = $realisasi_1['nilai_realisasi_wl'];
+			$vol_realisasi_wl_1 = ($total_volume_wl_1 * $realisasi_1['realisasi']) + $vol_realisasi_wl_1;
+			$nilai_realisasi_wl_1 = ($total_nilai_wl_1 * $realisasi_1['realisasi']) + $nilai_realisasi_wl_1;
+
+			$vol_realisasi_solar_1 = $realisasi_1['vol_realisasi_solar'];
+			$nilai_realisasi_solar_1 = $realisasi_1['nilai_realisasi_solar'];
+			$vol_realisasi_solar_1 = ($total_volume_solar_1 * $realisasi_1['realisasi']) + $vol_realisasi_solar_1;
+			$nilai_realisasi_solar_1 = ($total_nilai_solar_1 * $realisasi_1['realisasi']) + $nilai_realisasi_solar_1;
+
+			$realisasi_2 = $this->db->select('*')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_september24_awal' and '$date_september24_akhir'")
+			->get()->row_array();
+			$vol_realisasi_bp_2 = $realisasi_2['vol_realisasi_bp'];
+			$nilai_realisasi_bp_2 = $realisasi_2['nilai_realisasi_bp'];
+			$vol_realisasi_bp_2 = ($total_volume_bp_2 * $realisasi_2['realisasi']) + $vol_realisasi_bp_2;
+			$nilai_realisasi_bp_2 = ($total_nilai_bp_2 * $realisasi_2['realisasi']) + $nilai_realisasi_bp_2;
+
+			$vol_realisasi_tm_2 = $realisasi_2['vol_realisasi_tm'];
+			$nilai_realisasi_tm_2 = $realisasi_2['nilai_realisasi_tm'];
+			$vol_realisasi_tm_2 = ($total_volume_tm_2 * $realisasi_2['realisasi']) + $vol_realisasi_tm_2;
+			$nilai_realisasi_tm_2 = ($total_nilai_tm_2 * $realisasi_2['realisasi']) + $nilai_realisasi_tm_2;
+
+			$vol_realisasi_wl_2 = $realisasi_2['vol_realisasi_wl'];
+			$nilai_realisasi_wl_2 = $realisasi_2['nilai_realisasi_wl'];
+			$vol_realisasi_wl_2 = ($total_volume_wl_2 * $realisasi_2['realisasi']) + $vol_realisasi_wl_2;
+			$nilai_realisasi_wl_2 = ($total_nilai_wl_2 * $realisasi_2['realisasi']) + $nilai_realisasi_wl_2;
+
+			$vol_realisasi_solar_2 = $realisasi_2['vol_realisasi_solar'];
+			$nilai_realisasi_solar_2 = $realisasi_2['nilai_realisasi_solar'];
+			$vol_realisasi_solar_2 = ($total_volume_solar_2 * $realisasi_2['realisasi']) + $vol_realisasi_solar_2;
+			$nilai_realisasi_solar_2 = ($total_nilai_solar_2 * $realisasi_2['realisasi']) + $nilai_realisasi_solar_2;
+
+			$realisasi_3 = $this->db->select('*')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_oktober24_awal' and '$date_oktober24_akhir'")
+			->get()->row_array();
+			$vol_realisasi_bp_3 = $realisasi_3['vol_realisasi_bp'];
+			$nilai_realisasi_bp_3 = $realisasi_3['nilai_realisasi_bp'];
+			$vol_realisasi_bp_3 = ($total_volume_bp_3 * $realisasi_3['realisasi']) + $vol_realisasi_bp_3;
+			$nilai_realisasi_bp_3 = ($total_nilai_bp_3 * $realisasi_3['realisasi']) + $nilai_realisasi_bp_3;
+
+			$vol_realisasi_tm_3 = $realisasi_3['vol_realisasi_tm'];
+			$nilai_realisasi_tm_3 = $realisasi_3['nilai_realisasi_tm'];
+			$vol_realisasi_tm_3 = ($total_volume_tm_3 * $realisasi_3['realisasi']) + $vol_realisasi_tm_3;
+			$nilai_realisasi_tm_3 = ($total_nilai_tm_3 * $realisasi_3['realisasi']) + $nilai_realisasi_tm_3;
+
+			$vol_realisasi_wl_3 = $realisasi_3['vol_realisasi_wl'];
+			$nilai_realisasi_wl_3 = $realisasi_3['nilai_realisasi_wl'];
+			$vol_realisasi_wl_3 = ($total_volume_wl_3 * $realisasi_3['realisasi']) + $vol_realisasi_wl_3;
+			$nilai_realisasi_wl_3 = ($total_nilai_wl_3 * $realisasi_3['realisasi']) + $nilai_realisasi_wl_3;
+
+			$vol_realisasi_solar_3 = $realisasi_3['vol_realisasi_solar'];
+			$nilai_realisasi_solar_3 = $realisasi_3['nilai_realisasi_solar'];
+			$vol_realisasi_solar_3 = ($total_volume_solar_3 * $realisasi_3['realisasi']) + $vol_realisasi_solar_3;
+			$nilai_realisasi_solar_3 = ($total_nilai_solar_3 * $realisasi_3['realisasi']) + $nilai_realisasi_solar_3;
+
+			$realisasi_4 = $this->db->select('*')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
+			->get()->row_array();
+			$vol_realisasi_bp_4 = $realisasi_4['vol_realisasi_bp'];
+			$nilai_realisasi_bp_4 = $realisasi_4['nilai_realisasi_bp'];
+			$vol_realisasi_bp_4 = ($total_volume_bp_4 * $realisasi_4['realisasi']) + $vol_realisasi_bp_4;
+			$nilai_realisasi_bp_4 = ($total_nilai_bp_4 * $realisasi_4['realisasi']) + $nilai_realisasi_bp_4;
+
+			$vol_realisasi_tm_4 = $realisasi_4['vol_realisasi_tm'];
+			$nilai_realisasi_tm_4 = $realisasi_4['nilai_realisasi_tm'];
+			$vol_realisasi_tm_4 = ($total_volume_tm_4 * $realisasi_4['realisasi']) + $vol_realisasi_tm_4;
+			$nilai_realisasi_tm_4 = ($total_nilai_tm_4 * $realisasi_4['realisasi']) + $nilai_realisasi_tm_4;
+
+			$vol_realisasi_wl_4 = $realisasi_4['vol_realisasi_wl'];
+			$nilai_realisasi_wl_4 = $realisasi_4['nilai_realisasi_wl'];
+			$vol_realisasi_wl_4 = ($total_volume_wl_4 * $realisasi_4['realisasi']) + $vol_realisasi_wl_4;
+			$nilai_realisasi_wl_4 = ($total_nilai_wl_4 * $realisasi_4['realisasi']) + $nilai_realisasi_wl_4;
+
+			$vol_realisasi_solar_4 = $realisasi_4['vol_realisasi_solar'];
+			$nilai_realisasi_solar_4 = $realisasi_4['nilai_realisasi_solar'];
+			$vol_realisasi_solar_4 = ($total_volume_solar_4 * $realisasi_4['realisasi']) + $vol_realisasi_solar_4;
+			$nilai_realisasi_solar_4 = ($total_nilai_solar_4 * $realisasi_4['realisasi']) + $nilai_realisasi_solar_4;
+
+			$realisasi_5 = $this->db->select('*')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
+			->get()->row_array();
+			$vol_realisasi_bp_5 = $realisasi_5['vol_realisasi_bp'];
+			$nilai_realisasi_bp_5 = $realisasi_5['nilai_realisasi_bp'];
+			$vol_realisasi_bp_5 = ($total_volume_bp_5 * $realisasi_5['realisasi']) + $vol_realisasi_bp_5;
+			$nilai_realisasi_bp_5 = ($total_nilai_bp_5 * $realisasi_5['realisasi']) + $nilai_realisasi_bp_5;
+
+			$vol_realisasi_tm_5 = $realisasi_5['vol_realisasi_tm'];
+			$nilai_realisasi_tm_5 = $realisasi_5['nilai_realisasi_tm'];
+			$vol_realisasi_tm_5 = ($total_volume_tm_5 * $realisasi_5['realisasi']) + $vol_realisasi_tm_5;
+			$nilai_realisasi_tm_5 = ($total_nilai_tm_5 * $realisasi_5['realisasi']) + $nilai_realisasi_tm_5;
+
+			$vol_realisasi_wl_5 = $realisasi_5['vol_realisasi_wl'];
+			$nilai_realisasi_wl_5 = $realisasi_5['nilai_realisasi_wl'];
+			$vol_realisasi_wl_5 = ($total_volume_wl_5 * $realisasi_5['realisasi']) + $vol_realisasi_wl_5;
+			$nilai_realisasi_wl_5 = ($total_nilai_wl_5 * $realisasi_5['realisasi']) + $nilai_realisasi_wl_5;
+
+			$vol_realisasi_solar_5 = $realisasi_5['vol_realisasi_solar'];
+			$nilai_realisasi_solar_5 = $realisasi_5['nilai_realisasi_solar'];
+			$vol_realisasi_solar_5 = ($total_volume_solar_5 * $realisasi_5['realisasi']) + $vol_realisasi_solar_5;
+			$nilai_realisasi_solar_5 = ($total_nilai_solar_5 * $realisasi_5['realisasi']) + $nilai_realisasi_solar_5;
 			?>
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Batching Plant</th>
 				<th class="text-right"><?php echo number_format($harsat_rap_alat_bp,0,',','.');?></th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_bp_1,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_bp_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_bp_2,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_bp_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_bp_3,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_bp_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_bp_4,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_bp_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_bp_5,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_bp_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_bp_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_bp_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_bp_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_bp_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_bp_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_bp_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_bp_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_bp_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_bp_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_bp_5,0,',','.');?></th>
+			`	<?php
+				$total_volume_bp = $vol_realisasi_bp_1 + $vol_realisasi_bp_2 + $vol_realisasi_bp_3 + $vol_realisasi_bp_4 + $vol_realisasi_bp_5;
+				$total_nilai_bp = $nilai_realisasi_bp_1 + $nilai_realisasi_bp_2 + $nilai_realisasi_bp_3 + $nilai_realisasi_bp_4 + $nilai_realisasi_bp_5;
+				?>`
 				<th class="text-right"><?php echo number_format($total_volume_bp,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_bp,0,',','.');?></th>
 			</tr>
-			<?php
-			$total_volume_tm = $total_volume_tm_1 + $total_volume_tm_2 + $total_volume_tm_3 + $total_volume_tm_4 + $total_volume_tm_5;
-			$total_nilai_tm = $total_nilai_tm_1 + $total_nilai_tm_2 + $total_nilai_tm_3 +  + $total_nilai_tm_4 +  + $total_nilai_tm_5;
-			?>
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Truck Mixer</th>
 				<th class="text-right"><?php echo number_format($harsat_rap_alat_tm,0,',','.');?></th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_tm_1,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_tm_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_tm_2,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_tm_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_tm_3,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_tm_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_tm_4,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_tm_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_tm_5,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_tm_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_tm_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_tm_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_tm_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_tm_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_tm_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_tm_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_tm_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_tm_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_tm_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_tm_5,0,',','.');?></th>
+				<?php
+				$total_volume_tm = $vol_realisasi_tm_1 + $vol_realisasi_tm_2 + $vol_realisasi_tm_3 + $vol_realisasi_tm_4 + $vol_realisasi_tm_5;
+				$total_nilai_tm = $nilai_realisasi_tm_1 + $nilai_realisasi_tm_2 + $nilai_realisasi_tm_3+ $nilai_realisasi_tm_4 + $nilai_realisasi_tm_5;
+				?>
 				<th class="text-right"><?php echo number_format($total_volume_tm,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_tm,0,',','.');?></th>
 			</tr>
-			<?php
-			$total_volume_wl = $total_volume_wl_1 + $total_volume_wl_2 + $total_volume_wl_3 + $total_volume_wl_4 + $total_volume_wl_5;
-			$total_nilai_wl = $total_nilai_wl_1 + $total_nilai_wl_2 + $total_nilai_wl_3 +  + $total_nilai_wl_4 +  + $total_nilai_wl_5;
-			?>
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Wheel Loader</th>
 				<th class="text-right"><?php echo number_format($harsat_rap_alat_wl,0,',','.');?></th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_wl_1,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_wl_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_wl_2,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_wl_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_wl_3,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_wl_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_wl_4,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_wl_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_wl_5,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_wl_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_wl_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_wl_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_wl_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_wl_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_wl_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_wl_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_wl_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_wl_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_wl_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_wl_5,0,',','.');?></th>
+				<?php
+				$total_volume_wl = $vol_realisasi_wl_1 + $vol_realisasi_wl_2 + $vol_realisasi_wl_3 + $vol_realisasi_wl_4 + $vol_realisasi_wl_5;
+				$total_nilai_wl = $nilai_realisasi_wl_1 + $nilai_realisasi_wl_2 + $nilai_realisasi_wl_3 + $nilai_realisasi_wl_4 + $nilai_realisasi_wl_5;
+				?>
 				<th class="text-right"><?php echo number_format($total_volume_wl,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_wl,0,',','.');?></th>
 			</tr>
-			<?php
-			$total_volume_solar = $total_volume_solar_1 + $total_volume_solar_2 + $total_volume_solar_3 + $total_volume_solar_4 + $total_volume_solar_5;
-			$total_nilai_solar = $total_nilai_solar_1 + $total_nilai_solar_2 + $total_nilai_solar_3 +  + $total_nilai_solar_4 +  + $total_nilai_solar_5;
-			?>
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Solar</th>
 				<th class="text-right"><?php echo number_format($harsat_rap_alat_solar,0,',','.');?></th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_solar_1,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_solar_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_solar_2,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_solar_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_solar_3,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_solar_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_solar_4,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_solar_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_solar_5,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_solar_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_solar_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_solar_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_solar_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_solar_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_solar_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_solar_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_solar_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_solar_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($vol_realisasi_solar_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_solar_5,0,',','.');?></th>
+				<?php
+				$total_volume_solar = $vol_realisasi_solar_1 + $vol_realisasi_solar_2 + $vol_realisasi_solar_3 + $vol_realisasi_solar_4 + $vol_realisasi_solar_15;
+				$total_nilai_solar = $nilai_realisasi_solar_1 + $nilai_realisasi_solar_2 + $nilai_realisasi_solar_3 + $nilai_realisasi_solar_4 + $nilai_realisasi_solar_5;
+				?>
 				<th class="text-right"><?php echo number_format($total_volume_solar,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_solar,0,',','.');?></th>
 			</tr>
 			<?php
-			$jumlah_alat_1 = $total_nilai_bp_1 + $total_nilai_tm_1 + $total_nilai_wl_1 + $total_nilai_solar_1;
-			$jumlah_alat_2 = $total_nilai_bp_2 + $total_nilai_tm_2 + $total_nilai_wl_2 + $total_nilai_solar_2;
-			$jumlah_alat_3 = $total_nilai_bp_3 + $total_nilai_tm_3 + $total_nilai_wl_3 + $total_nilai_solar_3;
-			$jumlah_alat_4 = $total_nilai_bp_4 + $total_nilai_tm_4 + $total_nilai_wl_4 + $total_nilai_solar_4;
-			$jumlah_alat_5 = $total_nilai_bp_5 + $total_nilai_tm_5 + $total_nilai_wl_5 + $total_nilai_solar_5;
+			$jumlah_alat_1 = $nilai_realisasi_bp_1 + $nilai_realisasi_tm_1 + $nilai_realisasi_wl_1 + $nilai_realisasi_solar_1;
+			$jumlah_alat_2 = $nilai_realisasi_bp_2 + $nilai_realisasi_tm_2 + $nilai_realisasi_wl_2 + $nilai_realisasi_solar_2;
+			$jumlah_alat_3 = $nilai_realisasi_bp_3 + $nilai_realisasi_tm_3 + $nilai_realisasi_wl_3 + $nilai_realisasi_solar_3;
+			$jumlah_alat_4 = $nilai_realisasi_bp_4 + $nilai_realisasi_tm_4 + $nilai_realisasi_wl_4 + $nilai_realisasi_solar_4;
+			$jumlah_alat_5 = $nilai_realisasi_bp_5 + $nilai_realisasi_tm_5 + $nilai_realisasi_wl_5 + $nilai_realisasi_solar_5;
 			$jumlah_alat = $jumlah_alat_1 + $jumlah_alat_2 + $jumlah_alat_3 + $jumlah_alat_4 + $jumlah_alat_5;
 			?>
 			<tr class="table-total">
@@ -10058,11 +10332,11 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_overhead,0,',','.');?></th>
 			</tr>
 			<?php
-			$jumlah_biaya_1 = $jumlah_bahan_1 + $jumlah_bahan2_1 + $jumlah_alat_1 + $total_nilai_overhead_1;
-			$jumlah_biaya_2 = $jumlah_bahan_2 + $jumlah_bahan2_2 + $jumlah_alat_2 + $total_nilai_overhead_2;
-			$jumlah_biaya_3 = $jumlah_bahan_3 + $jumlah_bahan2_3 + $jumlah_alat_3 + $total_nilai_overhead_3;
-			$jumlah_biaya_4 = $jumlah_bahan_4 + $jumlah_bahan2_4 + $jumlah_alat_4 + $total_nilai_overhead_4;
-			$jumlah_biaya_5 = $jumlah_bahan_5 + $jumlah_bahan2_5 + $jumlah_alat_5 + $total_nilai_overhead_5;
+			$jumlah_biaya_1 = $jumlah_kebutuhan_bahan_1 + $jumlah_alat_1 + $total_nilai_overhead_1;
+			$jumlah_biaya_2 = $jumlah_kebutuhan_bahan_2 + $jumlah_alat_2 + $total_nilai_overhead_2;
+			$jumlah_biaya_3 = $jumlah_kebutuhan_bahan_3 + $jumlah_alat_3 + $total_nilai_overhead_3;
+			$jumlah_biaya_4 = $jumlah_kebutuhan_bahan_4 + $jumlah_alat_4 + $total_nilai_overhead_4;
+			$jumlah_biaya_5 = $jumlah_kebutuhan_bahan_5 + $jumlah_alat_5 + $total_nilai_overhead_5;
 			$jumlah_biaya = $jumlah_bahan_300 + $jumlah_bahan_300_18 + $jumlah_alat + $total_nilai_overhead;
 			?>
 			<tr class="table-total">

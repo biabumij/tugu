@@ -342,26 +342,166 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                        <br />
+                                    <br />
+                                    <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th width="5%">NO.</th>
+                                                <th width="45%">BUA</th>
+                                                <th width="50%">NILAI</th>                                 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center">1.</td>
+                                                <td>BUA</td>
+                                                <td colspan="2">
+                                                    <input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value="<?php echo number_format($rak["overhead"],0,',','.');?>"  autocomplete="off">
+                                                </td>
+                                            </tr>		
+                                        </tbody>
+                                    </table>
+									<br />
+                                    <div class="table-responsive">
+                                        <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                            <tr>
+                                                <td style="vertical-align:middle">Sudah realisasi?</td>
+                                                <td>
+                                                    <table width="100%">
+                                                        <tr>
+                                                            <td width="20%">YA </td>
+                                                            <td><input type="checkbox" name="realisasi" id="realisasi" value="0" <?= (isset($rak) && $rak['realisasi'] == 0) ? 'checked' : '' ;?> /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="20%">TIDAK </td>
+                                                            <td><input type="checkbox" name="realisasi" id="realisasi" value="1"<?= (isset($rak) && $rak['realisasi'] == 1) ? 'checked' : '' ;?> /></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>    
+                                    </div>
+                                    <br />
+                                    <div class="table-responsive">
                                         <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                             <thead>
                                                 <tr class="text-center">
                                                     <th width="5%">NO.</th>
-                                                    <th width="45%">BUA</th>
-                                                    <th width="50%">NILAI</th>                                 
+                                                    <th width="30%">URAIAN</th>
+                                                    <th width="35%">VOLUME</th>
+                                                    <th width="35%">NILAI</th>                                 
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td class="text-center">1.</td>
-                                                    <td>BUA</td>
-                                                    <td colspan="2">
-                                                        <input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value="<?php echo number_format($rak["overhead"],0,',','.');?>"  autocomplete="off">
+                                                    <td class="text-left">Semen</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_a" name="vol_realisasi_a" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_realisasi_a"],2,',','.');?>" autocomplete="off">
                                                     </td>
-                                                </tr>		
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_a" name="nilai_realisasi_a" class="form-control rupiahformat text-right" value="<?php echo number_format($rak["nilai_realisasi_a"],0,',','.');?>"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">2.</td>
+                                                    <td class="text-left">Pasir</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_b" name="vol_realisasi_b" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_realisasi_b"],2,',','.');?>" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_b" name="nilai_realisasi_b" class="form-control rupiahformat text-right" value="<?php echo number_format($rak["nilai_realisasi_b"],0,',','.');?>"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">3.</td>
+                                                    <td class="text-left">Batu 10-20</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_c" name="vol_realisasi_c" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_realisasi_c"],2,',','.');?>" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_c" name="nilai_realisasi_c" class="form-control rupiahformat text-right" value="<?php echo number_format($rak["nilai_realisasi_c"],0,',','.');?>"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">4.</td>
+                                                    <td class="text-left">Batu 20-30</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_d" name="vol_realisasi_d" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_realisasi_d"],2,',','.');?>" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_d" name="nilai_realisasi_d" class="form-control rupiahformat text-right" value="<?php echo number_format($rak["nilai_realisasi_d"],0,',','.');?>"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">5.</td>
+                                                    <td class="text-left">Additive</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_e" name="vol_realisasi_e" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_realisasi_e"],2,',','.');?>" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_e" name="nilai_realisasi_e" class="form-control rupiahformat text-right" value="<?php echo number_format($rak["nilai_realisasi_e"],0,',','.');?>"  autocomplete="off">
+                                                    </td>
+                                                </tr>
                                             </tbody>
-                                        </table>   
-									<br />
+                                        </table>    
+                                    </div>
+                                    <br />
+                                    <div class="table-responsive">
+                                        <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th width="5%">NO.</th>
+                                                    <th width="30%">URAIAN</th>
+                                                    <th width="35%">VOLUME</th>
+                                                    <th width="35%">NILAI</th>                                 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center">1.</td>
+                                                    <td class="text-left">Batching Plant + Genset </td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_bp" name="vol_realisasi_bp" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_realisasi_bp"],2,',','.');?>" readonly="" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_bp" name="nilai_realisasi_bp" class="form-control rupiahformat text-right" value="<?php echo number_format($rak["nilai_realisasi_bp"],0,',','.');?>"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">2.</td>
+                                                    <td class="text-left">Wheel Loader</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_tm" name="vol_realisasi_tm" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_realisasi_tm"],2,',','.');?>" readonly="" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_tm" name="nilai_realisasi_tm" class="form-control rupiahformat text-right" value="<?php echo number_format($rak["nilai_realisasi_tm"],0,',','.');?>"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">3.</td>
+                                                    <td class="text-left">Truck Mixer</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_wl" name="vol_realisasi_wl" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_realisasi_wl"],2,',','.');?>" readonly="" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_wl" name="nilai_realisasi_wl" class="form-control rupiahformat text-right" value="<?php echo number_format($rak["nilai_realisasi_wl"],0,',','.');?>"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">4.</td>
+                                                    <td class="text-left">BBM Solar</td>
+                                                    <td>
+                                                        <input type="text" id="vol_realisasi_solar" name="vol_realisasi_solar" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_realisasi_solar"],2,',','.');?>" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="nilai_realisasi_solar" name="nilai_realisasi_solar" class="form-control rupiahformat text-right" value="<?php echo number_format($rak["nilai_realisasi_solar"],0,',','.');?>"  autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>    
+                                    </div>
+                                    <br />
                                     <div class="row">
                                         <div class="col-sm-12 text-center">
                                             <a href="<?= site_url('admin/rencana_kerja');?>" class="btn btn-danger" style="margin-bottom:0px; font-weight:bold; border-radius:10px;">BATAL</a>
