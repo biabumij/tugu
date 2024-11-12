@@ -9521,7 +9521,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"></th>
 				<th class="text-left">Additive</th>
 				<th class="text-right"><?php echo number_format($harsat_rap_beton_additive,0,',','.');?></th>
-				<th class="text-center">M3</th>
+				<th class="text-center">Liter</th>
 				<th class="text-right"><?php echo number_format($total_volume_additive_300_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_additive_300_1,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_additive_300_2,2,',','.');?></th>
@@ -9571,7 +9571,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"></th>
 				<th class="text-left">Semen</th>
 				<th class="text-right"><?php echo number_format($harsat_rap_beton_semen,0,',','.');?></th>
-				<th class="text-center">M3</th>
+				<th class="text-center">Ton</th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_300_18_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_semen_300_18_1,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_300_18_2,2,',','.');?></th>
@@ -9921,7 +9921,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"></th>
 				<th class="text-left">Additive</th>
 				<th class="text-right"><?php echo number_format($harsat_rap_beton_additive,0,',','.');?></th>
-				<th class="text-center">M3</th>
+				<th class="text-center">Liter</th>
 				<th class="text-right"><?php echo number_format($total_volume_additive_300_1_all,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_additive_300_1_all,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_additive_300_2_all,2,',','.');?></th>
@@ -10258,7 +10258,6 @@ class Reports extends CI_Controller {
 			$jumlah_alat_3 = $nilai_realisasi_bp_3 + $nilai_realisasi_tm_3 + $nilai_realisasi_wl_3 + $nilai_realisasi_solar_3;
 			$jumlah_alat_4 = $nilai_realisasi_bp_4 + $nilai_realisasi_tm_4 + $nilai_realisasi_wl_4 + $nilai_realisasi_solar_4;
 			$jumlah_alat_5 = $nilai_realisasi_bp_5 + $nilai_realisasi_tm_5 + $nilai_realisasi_wl_5 + $nilai_realisasi_solar_5;
-			$jumlah_alat = $jumlah_alat_1 + $jumlah_alat_2 + $jumlah_alat_3 + $jumlah_alat_4 + $jumlah_alat_5;
 			?>
 			<tr class="table-total">
 				<th class="text-right" colspan="4">JUMLAH</th>
@@ -10337,7 +10336,6 @@ class Reports extends CI_Controller {
 			$jumlah_biaya_3 = $jumlah_kebutuhan_bahan_3 + $jumlah_alat_3 + $total_nilai_overhead_3;
 			$jumlah_biaya_4 = $jumlah_kebutuhan_bahan_4 + $jumlah_alat_4 + $total_nilai_overhead_4;
 			$jumlah_biaya_5 = $jumlah_kebutuhan_bahan_5 + $jumlah_alat_5 + $total_nilai_overhead_5;
-			$jumlah_biaya = $jumlah_bahan_300 + $jumlah_bahan_300_18 + $jumlah_alat + $total_nilai_overhead;
 			?>
 			<tr class="table-total">
 				<th class="text-right" colspan="4">JUMLAH BAHAN + ALAT + OVERHEAD</th>
@@ -10354,29 +10352,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($jumlah_biaya,0,',','.');?></th>
 			</tr>
-			<?php
-			$laba_1 = $jumlah_2 - $jumlah_biaya_1;
-			$laba_2 = $jumlah_4 - $jumlah_biaya_2;
-			$laba_3 = $jumlah_6 - $jumlah_biaya_3;
-			$laba_4 = $jumlah_8 - $jumlah_biaya_4;
-			$laba_5 = $jumlah_10 - $jumlah_biaya_5;
-			$laba = $jumlah_12 - $jumlah_biaya;
-			?>
-			<!--<tr class="table-total">
-				<th class="text-right" colspan="4">LABA</th>
-				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($laba_1,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($laba_2,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($laba_3,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($laba_4,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($laba_5,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($laba,0,',','.');?></th>
-			</tr>-->
 		</table>
 		<?php
 	}
