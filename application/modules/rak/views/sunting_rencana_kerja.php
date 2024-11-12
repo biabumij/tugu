@@ -365,7 +365,7 @@
                                     <div class="table-responsive">
                                         <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                             <tr>
-                                                <td style="vertical-align:middle">Sudah realisasi?</td>
+                                                <td style="vertical-align:middle" class="text-right">Sudah realisasi?</td>
                                                 <td>
                                                     <table width="100%">
                                                         <tr>
