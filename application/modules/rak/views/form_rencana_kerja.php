@@ -386,26 +386,6 @@
 
                                     <div class="table-responsive">
                                         <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
-                                            <tr>
-                                                <td style="vertical-align:middle">Sudah realisasi?</td>
-                                                <td>
-                                                    <table width="100%">
-                                                        <tr>
-                                                            <td width="20%">YA </td>
-                                                            <td><input type="checkbox" name="realisasi" id="realisasi" value="0"/></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td width="20%">TIDAK </td>
-                                                            <td><input type="checkbox" name="realisasi" id="realisasi" value="1"/></td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>    
-                                    </div>
-
-                                    <div class="table-responsive">
-                                        <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                             <thead>
                                                 <tr class="text-center">
                                                     <th width="5%">NO.</th>

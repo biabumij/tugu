@@ -369,11 +369,11 @@
                                                 <td>
                                                     <table width="100%">
                                                         <tr>
-                                                            <td width="20%">YA </td>
+                                                            <td width="20%">SUDAH </td>
                                                             <td><input type="checkbox" name="realisasi" id="realisasi" value="0" <?= (isset($rak) && $rak['realisasi'] == 0) ? 'checked' : '' ;?> /></td>
                                                         </tr>
                                                         <tr>
-                                                            <td width="20%">TIDAK </td>
+                                                            <td width="20%">BELUM </td>
                                                             <td><input type="checkbox" name="realisasi" id="realisasi" value="1"<?= (isset($rak) && $rak['realisasi'] == 1) ? 'checked' : '' ;?> /></td>
                                                         </tr>
                                                     </table>

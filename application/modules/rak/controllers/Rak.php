@@ -237,7 +237,7 @@ class Rak extends Secure_Controller {
 			'supplier_id_tm' => $supplier_id_tm,
 			'supplier_id_wl' => $supplier_id_wl,
 			
-			'realisasi' => $realisasi,
+			'realisasi' => 1,
 			'vol_realisasi_a' => $vol_realisasi_a,
 			'vol_realisasi_b' => $vol_realisasi_b,
 			'vol_realisasi_c' => $vol_realisasi_c,
