@@ -9700,7 +9700,7 @@ class Reports extends CI_Controller {
 				<th class="text-left" colspan="16"><b>C. TOTAL KEBUTUHAN BAHAN</b></th>
 			</tr>
 			<tr class="table-baris">
-			<?php
+				<?php
 				$realisasi_1 = $this->db->select('*')
 				->from('rak')
 				->where("tanggal_rencana_kerja between '$date_agustus24_awal' and '$date_agustus24_akhir'")
@@ -9708,27 +9708,27 @@ class Reports extends CI_Controller {
 				$vol_realisasi_semen_1 = $realisasi_1['vol_realisasi_a'];
 				$nilai_realisasi_semen_1 = $realisasi_1['nilai_realisasi_a'];
 				$total_volume_semen_300_1_all = (($total_volume_semen_300_1 + $total_volume_semen_300_18_1) * $realisasi_1['realisasi']) + $vol_realisasi_semen_1;
-				$total_nilai_semen_300_1_all = (($total_nilai_semen_300_1 + $total_nilai_semen_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_semen_2;
+				$total_nilai_semen_300_1_all = (($total_nilai_semen_300_1 + $total_nilai_semen_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_semen_1;
 				
 				$vol_realisasi_pasir_1 = $realisasi_1['vol_realisasi_b'];
 				$nilai_realisasi_pasir_1 = $realisasi_1['nilai_realisasi_b'];
 				$total_volume_pasir_300_1_all = (($total_volume_pasir_300_1 + $total_volume_pasir_300_18_1) * $realisasi_1['realisasi']) + $vol_realisasi_pasir_1;
-				$total_nilai_pasir_300_1_all = (($total_nilai_pasir_300_1 + $total_nilai_pasir_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_pasir_2;
+				$total_nilai_pasir_300_1_all = (($total_nilai_pasir_300_1 + $total_nilai_pasir_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_pasir_1;
 
 				$vol_realisasi_batu1020_1 = $realisasi_1['vol_realisasi_c'];
 				$nilai_realisasi_batu1020_1 = $realisasi_1['nilai_realisasi_c'];
 				$total_volume_batu1020_300_1_all = (($total_volume_batu1020_300_1 + $total_volume_batu1020_300_18_1) * $realisasi_1['realisasi']) + $vol_realisasi_batu1020_1;
-				$total_nilai_batu1020_300_1_all = (($total_nilai_batu1020_300_1 + $total_nilai_batu1020_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_batu1020_2;
+				$total_nilai_batu1020_300_1_all = (($total_nilai_batu1020_300_1 + $total_nilai_batu1020_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_batu1020_1;
 
 				$vol_realisasi_batu2030_1 = $realisasi_1['vol_realisasi_d'];
 				$nilai_realisasi_batu2030_1 = $realisasi_1['nilai_realisasi_d'];
 				$total_volume_batu2030_300_1_all = (($total_volume_batu2030_300_1 + $total_volume_batu2030_300_18_1) * $realisasi_1['realisasi']) + $vol_realisasi_batu2030_1;
-				$total_nilai_batu2030_300_1_all = (($total_nilai_batu2030_300_1 + $total_nilai_batu2030_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_batu2030_2;
+				$total_nilai_batu2030_300_1_all = (($total_nilai_batu2030_300_1 + $total_nilai_batu2030_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_batu2030_1;
 
 				$vol_realisasi_additive_1 = $realisasi_1['vol_realisasi_e'];
 				$nilai_realisasi_additive_1 = $realisasi_1['nilai_realisasi_e'];
 				$total_volume_additive_300_1_all = (($total_volume_additive_300_1 + $total_volume_additive_300_18_1) * $realisasi_1['realisasi']) + $vol_realisasi_additive_1;
-				$total_nilai_additive_300_1_all = (($total_nilai_additive_300_1 + $total_nilai_additive_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_additive_2;
+				$total_nilai_additive_300_1_all = (($total_nilai_additive_300_1 + $total_nilai_additive_300_18_1) * $realisasi_1['realisasi']) + $nilai_realisasi_additive_1;
 
 				$realisasi_2 = $this->db->select('*')
 				->from('rak')
@@ -10258,6 +10258,7 @@ class Reports extends CI_Controller {
 			$jumlah_alat_3 = $nilai_realisasi_bp_3 + $nilai_realisasi_tm_3 + $nilai_realisasi_wl_3 + $nilai_realisasi_solar_3;
 			$jumlah_alat_4 = $nilai_realisasi_bp_4 + $nilai_realisasi_tm_4 + $nilai_realisasi_wl_4 + $nilai_realisasi_solar_4;
 			$jumlah_alat_5 = $nilai_realisasi_bp_5 + $nilai_realisasi_tm_5 + $nilai_realisasi_wl_5 + $nilai_realisasi_solar_5;
+			$jumlah_alat = $total_nilai_bp + $total_nilai_tm + $total_nilai_wl + $total_nilai_solar;
 			?>
 			<tr class="table-total">
 				<th class="text-right" colspan="4">JUMLAH</th>
@@ -10336,6 +10337,7 @@ class Reports extends CI_Controller {
 			$jumlah_biaya_3 = $jumlah_kebutuhan_bahan_3 + $jumlah_alat_3 + $total_nilai_overhead_3;
 			$jumlah_biaya_4 = $jumlah_kebutuhan_bahan_4 + $jumlah_alat_4 + $total_nilai_overhead_4;
 			$jumlah_biaya_5 = $jumlah_kebutuhan_bahan_5 + $jumlah_alat_5 + $total_nilai_overhead_5;
+			$jumlah_biaya = $total_nilai_overhead;
 			?>
 			<tr class="table-total">
 				<th class="text-right" colspan="4">JUMLAH BAHAN + ALAT + OVERHEAD</th>

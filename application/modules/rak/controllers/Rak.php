@@ -516,6 +516,7 @@ class Rak extends Secure_Controller {
 		$nilai_realisasi_b =  str_replace('.', '', $this->input->post('nilai_realisasi_b'));
 		$nilai_realisasi_c =  str_replace('.', '', $this->input->post('nilai_realisasi_c'));
 		$nilai_realisasi_d =  str_replace('.', '', $this->input->post('nilai_realisasi_d'));
+		$nilai_realisasi_e =  str_replace('.', '', $this->input->post('nilai_realisasi_e'));
 
 		$vol_realisasi_bp =  str_replace('.', '', $this->input->post('vol_realisasi_bp'));
 		$vol_realisasi_bp =  str_replace(',', '.', $vol_realisasi_bp);
@@ -621,6 +622,7 @@ class Rak extends Secure_Controller {
 			'nilai_realisasi_b' => $nilai_realisasi_b,
 			'nilai_realisasi_c' => $nilai_realisasi_c,
 			'nilai_realisasi_d' => $nilai_realisasi_d,
+			'nilai_realisasi_e' => $nilai_realisasi_e,
 
 			'vol_realisasi_bp' => $vol_realisasi_bp,
 			'vol_realisasi_tm' => $vol_realisasi_tm,
