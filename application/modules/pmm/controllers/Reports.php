@@ -2474,7 +2474,7 @@ class Reports extends CI_Controller {
 			->join('pmm_penagihan_pembelian ppp','pm.penagihan_pembelian_id = ppp.id','left')
 			->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left')
 			->where("pm.tanggal_pembayaran between '$date_awal' and '$date_1_akhir'")
-			->where("ppo.kategori_id = '5'")
+			->where("ppo.kategori_id = '1'")
 			->where("pm.memo <> 'PPN'")
 			->get()->row_array();
 			$bahan_bulan_ini_sd = $bahan_bulan_ini_sd['total'];
@@ -2692,13 +2692,13 @@ class Reports extends CI_Controller {
 			->get()->row_array();
 			$bank_bulan_ini = $bank_bulan_ini['total'];
 
-			$bank_bulan_ini_sd = $this->db->select('SUM(pm.total) as total')
-			->from('pmm_pembayaran_penagihan_pembelian pm')
-			->join('pmm_penagihan_pembelian ppp','pm.penagihan_pembelian_id = ppp.id','left')
-			->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left')
-			->where("pm.tanggal_pembayaran between '$date_awal' and '$date_1_akhir'")
-			->where("ppo.kategori_id = '5'")
-			->where("pm.memo <> 'PPN'")
+			$bank_bulan_ini_sd = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 110")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date_awal' and '$date_1_akhir')")
 			->get()->row_array();
 			$bank_bulan_ini_sd = $bank_bulan_ini_sd['total'];
 
