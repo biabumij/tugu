@@ -10179,10 +10179,10 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($nilai_realisasi_bp_4,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($vol_realisasi_bp_5,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_realisasi_bp_5,0,',','.');?></th>
-			`	<?php
+				<?php
 				$total_volume_bp = $vol_realisasi_bp_1 + $vol_realisasi_bp_2 + $vol_realisasi_bp_3 + $vol_realisasi_bp_4 + $vol_realisasi_bp_5;
 				$total_nilai_bp = $nilai_realisasi_bp_1 + $nilai_realisasi_bp_2 + $nilai_realisasi_bp_3 + $nilai_realisasi_bp_4 + $nilai_realisasi_bp_5;
-				?>`
+				?>
 				<th class="text-right"><?php echo number_format($total_volume_bp,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_bp,0,',','.');?></th>
 			</tr>
