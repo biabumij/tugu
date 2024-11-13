@@ -10332,12 +10332,68 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_overhead,0,',','.');?></th>
 			</tr>
 			<?php
+			$diskonto_rak_1 = $this->db->select('sum(diskonto) as nilai')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_agustus24_awal' and '$date_agustus24_akhir'")
+			->get()->row_array();
+
+			$diskonto_rak_2 = $this->db->select('sum(diskonto) as nilai')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_september24_awal' and '$date_september24_akhir'")
+			->get()->row_array();
+			
+			$diskonto_rak_3 = $this->db->select('sum(diskonto) as nilai')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_oktober24_awal' and '$date_oktober24_akhir'")
+			->get()->row_array();
+
+			$diskonto_rak_4 = $this->db->select('sum(diskonto) as nilai')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
+			->get()->row_array();
+
+			$diskonto_rak_5 = $this->db->select('sum(diskonto) as nilai')
+			->from('rak')
+			->where("tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
+			->get()->row_array();
+
+			$total_nilai_diskonto_1 = $diskonto_rak_1['nilai'];
+			$total_nilai_diskonto_2 = $diskonto_rak_2['nilai'];
+			$total_nilai_diskonto_3 = $diskonto_rak_3['nilai'];
+			$total_nilai_diskonto_4 = $diskonto_rak_4['nilai'];
+			$total_nilai_diskonto_5 = $diskonto_rak_5['nilai'];
+			?>
+			<tr class="table-baris">
+				<th class="text-left" colspan="16"><b>F. DISKONTO</b></th>
+			</tr>
+			<?php
+			$total_nilai_diskonto = $total_nilai_diskonto_1 + $total_nilai_diskonto_2 + $total_nilai_diskonto_3 + $total_nilai_diskonto_4 + $total_nilai_diskonto_5;
+			?>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Diskonto</th>
+				<th class="text-right"></th>
+				<th class="text-center"></th>
+				<th class="text-right"><?php echo number_format($total_volume_diskonto_1,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_diskonto_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_diskonto_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_diskonto_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_diskonto_3,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_diskonto_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_diskonto_4,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_diskonto_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_diskonto_5,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_diskonto_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_diskonto,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_diskonto,0,',','.');?></th>
+			</tr>
+			<?php
 			$jumlah_biaya_1 = $jumlah_kebutuhan_bahan_1 + $jumlah_alat_1 + $total_nilai_overhead_1;
 			$jumlah_biaya_2 = $jumlah_kebutuhan_bahan_2 + $jumlah_alat_2 + $total_nilai_overhead_2;
 			$jumlah_biaya_3 = $jumlah_kebutuhan_bahan_3 + $jumlah_alat_3 + $total_nilai_overhead_3;
 			$jumlah_biaya_4 = $jumlah_kebutuhan_bahan_4 + $jumlah_alat_4 + $total_nilai_overhead_4;
 			$jumlah_biaya_5 = $jumlah_kebutuhan_bahan_5 + $jumlah_alat_5 + $total_nilai_overhead_5;
-			$jumlah_biaya = $total_nilai_overhead;
+			$jumlah_biaya = $jumlah_bahan_300 + $jumlah_bahan_300_18 + $jumlah_alat + $total_nilai_overhead + $total_nilai_diskonto;
 			?>
 			<tr class="table-total">
 				<th class="text-right" colspan="4">JUMLAH BAHAN + ALAT + OVERHEAD</th>
