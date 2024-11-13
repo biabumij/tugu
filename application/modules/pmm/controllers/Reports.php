@@ -12274,8 +12274,8 @@ class Reports extends CI_Controller {
 						$akun_550311 = array_merge($akun_550311_biaya,$akun_550311_jurnal);
 						usort($akun_550311, 'sortByOrder');
 						?>
-						<button onclick="myFunction15()" class="btn btn-info"><b>(5-50311) Bensin, Tol dan Parkir<b></button>
-						<div id="myDIV15" style="display:none;">
+						<button onclick="myFunction16()" class="btn btn-info"><b>(5-50311) Bensin, Tol dan Parkir<b></button>
+						<div id="myDIV16" style="display:none;">
 							<table width="100% "border="1">
 								<tr>
 									<th class="text-left" colspan="6" width="90%">Saldo Awal</th>
@@ -12370,8 +12370,8 @@ class Reports extends CI_Controller {
 						$akun_550312 = array_merge($akun_550312_biaya,$akun_550312_jurnal);
 						usort($akun_550312, 'sortByOrder');
 						?>
-						<button onclick="myFunction16()" class="btn btn-info"><b>(5-50312) Biaya Kirim<b></button>
-						<div id="myDIV16" style="display:none;">
+						<button onclick="myFunction17()" class="btn btn-info"><b>(5-50312) Biaya Kirim<b></button>
+						<div id="myDIV17" style="display:none;">
 							<table width="100% "border="1">
 								<tr>
 									<th class="text-left" colspan="6" width="90%">Saldo Awal</th>
@@ -12468,8 +12468,8 @@ class Reports extends CI_Controller {
 						$akun_550313 = array_merge($akun_550313_biaya,$akun_550313_jurnal);
 						usort($akun_550313, 'sortByOrder');
 						?>
-						<button onclick="myFunction16()" class="btn btn-info"><b>(5-50313) Pakaian Dinas & K3<b></button>
-						<div id="myDIV16" style="display:none;">
+						<button onclick="myFunction18()" class="btn btn-info"><b>(5-50313) Pakaian Dinas & K3<b></button>
+						<div id="myDIV18" style="display:none;">
 							<table width="100% "border="1">
 								<tr>
 									<th class="text-left" colspan="6" width="90%">Saldo Awal</th>
@@ -12564,8 +12564,8 @@ class Reports extends CI_Controller {
 						$akun_550316 = array_merge($akun_550316_biaya,$akun_550316_jurnal);
 						usort($akun_550316, 'sortByOrder');
 						?>
-						<button onclick="myFunction17()" class="btn btn-info"><b>(5-50316) Pengobatan<b></button>
-						<div id="myDIV17" style="display:none;">
+						<button onclick="myFunction19()" class="btn btn-info"><b>(5-50316) Pengobatan<b></button>
+						<div id="myDIV19" style="display:none;">
 							<table width="100% "border="1">
 								<tr>
 									<th class="text-left" colspan="6" width="90%">Saldo Awal</th>
@@ -12660,8 +12660,8 @@ class Reports extends CI_Controller {
 						$akun_550317 = array_merge($akun_550317_biaya,$akun_550317_jurnal);
 						usort($akun_550317, 'sortByOrder');
 						?>
-						<button onclick="myFunction18()" class="btn btn-info"><b>(5-50317) Alat Tulis Kantor & Printing<b></button>
-						<div id="myDIV18" style="display:none;">
+						<button onclick="myFunction20()" class="btn btn-info"><b>(5-50317) Alat Tulis Kantor & Printing<b></button>
+						<div id="myDIV20" style="display:none;">
 							<table width="100% "border="1">
 								<tr>
 									<th class="text-left" colspan="6" width="90%">Saldo Awal</th>
@@ -12756,8 +12756,8 @@ class Reports extends CI_Controller {
 						$akun_550318 = array_merge($akun_550318_biaya,$akun_550318_jurnal);
 						usort($akun_550318, 'sortByOrder');
 						?>
-						<button onclick="myFunction19()" class="btn btn-info"><b>(5-50318) Keamanan dan Kebersihan<b></button>
-						<div id="myDIV19" style="display:none;">
+						<button onclick="myFunction21()" class="btn btn-info"><b>(5-50318) Keamanan dan Kebersihan<b></button>
+						<div id="myDIV21" style="display:none;">
 							<table width="100% "border="1">
 								<tr>
 									<th class="text-left" colspan="6" width="90%">Saldo Awal</th>
@@ -12852,8 +12852,8 @@ class Reports extends CI_Controller {
 						$akun_550320 = array_merge($akun_550320_biaya,$akun_550320_jurnal);
 						usort($akun_550320, 'sortByOrder');
 						?>
-						<button onclick="myFunction20()" class="btn btn-info"><b>(5-50320) Biaya Adm Bank<b></button>
-						<div id="myDIV20" style="display:none;">
+						<button onclick="myFunction22()" class="btn btn-info"><b>(5-50320) Biaya Adm Bank<b></button>
+						<div id="myDIV22" style="display:none;">
 							<table width="100% "border="1">
 								<tr>
 									<th class="text-left" colspan="6" width="90%">Saldo Awal</th>
@@ -12948,8 +12948,8 @@ class Reports extends CI_Controller {
 						$akun_550321 = array_merge($akun_550321_biaya,$akun_550321_jurnal);
 						usort($akun_550321, 'sortByOrder');
 						?>
-						<button onclick="myFunction21()" class="btn btn-info"><b>(5-50321) Biaya Lain-Lain<b></button>
-						<div id="myDIV21" style="display:none;">
+						<button onclick="myFunction23()" class="btn btn-info"><b>(5-50321) Biaya Lain-Lain<b></button>
+						<div id="myDIV23" style="display:none;">
 							<table width="100% "border="1">
 								<tr>
 									<th class="text-left" colspan="6" width="90%">Saldo Awal</th>
