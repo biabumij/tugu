@@ -377,11 +377,18 @@
                                                     <td class="text-center">1.</td>
                                                     <td>BUA</td>
                                                     <td colspan="2">
-                                                        <input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value=""  autocomplete="off">
+                                                        <input type="text" id="overhead" name="overhead" class="form-control text-right" value="0"  autocomplete="off">
                                                     </td>
-                                                </tr>		
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">2.</td>
+                                                    <td>Diskonto</td>
+                                                    <td colspan="2">
+                                                        <input type="text" id="diskonto" name="diskonto" class="form-control text-right" value="0"  autocomplete="off">
+                                                    </td>
+                                                </tr>	
                                             </tbody>
-                                        </table>    
+                                        </table>
                                     </div>
 
                                     <div class="table-responsive">
@@ -402,7 +409,7 @@
                                                         <input type="text" id="vol_realisasi_a" name="vol_realisasi_a" class="form-control numberformat text-right" value="0" autocomplete="off">
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="nilai_realisasi_a" name="nilai_realisasi_a" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                        <input type="text" id="nilai_realisasi_a" name="nilai_realisasi_a" class="form-control text-right" value="0"  autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -412,7 +419,7 @@
                                                         <input type="text" id="vol_realisasi_b" name="vol_realisasi_b" class="form-control numberformat text-right" value="0" autocomplete="off">
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="nilai_realisasi_b" name="nilai_realisasi_b" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                        <input type="text" id="nilai_realisasi_b" name="nilai_realisasi_b" class="form-control text-right" value="0"  autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -422,7 +429,7 @@
                                                         <input type="text" id="vol_realisasi_c" name="vol_realisasi_c" class="form-control numberformat text-right" value="0" autocomplete="off">
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="nilai_realisasi_c" name="nilai_realisasi_c" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                        <input type="text" id="nilai_realisasi_c" name="nilai_realisasi_c" class="form-control text-right" value="0"  autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -432,7 +439,7 @@
                                                         <input type="text" id="vol_realisasi_d" name="vol_realisasi_d" class="form-control numberformat text-right" value="0" autocomplete="off">
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="nilai_realisasi_d" name="nilai_realisasi_d" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                        <input type="text" id="nilai_realisasi_d" name="nilai_realisasi_d" class="form-control text-right" value="0"  autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -442,7 +449,7 @@
                                                         <input type="text" id="vol_realisasi_e" name="vol_realisasi_e" class="form-control numberformat text-right" value="0" autocomplete="off">
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="nilai_realisasi_e" name="nilai_realisasi_e" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                        <input type="text" id="nilai_realisasi_e" name="nilai_realisasi_e" class="form-control text-right" value="0"  autocomplete="off">
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -467,7 +474,7 @@
                                                         <input type="text" id="vol_realisasi_bp" name="vol_realisasi_bp" class="form-control numberformat text-right" value="0" autocomplete="off">
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="nilai_realisasi_bp" name="nilai_realisasi_bp" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                        <input type="text" id="nilai_realisasi_bp" name="nilai_realisasi_bp" class="form-control text-right" value="0"  autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -477,7 +484,7 @@
                                                         <input type="text" id="vol_realisasi_tm" name="vol_realisasi_tm" class="form-control numberformat text-right" value="0" autocomplete="off">
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="nilai_realisasi_tm" name="nilai_realisasi_tm" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                        <input type="text" id="nilai_realisasi_tm" name="nilai_realisasi_tm" class="form-control text-right" value="0"  autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -487,7 +494,7 @@
                                                         <input type="text" id="vol_realisasi_wl" name="vol_realisasi_wl" class="form-control numberformat text-right" value="0" autocomplete="off">
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="nilai_realisasi_wl" name="nilai_realisasi_wl" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                        <input type="text" id="nilai_realisasi_wl" name="nilai_realisasi_wl" class="form-control text-right" value="0"  autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -497,7 +504,7 @@
                                                         <input type="text" id="vol_realisasi_solar" name="vol_realisasi_solar" class="form-control numberformat text-right" value="0" autocomplete="off">
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="nilai_realisasi_solar" name="nilai_realisasi_solar" class="form-control rupiahformat text-right" value="0"  autocomplete="off">
+                                                        <input type="text" id="nilai_realisasi_solar" name="nilai_realisasi_solar" class="form-control text-right" value="0"  autocomplete="off">
                                                     </td>
                                                 </tr>
                                             </tbody>

@@ -1964,7 +1964,7 @@ class Reports extends CI_Controller {
 			$rak_5_vol_K300 = $rak_5_K300['vol_produk_a'];
 			$rak_5_nilai_K300 = $rak_5_vol_K300 * $rak_5_K300['price_a'];
 
-			$jumlah_vol_K300 = $rak_1_vol_K300 + $rak_2_vol_K300 + $rak_3_vol_K300 +  + $rak_4_vol_K300 +  + $rak_5_vol_K300;
+			$jumlah_vol_K300 = $rak_1_vol_K300 + $rak_2_vol_K300 + $rak_3_vol_K300 + $rak_4_vol_K300 + $rak_5_vol_K300;
 			$jumlah_nilai_K300 = $rak_1_nilai_K300 + $rak_2_nilai_K300 + $rak_3_nilai_K300 + $rak_4_nilai_K300 + $rak_5_nilai_K300;
 			
 			//BETON K-300 SLUMP 18
@@ -2003,7 +2003,7 @@ class Reports extends CI_Controller {
 			$rak_5_vol_K300_18 = $rak_5_K300_18['vol_produk_b'];
 			$rak_5_nilai_K300_18 = $rak_5_vol_K300_18 * $rak_5_K300_18['price_b'];
 
-			$jumlah_vol_K300_18 = $rak_1_vol_K300_18 + $rak_2_vol_K300_18 + $rak_3_vol_K300_18 +  + $rak_4_vol_K300_18 +  + $rak_5_vol_K300_18;
+			$jumlah_vol_K300_18 = $rak_1_vol_K300_18 + $rak_2_vol_K300_18 + $rak_3_vol_K300_18 + $rak_4_vol_K300_18 + $rak_5_vol_K300_18;
 			$jumlah_nilai_K300_18 = $rak_1_nilai_K300_18 + $rak_2_nilai_K300_18 + $rak_3_nilai_K300_18 + $rak_4_nilai_K300_18 + $rak_5_nilai_K300_18;
 			$rencana_pendapatan = $jumlah_nilai_K300 + $jumlah_nilai_K300_18;
 
@@ -2595,10 +2595,10 @@ class Reports extends CI_Controller {
 			$total_nilai_solar_4 = $volume_rak_4['volume'] * $harsat_rap_alat_solar;
 			$total_nilai_solar_5 = $volume_rak_5['volume'] * $harsat_rap_alat_solar;
 
-			$total_nilai_bp = $total_nilai_bp_1 + $total_nilai_bp_2 + $total_nilai_bp_3 +  + $total_nilai_bp_4 +  + $total_nilai_bp_5;
-			$total_nilai_tm = $total_nilai_tm_1 + $total_nilai_tm_2 + $total_nilai_tm_3 +  + $total_nilai_tm_4 +  + $total_nilai_tm_5;
-			$total_nilai_wl = $total_nilai_wl_1 + $total_nilai_wl_2 + $total_nilai_wl_3 +  + $total_nilai_wl_4 +  + $total_nilai_wl_5;
-			$total_nilai_solar = $total_nilai_solar_1 + $total_nilai_solar_2 + $total_nilai_solar_3 +  + $total_nilai_solar_4 +  + $total_nilai_solar_5;
+			$total_nilai_bp = $total_nilai_bp_1 + $total_nilai_bp_2 + $total_nilai_bp_3 + $total_nilai_bp_4 + $total_nilai_bp_5;
+			$total_nilai_tm = $total_nilai_tm_1 + $total_nilai_tm_2 + $total_nilai_tm_3 + $total_nilai_tm_4 + $total_nilai_tm_5;
+			$total_nilai_wl = $total_nilai_wl_1 + $total_nilai_wl_2 + $total_nilai_wl_3 + $total_nilai_wl_4 + $total_nilai_wl_5;
+			$total_nilai_solar = $total_nilai_solar_1 + $total_nilai_solar_2 + $total_nilai_solar_3 + $total_nilai_solar_4 + $total_nilai_solar_5;
 
 			$jumlah_alat_1 = $total_nilai_bp_1 + $total_nilai_tm_1 + $total_nilai_wl_1 + $total_nilai_solar_1;
 			$jumlah_alat_2 = $total_nilai_bp_2 + $total_nilai_tm_2 + $total_nilai_wl_2 + $total_nilai_solar_2;
@@ -9047,7 +9047,7 @@ class Reports extends CI_Controller {
 			$rak_5_vol_K300 = $rak_5_K300['vol_produk_a'];
 			$rak_5_nilai_K300 = $rak_5_vol_K300 * $rak_5_K300['price_a'];
 
-			$jumlah_vol_K300 = $rak_1_vol_K300 + $rak_2_vol_K300 + $rak_3_vol_K300 +  + $rak_4_vol_K300 +  + $rak_5_vol_K300;
+			$jumlah_vol_K300 = $rak_1_vol_K300 + $rak_2_vol_K300 + $rak_3_vol_K300 + $rak_4_vol_K300 + $rak_5_vol_K300;
 			$jumlah_nilai_K300 = $rak_1_nilai_K300 + $rak_2_nilai_K300 + $rak_3_nilai_K300 + $rak_4_nilai_K300 + $rak_5_nilai_K300;
 			
 			//BETON K-300 SLUMP 18
@@ -9086,7 +9086,7 @@ class Reports extends CI_Controller {
 			$rak_5_vol_K300_18 = $rak_5_K300_18['vol_produk_b'];
 			$rak_5_nilai_K300_18 = $rak_5_vol_K300_18 * $rak_5_K300_18['price_b'];
 
-			$jumlah_vol_K300_18 = $rak_1_vol_K300_18 + $rak_2_vol_K300_18 + $rak_3_vol_K300_18 +  + $rak_4_vol_K300_18 +  + $rak_5_vol_K300_18;
+			$jumlah_vol_K300_18 = $rak_1_vol_K300_18 + $rak_2_vol_K300_18 + $rak_3_vol_K300_18 + $rak_4_vol_K300_18 + $rak_5_vol_K300_18;
 			$jumlah_nilai_K300_18 = $rak_1_nilai_K300_18 + $rak_2_nilai_K300_18 + $rak_3_nilai_K300_18 + $rak_4_nilai_K300_18 + $rak_5_nilai_K300_18;
 			
 			//KOMPOSISI BAHAN K-300 SLUMP 10
@@ -10246,7 +10246,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($vol_realisasi_solar_5,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_realisasi_solar_5,0,',','.');?></th>
 				<?php
-				$total_volume_solar = $vol_realisasi_solar_1 + $vol_realisasi_solar_2 + $vol_realisasi_solar_3 + $vol_realisasi_solar_4 + $vol_realisasi_solar_15;
+				$total_volume_solar = $vol_realisasi_solar_1 + $vol_realisasi_solar_2 + $vol_realisasi_solar_3 + $vol_realisasi_solar_4 + $vol_realisasi_solar_5;
 				$total_nilai_solar = $nilai_realisasi_solar_1 + $nilai_realisasi_solar_2 + $nilai_realisasi_solar_3 + $nilai_realisasi_solar_4 + $nilai_realisasi_solar_5;
 				?>
 				<th class="text-right"><?php echo number_format($total_volume_solar,2,',','.');?></th>
