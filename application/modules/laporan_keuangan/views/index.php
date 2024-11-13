@@ -198,9 +198,9 @@
                                                                 <div class="col-sm-3">
                                                                     <input type="text" id="filter_date_buku_besar" name="filter_date" class="form-control dtpicker" value="<?php echo $filter_date;?>" autocomplete="off" placeholder="Filter By Date">
                                                                 </div>
-                                                                <div class="col-sm-3">
+                                                                <!--<div class="col-sm-3">
                                                                     <button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
-                                                                </div>
+                                                                </div>-->
                                                             </form>
                                                             
                                                         </div>
