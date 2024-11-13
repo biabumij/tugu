@@ -3045,39 +3045,39 @@ class Reports extends CI_Controller {
 				<?php
 				$styleColor = $rencana_jumlah_pajak < 0 ? 'color:red' : 'color:black';
 				?>
-				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo number_format($rencana_jumlah_pajak,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $rencana_jumlah_pajak < 0 ? "(".number_format(-$rencana_jumlah_pajak,0,',','.').")" : number_format($rencana_jumlah_pajak,0,',','.');?></th>
 				<?php
 				$styleColor = $jumlah_pajak_sd_bulan_lalu < 0 ? 'color:red' : 'color:black';
 				?>
-				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo number_format($jumlah_pajak_sd_bulan_lalu,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_pajak_sd_bulan_lalu < 0 ? "(".number_format(-$jumlah_pajak_sd_bulan_lalu,0,',','.').")" : number_format($jumlah_pajak_sd_bulan_lalu,0,',','.');?></th>
 				<?php
 				$styleColor = $jumlah_pajak_bulan_ini < 0 ? 'color:red' : 'color:black';
 				?>
-				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo number_format($jumlah_pajak_bulan_ini,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_pajak_bulan_ini < 0 ? "(".number_format(-$jumlah_pajak_bulan_ini,0,',','.').")" : number_format($jumlah_pajak_bulan_ini,0,',','.');?></th>
 				<?php
 				$styleColor = $jumlah_pajak_bulan_ini_sd < 0 ? 'color:red' : 'color:black';
 				?>
-				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo number_format($jumlah_pajak_bulan_ini_sd,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_pajak_bulan_ini_sd < 0 ? "(".number_format(-$jumlah_pajak_bulan_ini_sd,0,',','.').")" : number_format($jumlah_pajak_bulan_ini_sd,0,',','.');?></th>
 				<?php
 				$styleColor = $jumlah_pajak_2 < 0 ? 'color:red' : 'color:black';
 				?>
-				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo number_format($jumlah_pajak_2,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_pajak_2 < 0 ? "(".number_format(-$jumlah_pajak_2,0,',','.').")" : number_format($jumlah_pajak_2,0,',','.');?></th>
 				<?php
 				$styleColor = $jumlah_pajak_3 < 0 ? 'color:red' : 'color:black';
 				?>
-				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo number_format($jumlah_pajak_3,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_pajak_3 < 0 ? "(".number_format(-$jumlah_pajak_3,0,',','.').")" : number_format($jumlah_pajak_3,0,',','.');?></th>
 				<?php
 				$styleColor = $jumlah_pajak_4 < 0 ? 'color:red' : 'color:black';
 				?>
-				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo number_format($jumlah_pajak_4,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_pajak_4 < 0 ? "(".number_format(-$jumlah_pajak_4,0,',','.').")" : number_format($jumlah_pajak_4,0,',','.');?></th>
 				<?php
 				$styleColor = $jumlah_pajak < 0 ? 'color:red' : 'color:black';
 				?>
-				<th class="text-right"v><?php echo number_format($jumlah_pajak,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $jumlah_pajak < 0 ? "(".number_format(-$jumlah_pajak,0,',','.').")" : number_format($jumlah_pajak,0,',','.');?></th>
 				<?php
 				$styleColor = $sisa_pajak < 0 ? 'color:red' : 'color:black';
 				?>
-				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo number_format($sisa_pajak,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColor ?>"><?php echo $sisa_pajak < 0 ? "(".number_format(-$sisa_pajak,0,',','.').")" : number_format($sisa_pajak,0,',','.');?></th>
 			</tr>
 			<?php
 			$rencana_posisi_4_5 = $rencana_posisi_2_3 - $rencana_jumlah_pajak;
