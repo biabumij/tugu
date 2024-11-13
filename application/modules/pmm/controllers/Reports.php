@@ -10396,7 +10396,7 @@ class Reports extends CI_Controller {
 			$jumlah_biaya = $jumlah_bahan_300 + $jumlah_bahan_300_18 + $jumlah_alat + $total_nilai_overhead + $total_nilai_diskonto;
 			?>
 			<tr class="table-total">
-				<th class="text-right" colspan="4">JUMLAH BAHAN + ALAT + OVERHEAD</th>
+				<th class="text-right" colspan="4">JUMLAH BAHAN + ALAT + OVERHEAD + DISKONTO</th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($jumlah_biaya_1,0,',','.');?></th>
 				<th class="text-right"></th>
