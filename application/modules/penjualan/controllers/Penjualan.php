@@ -20,12 +20,12 @@ class Penjualan extends Secure_Controller
 		$data = array();
 		
 
-		$this->db->select('pmm_penawaran_penjualan.*,penerima.nama');
-		$this->db->join("penerima", "pmm_penawaran_penjualan.client_id = penerima.id");
-		$this->db->where("status <> 'REJECT'");
-		$this->db->order_by('tanggal', 'DESC');
-		$this->db->order_by('created_on', 'DESC');
-		$query = $this->db->get("pmm_penawaran_penjualan");
+		$this->db->select('pmm_penawaran_penjualan.*,ps.nama as nama');
+		$this->db->join('penerima ps', 'ppp.client_id = ps.id', 'left');
+		$this->db->where("ppp.status <> 'REJECT'");
+		$this->db->order_by('ppp.tanggal', 'DESC');
+		$this->db->order_by('ppp.created_on', 'DESC');
+		$query = $this->db->get("pmm_penawaran_penjualan ppp");
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key + 1;
