@@ -204,15 +204,6 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_perjalanan_dinas = $this->db->select('rap.*,sum(det.harga_satuan) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 62")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
 			$rap_pakaian_dinas = $this->db->select('rap.*,sum(det.harga_satuan) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
@@ -231,29 +222,11 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_perlengkapan_kantor = $this->db->select('rap.*,sum(det.harga_satuan) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 98")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
 			$rap_biaya_lain_lain = $this->db->select('rap.*,sum(det.harga_satuan) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 94")
-			->where("rap.tanggal_rap_bua < '$date2'")
-			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
-			->get()->row_array();
-
-			$rap_biaya_maintenance = $this->db->select('rap.*,sum(det.harga_satuan) as total')
-			->from('rap_bua rap')
-			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
-			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 141")
 			->where("rap.tanggal_rap_bua < '$date2'")
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
@@ -409,25 +382,6 @@
 			->get()->row_array();
 			$bensin_tol_parkir = $bensin_tol_parkir_biaya['total'] + $bensin_tol_parkir_jurnal['total'];
 
-			$perjalanan_dinas_biaya = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 62")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-
-			$perjalanan_dinas_jurnal = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 62")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-			$perjalanan_dinas = $perjalanan_dinas_biaya['total'] + $perjalanan_dinas_jurnal['total'];
-
 			$pakaian_dinas_biaya = $this->db->select('sum(pdb.jumlah) as total')
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -466,25 +420,6 @@
 			->get()->row_array();
 			$alat_tulis_kantor = $alat_tulis_kantor_biaya['total'] + $alat_tulis_kantor_jurnal['total'];
 
-			$perlengkapan_kantor_biaya = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 98")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-
-			$perlengkapan_kantor_jurnal = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 98")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-			$perlengkapan_kantor = $perlengkapan_kantor_biaya['total'] + $perlengkapan_kantor_jurnal['total'];
-
 			$biaya_lain_lain_biaya = $this->db->select('sum(pdb.jumlah) as total')
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -503,25 +438,6 @@
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 			$biaya_lain_lain = $biaya_lain_lain_biaya['total'] + $biaya_lain_lain_jurnal['total'];
-
-			$biaya_maintenance_biaya = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 141")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-
-			$biaya_maintenance_jurnal = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 141")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-			$biaya_maintenance = $biaya_maintenance_biaya['total'] + $biaya_maintenance_jurnal['total'];
 
 			$biaya_pengujian_biaya = $this->db->select('sum(pdb.jumlah) as total')
 			->from('pmm_biaya pb ')
@@ -607,19 +523,16 @@
 			$evaluasi_keamanan_kebersihan = $rap_keamanan_kebersihan['total'] - $keamanan_kebersihan;
 			$evaluasi_pengobatan = $rap_pengobatan['total'] - $pengobatan;
 			$evaluasi_bensin_tol_parkir = $rap_bensin_tol_parkir['total'] - $bensin_tol_parkir;
-			$evaluasi_perjalanan_dinas = $rap_perjalanan_dinas['total'] - $perjalanan_dinas;
 			$evaluasi_pakaian_dinas = $rap_pakaian_dinas['total'] - $pakaian_dinas;
 			$evaluasi_alat_tulis_kantor = $rap_alat_tulis_kantor['total'] -	$alat_tulis_kantor;
-			$evaluasi_perlengkapan_kantor = $rap_perlengkapan_kantor['total'] - $perlengkapan_kantor;
 			$evaluasi_biaya_lain_lain = $rap_biaya_lain_lain['total'] - $biaya_lain_lain;
-			$evaluasi_biaya_maintenance = $rap_biaya_maintenance['total'] - $biaya_maintenance;
 			$evaluasi_biaya_pengujian = $rap_biaya_pengujian['total'] - $biaya_pengujian;
 			$evaluasi_akomodasi = $rap_akomodasi['total'] - $akomodasi;
 			$evaluasi_kirim = $rap_kirim['total'] - $kirim;
 			$evaluasi_adm = $rap_adm['total'] - $adm;
 
-			$total_rap = $rap_gaji['total'] + $rap_konsumsi['total'] + $rap_listrik_internet['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_biaya_lain_lain['total'] + $rap_biaya_maintenance['total'] + $rap_biaya_pengujian['total'] + $rap_akomodasi['total'] + $rap_kirim['total'] + $rap_adm['total'];
-			$total_realisasi = $gaji + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $biaya_lain_lain + $biaya_maintenance + $biaya_pengujian + $akomodasi + $kirim + $adm;
+			$total_rap = $rap_gaji['total'] + $rap_konsumsi['total'] + $rap_listrik_internet['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_bensin_tol_parkir['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_biaya_lain_lain['total'] + $rap_biaya_pengujian['total'] + $rap_akomodasi['total'] + $rap_kirim['total'] + $rap_adm['total'];
+			$total_realisasi = $gaji + $konsumsi + $listrik_internet + $keamanan_kebersihan + $pengobatan + $bensin_tol_parkir + $pakaian_dinas + $alat_tulis_kantor + $biaya_lain_lain + $biaya_pengujian + $akomodasi + $kirim + $adm;
 			$total_evaluasi = $total_rap - $total_realisasi;
 			?>
 			
@@ -637,17 +550,14 @@
 				$styleColorD = $evaluasi_keamanan_kebersihan < 0 ? 'color:red' : 'color:black';
 				$styleColorE = $evaluasi_pengobatan < 0 ? 'color:red' : 'color:black';
 				$styleColorF = $evaluasi_bensin_tol_parkir < 0 ? 'color:red' : 'color:black';
-				$styleColorG = $evaluasi_perjalanan_dinas < 0 ? 'color:red' : 'color:black';
-				$styleColorH = $evaluasi_pakaian_dinas < 0 ? 'color:red' : 'color:black';
-				$styleColorI = $evaluasi_alat_tulis_kantor < 0 ? 'color:red' : 'color:black';
-				$styleColorJ = $evaluasi_perlengkapan_kantor < 0 ? 'color:red' : 'color:black';
-				$styleColorK = $evaluasi_biaya_lain_lain < 0 ? 'color:red' : 'color:black';
-				$styleColorL = $evaluasi_biaya_maintenance < 0 ? 'color:red' : 'color:black';
-				$styleColorM = $evaluasi_biaya_pengujian < 0 ? 'color:red' : 'color:black';
-				$styleColorN = $evaluasi_akomodasi < 0 ? 'color:red' : 'color:black';
-				$styleColorO = $evaluasi_kirim < 0 ? 'color:red' : 'color:black';
-				$styleColorP = $evaluasi_adm < 0 ? 'color:red' : 'color:black';
-				$styleColorQ = $total_evaluasi < 0 ? 'color:red' : 'color:black';
+				$styleColorG = $evaluasi_pakaian_dinas < 0 ? 'color:red' : 'color:black';
+				$styleColorH = $evaluasi_alat_tulis_kantor < 0 ? 'color:red' : 'color:black';
+				$styleColorI = $evaluasi_biaya_lain_lain < 0 ? 'color:red' : 'color:black';
+				$styleColorJ = $evaluasi_biaya_pengujian < 0 ? 'color:red' : 'color:black';
+				$styleColorK = $evaluasi_akomodasi < 0 ? 'color:red' : 'color:black';
+				$styleColorL = $evaluasi_kirim < 0 ? 'color:red' : 'color:black';
+				$styleColorM = $evaluasi_adm < 0 ? 'color:red' : 'color:black';
+				$styleColorN = $total_evaluasi < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">1</th>			
@@ -693,79 +603,58 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">7</th>			
-				<th align="left" class="table-border-pojok-tengah">Perjalanan Dinas Umum</th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_perjalanan_dinas['total'],0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($perjalanan_dinas,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorG ?>"><?php echo $evaluasi_perjalanan_dinas < 0 ? "(".number_format(-$evaluasi_perjalanan_dinas,0,',','.').")" : number_format($evaluasi_perjalanan_dinas,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">8</th>			
 				<th align="left" class="table-border-pojok-tengah">Pakaian Dinas & K3</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_pakaian_dinas['total'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($pakaian_dinas,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorH ?>"><?php echo $evaluasi_pakaian_dinas < 0 ? "(".number_format(-$evaluasi_pakaian_dinas,0,',','.').")" : number_format($evaluasi_pakaian_dinas,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorG ?>"><?php echo $evaluasi_pakaian_dinas < 0 ? "(".number_format(-$evaluasi_pakaian_dinas,0,',','.').")" : number_format($evaluasi_pakaian_dinas,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">9</th>			
+				<th align="center" class="table-border-pojok-kiri">8</th>			
 				<th align="left" class="table-border-pojok-tengah">Alat Tulis Kantor & Printing</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_alat_tulis_kantor['total'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($alat_tulis_kantor,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorI ?>"><?php echo $evaluasi_alat_tulis_kantor < 0 ? "(".number_format(-$evaluasi_alat_tulis_kantor,0,',','.').")" : number_format($evaluasi_alat_tulis_kantor,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorH ?>"><?php echo $evaluasi_alat_tulis_kantor < 0 ? "(".number_format(-$evaluasi_alat_tulis_kantor,0,',','.').")" : number_format($evaluasi_alat_tulis_kantor,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">10</th>			
-				<th align="left" class="table-border-pojok-tengah">Perlengkapan Kantor</th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_perlengkapan_kantor['total'],0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($perlengkapan_kantor,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorJ ?>"><?php echo $evaluasi_perlengkapan_kantor < 0 ? "(".number_format(-$evaluasi_perlengkapan_kantor,0,',','.').")" : number_format($evaluasi_perlengkapan_kantor,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">11</th>			
+				<th align="center" class="table-border-pojok-kiri">9</th>			
 				<th align="left" class="table-border-pojok-tengah">Biaya Lain-Lain</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_biaya_lain_lain['total'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($biaya_lain_lain,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorK ?>"><?php echo $evaluasi_biaya_lain_lain < 0 ? "(".number_format(-$evaluasi_biaya_lain_lain,0,',','.').")" : number_format($evaluasi_biaya_lain_lain,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">12</th>			
-				<th align="left" class="table-border-pojok-tengah">Biaya Maintenace Perbaikan & Pemeliharaan</th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_biaya_maintenance['total'],0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($biaya_maintenance,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorL ?>"><?php echo $evaluasi_biaya_maintenance < 0 ? "(".number_format(-$evaluasi_biaya_maintenance,0,',','.').")" : number_format($evaluasi_biaya_maintenance,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorI ?>"><?php echo $evaluasi_biaya_lain_lain < 0 ? "(".number_format(-$evaluasi_biaya_lain_lain,0,',','.').")" : number_format($evaluasi_biaya_lain_lain,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">13</th>			
 				<th align="left" class="table-border-pojok-tengah">Biaya Pengujian Material & Laboratorium</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_biaya_pengujian['total'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($biaya_pengujian,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorM ?>"><?php echo $evaluasi_biaya_pengujian < 0 ? "(".number_format(-$evaluasi_biaya_pengujian,0,',','.').")" : number_format($evaluasi_biaya_pengujian,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorJ ?>"><?php echo $evaluasi_biaya_pengujian < 0 ? "(".number_format(-$evaluasi_biaya_pengujian,0,',','.').")" : number_format($evaluasi_biaya_pengujian,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">14</th>			
+				<th align="center" class="table-border-pojok-kiri">10</th>			
 				<th align="left" class="table-border-pojok-tengah">Akomodasi Tamu</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_akomodasi['total'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($akomodasi,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorN ?>"><?php echo $evaluasi_akomodasi < 0 ? "(".number_format(-$evaluasi_akomodasi,0,',','.').")" : number_format($evaluasi_akomodasi,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorK ?>"><?php echo $evaluasi_akomodasi < 0 ? "(".number_format(-$evaluasi_akomodasi,0,',','.').")" : number_format($evaluasi_akomodasi,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">15</th>			
+				<th align="center" class="table-border-pojok-kiri">11</th>			
 				<th align="left" class="table-border-pojok-tengah">Biaya Kirim</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_kirim['total'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($kirim,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorO ?>"><?php echo $evaluasi_kirim < 0 ? "(".number_format(-$evaluasi_kirim,0,',','.').")" : number_format($evaluasi_kirim,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorL ?>"><?php echo $evaluasi_kirim < 0 ? "(".number_format(-$evaluasi_kirim,0,',','.').")" : number_format($evaluasi_kirim,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">16</th>			
+				<th align="center" class="table-border-pojok-kiri">12</th>			
 				<th align="left" class="table-border-pojok-tengah">Biaya Adm Bank</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rap_adm['total'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($adm,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorO ?>"><?php echo $evaluasi_adm < 0 ? "(".number_format(-$evaluasi_adm,0,',','.').")" : number_format($evaluasi_adm,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorM ?>"><?php echo $evaluasi_adm < 0 ? "(".number_format(-$evaluasi_adm,0,',','.').")" : number_format($evaluasi_adm,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total2">
 				<th align="center" colspan="2" class="table-border-spesial-kiri">TOTAL</th>
 				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_rap,0,',','.');?></th>
 				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_realisasi,0,',','.');?></th>
-				<th align="right" class="table-border-spesial-kanan" style="<?php echo $styleColorP ?>"><?php echo $total_evaluasi < 0 ? "(".number_format(-$total_evaluasi,0,',','.').")" : number_format($total_evaluasi,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-kanan" style="<?php echo $styleColorN ?>"><?php echo $total_evaluasi < 0 ? "(".number_format(-$total_evaluasi,0,',','.').")" : number_format($total_evaluasi,0,',','.');?></th>
 	        </tr>
 	    </table>
 		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
