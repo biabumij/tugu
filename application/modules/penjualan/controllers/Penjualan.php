@@ -20,7 +20,7 @@ class Penjualan extends Secure_Controller
 		$data = array();
 		
 
-		$this->db->select('pmm_penawaran_penjualan.*,ps.nama as nama');
+		$this->db->select('ppp.*,ps.nama as nama');
 		$this->db->join('penerima ps', 'ppp.client_id = ps.id', 'left');
 		$this->db->where("ppp.status <> 'REJECT'");
 		$this->db->order_by('ppp.tanggal', 'DESC');
