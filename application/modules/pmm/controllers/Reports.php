@@ -2066,7 +2066,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">100%</th>
 				<th class="text-right"><?php echo number_format(($penjualan_sd_bulan_lalu/$rencana_pendapatan) * 100,2,',','.');?>%</th>
 				<th class="text-right"><?php echo number_format(($penjualan_bulan_ini/$rencana_pendapatan) * 100,2,',','.');?>%</th>
-				<th class="text-right"><?php echo number_format(($penjualan_bulan_ini_sd/$rencana_pendapatan) * 100,2,',','.');?>%</th>
+				<th class="text-right"><?php echo number_format((($penjualan_bulan_ini_sd + $penjualan_bulan_ini) / $rencana_pendapatan) * 100,2,',','.');?>%</th>
 				<th class="text-right"><?php echo number_format(($penjualan_2/$rencana_pendapatan) * 100,2,',','.');?>%</th>
 				<th class="text-right"><?php echo number_format(($penjualan_3/$rencana_pendapatan) * 100,2,',','.');?>%</th>
 				<th class="text-right"><?php echo number_format(($penjualan_4/$rencana_pendapatan) * 100,2,',','.');?>%</th>
