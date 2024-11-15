@@ -2030,7 +2030,6 @@ class Reports extends CI_Controller {
 			->where("pp.date_production between '$date_awal' and '$date_1_akhir'")
 			->where("pp.status = 'PUBLISH'")
 			->where("ppo.status in ('OPEN','CLOSED')")
-			->group_by("pp.client_id")
 			->get()->row_array();
 			$penjualan_bulan_ini_sd = $penjualan_bulan_ini_sd['total'];
 
