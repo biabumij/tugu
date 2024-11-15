@@ -1904,18 +1904,6 @@ class Reports extends CI_Controller {
 				<th class="text-center" rowspan="4" style="vertical-align:middle">I</th>
 				<th class="text-left" colspan="10"><u>PRODUKSI (EXCL. PPN)</u></th>
 			</tr>
-			<tr class="table-active3-csf">
-				<th class="text-left"><u>AKUMULASI %</u></th>
-				<th class="text-right">100%</th>
-				<th class="text-right"><?php echo number_format($test,2,',','.');?>%</th>
-				<th class="text-right"><?php echo number_format($test,2,',','.');?>%</th>
-				<th class="text-right"><?php echo number_format($test,2,',','.');?>%</th>
-				<th class="text-right"><?php echo number_format($test,2,',','.');?>%</th>
-				<th class="text-right"><?php echo number_format($test,2,',','.');?>%</th>
-				<th class="text-right"><?php echo number_format($test,2,',','.');?>%</th>
-				<th class="text-right"><?php echo number_format($test,2,',','.');?>%</th>
-				<th class="text-right"><?php echo number_format($test,2,',','.');?>%</th>
-			</tr>
 			<?php
 			$date_agustus24_awal = date('2024-08-01');
 			$date_agustus24_akhir = date('2024-08-31');
@@ -2073,6 +2061,18 @@ class Reports extends CI_Controller {
 			$jumlah_penjualan = $penjualan_bulan_ini_sd + $penjualan_2 + $penjualan_3 + $penjualan_4;
 			$sisa_penjualan = $rencana_pendapatan - $jumlah_penjualan;
 			?>
+			<tr class="table-active3-csf">
+				<th class="text-left"><u>AKUMULASI %</u></th>
+				<th class="text-right">100%</th>
+				<th class="text-right"><?php echo number_format(($penjualan_sd_bulan_lalu/$rencana_pendapatan) * 100,2,',','.');?>%</th>
+				<th class="text-right"><?php echo number_format(($penjualan_bulan_ini/$rencana_pendapatan) * 100,2,',','.');?>%</th>
+				<th class="text-right"><?php echo number_format(($penjualan_bulan_ini_sd/$rencana_pendapatan) * 100,2,',','.');?>%</th>
+				<th class="text-right"><?php echo number_format(($penjualan_2/$rencana_pendapatan) * 100,2,',','.');?>%</th>
+				<th class="text-right"><?php echo number_format(($penjualan_3/$rencana_pendapatan) * 100,2,',','.');?>%</th>
+				<th class="text-right"><?php echo number_format(($penjualan_4/$rencana_pendapatan) * 100,2,',','.');?>%</th>
+				<th class="text-right"><?php echo number_format(($jumlah_penjualan/$rencana_pendapatan) * 100,2,',','.');?>%</th>
+				<th class="text-right"><?php echo number_format(($sisa_penjualan/$rencana_pendapatan) * 100,2,',','.');?>%</th>
+			</tr>
 			<tr class="table-active2-csf">
 				<th class="text-left">&nbsp;&nbsp;1. PRODUKSI (Rp.)</th>
 				<th class="text-right"><?php echo number_format($rencana_pendapatan,0,',','.');?></th>
