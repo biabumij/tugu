@@ -64,7 +64,7 @@ class Biaya extends CI_Controller {
             // $this->db->where('c.coa_category',3);
             $this->db->where('c.status','PUBLISH');
             //$this->db->where("cc.coa_category_number in ('5','6')");
-            $this->db->where("c.id in ('114','96','159','78','118','116','87','97','160','143','70','161','94','131')");
+            $this->db->where("c.id in ('114','96','159','78','118','116','87','97','160','143','70','161','94','131','110')");
             $this->db->order_by('c.coa_number','asc');
             $query = $this->db->get('pmm_coa c');
             $data['akun_biaya'] = $query->result_array();   
@@ -679,7 +679,7 @@ class Biaya extends CI_Controller {
         $this->db->join('pmm_coa_category cc','c.coa_category = cc.id','left');
         $this->db->where('c.status','PUBLISH');
         //$this->db->where("cc.coa_category_number in ('5','6')");
-        $this->db->where("c.id in ('114','96','159','78','118','116','87','97','160','143','70','161','94','131')");
+        $this->db->where("c.id in ('114','96','159','78','118','116','87','97','160','143','70','161','94','131','110')");
         $this->db->order_by('c.coa_number','asc');
         $query = $this->db->get('pmm_coa c');
         $data['akun_biaya'] = $query->result_array();
