@@ -433,8 +433,8 @@
                                                             <td><?= date('d/m/Y', strtotime($sj['date_receipt'])); ?></td>
                                                             <td><?= $sj['surat_jalan']; ?></td>
                                                             <td><?= $sj['nama_produk']; ?></td>
-                                                            <td><?= $sj['no_kendaraan']; ?></td>
-                                                            <td><?= $sj['driver']; ?></td>
+                                                            <td style="text-align: left !important;"><?= $sj['no_kendaraan']; ?></td>
+                                                            <td style="text-align: left !important;"><?= $sj['driver']; ?></td>
                                                             <td style="text-align: right !important;"><?= $this->filter->Rupiah($sj['volume']); ?></td>
                                                             <td><?= $sj['measure']; ?></td>
                                                             <td><?= $sj['surat_jalan_file'] = '<a href="'.base_url().'uploads/surat_jalan_penerimaan/'.$sj['surat_jalan_file'].'" target="_blank">'.$sj['surat_jalan_file'].'</a>'; ?></td>
