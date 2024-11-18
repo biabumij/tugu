@@ -417,7 +417,7 @@
                                                             <td><?= $sj['no_production']; ?></td>
                                                             <td><?= $sj['product']; ?></td>
                                                             <td style="text-align: left !important;"><?= $sj['nopol_truck']; ?></td>
-                                                            <td style="text-align: left !important;">><?= $sj['driver']; ?></td>
+                                                            <td style="text-align: left !important;"><?= $sj['driver']; ?></td>
                                                             <td style="text-align: right !important;"><?= number_format($sj['volume'],2,',','.'); ?></td>
                                                             <td><?= $sj['measure']; ?></td>
                                                             <td><?= $sj['surat_jalan'] = '<a href="'.base_url().'uploads/surat_jalan_penjualan/'.$sj['surat_jalan'].'" target="_blank">'.$sj['surat_jalan'].'</a>'; ?></td>
