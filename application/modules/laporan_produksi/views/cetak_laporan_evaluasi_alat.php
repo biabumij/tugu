@@ -629,7 +629,7 @@
 	    </table>
 		<br /><br />
 		<?php
-		if(in_array($this->session->userdata('admin_group_id'), array(1,2,3))){
+		if(in_array($this->session->userdata('admin_id'), array(1,3))){
 		?>
 		<table width="98%" border="0" cellpadding="3" border="0">
 			<?php
