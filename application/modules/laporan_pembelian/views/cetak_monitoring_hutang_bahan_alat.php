@@ -168,29 +168,39 @@
 						<td align="center"><?php echo $mat['jatuh_tempo'];?></td>
             		</tr>
 
-					<?php
-					$jumlah_dpp_tagihan1 += str_replace(['.', ','], ['', '.'], $mat['dpp_tagihan']);
-					$jumlah_ppn_tagihan1 += str_replace(['.', ','], ['', '.'], $mat['ppn_tagihan']);
-					$jumlah_jumlah_tagihan1 += str_replace(['.', ','], ['', '.'], $mat['jumlah_tagihan']);
-					$jumlah_dpp_pembayaran1 += str_replace(['.', ','], ['', '.'], $mat['dpp_pembayaran']);
-					$jumlah_ppn_pembayaran1 += str_replace(['.', ','], ['', '.'], $mat['ppn_pembayaran']);
-					$jumlah_pph_pembayaran1 += str_replace(['.', ','], ['', '.'], $mat['pph_pembayaran']);
-					$jumlah_jumlah_pembayaran1 += str_replace(['.', ','], ['', '.'], $mat['jumlah_pembayaran']);
-					$jumlah_dpp_sisa_hutang1 += str_replace(['.', ','], ['', '.'], $mat['dpp_sisa_hutang']);
-					$jumlah_ppn_sisa_hutang1 += str_replace(['.', ','], ['', '.'], $mat['ppn_sisa_hutang']);
-					$jumlah_jumlah_sisa_hutang1 += str_replace(['.', ','], ['', '.'], $mat['jumlah_sisa_hutang']);
+						<?php
+						$jumlah_dpp_tagihan1 += str_replace(['.', ','], ['', '.'], $mat['dpp_tagihan']);
+						$jumlah_ppn_tagihan1 += str_replace(['.', ','], ['', '.'], $mat['ppn_tagihan']);
+						$jumlah_jumlah_tagihan1 += str_replace(['.', ','], ['', '.'], $mat['jumlah_tagihan']);
+						$jumlah_dpp_pembayaran1 += str_replace(['.', ','], ['', '.'], $mat['dpp_pembayaran']);
+						$jumlah_ppn_pembayaran1 += str_replace(['.', ','], ['', '.'], $mat['ppn_pembayaran']);
+						$jumlah_pph_pembayaran1 += str_replace(['.', ','], ['', '.'], $mat['pph_pembayaran']);
+						$jumlah_jumlah_pembayaran1 += str_replace(['.', ','], ['', '.'], $mat['jumlah_pembayaran']);
+						$jumlah_dpp_sisa_hutang1 += str_replace(['.', ','], ['', '.'], $mat['dpp_sisa_hutang']);
+						$jumlah_ppn_sisa_hutang1 += str_replace(['.', ','], ['', '.'], $mat['ppn_sisa_hutang']);
+						$jumlah_jumlah_sisa_hutang1 += str_replace(['.', ','], ['', '.'], $mat['jumlah_sisa_hutang']);
 
-					$jumlah_dpp_tagihan += str_replace(['.', ','], ['', '.'], $mat['dpp_tagihan']);
-					$jumlah_ppn_tagihan += str_replace(['.', ','], ['', '.'], $mat['ppn_tagihan']);
-					$jumlah_jumlah_tagihan += str_replace(['.', ','], ['', '.'], $mat['jumlah_tagihan']);
-					$jumlah_dpp_pembayaran += str_replace(['.', ','], ['', '.'], $mat['dpp_pembayaran']);
-					$jumlah_ppn_pembayaran += str_replace(['.', ','], ['', '.'], $mat['ppn_pembayaran']);
-					$jumlah_pph_pembayaran += str_replace(['.', ','], ['', '.'], $mat['pph_pembayaran']);
-					$jumlah_jumlah_pembayaran += str_replace(['.', ','], ['', '.'], $mat['jumlah_pembayaran']);
-					$jumlah_dpp_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['dpp_sisa_hutang']);
-					$jumlah_ppn_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['ppn_sisa_hutang']);
-					$jumlah_jumlah_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['jumlah_sisa_hutang']);
-				
+						$jumlah_dpp_tagihan += str_replace(['.', ','], ['', '.'], $mat['dpp_tagihan']);
+						$jumlah_ppn_tagihan += str_replace(['.', ','], ['', '.'], $mat['ppn_tagihan']);
+						$jumlah_jumlah_tagihan += str_replace(['.', ','], ['', '.'], $mat['jumlah_tagihan']);
+						$jumlah_dpp_pembayaran += str_replace(['.', ','], ['', '.'], $mat['dpp_pembayaran']);
+						$jumlah_ppn_pembayaran += str_replace(['.', ','], ['', '.'], $mat['ppn_pembayaran']);
+						$jumlah_pph_pembayaran += str_replace(['.', ','], ['', '.'], $mat['pph_pembayaran']);
+						$jumlah_jumlah_pembayaran += str_replace(['.', ','], ['', '.'], $mat['jumlah_pembayaran']);
+						$jumlah_dpp_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['dpp_sisa_hutang']);
+						$jumlah_ppn_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['ppn_sisa_hutang']);
+						$jumlah_jumlah_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['jumlah_sisa_hutang']);
+
+						$jumlah_dpp_tagihan_bahan += str_replace(['.', ','], ['', '.'], $mat['dpp_tagihan']);
+						$jumlah_ppn_tagihan_bahan += str_replace(['.', ','], ['', '.'], $mat['ppn_tagihan']);
+						$jumlah_jumlah_tagihan_bahan += str_replace(['.', ','], ['', '.'], $mat['jumlah_tagihan']);
+						$jumlah_dpp_pembayaran_bahan += str_replace(['.', ','], ['', '.'], $mat['dpp_pembayaran']);
+						$jumlah_ppn_pembayaran_bahan += str_replace(['.', ','], ['', '.'], $mat['ppn_pembayaran']);
+						$jumlah_pph_pembayaran_bahan += str_replace(['.', ','], ['', '.'], $mat['pph_pembayaran']);
+						$jumlah_jumlah_pembayaran_bahan += str_replace(['.', ','], ['', '.'], $mat['jumlah_pembayaran']);
+						$jumlah_dpp_sisa_hutang_bahan += str_replace(['.', ','], ['', '.'], $mat['dpp_sisa_hutang']);
+						$jumlah_ppn_sisa_hutang_bahan += str_replace(['.', ','], ['', '.'], $mat['ppn_sisa_hutang']);
+						$jumlah_jumlah_sisa_hutang_bahan += str_replace(['.', ','], ['', '.'], $mat['jumlah_sisa_hutang']);
 						}
 					}
 					?>
@@ -246,29 +256,39 @@
 						<td align="center"><?php echo $mat['jatuh_tempo'];?></td>
             		</tr>
 
-					<?php
-					$jumlah_dpp_tagihan2 += str_replace(['.', ','], ['', '.'], $mat['dpp_tagihan']);
-					$jumlah_ppn_tagihan2 += str_replace(['.', ','], ['', '.'], $mat['ppn_tagihan']);
-					$jumlah_jumlah_tagihan2 += str_replace(['.', ','], ['', '.'], $mat['jumlah_tagihan']);
-					$jumlah_dpp_pembayaran2 += str_replace(['.', ','], ['', '.'], $mat['dpp_pembayaran']);
-					$jumlah_ppn_pembayaran2 += str_replace(['.', ','], ['', '.'], $mat['ppn_pembayaran']);
-					$jumlah_pph_pembayaran2 += str_replace(['.', ','], ['', '.'], $mat['pph_pembayaran']);
-					$jumlah_jumlah_pembayaran2 += str_replace(['.', ','], ['', '.'], $mat['jumlah_pembayaran']);
-					$jumlah_dpp_sisa_hutang2 += str_replace(['.', ','], ['', '.'], $mat['dpp_sisa_hutang']);
-					$jumlah_ppn_sisa_hutang2 += str_replace(['.', ','], ['', '.'], $mat['ppn_sisa_hutang']);
-					$jumlah_jumlah_sisa_hutang2 += str_replace(['.', ','], ['', '.'], $mat['jumlah_sisa_hutang']);
+						<?php
+						$jumlah_dpp_tagihan2 += str_replace(['.', ','], ['', '.'], $mat['dpp_tagihan']);
+						$jumlah_ppn_tagihan2 += str_replace(['.', ','], ['', '.'], $mat['ppn_tagihan']);
+						$jumlah_jumlah_tagihan2 += str_replace(['.', ','], ['', '.'], $mat['jumlah_tagihan']);
+						$jumlah_dpp_pembayaran2 += str_replace(['.', ','], ['', '.'], $mat['dpp_pembayaran']);
+						$jumlah_ppn_pembayaran2 += str_replace(['.', ','], ['', '.'], $mat['ppn_pembayaran']);
+						$jumlah_pph_pembayaran2 += str_replace(['.', ','], ['', '.'], $mat['pph_pembayaran']);
+						$jumlah_jumlah_pembayaran2 += str_replace(['.', ','], ['', '.'], $mat['jumlah_pembayaran']);
+						$jumlah_dpp_sisa_hutang2 += str_replace(['.', ','], ['', '.'], $mat['dpp_sisa_hutang']);
+						$jumlah_ppn_sisa_hutang2 += str_replace(['.', ','], ['', '.'], $mat['ppn_sisa_hutang']);
+						$jumlah_jumlah_sisa_hutang2 += str_replace(['.', ','], ['', '.'], $mat['jumlah_sisa_hutang']);
 
-					$jumlah_dpp_tagihan += str_replace(['.', ','], ['', '.'], $mat['dpp_tagihan']);
-					$jumlah_ppn_tagihan += str_replace(['.', ','], ['', '.'], $mat['ppn_tagihan']);
-					$jumlah_jumlah_tagihan += str_replace(['.', ','], ['', '.'], $mat['jumlah_tagihan']);
-					$jumlah_dpp_pembayaran += str_replace(['.', ','], ['', '.'], $mat['dpp_pembayaran']);
-					$jumlah_ppn_pembayaran += str_replace(['.', ','], ['', '.'], $mat['ppn_pembayaran']);
-					$jumlah_pph_pembayaran += str_replace(['.', ','], ['', '.'], $mat['pph_pembayaran']);
-					$jumlah_jumlah_pembayaran += str_replace(['.', ','], ['', '.'], $mat['jumlah_pembayaran']);
-					$jumlah_dpp_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['dpp_sisa_hutang']);
-					$jumlah_ppn_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['ppn_sisa_hutang']);
-					$jumlah_jumlah_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['jumlah_sisa_hutang']);
+						$jumlah_dpp_tagihan += str_replace(['.', ','], ['', '.'], $mat['dpp_tagihan']);
+						$jumlah_ppn_tagihan += str_replace(['.', ','], ['', '.'], $mat['ppn_tagihan']);
+						$jumlah_jumlah_tagihan += str_replace(['.', ','], ['', '.'], $mat['jumlah_tagihan']);
+						$jumlah_dpp_pembayaran += str_replace(['.', ','], ['', '.'], $mat['dpp_pembayaran']);
+						$jumlah_ppn_pembayaran += str_replace(['.', ','], ['', '.'], $mat['ppn_pembayaran']);
+						$jumlah_pph_pembayaran += str_replace(['.', ','], ['', '.'], $mat['pph_pembayaran']);
+						$jumlah_jumlah_pembayaran += str_replace(['.', ','], ['', '.'], $mat['jumlah_pembayaran']);
+						$jumlah_dpp_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['dpp_sisa_hutang']);
+						$jumlah_ppn_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['ppn_sisa_hutang']);
+						$jumlah_jumlah_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['jumlah_sisa_hutang']);
 
+						$jumlah_dpp_tagihan_alat += str_replace(['.', ','], ['', '.'], $mat['dpp_tagihan']);
+						$jumlah_ppn_tagihan_alat += str_replace(['.', ','], ['', '.'], $mat['ppn_tagihan']);
+						$jumlah_jumlah_tagihan_alat += str_replace(['.', ','], ['', '.'], $mat['jumlah_tagihan']);
+						$jumlah_dpp_pembayaran_alat += str_replace(['.', ','], ['', '.'], $mat['dpp_pembayaran']);
+						$jumlah_ppn_pembayaran_alat += str_replace(['.', ','], ['', '.'], $mat['ppn_pembayaran']);
+						$jumlah_pph_pembayaran_alat += str_replace(['.', ','], ['', '.'], $mat['pph_pembayaran']);
+						$jumlah_jumlah_pembayaran_alat += str_replace(['.', ','], ['', '.'], $mat['jumlah_pembayaran']);
+						$jumlah_dpp_sisa_hutang_alat += str_replace(['.', ','], ['', '.'], $mat['dpp_sisa_hutang']);
+						$jumlah_ppn_sisa_hutang_alat += str_replace(['.', ','], ['', '.'], $mat['ppn_sisa_hutang']);
+						$jumlah_jumlah_sisa_hutang_alat += str_replace(['.', ','], ['', '.'], $mat['jumlah_sisa_hutang']);
 						}
 					}
 					?>
@@ -321,38 +341,9 @@
             }
             ?>
 
+
 			<tr class="table-judul">
-				<th align="right" colspan="6" class="table-border-atas-full">TOTAL BAHAN</th>
-				<th align="right" class="table-border-atas-full"><?php echo number_format($jumlah_dpp_tagihan,0,',','.');?></th>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_ppn_tagihan,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_jumlah_tagihan,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_dpp_pembayaran,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_ppn_pembayaran,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_pph_pembayaran,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_jumlah_pembayaran,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_dpp_sisa_hutang,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_ppn_sisa_hutang,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_jumlah_sisa_hutang,0,',','.');?></td>
-				<td align="center" class="table-border-atas-full"></td>
-				<td align="center" class="table-border-atas-full"></td>
-            </tr>   
-			<tr class="table-judul">
-				<th align="right" colspan="6" class="table-border-atas-full">ALAT</th>
-				<th align="right" class="table-border-atas-full"><?php echo number_format($jumlah_dpp_tagihan,0,',','.');?></th>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_ppn_tagihan,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_jumlah_tagihan,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_dpp_pembayaran,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_ppn_pembayaran,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_pph_pembayaran,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_jumlah_pembayaran,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_dpp_sisa_hutang,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_ppn_sisa_hutang,0,',','.');?></td>
-				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_jumlah_sisa_hutang,0,',','.');?></td>
-				<td align="center" class="table-border-atas-full"></td>
-				<td align="center" class="table-border-atas-full"></td>
-            </tr>
-			<tr class="table-judul">
-				<th align="right" colspan="6" class="table-border-atas-full">TOTAL BAHAN + ALAT</th>
+				<th align="right" colspan="6" class="table-border-atas-full">TOTAL</th>
 				<th align="right" class="table-border-atas-full"><?php echo number_format($total_dpp_tagihan,0,',','.');?></th>
 				<th align="right" class="table-border-atas-full"><?php echo number_format($total_ppn_tagihan,0,',','.');?></th>
 				<th align="right" class="table-border-atas-full"><?php echo number_format($total_jumlah_tagihan,0,',','.');?></th>
@@ -365,53 +356,38 @@
 				<th align="right" class="table-border-atas-full"><?php echo number_format($total_jumlah_sisa_hutang,0,',','.');?></th>
 				<td align="center" class="table-border-atas-full"></td>
 				<td align="center" class="table-border-atas-full"></td>
+            </tr>
+			<tr class="table-judul">
+				<th align="right" colspan="6" class="table-border-atas-full">TOTAL BAHAN</th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($jumlah_dpp_tagihan_bahan,0,',','.');?></th>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_ppn_tagihan_bahan,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_jumlah_tagihan_bahan,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_dpp_pembayaran_bahan,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_ppn_pembayaran_bahan,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_pph_pembayaran_bahan,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_jumlah_pembayaran_bahan,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_dpp_sisa_hutang_bahan,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_ppn_sisa_hutang_bahan,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_jumlah_sisa_hutang_bahan,0,',','.');?></td>
+				<td align="center" class="table-border-atas-full"></td>
+				<td align="center" class="table-border-atas-full"></td>
             </tr>   
+			<tr class="table-judul">
+				<th align="right" colspan="6" class="table-border-atas-full">ALAT</th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($jumlah_dpp_tagihan_alat,0,',','.');?></th>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_ppn_tagihan_alat,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_jumlah_tagihan_alat,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_dpp_pembayaran_alat,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_ppn_pembayaran_alat,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_pph_pembayaran_alat,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_jumlah_pembayaran_alat,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_dpp_sisa_hutang_alat,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_ppn_sisa_hutang_alat,0,',','.');?></td>
+				<td align="right" class="table-border-atas-full"><?php echo number_format($jumlah_jumlah_sisa_hutang_alat,0,',','.');?></td>
+				<td align="center" class="table-border-atas-full"></td>
+				<td align="center" class="table-border-atas-full"></td>
+            </tr>
 		</table>
-		<table width="98%" border="0" cellpadding="30">
-			<tr >
-				<td width="5%"></td>
-				<td width="90%">
-					<table width="100%" border="0" cellpadding="3">
-						<tr>
-							<td align="center" >
-								Dibuat Oleh
-							</td>
-							<td align="center" >
-								Diperiksa Oleh
-							</td>
-							<td align="center">
-								Disetujui Oleh
-							</td>
-						</tr>
-						<tr class="">
-							<td align="center" height="70px">
-								
-							</td>
-							<td align="center">
-								
-							</td>
-							<td align="center">
-								
-							</td>
-						</tr>
-						<tr>
-							<td align="center">
-							<b><u>Iva Widya Kumala</u><br />
-								Keuangan Proyek</b>
-							</td>
-							<td align="center">
-							<b><u>Rifka Dian Bethary</u><br />
-								Keuangan Proyek</b>
-							</td>
-							<td align="center">
-								<b><u>Tri Wahyu Rahadi</u><br />
-								Ka. Plant</b>
-							</td>
-						</tr>
-					</table>
-				</td>
-				<td width="5%"></td>
-			</tr>
-		</table>
+		
 	</body>
 </html>

@@ -941,7 +941,26 @@
                             $('#monitoring-hutang-bahan-alat tbody').html('');
 
                             window.jumlah_dpp_bahan = 0;
+                            window.jumlah_ppn_bahan = 0;
+                            window.jumlah_tagihan_bahan = 0;
+                            window.jumlah_dpp_pembayaran_bahan = 0;
+                            window.jumlah_ppn_pembayaran_bahan = 0;
+                            window.jumlah_pph_pembayaran_bahan = 0;
+                            window.jumlah_pembayaran_bahan = 0;
+                            window.jumlah_dpp_sisa_bahan = 0;
+                            window.jumlah_ppn_sisa_bahan = 0;
+                            window.jumlah_sisa_bahan = 0;
+
                             window.jumlah_dpp_alat = 0;
+                            window.jumlah_ppn_alat = 0;
+                            window.jumlah_tagihan_alat = 0;
+                            window.jumlah_dpp_pembayaran_alat = 0;
+                            window.jumlah_ppn_pembayaran_alat = 0;
+                            window.jumlah_pph_pembayaran_alat = 0;
+                            window.jumlah_pembayaran_alat = 0;
+                            window.jumlah_dpp_sisa_alat = 0;
+                            window.jumlah_ppn_sisa_alat = 0;
+                            window.jumlah_sisa_alat = 0;
 
                             if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
@@ -986,6 +1005,16 @@
                                             window.jumlah_jumlah_sisa_hutang1 += parseFloat(row.jumlah_sisa_hutang.replace(/\./g,'').replace(',', '.'));
                                         
                                             window.jumlah_dpp_bahan += parseFloat(row.dpp_tagihan.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_ppn_bahan += parseFloat(row.ppn_tagihan.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_tagihan_bahan += parseFloat(row.jumlah_tagihan.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_dpp_pembayaran_bahan += parseFloat(row.dpp_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_ppn_pembayaran_bahan += parseFloat(row.ppn_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_pph_pembayaran_bahan += parseFloat(row.pph_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_pembayaran_bahan += parseFloat(row.jumlah_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_dpp_sisa_bahan += parseFloat(row.dpp_sisa_hutang.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_ppn_sisa_bahan += parseFloat(row.ppn_sisa_hutang.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_sisa_bahan += parseFloat(row.jumlah_sisa_hutang.replace(/\./g,'').replace(',', '.'));
+
                                         } else if (row.kategori_id == '5'){
                                             window.jumlah_dpp_tagihan2 += parseFloat(row.dpp_tagihan.replace(/\./g,'').replace(',', '.'));
                                             window.jumlah_ppn_tagihan2 += parseFloat(row.ppn_tagihan.replace(/\./g,'').replace(',', '.'));
@@ -999,6 +1028,15 @@
                                             window.jumlah_jumlah_sisa_hutang2 += parseFloat(row.jumlah_sisa_hutang.replace(/\./g,'').replace(',', '.'));
                                         
                                             window.jumlah_dpp_alat += parseFloat(row.dpp_tagihan.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_ppn_alat += parseFloat(row.ppn_tagihan.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_tagihan_alat += parseFloat(row.jumlah_tagihan.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_dpp_pembayaran_alat += parseFloat(row.dpp_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_ppn_pembayaran_alat += parseFloat(row.ppn_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_pph_pembayaran_alat += parseFloat(row.pph_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_pembayaran_alat += parseFloat(row.jumlah_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_dpp_sisa_alat += parseFloat(row.dpp_sisa_hutang.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_ppn_sisa_alat += parseFloat(row.ppn_sisa_hutang.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_sisa_alat += parseFloat(row.jumlah_sisa_hutang.replace(/\./g,'').replace(',', '.'));
                                         }
                                     });
 
@@ -1028,8 +1066,8 @@
                                 
                                 });
                                 $('#monitoring-hutang-bahan-alat tbody').append('<tr style="background-color:#cccccc;"><td class="text-right" colspan="6"><b>TOTAL</b></td><td class="text-right"><b>' + result.total_dpp_tagihan + '</b></td><td class="text-right"><b>' + result.total_ppn_tagihan + '</b></td><td class="text-right"><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right"><b>' + result.total_dpp_pembayaran + '</b></td><td class="text-right"><b>' + result.total_ppn_pembayaran + '</b></td><td class="text-right"><b>' + result.total_pph_pembayaran + '</b></td><td class="text-right"><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right"><b>' + result.total_dpp_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_ppn_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_jumlah_sisa_hutang + '</b></td></td><td class="text-right"></td></td><td class="text-right"></td></tr>');
-                                $('#monitoring-hutang-bahan-alat tbody').append('<tr style="background-color:#cccccc;"><td class="text-right" colspan="6"><b>TOTAL BAHAN</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_bahan) + '</b></td><td class="text-right"><b>' + result.total_ppn_tagihan + '</b></td><td class="text-right"><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right"><b>' + result.total_dpp_pembayaran + '</b></td><td class="text-right"><b>' + result.total_ppn_pembayaran + '</b></td><td class="text-right"><b>' + result.total_pph_pembayaran + '</b></td><td class="text-right"><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right"><b>' + result.total_dpp_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_ppn_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_jumlah_sisa_hutang + '</b></td></td><td class="text-right"></td></td><td class="text-right"></td></tr>');
-                                $('#monitoring-hutang-bahan-alat tbody').append('<tr style="background-color:#cccccc;"><td class="text-right" colspan="6"><b>TOTAL ALAT</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_alat) + '</b></td><td class="text-right"><b>' + result.total_ppn_tagihan + '</b></td><td class="text-right"><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right"><b>' + result.total_dpp_pembayaran + '</b></td><td class="text-right"><b>' + result.total_ppn_pembayaran + '</b></td><td class="text-right"><b>' + result.total_pph_pembayaran + '</b></td><td class="text-right"><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right"><b>' + result.total_dpp_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_ppn_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_jumlah_sisa_hutang + '</b></td></td><td class="text-right"></td></td><td class="text-right"></td></tr>');
+                                $('#monitoring-hutang-bahan-alat tbody').append('<tr style="background-color:#cccccc;"><td class="text-right" colspan="6"><b>TOTAL BAHAN</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_bahan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_bahan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_tagihan_bahan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_pembayaran_bahan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_pembayaran_bahan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_pembayaran_bahan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pembayaran_bahan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_sisa_bahan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_sisa_bahan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_sisa_bahan) + '</b></td></td><td class="text-right"></td></td><td class="text-right"></td></tr>');
+                                $('#monitoring-hutang-bahan-alat tbody').append('<tr style="background-color:#cccccc;"><td class="text-right" colspan="6"><b>TOTAL ALAT</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_alat) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_alat) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_tagihan_alat) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_pembayaran_alat) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_pembayaran_alat) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_pembayaran_alat) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pembayaran_alat) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_sisa_alat) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_sisa_alat) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_sisa_alat) + '</b></td></td><td class="text-right"></td></td><td class="text-right"></td></tr>');
                             } else {
                                 $('#monitoring-hutang-bahan-alat tbody').append('<tr><td class="text-center" colspan="18"><b>Tidak Ada Data</b></td></tr>');
                             }
