@@ -61,7 +61,7 @@
 			<tr>
 				<td width="100%" align="center">
 					<div style="display: block;font-weight: bold;font-size: 11px;">Monitoring Piutang</div>
-				    <div style="display: block;font-weight: bold;font-size: 11px;">Divisi Beton Proyek Bendungan Tugu</div>
+				    <div style="display: block;font-weight: bold;font-size: 11px;">Proyek Bendungan Tugu</div>
 					<?php
 					function tgl_indo($date2){
 						$bulan = array (
@@ -209,7 +209,7 @@
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
-					<table width="100%" border="0" cellpadding="3">
+					<table width="100%" border="0" cellpadding="3" style="font-size:5px;">
 						<tr>
 							<td align="center" >
 								Dibuat Oleh
@@ -222,7 +222,7 @@
 							</td>
 						</tr>
 						<tr class="">
-							<td align="center" height="70px">
+							<td align="center" height="35px">
 								
 							</td>
 							<td align="center">

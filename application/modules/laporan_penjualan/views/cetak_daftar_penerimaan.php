@@ -87,10 +87,9 @@
 		<table width="98%" cellpadding="15">
 			<tr>
 				<td width="100%" align="center">
-					<div style="display: block;font-weight: bold;font-size: 11px;">DAFTAR PENERIMAAN</div>
-					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON PROYEK BENDUNGAN TUGU</div>
-				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE <?php echo str_replace($search, $replace, $subject);?></div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">Daftar Penerimaan</div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">Proyek Bendungan Tugu</div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">Periode <?php echo str_replace($search, $replace, $subject);?></div>
 				</td>
 			</tr>
 		</table>
