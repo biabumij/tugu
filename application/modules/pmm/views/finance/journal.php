@@ -119,20 +119,20 @@
                                     <br />
                                     <h3 class="text-center"></h3>
                                     <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="table_jurnal_2" style="width:100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th>NO.</th>
-                                                        <th>TANGGAL</th>
-                                                        <th>NOMOR TRANSAKSI</th>
-                                                        <th>DEBIT</th>
-                                                        <th>KREDIT</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                
-                                                </tbody>
-                                            </table>
+                                        <table class="table table-striped table-hover" id="table_jurnal_2" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>NO.</th>
+                                                    <th>TANGGAL</th>
+                                                    <th>NOMOR TRANSAKSI</th>
+                                                    <th>DEBIT</th>
+                                                    <th>KREDIT</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                                 <?php
