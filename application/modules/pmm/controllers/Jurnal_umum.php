@@ -39,6 +39,20 @@ class Jurnal_umum extends CI_Controller {
 		}
     }
 
+    public function detailJurnal2($id){
+        $check = $this->m_admin->check_login();
+		if($check == true){		
+            $data['akun'] = $this->db->get_where('pmm_coa',["status" => "PUBLISH"])->result_array();
+            $data['detail'] = $this->db->get_where('pmm_jurnal_umum',["id" => $id])->row_array();
+            $data['detailBiaya'] = $this->db->query("SELECT coa,deskripsi,debit,kredit,coa_number,coa_number FROM pmm_detail_jurnal INNER JOIN pmm_coa ON pmm_detail_jurnal.akun = pmm_coa.id
+            WHERE pmm_detail_jurnal.jurnal_id = '$id'")->result_array();
+            $data['lampiran'] = $this->db->get_where('pmm_lampiran_biaya',["biaya_id" => $id])->result_array();
+            $this->load->view('pmm/jurnal_umum/detailJurnal_2',$data);
+		}else {
+			redirect('admin');
+		}
+    }
+
     public function table_jurnal(){
         $data = array();
 		$filter_date = $this->input->post('filter_date');
@@ -97,6 +111,38 @@ class Jurnal_umum extends CI_Controller {
                 $row['tanggal'] = date('d/m/Y',strtotime($row['tanggal_transaksi']));
                 $row['jumlah_total'] = number_format($row["total"],2,',','.');
                 $row['nomor'] = "<a href=".base_url('pmm/jurnal_umum/detailJurnal/'.$row["id"]).">".$row["nomor_transaksi"]."</a>";
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+                $data[] = $row;
+			}
+
+		}
+		echo json_encode(array('data'=>$data));
+    }
+
+    public function table_jurnal_3(){
+        $data = array();
+		$filter_date = $this->input->post('filter_date');
+
+		if(!empty($filter_date)){
+			$arr_date = explode(' - ', $filter_date);
+			$this->db->where('b.tanggal_transaksi >=',date('Y-m-d',strtotime($arr_date[0])));
+			$this->db->where('b.tanggal_transaksi <=',date('Y-m-d',strtotime($arr_date[1])));
+		}
+		
+		$this->db->select('b.*');
+        $this->db->order_by('b.tanggal_transaksi','desc');
+        $this->db->order_by('b.created_on','desc');
+		$query = $this->db->get('pmm_jurnal_umum b');
+		if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+				$row['no'] = $key+1;
+				// $row['coa'] = '' 
+				$row['total_kredit'] = $this->filter->Rupiah($row['total_kredit']);
+                $row['total_debit'] = $this->filter->Rupiah($row['total_debit']);
+                $row['tanggal'] = date('d/m/Y',strtotime($row['tanggal_transaksi']));
+                $row['jumlah_total'] = number_format($row["total"],2,',','.');
+                $row['nomor'] = "<a href=".base_url('pmm/jurnal_umum/detailJurnal2/'.$row["id"]).">".$row["nomor_transaksi"]."</a>";
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
                 $data[] = $row;
