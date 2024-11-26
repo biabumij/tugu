@@ -409,36 +409,6 @@
         table_jurnal_2.ajax.reload();
 		});
 
-        var table_jurnal_2 = $('#table_jurnal_2').DataTable( {"bAutoWidth": false,
-            ajax: {
-                processing: true,
-                serverSide: true,
-                url: '<?php echo site_url('pmm/jurnal_umum/table_jurnal_2');?>',
-                type : 'POST',
-				data: function(d) {
-                    d.filter_date = $('#filter_date_jurnal_2').val();
-                }
-            },
-            columns: [
-                { "data": "no" },
-                { "data": "tanggal"},
-                { "data": "nomor" },
-                { "data": "total_debit"},
-                { "data": "total_kredit"}
-            ],
-            "columnDefs": [
-                { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "targets": [3, 4], "className": 'text-right'},
-            ],
-            responsive: true,
-            pageLength: 25,
-        });
-
-		$('#filter_date_jurnal_2').on('apply.daterangepicker', function(ev, picker) {
-        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-        table_jurnal_2.ajax.reload();
-		});
-
         var table_jurnal_3 = $('#table_jurnal_3').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
