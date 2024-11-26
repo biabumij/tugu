@@ -46,6 +46,44 @@ class Biaya extends CI_Controller {
 		echo json_encode(array('data'=>$data));
     }
 
+    public function table_biaya_2(){
+        $data = array();
+		$filter_date = $this->input->post('filter_date');
+
+        $kunci_rakor = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('kunci_rakor')->row_array();
+        $last_opname = date('Y-m-d', strtotime('+1 days', strtotime($kunci_rakor['date'])));
+
+		if(!empty($filter_date)){
+			$arr_date = explode(' - ', $filter_date);
+			$this->db->where('b.tanggal_transaksi >=',date('Y-m-d',strtotime($arr_date[0])));
+			$this->db->where('b.tanggal_transaksi <=',date('Y-m-d',strtotime($arr_date[1])));
+		}
+
+        $this->db->select('b.*, p.nama as penerima');
+        $this->db->join('penerima p','b.penerima = p.id','left');
+        $this->db->where('b.tanggal_transaksi >=', $last_opname);
+        $this->db->order_by('b.tanggal_transaksi','desc');
+        $this->db->order_by('b.created_on','desc');
+		$query = $this->db->get('pmm_biaya b');
+
+		if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+				$row['no'] = $key+1;
+				// $row['coa'] = '' 
+                $row['saldo'] = 0;
+                $row['tanggal'] = date('d/m/Y',strtotime($row['tanggal_transaksi']));
+                $row['saldo_bank'] = 0;
+                $row['nomor_transaksi'] = "<a  href='".base_url('pmm/biaya/detail_biaya/'.$row['id'])."' >".$row['nomor_transaksi']."</a>";
+				$row['jumlah_total'] = number_format($row['total'],2,',','.');
+                $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				$data[] = $row;
+			}
+
+		}
+		echo json_encode(array('data'=>$data));
+    }
+
 	public function tambah_biaya(){
 		$check = $this->m_admin->check_login();
 		if($check == true){		
