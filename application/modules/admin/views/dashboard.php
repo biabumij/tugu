@@ -184,7 +184,7 @@
                             <?php
                             }
                             ?>
-                            <?php
+                            <!--<?php
                             if(in_array($this->session->userdata('admin_group_id'), array(1))){
                             ?>
                             <?php
@@ -198,7 +198,7 @@
                                 <center><a target="_blank" href="<?= base_url("pmm/reports/detail_notification_3/") ?>"><i class="fa-solid fa-clipboard-check"></i> BUTUH PERSETUJUAN TI & SISTEM (<blink><?php echo number_format($query,0,',','.');?></blink>)</a></center>
                             <?php
                             }
-                            ?>
+                            ?>-->
                         </figure>    
                     </div>
                     <?php
