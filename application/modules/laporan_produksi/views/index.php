@@ -80,6 +80,10 @@
 													<p><b><h5>Laporan Evaluasi Biaya Produksi</h5></b></p>
 													<a href="#laporan_evaluasi_biaya_produksi" aria-controls="laporan_evaluasi_biaya_produksi" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 												</div>
+												<div class="col-sm-5">
+													<p><b><h5>Laporan Evaluasi Biaya Produksi (Pemakaian)</h5></b></p>
+													<a href="#laporan_evaluasi_biaya_produksi_pemakaian" aria-controls="laporan_evaluasi_biaya_produksi_pemakaian" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
+												</div>
 												<?php
 												}
 												?>
@@ -125,6 +129,42 @@
 														</div>
 													</div>				
 													<div class="table-responsive" id="box-evaluasi">													
+													
+                    
+													</div>
+												</div>
+										    </div>
+										</div>
+                                    </div>
+
+									<!-- Laporan Evaluasi Biaya Produksi Pemakaian-->
+									<div role="tabpanel" class="tab-pane" id="laporan_evaluasi_biaya_produksi_pemakaian">
+                                        <div class="col-sm-15">
+											<div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title"><b>Laporan Evaluasi Biaya Produksi (Pemakaian)</b></h3>
+													<a href="laporan_ev._produksi">Kembali</a>
+                                                </div>
+												<div style="margin: 20px">
+													<div class="row">
+														<form action="<?php echo site_url('laporan/laporan_evaluasi_biaya_produksi_pemakaian_print');?>" target="_blank">
+															<div class="col-sm-3">
+																<input type="text" id="filter_date_evaluasi_biaya_produksi_pemakaian" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+															</div>
+															<div class="col-sm-3">
+																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+															</div>
+														</form>
+														
+													</div>
+													<br />
+													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
+														<div>Mohon Tunggu</div>
+														<div class="fa-3x">
+														  <i class="fa fa-spinner fa-spin"></i>
+														</div>
+													</div>				
+													<div class="table-responsive" id="box-evaluasi-pemakaian">													
 													
                     
 													</div>
@@ -230,134 +270,48 @@
 			//TableEvaluasiBiayaProduksi();
 		</script>
 
-		<!-- Script Evaluasi Bahan -->
+		<!-- Script Laporan Evaluasi Biaya Produksi Pemakaian-->
 		<script type="text/javascript">
-			$('#filter_date_evaluasi_bahan').daterangepicker({
-            autoUpdateInput : false,
-			showDropdowns: true,
-            locale: {
-              format: 'DD-MM-YYYY'
-            },
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
+			$('#filter_date_evaluasi_biaya_produksi_pemakaian').daterangepicker({
+				autoUpdateInput : false,
+				showDropdowns: true,
+				locale: {
+				format: 'DD-MM-YYYY'
+				},
+				minDate: new Date(2023, 07, 01),
+				ranges: {
+				'Today': [moment(), moment()],
+				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+				'This Month': [moment().startOf('month'), moment().endOf('month')],
+				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+				}
 			});
 
-			$('#filter_date_evaluasi_bahan').on('apply.daterangepicker', function(ev, picker) {
+			$('#filter_date_evaluasi_biaya_produksi_pemakaian').on('apply.daterangepicker', function(ev, picker) {
 				$(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				EvaluasiBahan();
+				TableEvaluasiBiayaProduksiPemakaian();
 			});
 
-
-			function EvaluasiBahan()
+			function TableEvaluasiBiayaProduksiPemakaian()
 			{
-				$('#wait-bahan').fadeIn('fast');   
+				$('#wait').fadeIn('fast');   
 				$.ajax({
 					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/evaluasi_bahan'); ?>/"+Math.random(),
+					url     : "<?php echo site_url('pmm/reports/laporan_evaluasi_biaya_produksi_pemakaian'); ?>/"+Math.random(),
 					dataType : 'html',
 					data: {
-						filter_date : $('#filter_date_evaluasi_bahan').val(),
+						filter_date : $('#filter_date_evaluasi_biaya_produksi_pemakaian').val(),
 					},
 					success : function(result){
-						$('#evaluasi-bahan').html(result);
-						$('#wait-bahan').fadeOut('fast');
+						$('#box-evaluasi-pemakaian').html(result);
+						$('#wait').fadeOut('fast');
 					}
 				});
 			}
 
-		//EvaluasiBahan();
-        </script>
-		
-		<!-- Script Evaluasi Alat -->
-		<script type="text/javascript">
-			$('#filter_date_evaluasi_alat').daterangepicker({
-            autoUpdateInput : false,
-			showDropdowns: true,
-            locale: {
-              format: 'DD-MM-YYYY'
-            },
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-			});
-
-			$('#filter_date_evaluasi_alat').on('apply.daterangepicker', function(ev, picker) {
-				$(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				EvaluasiAlat();
-			});
-
-			function EvaluasiAlat()
-			{
-				$('#wait-alat').fadeIn('fast');   
-				$.ajax({
-					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/evaluasi_alat'); ?>/"+Math.random(),
-					dataType : 'html',
-					data: {
-						filter_date : $('#filter_date_evaluasi_alat').val(),
-					},
-					success : function(result){
-						$('#evaluasi-alat').html(result);
-						$('#wait-alat').fadeOut('fast');
-					}
-				});
-			}
-
-			//EvaluasiAlat();
-        </script>
-
-		<!-- Script Evaluasi BUA -->
-		<script type="text/javascript">
-			$('#filter_date_evaluasi_bua').daterangepicker({
-            autoUpdateInput : false,
-			showDropdowns: true,
-            locale: {
-              format: 'DD-MM-YYYY'
-            },
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-			});
-
-			$('#filter_date_evaluasi_bua').on('apply.daterangepicker', function(ev, picker) {
-				$(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				EvaluasiBUA();
-			});
-
-			function EvaluasiBUA()
-			{
-				$('#wait-bua').fadeIn('fast');   
-				$.ajax({
-					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/evaluasi_bua'); ?>/"+Math.random(),
-					dataType : 'html',
-					data: {
-						filter_date : $('#filter_date_evaluasi_bua').val(),
-					},
-					success : function(result){
-						$('#evaluasi-bua').html(result);
-						$('#wait-bua').fadeOut('fast');
-					}
-				});
-			}
-
-			//EvaluasiBUA();
+			//TableEvaluasiBiayaProduksiPemakaian();
 		</script>
 
 		<!-- Script Evaluasi Target Produksi -->

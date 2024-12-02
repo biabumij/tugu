@@ -1401,7 +1401,8 @@ class Pmm extends CI_Controller {
 				
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4){
 					$uploads_surat_jalan = '<a href="javascript:void(0);" onclick="UploadDocSuratJalan('.$row['id'].')" class="btn btn-success" title="Upload Lampiran" style="border-radius:10px;"><i class="fa fa-upload"></i> </a>';
-					$row['actions'] = $uploads_surat_jalan. '&nbsp;<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary" style="border-radius:10px;"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
+					//$row['actions'] = $uploads_surat_jalan. '&nbsp;<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary" style="border-radius:10px;"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
+					$row['actions'] = $uploads_surat_jalan. '&nbsp;<a href="'.site_url().'produksi/sunting_stock_opname/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px;"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
 				}
@@ -1427,9 +1428,24 @@ class Pmm extends CI_Controller {
 		$convert = $this->input->post('convert');
 		$display_volume = $this->input->post('display_volume');
 		$display_measure = $this->input->post('display_measure');
-		$price = $this->input->post('price');
+		//$price = $this->input->post('price');
 		$notes = $this->input->post('notes');
 		$status = $this->input->post('status');
+
+		$material_group = $this->db->select('kategori_bahan')
+		->from('produk')
+		->where("id = $material_id")
+		->get()->row_array();
+		$material_group = $material_group['kategori_bahan'];
+		
+
+		$last_price = $this->db->select('prm.display_harga_satuan')
+		->from('pmm_receipt_material prm')
+		->join('produk p','prm.material_id = p.id','left')
+		->where("p.kategori_bahan = $material_group")
+		->order_by('prm.date_receipt','desc')->limit(1)
+		->get()->row_array();
+		$last_price = $last_price['display_harga_satuan'];
 
 		$arr = array(
 			'material_id' => $material_id,
@@ -1440,8 +1456,8 @@ class Pmm extends CI_Controller {
 			'display_volume' => $display_volume,
 			'display_measure' => $display_measure,
 			'notes' => $notes,
-			'price' => $price,
-			'total' => $volume * $price,
+			'price' => $last_price,
+			'total' => $volume * $last_price,
 			'pemakaian_custom' => 0,
 			'reset' => 1,
 			'status' => 'PUBLISH'

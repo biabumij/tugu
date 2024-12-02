@@ -12,7 +12,66 @@ class Produksi extends Secure_Controller {
 		$this->load->library('filter');
 		$this->load->library('waktu');
 		$this->load->library('session');
-    }	
+    }
+
+	public function sunting_stock_opname($id)
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+			$data['row'] = $this->db->get_where("pmm_remaining_materials_cat", ["id" => $id])->row_array();
+			$cat = $this->db->get_where("pmm_remaining_materials_cat", ["id" => $id])->row_array();
+			$data['tanggal'] = date('d-m-Y',strtotime($cat['date']));
+			$this->load->view('produksi/sunting_stock_opname', $data);
+		} else {
+			redirect('admin');
+		}
+	}
+
+	public function submit_sunting_stock_opname()
+	{
+
+		$id = $this->input->post('id');
+		$date = date('Y-m-d',strtotime($this->input->post('date')));
+		$material_id = $this->input->post('material_id');
+		$volume =  str_replace('.', '', $this->input->post('volume'));
+		$volume =  str_replace(',', '.', $volume);
+		$total =  str_replace('.', '', $this->input->post('total'));
+		$measure = $this->input->post('measure');
+		$notes = $this->input->post('notes');
+
+		$arr_update = array(
+			'material_id' => $material_id,
+			'date' => $date,
+			'measure' => $measure,
+			'volume' => $volume,
+			'convert' => $convert,
+			'display_volume' => $volume,
+			'display_measure' => $measure,
+			'notes' => $notes,
+			'total' => $total,
+			'price' => $total / $volume,
+			'updated_by' => $this->session->userdata('admin_id'),
+			'updated_on' => date('Y-m-d H:i:s')
+		);
+
+		$this->db->where('id', $id);
+		if ($this->db->update('pmm_remaining_materials_cat', $arr_update)) {
+			
+		}
+
+		if ($this->db->trans_status() === FALSE) {
+			# Something went wrong.
+			$this->db->trans_rollback();
+			$this->session->set_flashdata('notif_error', '<b>ERROR</b>');
+			redirect('admin/stock_opname');
+		} else {
+			# Everything is Perfect. 
+			# Committing data to the database.
+			$this->db->trans_commit();
+			$this->session->set_flashdata('notif_success', '<b>SAVED</b>');
+			redirect('admin/stock_opname');
+		}
+	}
 	
 	public function cetak_stock_opname()
 	{
@@ -169,6 +228,103 @@ class Produksi extends Secure_Controller {
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error','<b>ERROR</b>');
 			redirect('/stock_opname/pemakaian');
+		} else {
+			# Everything is Perfect. 
+			# Committing data to the database.
+			$this->db->trans_commit();
+			$this->session->set_flashdata('notif_success','<b>SAVED</b>');
+			redirect('admin/stock_opname');
+		}
+	}
+
+	public function table_pemakaian_bahan()
+	{   
+        $data = array();
+		$filter_date = $this->input->post('filter_date');
+		if(!empty($filter_date)){
+			$arr_date = explode(' - ', $filter_date);
+			$this->db->where('date >=',date('Y-m-d',strtotime($arr_date[0])));
+			$this->db->where('date <=',date('Y-m-d',strtotime($arr_date[1])));
+		}
+        $this->db->select('*');
+		$this->db->order_by('date','desc');
+		$query = $this->db->get('pemakaian_bahan');
+		
+       if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['date'] = date('d F Y',strtotime($row['date']));
+				$row['material_id'] = $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');
+                $row['volume'] = number_format($row['volume'],2,',','.');
+				$row['nilai'] = number_format($row['nilai'],0,',','.');
+				$row['status'] = $row['status'];
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 2 || $this->session->userdata('admin_group_id') == 3 || $this->session->userdata('admin_group_id') == 4){
+					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataPemakaianBahan('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
+				}else {
+					$row['actions'] = '-';
+				}
+
+                $data[] = $row;
+            }
+
+        }
+        echo json_encode(array('data'=>$data));
+    }
+
+	public function delete_pemakaian_bahan()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+			$this->db->delete('pemakaian_bahan',array('id'=>$id));
+			{
+				$output['output'] = true;
+			}
+		}
+		echo json_encode($output);
+	}
+
+	public function form_pemakaian_bahan()
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'kategori_produk' => 1))->result_array();
+			$this->load->view('produksi/form_pemakaian_bahan', $data);
+		} else {
+			redirect('admin');
+		}
+	}
+
+	public function submit_pemakaian_bahan()
+	{
+		$date = $this->input->post('date');
+		$material_id = $this->input->post('material_id');
+		$volume = str_replace(',', '.', $this->input->post('volume'));
+		$nilai = str_replace('.', '', $this->input->post('nilai'));
+
+		$this->db->trans_start(); # Starting Transaction
+		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
+
+		$arr_insert = array(
+			'date' => date('Y-m-d', strtotime($date)),
+			'material_id' => $material_id,
+			'volume' => $volume,
+			'nilai' => $nilai,
+			'status' => 'PUBLISH',
+			'created_by' => $this->session->userdata('admin_id'),
+			'created_on' => date('Y-m-d H:i:s')
+		);
+
+		$this->db->insert('pemakaian_bahan', $arr_insert);
+
+		if ($this->db->trans_status() === FALSE) {
+			# Something went wrong.
+			$this->db->trans_rollback();
+			$this->session->set_flashdata('notif_error','<b>ERROR</b>');
+			redirect('/stock_opname/pemakaian_bahan');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.

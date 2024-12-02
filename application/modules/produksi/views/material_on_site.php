@@ -112,10 +112,10 @@
                             ?>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label>Harsat</label>
                         <input type="text" id="price" name="price" class="form-control nilaiformat" autocomplete="off"/>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <label>Notes</label>
                         <textarea id="notes" name="notes" class="form-control" autocomplete="off" rows="5" data-required="false"></textarea>
@@ -126,7 +126,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:10px; font-weight:bold;">CLOSE</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:black; border-radius:10px; font-weight:bold;">CLOSE</button>
             </div>
         </div>
     </div>
