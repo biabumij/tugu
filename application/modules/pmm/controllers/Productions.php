@@ -1026,6 +1026,7 @@ class Productions extends Secure_Controller {
 		$total_jumlah_tagihan = 0;
 		$total_dpp_pembayaran = 0;
 		$total_ppn_pembayaran = 0;
+		$total_pph_pembayaran = 0;
 		$total_jumlah_pembayaran = 0;
 		$total_dpp_sisa_piutang = 0;
 		$total_ppn_sisa_piutang = 0;
@@ -1082,6 +1083,7 @@ class Productions extends Secure_Controller {
 						$arr['jumlah_tagihan'] = number_format($row['jumlah_tagihan'],0,',','.');
 						$arr['dpp_pembayaran'] = number_format($row['dpp_pembayaran'],0,',','.');
 						$arr['ppn_pembayaran'] = number_format($row['ppn_pembayaran'],0,',','.');
+						$arr['pph_pembayaran'] = number_format($row['pph_pembayaran'],0,',','.');
 						$arr['jumlah_pembayaran'] = number_format($row['jumlah_pembayaran'],0,',','.');
 						$arr['dpp_sisa_piutang'] = number_format($row['dpp_sisa_piutang'],0,',','.');
 						$arr['ppn_sisa_piutang'] = number_format($row['ppn_sisa_piutang'],0,',','.');
@@ -1092,6 +1094,7 @@ class Productions extends Secure_Controller {
 						$total_jumlah_tagihan += $row['jumlah_tagihan'];
 						$total_dpp_pembayaran += $row['dpp_pembayaran'];
 						$total_ppn_pembayaran += $row['ppn_pembayaran'];
+						$total_pph_pembayaran += $row['pph_pembayaran'];
 						$total_jumlah_pembayaran += $row['jumlah_pembayaran'];
 						$total_dpp_sisa_piutang += $row['dpp_sisa_piutang'];
 						$total_ppn_sisa_piutang += $row['ppn_sisa_piutang'];
@@ -1118,6 +1121,7 @@ class Productions extends Secure_Controller {
 		'total_jumlah_tagihan'=>number_format($total_jumlah_tagihan,0,',','.'),
 		'total_dpp_pembayaran'=>number_format($total_dpp_pembayaran,0,',','.'),
 		'total_ppn_pembayaran'=>number_format($total_ppn_pembayaran,0,',','.'),
+		'total_pph_pembayaran'=>number_format($total_pph_pembayaran,0,',','.'),
 		'total_jumlah_pembayaran'=>number_format($total_jumlah_pembayaran,0,',','.'),
 		'total_dpp_sisa_piutang'=>number_format($total_dpp_sisa_piutang,0,',','.'),
 		'total_ppn_sisa_piutang'=>number_format($total_ppn_sisa_piutang,0,',','.'),

@@ -115,6 +115,11 @@
                                                 <td class="text-left">Pengembalian Pinjaman</td>
                                                 <td class="text-right"><input type="text" id="pengembalian" name="pengembalian" class="form-control rupiahformat text-right" value="<?= $rak['pengembalian'] ?>" required="" autocomplete="off"></td>
                                             </tr>
+                                            <tr>
+                                                <td class="text-center">10.</td>
+                                                <td class="text-left">PPh 22</td>
+                                                <td class="text-right"><input type="text" id="pph" name="pph" class="form-control rupiahformat text-right" value="<?= $rak['pph'] ?>" required="" autocomplete="off"></td>
+                                            </tr>
                                         </tbody>
                                     </table>
 									<br />

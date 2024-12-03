@@ -690,6 +690,7 @@ class Rak extends Secure_Controller {
 		$pajak_masukan =  str_replace('.', '', $this->input->post('pajak_masukan'));
 		$penerimaan =  str_replace('.', '', $this->input->post('penerimaan'));
 		$pengembalian =  str_replace('.', '', $this->input->post('pengembalian'));
+		$pph =  str_replace('.', '', $this->input->post('pph'));
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
@@ -705,6 +706,7 @@ class Rak extends Secure_Controller {
 			'pajak_masukan' => $pajak_masukan,
 			'penerimaan' => $penerimaan,
 			'pengembalian' => $pengembalian,
+			'pph' => $pph,
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
@@ -864,6 +866,7 @@ class Rak extends Secure_Controller {
 			$pajak_masukan =  str_replace('.', '', $this->input->post('pajak_masukan'));
 			$penerimaan =  str_replace('.', '', $this->input->post('penerimaan'));
 			$pengembalian =  str_replace('.', '', $this->input->post('pengembalian'));
+			$pph =  str_replace('.', '', $this->input->post('pph'));
 
 			$arr_update = array(
 				'tanggal_rencana_kerja' =>  date('Y-m-d', strtotime($tanggal_rencana_kerja)),
@@ -876,6 +879,7 @@ class Rak extends Secure_Controller {
 				'pajak_masukan' => $pajak_masukan,
 				'penerimaan' => $penerimaan,
 				'pengembalian' => $pengembalian,
+				'pph' => $pph,
 				'status' => 'PUBLISH',
 				'updated_by' => $this->session->userdata('admin_id'),
 				'updated_on' => date('Y-m-d H:i:s')

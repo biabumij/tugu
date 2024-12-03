@@ -99,7 +99,7 @@
 				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />NO. INV</th>
 				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />TGL. INV</th>
 				<th width="17%" align="center" colspan="3" class="table-border-atas-only">TAGIHAN</th>
-				<th width="17%" align="center" colspan="3" class="table-border-atas-only">PENERIMAAN</th>
+				<th width="17%" align="center" colspan="4" class="table-border-atas-only">PENERIMAAN</th>
 				<th width="17%" align="center" colspan="3" class="table-border-atas-only">SISA PIUTANG</th>
 				<th width="8%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />STATUS</th>
 				<th width="8%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />UMUR</th>
@@ -111,6 +111,7 @@
 				<th align="center" class="table-border-bawah-only">JUMLAH</th>
 				<th align="center" class="table-border-bawah-only">DPP</th>
 				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">PPH</th>
 				<th align="center" class="table-border-bawah-only">JUMLAH</th>
 				<th align="center" class="table-border-bawah-only">DPP</th>
 				<th align="center" class="table-border-bawah-only">PPN</th>
@@ -130,6 +131,7 @@
 					$jumlah_jumlah_tagihan = 0;
 					$jumlah_dpp_pembayaran = 0;
 					$jumlah_ppn_pembayaran = 0;
+					$jumlah_pph_pembayaran = 0;
 					$jumlah_jumlah_pembayaran = 0;
 					$jumlah_dpp_sisa_piutang = 0;
 					$jumlah_ppn_sisa_piutang = 0;
@@ -146,6 +148,7 @@
 						<td align="right"><?php echo $mat['jumlah_tagihan'];?></td>
 						<td align="right"><?php echo $mat['dpp_pembayaran'];?></td>
 						<td align="right"><?php echo $mat['ppn_pembayaran'];?></td>
+						<td align="right"><?php echo $mat['pph_pembayaran'];?></td>
 						<td align="right"><?php echo $mat['jumlah_pembayaran'];?></td>
 						<td align="right"><?php echo $mat['dpp_sisa_piutang'];?></td>
 						<td align="right"><?php echo $mat['ppn_sisa_piutang'];?></td>
@@ -160,6 +163,7 @@
 					$jumlah_jumlah_tagihan += str_replace(['.', ','], ['', '.'], $mat['jumlah_tagihan']);
 					$jumlah_dpp_pembayaran += str_replace(['.', ','], ['', '.'], $mat['dpp_pembayaran']);
 					$jumlah_ppn_pembayaran += str_replace(['.', ','], ['', '.'], $mat['ppn_pembayaran']);
+					$jumlah_pph_pembayaran += str_replace(['.', ','], ['', '.'], $mat['pph_pembayaran']);
 					$jumlah_jumlah_pembayaran += str_replace(['.', ','], ['', '.'], $mat['jumlah_pembayaran']);
 					$jumlah_dpp_sisa_piutang += str_replace(['.', ','], ['', '.'], $mat['dpp_sisa_piutang']);
 					$jumlah_ppn_sisa_piutang += str_replace(['.', ','], ['', '.'], $mat['ppn_sisa_piutang']);
@@ -173,6 +177,7 @@
 						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_jumlah_tagihan,0,',','.');?></td>
 						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_dpp_pembayaran,0,',','.');?></td>
 						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_ppn_pembayaran,0,',','.');?></td>
+						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_pph_pembayaran,0,',','.');?></td>
 						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_jumlah_pembayaran,0,',','.');?></td>
 						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_dpp_sisa_piutang,0,',','.');?></td>
 						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_ppn_sisa_piutang,0,',','.');?></td>
@@ -197,6 +202,7 @@
 				<th align="right" class="table-border-atas-full"><?php echo number_format($total_jumlah_tagihan,0,',','.');?></th>
 				<th align="right" class="table-border-atas-full"><?php echo number_format($total_dpp_pembayaran,0,',','.');?></th>
 				<th align="right" class="table-border-atas-full"><?php echo number_format($total_ppn_pembayaran,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_pph_pembayaran,0,',','.');?></th>
 				<th align="right" class="table-border-atas-full"><?php echo number_format($total_jumlah_pembayaran,0,',','.');?></th>
 				<th align="right" class="table-border-atas-full"><?php echo number_format($total_dpp_sisa_piutang,0,',','.');?></th>
 				<th align="right" class="table-border-atas-full"><?php echo number_format($total_ppn_sisa_piutang,0,',','.');?></th>

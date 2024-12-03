@@ -110,6 +110,13 @@
                                                     <input type="text" id="pengembalian" name="pengembalian" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td class="text-center">10.</td>
+                                                    <td>PPh 22</td>
+													<td>
+                                                    <input type="text" id="pph" name="pph" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>    
                                     </div>
