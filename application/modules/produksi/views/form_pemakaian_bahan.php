@@ -102,7 +102,6 @@
         ?>
         $('.form-select2').select2();
         $('input.numberformat').number(true, 2,',','.' );
-		//$('input.rupiahformat').number( true, 0,',','.' );
 
         tinymce.init({
           selector: 'textarea#about_text',
