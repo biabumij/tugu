@@ -47,7 +47,7 @@
                         <div class="panel">
                             <div class="panel-header">
                                 <div>
-                                    <h3><b>DETAIL TAGIHAN PEMBALIAN <?php echo $this->pmm_model->GetStatus3($row['status']);?></b></h3>
+                                    <h3><b>DETAIL TAGIHAN PEMBELIAN <?php echo $this->pmm_model->GetStatus3($row['status']);?></b></h3>
                                     <div class="text-left">
                                         <a href="<?php echo site_url('admin/pembelian');?>">
                                         <button class="ripple"><b><i class="fa-solid fa-rotate-left"></i> KEMBALI</b></button></a>
