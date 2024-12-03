@@ -302,7 +302,8 @@ class Produksi extends Secure_Controller {
 	{
 		$date = $this->input->post('date');
 		$material_id = $this->input->post('material_id');
-		$volume = str_replace(',', '.', $this->input->post('volume'));
+		$volume =  str_replace('.', '', $this->input->post('volume'));
+		$volume =  str_replace(',', '.', $volume);
 		$nilai = str_replace('.', '', $this->input->post('nilai'));
 
 		$this->db->trans_start(); # Starting Transaction
