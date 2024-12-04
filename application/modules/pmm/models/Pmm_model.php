@@ -5944,9 +5944,10 @@ class Pmm_model extends CI_Model {
             $total_penjualan += $x['price'];
         }
 
-        $bahan = $this->db->select('date, SUM(nilai_semen + nilai_pasir + nilai_1020 + nilai_2030 + nilai_additive) as total')
-        ->from('kunci_bahan_baku')
+        $bahan = $this->db->select('date, SUM(nilai) as total')
+        ->from('pemakaian_bahan')
         ->where("date <= '$date_tahun_lalu'")
+        ->where("material_id <> 5 ")
         ->get()->row_array();
 
         $pembelian_batching_plant = $this->db->select('
@@ -6139,9 +6140,10 @@ class Pmm_model extends CI_Model {
         $total_vol_excavator = $pembelian_excavator['volume'];
 
         //SPESIAL
-        $pemakaian_solar = $this->db->select('date, SUM(vol_solar) as vol_total, SUM(nilai_solar) as total')
-        ->from('kunci_bahan_baku')
+        $pemakaian_solar = $this->db->select('date, SUM(volume) as vol_total, SUM(nilai) as total')
+        ->from('pemakaian_bahan')
         ->where("(date <= '$date_tahun_lalu')")
+        ->where("material_id = 5")
         ->get()->row_array();
         $pemakaian_volume_solar = $pemakaian_solar['vol_total'];
         $pemakaian_nilai_solar = $pemakaian_solar['total'];
@@ -6674,9 +6676,10 @@ class Pmm_model extends CI_Model {
             $total_penjualan += $x['price'];
         }
 
-        $bahan = $this->db->select('date, SUM(nilai_semen + nilai_pasir + nilai_1020 + nilai_2030 + nilai_additive) as total')
-        ->from('kunci_bahan_baku')
+        $bahan = $this->db->select('date, SUM(nilai) as total')
+        ->from('pemakaian_bahan')
         ->where("date between '$date3' and '$date2'")
+        ->where("material_id <> 5 ")
         ->get()->row_array();
 
         $pembelian_batching_plant = $this->db->select('
@@ -6870,9 +6873,10 @@ class Pmm_model extends CI_Model {
         $total_vol_excavator = $pembelian_excavator['volume'];
 
         //SPESIAL
-        $pemakaian_solar = $this->db->select('date, SUM(vol_solar) as vol_total, SUM(nilai_solar) as total')
-        ->from('kunci_bahan_baku')
+        $pemakaian_solar = $this->db->select('date, SUM(volume) as vol_total, SUM(nilai) as total')
+        ->from('pemakaian_bahan')
         ->where("(date between '$date3' and '$date2')")
+        ->where("material_id = 5")
         ->get()->row_array();
         $pemakaian_volume_solar = $pemakaian_solar['vol_total'];
         $pemakaian_nilai_solar = $pemakaian_solar['total'];
