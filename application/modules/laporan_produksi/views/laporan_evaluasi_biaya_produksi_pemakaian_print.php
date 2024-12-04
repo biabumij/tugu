@@ -159,62 +159,62 @@
 		$total_nilai_komposisi = $nilai_a + $nilai_b + $nilai_c + $nilai_d + $nilai_e;
 		
 		$pemakaian_semen = $this->db->select('sum(volume) as volume, sum(nilai) as nilai')
-			->from('pemakaian_bahan')
-			->where("date between '$date1' and '$date2'")
-			->where("material_id = 1")
-			->where("status = 'PUBLISH'")
-			->get()->row_array();
+		->from('pemakaian_bahan')
+		->where("date between '$date1' and '$date2'")
+		->where("material_id = 1")
+		->where("status = 'PUBLISH'")
+		->get()->row_array();
 
-			$pemakaian_volume_semen = $pemakaian_semen['volume'];
-			$pemakaian_nilai_semen = $pemakaian_semen['nilai'];
-			$pemakaian_harsat_semen = ($pemakaian_volume_semen!=0)?$pemakaian_nilai_semen / $pemakaian_volume_semen * 1:0;
-			
-			$pemakaian_pasir = $this->db->select('sum(volume) as volume, sum(nilai) as nilai')
-			->from('pemakaian_bahan')
-			->where("date between '$date1' and '$date2'")
-			->where("material_id = 2")
-			->where("status = 'PUBLISH'")
-			->get()->row_array();
+		$pemakaian_volume_semen = $pemakaian_semen['volume'];
+		$pemakaian_nilai_semen = $pemakaian_semen['nilai'];
+		$pemakaian_harsat_semen = ($pemakaian_volume_semen!=0)?$pemakaian_nilai_semen / $pemakaian_volume_semen * 1:0;
+		
+		$pemakaian_pasir = $this->db->select('sum(volume) as volume, sum(nilai) as nilai')
+		->from('pemakaian_bahan')
+		->where("date between '$date1' and '$date2'")
+		->where("material_id = 2")
+		->where("status = 'PUBLISH'")
+		->get()->row_array();
 
-			$pemakaian_volume_pasir = $pemakaian_pasir['volume'];
-			$pemakaian_nilai_pasir = $pemakaian_pasir['nilai'];
-			$pemakaian_harsat_pasir = ($pemakaian_volume_pasir!=0)?$pemakaian_nilai_pasir / $pemakaian_volume_pasir * 1:0;
+		$pemakaian_volume_pasir = $pemakaian_pasir['volume'];
+		$pemakaian_nilai_pasir = $pemakaian_pasir['nilai'];
+		$pemakaian_harsat_pasir = ($pemakaian_volume_pasir!=0)?$pemakaian_nilai_pasir / $pemakaian_volume_pasir * 1:0;
 
-			$pemakaian_1020 = $this->db->select('sum(volume) as volume, sum(nilai) as nilai')
-			->from('pemakaian_bahan')
-			->where("date between '$date1' and '$date2'")
-			->where("material_id = 3")
-			->where("status = 'PUBLISH'")
-			->get()->row_array();
+		$pemakaian_1020 = $this->db->select('sum(volume) as volume, sum(nilai) as nilai')
+		->from('pemakaian_bahan')
+		->where("date between '$date1' and '$date2'")
+		->where("material_id = 3")
+		->where("status = 'PUBLISH'")
+		->get()->row_array();
 
-			$pemakaian_volume_1020 = $pemakaian_1020['volume'];
-			$pemakaian_nilai_1020 = $pemakaian_1020['nilai'];
-			$pemakaian_harsat_1020 = ($pemakaian_volume_1020!=0)?$pemakaian_nilai_1020 / $pemakaian_volume_1020 * 1:0;
+		$pemakaian_volume_1020 = $pemakaian_1020['volume'];
+		$pemakaian_nilai_1020 = $pemakaian_1020['nilai'];
+		$pemakaian_harsat_1020 = ($pemakaian_volume_1020!=0)?$pemakaian_nilai_1020 / $pemakaian_volume_1020 * 1:0;
 
-			$pemakaian_2030 = $this->db->select('sum(volume) as volume, sum(nilai) as nilai')
-			->from('pemakaian_bahan')
-			->where("date between '$date1' and '$date2'")
-			->where("material_id = 4")
-			->where("status = 'PUBLISH'")
-			->get()->row_array();
+		$pemakaian_2030 = $this->db->select('sum(volume) as volume, sum(nilai) as nilai')
+		->from('pemakaian_bahan')
+		->where("date between '$date1' and '$date2'")
+		->where("material_id = 4")
+		->where("status = 'PUBLISH'")
+		->get()->row_array();
 
-			$pemakaian_volume_2030 = $pemakaian_2030['volume'];
-			$pemakaian_nilai_2030 = $pemakaian_2030['nilai'];
-			$pemakaian_harsat_2030 = ($pemakaian_volume_2030!=0)?$pemakaian_nilai_2030 / $pemakaian_volume_2030 * 1:0;
+		$pemakaian_volume_2030 = $pemakaian_2030['volume'];
+		$pemakaian_nilai_2030 = $pemakaian_2030['nilai'];
+		$pemakaian_harsat_2030 = ($pemakaian_volume_2030!=0)?$pemakaian_nilai_2030 / $pemakaian_volume_2030 * 1:0;
 
-			$pemakaian_additive = $this->db->select('sum(volume) as volume, sum(nilai) as nilai')
-			->from('pemakaian_bahan')
-			->where("date between '$date1' and '$date2'")
-			->where("material_id = 19")
-			->where("status = 'PUBLISH'")
-			->get()->row_array();
+		$pemakaian_additive = $this->db->select('sum(volume) as volume, sum(nilai) as nilai')
+		->from('pemakaian_bahan')
+		->where("date between '$date1' and '$date2'")
+		->where("material_id = 19")
+		->where("status = 'PUBLISH'")
+		->get()->row_array();
 
-			$pemakaian_volume_additive = $pemakaian_additive['volume'];
-			$pemakaian_nilai_additive = $pemakaian_additive['nilai'];
-			$pemakaian_harsat_additive = ($pemakaian_volume_additive!=0)?$pemakaian_nilai_additive / $pemakaian_volume_additive * 1:0;
+		$pemakaian_volume_additive = $pemakaian_additive['volume'];
+		$pemakaian_nilai_additive = $pemakaian_additive['nilai'];
+		$pemakaian_harsat_additive = ($pemakaian_volume_additive!=0)?$pemakaian_nilai_additive / $pemakaian_volume_additive * 1:0;
 
-			$total_volume_realisasi = $pemakaian_volume_semen + $pemakaian_volume_pasir + $pemakaian_volume_1020 + $pemakaian_volume_2030 +  $pemakaian_volume_additive;
-			$total_nilai_realisasi = $pemakaian_nilai_semen + $pemakaian_nilai_pasir + $pemakaian_nilai_1020 + $pemakaian_nilai_2030 + $pemakaian_nilai_additive;
+		$total_volume_realisasi = $pemakaian_volume_semen + $pemakaian_volume_pasir + $pemakaian_volume_1020 + $pemakaian_volume_2030 +  $pemakaian_volume_additive;
+		$total_nilai_realisasi = $pemakaian_nilai_semen + $pemakaian_nilai_pasir + $pemakaian_nilai_1020 + $pemakaian_nilai_2030 + $pemakaian_nilai_additive;
 
 		$total_volume_realisasi = $pemakaian_volume_semen + $pemakaian_volume_pasir + $pemakaian_volume_1020 + $pemakaian_volume_2030 +  $pemakaian_volume_additive;
 		$total_nilai_realisasi = $pemakaian_nilai_semen + $pemakaian_nilai_pasir + $pemakaian_nilai_1020 + $pemakaian_nilai_2030 + $pemakaian_nilai_additive;

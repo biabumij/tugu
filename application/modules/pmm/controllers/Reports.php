@@ -1381,9 +1381,9 @@ class Reports extends CI_Controller {
 			$total_nilai = $bahan;
 
 			//BAHAN_2
-			$bahan_2 = $this->pmm_model->getBahan2($date3,$date4);
+			$bahan_2 = $this->pmm_model->getBahan2($date3,$date2);
 			$total_nilai_2 = 0;
-			$total_nilai_2= $bahan_2 + $bahan;
+			$total_nilai_2= $bahan_2;
 
 			//ALAT
 			$alat = $this->pmm_model->getAlat($date1,$date2);
