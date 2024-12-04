@@ -74,10 +74,10 @@
                                                 </select>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <!--<tr>
                                             <th width="50%" class="text-right">Nilai</th>
                                             <td><input type="text" class="form-control text-left" name="total"  value="<?php echo number_format($row["total"],0,',','.');?>" /></td>
-                                        </tr>
+                                        </tr>-->
                                         <tr>
                                             <th width="50%" class="text-right">Notes</th>
                                             <td><input type="text" class="form-control text-left" name="notes"  value="<?= $row["notes"] ?>" /></td>

@@ -133,8 +133,7 @@
 		<br /><br /><br />
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
-                <th width="15%" align="center" class="table-border-pojok-kiri">TANGGAL</th>
-                <th width="20%" align="center" class="table-border-pojok-tengah">URAIAN</th>
+                <th width="35%" align="center" class="table-border-pojok-kiri">URAIAN</th>
 				<th width="15%" align="center" class="table-border-pojok-tengah">SATUAN</th>
 				<th width="15%" align="center" class="table-border-pojok-tengah">VOLUME</th>
 				<th width="15%" align="center" class="table-border-pojok-tengah">HARGA SATUAN</th>
@@ -144,166 +143,269 @@
 			$awal = date('Y-m-d',strtotime($date1));
 			$akhir = date('Y-m-d',strtotime($date2));
 			
-			$stock_opname_semen = $this->db->select('cat.*, sum(cat.total) as nilai')
+			$stock_opname_semen = $this->db->select('cat.*, sum(cat.display_volume) as volume')
 			->from('pmm_remaining_materials_cat cat')
 			->where("cat.date between '$awal' and '$akhir'")
 			->where("cat.material_id = 1")
 			->where("cat.status = 'PUBLISH'")
 			->group_by('cat.id')
 			->order_by('cat.date','desc')->limit(1)
-			->get()->result_array();
-			$nilai_semen = 0;
-			foreach ($stock_opname_semen as $x){
-				$nilai_semen += $x['nilai'];
-			}
+			->get()->row_array();
 
-			$stock_opname_pasir = $this->db->select('cat.*, sum(cat.total) as nilai')
+			$stock_opname_pasir = $this->db->select('cat.*, sum(cat.display_volume) as volume')
 			->from('pmm_remaining_materials_cat cat')
 			->where("cat.date between '$awal' and '$akhir'")
 			->where("cat.material_id = 2")
 			->where("cat.status = 'PUBLISH'")
 			->group_by('cat.id')
 			->order_by('cat.date','desc')->limit(1)
-			->get()->result_array();
-			$nilai_pasir = 0;
-			foreach ($stock_opname_pasir as $x){
-				$nilai_pasir += $x['nilai'];
-			}
+			->get()->row_array();
 
-			$stock_opname_batu1020 = $this->db->select('cat.*, sum(cat.total) as nilai')
+			$stock_opname_1020 = $this->db->select('cat.*, sum(cat.display_volume) as volume')
 			->from('pmm_remaining_materials_cat cat')
 			->where("cat.date between '$awal' and '$akhir'")
 			->where("cat.material_id = 3")
 			->where("cat.status = 'PUBLISH'")
 			->group_by('cat.id')
 			->order_by('cat.date','desc')->limit(1)
-			->get()->result_array();
-			$nilai_batu1020 = 0;
-			foreach ($stock_opname_batu1020 as $x){
-				$nilai_batu1020 += $x['nilai'];
-			}
+			->get()->row_array();
 
-			$stock_opname_batu2030 = $this->db->select('cat.*, sum(cat.total) as nilai')
+			$stock_opname_2030 = $this->db->select('cat.*, sum(cat.display_volume) as volume')
 			->from('pmm_remaining_materials_cat cat')
 			->where("cat.date between '$awal' and '$akhir'")
 			->where("cat.material_id = 4")
 			->where("cat.status = 'PUBLISH'")
 			->group_by('cat.id')
 			->order_by('cat.date','desc')->limit(1)
-			->get()->result_array();
-			$nilai_batu2030 = 0;
-			foreach ($stock_opname_batu2030 as $x){
-				$nilai_batu2030 += $x['nilai'];
-			}
+			->get()->row_array();
 
-			$stock_opname_solar = $this->db->select('cat.*, sum(cat.total) as nilai')
+			$stock_opname_solar = $this->db->select('cat.*, sum(cat.display_volume) as volume')
 			->from('pmm_remaining_materials_cat cat')
 			->where("cat.date between '$awal' and '$akhir'")
 			->where("cat.material_id = 5")
 			->where("cat.status = 'PUBLISH'")
 			->group_by('cat.id')
 			->order_by('cat.date','desc')->limit(1)
-			->get()->result_array();
-			$nilai_solar = 0;
-			foreach ($stock_opname_solar as $x){
-				$nilai_solar += $x['nilai'];
-			}
+			->get()->row_array();
 
-			$stock_opname_additive = $this->db->select('cat.*, sum(cat.total) as nilai')
+			$stock_opname_additive = $this->db->select('cat.*, sum(cat.display_volume) as volume')
 			->from('pmm_remaining_materials_cat cat')
 			->where("cat.date between '$awal' and '$akhir'")
 			->where("cat.material_id = 19")
 			->where("cat.status = 'PUBLISH'")
 			->group_by('cat.id')
 			->order_by('cat.date','desc')->limit(1)
-			->get()->result_array();
-			$nilai_additive = 0;
-			foreach ($stock_opname_additive as $x){
-				$nilai_additive += $x['nilai'];
-			}
+			->get()->row_array();
+
+			$date1_ago = date('2020-01-01');
+			$date2_ago = date('Y-m-d', strtotime('-1 days', strtotime($awal)));
+			$date3_ago = date('Y-m-d', strtotime('-1 months', strtotime($awal)));
+			$tanggal_opening_balance = date('Y-m-d', strtotime('-1 days', strtotime($awal)));
+
+			$stock_opname_ago_semen = $this->db->select('cat.total as nilai')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date <= '$tanggal_opening_balance')")
+			->where("cat.material_id = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$pembelian_semen = $this->db->select('SUM(prm.display_price) as nilai')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->where("(prm.date_receipt between '$awal' and '$akhir')")
+			->where("p.kategori_bahan = '1'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->get()->row_array();
+
+			$pemakaian_semen = $this->db->select('SUM(nilai) as nilai')
+			->from('pemakaian_bahan')
+			->where("date between '$awal' and '$akhir'")
+			->where("material_id = 1")
+			->where("status = 'PUBLISH'")
+			->get()->row_array();
+
+			$persediaan_semen = ($stock_opname_ago_semen['nilai'] + $pembelian_semen['nilai'] - $pemakaian_semen['nilai']);
+
+			$stock_opname_ago_pasir = $this->db->select('cat.total as nilai')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date <= '$tanggal_opening_balance')")
+			->where("cat.material_id = 2")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$pembelian_pasir = $this->db->select('SUM(prm.display_price) as nilai')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->where("(prm.date_receipt between '$awal' and '$akhir')")
+			->where("p.kategori_bahan = '2'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->get()->row_array();
+
+			$pemakaian_pasir = $this->db->select('SUM(nilai) as nilai')
+			->from('pemakaian_bahan')
+			->where("date between '$awal' and '$akhir'")
+			->where("material_id = 2")
+			->where("status = 'PUBLISH'")
+			->get()->row_array();
+
+			$persediaan_pasir = ($stock_opname_ago_pasir['nilai'] + $pembelian_pasir['nilai'] - $pemakaian_pasir['nilai']);
+
+			$stock_opname_ago_1020 = $this->db->select('cat.total as nilai')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date <= '$tanggal_opening_balance')")
+			->where("cat.material_id = 3")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$pembelian_1020 = $this->db->select('SUM(prm.display_price) as nilai')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->where("(prm.date_receipt between '$awal' and '$akhir')")
+			->where("p.kategori_bahan = '3'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->get()->row_array();
+
+			$pemakaian_1020 = $this->db->select('SUM(nilai) as nilai')
+			->from('pemakaian_bahan')
+			->where("date between '$awal' and '$akhir'")
+			->where("material_id = 3")
+			->where("status = 'PUBLISH'")
+			->get()->row_array();
+
+			$persediaan_1020 = ($stock_opname_ago_1020['nilai'] + $pembelian_1020['nilai'] - $pemakaian_1020['nilai']);
+
+			$stock_opname_ago_2030 = $this->db->select('cat.total as nilai')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date <= '$tanggal_opening_balance')")
+			->where("cat.material_id = 4")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$pembelian_2030 = $this->db->select('SUM(prm.display_price) as nilai')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->where("(prm.date_receipt between '$awal' and '$akhir')")
+			->where("p.kategori_bahan = '4'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->get()->row_array();
+
+			$pemakaian_2030 = $this->db->select('SUM(nilai) as nilai')
+			->from('pemakaian_bahan')
+			->where("date between '$awal' and '$akhir'")
+			->where("material_id = 4")
+			->where("status = 'PUBLISH'")
+			->get()->row_array();
+
+			$persediaan_2030 = ($stock_opname_ago_2030['nilai'] + $pembelian_2030['nilai'] - $pemakaian_2030['nilai']);
+
+			$stock_opname_ago_additive = $this->db->select('cat.total as nilai')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date <= '$tanggal_opening_balance')")
+			->where("cat.material_id = 19")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$pembelian_additive = $this->db->select('SUM(prm.display_price) as nilai')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->where("(prm.date_receipt between '$awal' and '$akhir')")
+			->where("p.kategori_bahan = '6'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->get()->row_array();
+
+			$pemakaian_additive = $this->db->select('SUM(nilai) as nilai')
+			->from('pemakaian_bahan')
+			->where("date between '$awal' and '$akhir'")
+			->where("material_id = 19")
+			->where("status = 'PUBLISH'")
+			->get()->row_array();
+
+			$persediaan_additive = ($stock_opname_ago_additive['nilai'] + $pembelian_additive['nilai'] - $pemakaian_additive['nilai']);
+
+			$stock_opname_ago_solar = $this->db->select('cat.total as nilai')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date <= '$tanggal_opening_balance')")
+			->where("cat.material_id = 5")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$pembelian_solar = $this->db->select('SUM(prm.display_price) as nilai')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->where("(prm.date_receipt between '$awal' and '$akhir')")
+			->where("p.kategori_bahan = '5'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->get()->row_array();
+
+			$pemakaian_solar = $this->db->select('SUM(nilai) as nilai')
+			->from('pemakaian_bahan')
+			->where("date between '$awal' and '$akhir'")
+			->where("material_id = 5")
+			->where("status = 'PUBLISH'")
+			->get()->row_array();
+
+			$persediaan_solar = ($stock_opname_ago_solar['nilai'] + $pembelian_solar['nilai'] - $pemakaian_solar['nilai']);
+
 
 			?>
-			<?php
-			foreach ($stock_opname_semen as $row) : ?>  
-			<tr class="table-baris2">
-				<td align="center" class="table-border-pojok-kiri"><?php echo $row['date'] = date('d-m-Y',strtotime($row['date']));;?></td>
-				<td align="left" class="table-border-pojok-tengah">Semen</td>
-				<td align="center" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');?></td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($row['volume'],2,',','.'); ?></td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($row['price'],0,',','.'); ?></td>
-				<td align="right" class="table-border-pojok-kanan"><?= number_format($row['total'],0,',','.'); ?></td>
-			</tr>
-			<?php
-			endforeach; ?>
 			
-			<?php
-			foreach ($stock_opname_pasir as $row) : ?>  
 			<tr class="table-baris2">
-				<td align="center" class="table-border-pojok-kiri"><?php echo $row['date'] = date('d-m-Y',strtotime($row['date']));;?></td>
-				<td align="left" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
-				<td align="center" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');?></td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($row['volume'],2,',','.'); ?></td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($row['price'],0,',','.'); ?></td>
-				<td align="right" class="table-border-pojok-kanan"><?= number_format($row['total'],0,',','.'); ?></td>
+				<td align="left" class="table-border-pojok-kiri">Semen</td>
+				<td align="center" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$stock_opname_semen['display_measure']),'measure_name');?></td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($stock_opname_semen['volume'],2,',','.'); ?></td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($persediaan_semen / $stock_opname_semen['volume'],0,',','.'); ?></td>
+				<td align="right" class="table-border-pojok-kanan"><?= number_format($persediaan_semen,0,',','.'); ?></td>
 			</tr>
-			<?php
-			endforeach; ?>
-
-			<?php
-			foreach ($stock_opname_batu1020 as $row) : ?>  
 			<tr class="table-baris2">
-				<td align="center" class="table-border-pojok-kiri"><?php echo $row['date'] = date('d-m-Y',strtotime($row['date']));;?></td>
-				<td align="left" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
-				<td align="center" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');?></td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($row['volume'],2,',','.'); ?></td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($row['price'],0,',','.'); ?></td>
-				<td align="right" class="table-border-pojok-kanan"><?= number_format($row['total'],0,',','.'); ?></td>
+				<td align="left" class="table-border-pojok-kiri">Pasir</td>
+				<td align="center" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$stock_opname_pasir['display_measure']),'measure_name');?></td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($stock_opname_pasir['volume'],2,',','.'); ?></td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($persediaan_pasir / $stock_opname_pasir['volume'],0,',','.'); ?></td>
+				<td align="right" class="table-border-pojok-kanan"><?= number_format($persediaan_pasir,0,',','.'); ?></td>
 			</tr>
-			<?php
-			endforeach; ?>
-
-			<?php
-			foreach ($stock_opname_batu2030 as $row) : ?>  
 			<tr class="table-baris2">
-				<td align="center" class="table-border-pojok-kiri"><?php echo $row['date'] = date('d-m-Y',strtotime($row['date']));;?></td>
-				<td align="left" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
-				<td align="center" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');?></td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($row['volume'],2,',','.'); ?></td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($row['price'],0,',','.'); ?></td>
-				<td align="right" class="table-border-pojok-kanan"><?= number_format($row['total'],0,',','.'); ?></td>
+				<td align="left" class="table-border-pojok-kiri">Batu Split 10-20</td>
+				<td align="center" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$stock_opname_1020['display_measure']),'measure_name');?></td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($stock_opname_1020['volume'],2,',','.'); ?></td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($persediaan_1020 / $stock_opname_1020['volume'],0,',','.'); ?></td>
+				<td align="right" class="table-border-pojok-kanan"><?= number_format($persediaan_1020,0,',','.'); ?></td>
 			</tr>
-			<?php
-			endforeach; ?>
-
-			<?php
-			foreach ($stock_opname_solar as $row) : ?>  
 			<tr class="table-baris2">
-				<td align="center" class="table-border-pojok-kiri"><?php echo $row['date'] = date('d-m-Y',strtotime($row['date']));;?></td>
-				<td align="left" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
-				<td align="center" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');?></td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($row['volume'],2,',','.'); ?></td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($row['price'],0,',','.'); ?></td>
-				<td align="right" class="table-border-pojok-kanan"><?= number_format($row['total'],0,',','.'); ?></td>
+				<td align="left" class="table-border-pojok-kiri">Batu Split 20-30</td>
+				<td align="center" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$stock_opname_2030['display_measure']),'measure_name');?></td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($stock_opname_2030['volume'],2,',','.'); ?></td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($persediaan_2030 / $stock_opname_2030['volume'],0,',','.'); ?></td>
+				<td align="right" class="table-border-pojok-kanan"><?= number_format($persediaan_2030,0,',','.'); ?></td>
 			</tr>
-			<?php
-			endforeach; ?>
-
-			<?php
-			foreach ($stock_opname_additive as $row) : ?>  
 			<tr class="table-baris2">
-				<td align="center" class="table-border-pojok-kiri"><?php echo $row['date'] = date('d-m-Y',strtotime($row['date']));;?></td>
-				<td align="left" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
-				<td align="center" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');?></td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($row['volume'],2,',','.'); ?></td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($row['price'],0,',','.'); ?></td>
-				<td align="right" class="table-border-pojok-kanan"><?= number_format($row['total'],0,',','.'); ?></td>
+				<td align="left" class="table-border-pojok-kiri">Additive</td>
+				<td align="center" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$stock_opname_additive['display_measure']),'measure_name');?></td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($stock_opname_additive['volume'],2,',','.'); ?></td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($persediaan_additive / $stock_opname_additive['volume'],0,',','.'); ?></td>
+				<td align="right" class="table-border-pojok-kanan"><?= number_format($persediaan_additive,0,',','.'); ?></td>
 			</tr>
-			<?php
-			endforeach; ?>
-
+			<tr class="table-baris2">
+				<td align="left" class="table-border-pojok-kiri">Solar</td>
+				<td align="center" class="table-border-pojok-tengah"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$stock_opname_solar['display_measure']),'measure_name');?></td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($stock_opname_solar['volume'],2,',','.'); ?></td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($persediaan_solar / $stock_opname_solar['volume'],0,',','.'); ?></td>
+				<td align="right" class="table-border-pojok-kanan"><?= number_format($persediaan_solar,0,',','.'); ?></td>
+			</tr>
 			<tr class="table-total2">
-				<td align="right" colspan="5" class="table-border-spesial-kiri">TOTAL</td>
-				<td align="right" class="table-border-spesial-kanan"><?php echo number_format($nilai_semen + $nilai_pasir + $nilai_batu1020 + $nilai_batu2030 + $nilai_solar + $nilai_additive,0,',','.');?></td>
+				<td align="right" colspan="4" class="table-border-spesial-kiri">TOTAL</td>
+				<td align="right" class="table-border-spesial-kanan"><?php echo number_format($persediaan_semen + $persediaan_pasir + $persediaan_1020 + $persediaan_2030 + $persediaan_additive + $persediaan_solar,0,',','.');?></td>
 			</tr>
 		</table>
 		<br /><br />

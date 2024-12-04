@@ -48,8 +48,8 @@ class Produksi extends Secure_Controller {
 			'display_volume' => $volume,
 			'display_measure' => $measure,
 			'notes' => $notes,
-			'total' => $total,
-			'price' => $total / $volume,
+			//'total' => $total,
+			//'price' => $total / $volume,
 			'updated_by' => $this->session->userdata('admin_id'),
 			'updated_on' => date('Y-m-d H:i:s')
 		);
@@ -112,9 +112,9 @@ class Produksi extends Secure_Controller {
         $html = $this->load->view('produksi/cetak_stock_opname',$data,TRUE);
 
         
-        $pdf->SetTitle('Stock Opname');
+        $pdf->SetTitle('');
         $pdf->nsi_html($html);
-        $pdf->Output('Stock Opname.pdf', 'I');
+        $pdf->Output('stock_opname.pdf', 'I');
 	
 	}
 
