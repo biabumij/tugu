@@ -151,7 +151,7 @@
 		<br /><br />
 		<table width="98%" cellpadding="3">
 			<?php
-			$pembelian = $this->db->select('ps.nama as nama, SUM(prm.display_volume) as volume, SUM(prm.display_price) as nilai, SUM(prm.display_harga_satuan) as harsat')
+			$pembelian = $this->db->select('ps.nama as nama, SUM(prm.display_volume) as volume, SUM(prm.display_price) as nilai, SUM(prm.display_price) / SUM(prm.display_volume) as harsat')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->join('produk p', 'prm.material_id = p.id','left')
