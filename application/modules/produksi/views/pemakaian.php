@@ -10,7 +10,7 @@
     if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,5))){
     ?>
     <div class="col-sm-2">
-    <button style="background-color:#88b93c; border:1px solid black; border-radius:10px; line-height:30px;"><a href="<?php echo site_url('produksi/form_pemakaian'); ?>"><b style="color:white;">BUAT PEMAKAIAN</b></a></button>
+    <button style="background-color:#88b93c; border:1px solid black; border-radius:10px; line-height:30px;"><a href="<?php echo site_url('produksi/form_pemakaian'); ?>"><b style="color:white;">BUAT VERIFIKASI</b></a></button>
     </div>
     <?php
     }
@@ -23,8 +23,6 @@
             <tr>
                 <th>No.</th>
                 <th>Tanggal</th>
-                <th>Jumlah Bahan</th>
-                <th>Jumlah Solar</th>
                 <th>Tindakan</th>
             </tr>
         </thead>

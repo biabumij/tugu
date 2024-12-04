@@ -181,37 +181,11 @@ class Produksi extends Secure_Controller {
 	public function submit_pemakaian()
 	{
 		$date = $this->input->post('date');
-		$vol_semen = str_replace(',', '.', $this->input->post('vol_semen'));
-		$vol_pasir = str_replace(',', '.', $this->input->post('vol_pasir'));
-		$vol_1020 = str_replace(',', '.', $this->input->post('vol_1020'));
-		$vol_2030 = str_replace(',', '.', $this->input->post('vol_2030'));
-		$vol_additive = str_replace(',', '.', $this->input->post('vol_additive'));
-		$vol_solar = str_replace(',', '.', $this->input->post('vol_solar'));
-
-		$nilai_semen = str_replace('.', '', $this->input->post('nilai_semen'));
-		$nilai_pasir = str_replace('.', '', $this->input->post('nilai_pasir'));
-		$nilai_1020 = str_replace('.', '', $this->input->post('nilai_1020'));
-		$nilai_2030 = str_replace('.', '', $this->input->post('nilai_2030'));
-		$nilai_additive = str_replace('.', '', $this->input->post('nilai_additive'));
-		$nilai_solar = str_replace('.', '', $this->input->post('nilai_solar'));
-
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
 
 		$arr_insert = array(
 			'date' => date('Y-m-d', strtotime($date)),
-			'vol_semen' => $vol_semen,
-			'vol_pasir' => $vol_pasir,
-			'vol_1020' => $vol_1020,
-			'vol_2030' => $vol_2030,
-			'vol_additive' => $vol_additive,
-			'vol_solar' => $vol_solar,
-			'nilai_semen' => $nilai_semen,
-			'nilai_pasir' => $nilai_pasir,
-			'nilai_1020' => $nilai_1020,
-			'nilai_2030' => $nilai_2030,
-			'nilai_additive' => $nilai_additive,
-			'nilai_solar' => $nilai_solar,
 			'unit_head' => 6,
 			'logistik' => 10,
 			'admin' => 10,
