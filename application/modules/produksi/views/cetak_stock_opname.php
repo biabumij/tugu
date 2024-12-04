@@ -304,7 +304,7 @@
 			->where("status = 'PUBLISH'")
 			->get()->row_array();
 
-			$persediaan_2030 = $pemakaian_2030['nilai'];
+			$persediaan_2030 = ($stock_opname_ago_2030['nilai'] + $pembelian_2030['nilai'] - $pemakaian_2030['nilai']);
 
 			$stock_opname_ago_additive = $this->db->select('cat.total as nilai')
 			->from('pmm_remaining_materials_cat cat ')
