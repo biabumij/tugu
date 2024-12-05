@@ -45,10 +45,6 @@
 			font-family: helvetica;
 			font-size: 7px;
 		}
-
-		table, th, td {
-			border: 0.5px solid white;
-		}
 		
 		table tr.table-judul{
 			background-color: #e69500;

@@ -1387,13 +1387,11 @@ class Reports extends CI_Controller {
 
 			//ALAT
 			$alat = $this->pmm_model->getAlat($date1,$date2);
-			$solar = $this->pmm_model->getSolar($date1,$date2);
-			$alat = $alat + $solar;
+			$alat = $alat;
 
 			//ALAT_2
 			$alat_2 = $this->pmm_model->getAkumulasiAlat($date3,$date2);
-			$solar_2 = $this->pmm_model->getSolar2($date3,$date2);
-			$alat_2 = $alat_2 + $solar_2;
+			$alat_2 = $alat_2;
 
 			//OVERHEAD
 			$overhead = $this->pmm_model->getOverheadLabaRugi($date1,$date2);
@@ -9182,7 +9180,6 @@ class Reports extends CI_Controller {
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 			$total_nilai_pemeliharaan_batching_plant = $pemeliharaan_batching_plant_biaya['total'] + $pemeliharaan_batching_plant_jurnal['total'];
-			$total_nilai_batching_plant = $total_nilai_batching_plant + $total_nilai_pemeliharaan_batching_plant;
 			
 			$pembelian_truck_mixer = $this->db->select('
 			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
@@ -9238,7 +9235,6 @@ class Reports extends CI_Controller {
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 			$total_nilai_pemeliharaan_wheel_loader = $pemeliharaan_wheel_loader_biaya['total'] + $pemeliharaan_wheel_loader_jurnal['total'];
-        	$total_nilai_wheel_loader = $total_nilai_wheel_loader + $total_nilai_pemeliharaan_wheel_loader;
 
 			$pembelian_truck_mixer = $this->db->select('
 			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
@@ -9800,7 +9796,6 @@ class Reports extends CI_Controller {
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 			$total_nilai_pemeliharaan_batching_plant = $pemeliharaan_batching_plant_biaya['total'] + $pemeliharaan_batching_plant_jurnal['total'];
-			$total_nilai_batching_plant = $total_nilai_batching_plant + $total_nilai_pemeliharaan_batching_plant;
 			
 			$pembelian_truck_mixer = $this->db->select('
 			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
@@ -9856,7 +9851,6 @@ class Reports extends CI_Controller {
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 			$total_nilai_pemeliharaan_wheel_loader = $pemeliharaan_wheel_loader_biaya['total'] + $pemeliharaan_wheel_loader_jurnal['total'];
-        	$total_nilai_wheel_loader = $total_nilai_wheel_loader + $total_nilai_pemeliharaan_wheel_loader;
 
 			$pembelian_truck_mixer = $this->db->select('
 			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')

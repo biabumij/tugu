@@ -1492,7 +1492,7 @@ class Laporan extends Secure_Controller {
 		$data['filter_date'] = $filter_date;
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
-        $html = $this->load->view('laporan_produksi/cetak_laporan_evaluasi_bahan',$data,TRUE);
+        $html = $this->load->view('laporan_produksi/cetak_laporan_evaluasi_pemakaian',$data,TRUE);
 
         $pdf->SetTitle('BBJ - Laporan Evaluasi Pemakaian Bahan Baku');
         $pdf->nsi_html($html);

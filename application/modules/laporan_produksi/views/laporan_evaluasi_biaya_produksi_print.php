@@ -46,6 +46,10 @@
 			font-size: 7px;
 		}
 
+		table, th, td {
+			border: 0.5px solid white;
+		}
+
 	  	table tr.table-active{
             background-color: #e69500;
 			font-size: 7px;
@@ -58,6 +62,7 @@
 			
 		table tr.table-active3{
 			font-size: 7px;
+			background-color: #eeeeee;
 		}
 			
 		table tr.table-active4{
@@ -77,8 +82,8 @@
 		<table width="98%" cellpadding="3">
 			<tr>
 				<td align="center"  width="100%">
-					<div style="display: block;font-weight: bold;font-size: 12px;">LAPORAN EVALUASI BIAYA PRODUKSI<br/>
-					<div style="text-transform: uppercase;">PERIODE <?php echo str_replace($search, $replace, $subject);?></div></div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">Laporan Evaluasi Biaya Produksi<br/>
+					<div style="display: block;font-weight: bold;font-size: 12px;">Periode <?php echo str_replace($search, $replace, $subject);?></div></div>
 				</td>
 			</tr>
 		</table>
@@ -444,7 +449,6 @@
 		->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 		->get()->row_array();
 		$total_nilai_pemeliharaan_batching_plant = $pemeliharaan_batching_plant_biaya['total'] + $pemeliharaan_batching_plant_jurnal['total'];
-		$total_nilai_batching_plant = $total_nilai_batching_plant + $total_nilai_pemeliharaan_batching_plant;
 		
 		$pembelian_truck_mixer = $this->db->select('
 		pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
@@ -500,7 +504,6 @@
 		->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 		->get()->row_array();
 		$total_nilai_pemeliharaan_wheel_loader = $pemeliharaan_wheel_loader_biaya['total'] + $pemeliharaan_wheel_loader_jurnal['total'];
-		$total_nilai_wheel_loader = $total_nilai_wheel_loader + $total_nilai_pemeliharaan_wheel_loader;
 
 		$pembelian_truck_mixer = $this->db->select('
 		pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')

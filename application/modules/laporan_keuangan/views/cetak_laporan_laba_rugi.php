@@ -158,19 +158,17 @@
 			$total_nilai = $bahan;
 
 			//BAHAN_2
-			$date4 = date('Y-m-d', strtotime('-5 days', strtotime($date2)));
-			$bahan_2 = $this->pmm_model->getBahan2($date3,$date4);
-			$total_nilai_2= $bahan_2 + $bahan;
+			$bahan_2 = $this->pmm_model->getBahan2($date3,$date2);
+			$total_nilai_2 = 0;
+			$total_nilai_2= $bahan_2;
 
 			//ALAT
 			$alat = $this->pmm_model->getAlat($date1,$date2);
-			$solar = $this->pmm_model->getSolar($date1,$date2);
-			$alat = $alat + $solar;
+			$alat = $alat;
 
 			//ALAT_2
 			$alat_2 = $this->pmm_model->getAkumulasiAlat($date3,$date2);
-			$solar_2 = $this->pmm_model->getSolar2($date3,$date4);
-			$alat_2 = ($alat_2 + $solar_2) + $solar;
+			$alat_2 = $alat_2;
 
 			//OVERHEAD
 			$overhead = $this->pmm_model->getOverheadLabaRugi($date1,$date2);
