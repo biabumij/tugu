@@ -48,8 +48,8 @@ class Produksi extends Secure_Controller {
 			'display_volume' => $volume,
 			'display_measure' => $measure,
 			'notes' => $notes,
-			//'total' => $total,
-			//'price' => $total / $volume,
+			'total' => $total,
+			'price' => $total / $volume,
 			'updated_by' => $this->session->userdata('admin_id'),
 			'updated_on' => date('Y-m-d H:i:s')
 		);
