@@ -1438,7 +1438,6 @@ class Pmm extends CI_Controller {
 		->get()->row_array();
 		$material_group = $material_group['kategori_bahan'];
 		
-
 		$last_price = $this->db->select('prm.display_harga_satuan')
 		->from('pmm_receipt_material prm')
 		->join('produk p','prm.material_id = p.id','left')
