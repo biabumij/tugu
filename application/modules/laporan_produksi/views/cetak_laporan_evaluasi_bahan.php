@@ -268,8 +268,8 @@
 				<th align="right"><?php echo number_format($price_a,0,',','.');?></th>
 				<th align="right"><?php echo number_format($nilai_a,0,',','.');?></th>
 				<th align="right"><?php echo number_format($pemakaian_volume_semen,2,',','.');?></th>
-				<th align="right"><a target="_blank" href="<?= base_url("laporan/cetak_detail_semen?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($pemakaian_harsat_semen,0,',','.');?></a></th>
-				<th align="right"><?php echo number_format($pemakaian_nilai_semen,0,',','.');?></th>
+				<th align="right"><?php echo number_format($pemakaian_harsat_semen,0,',','.');?></th>
+				<th align="right"><a target="_blank" href="<?= base_url("laporan/cetak_detail_semen?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($pemakaian_nilai_semen,0,',','.');?></a></th>
 				<th align="right" style="<?php echo $styleColorA ?>"><?php echo $evaluasi_volume_a < 0 ? "(".number_format(-$evaluasi_volume_a,2,',','.').")" : number_format($evaluasi_volume_a,2,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorAA ?>"><?php echo $evaluasi_nilai_a < 0 ? "(".number_format(-$evaluasi_nilai_a,0,',','.').")" : number_format($evaluasi_nilai_a,0,',','.');?></th>
 	        </tr>
@@ -281,8 +281,8 @@
 				<th align="right"><?php echo number_format($price_b,0,',','.');?></th>
 				<th align="right"><?php echo number_format($nilai_b,0,',','.');?></th>
 				<th align="right"><?php echo number_format($pemakaian_volume_pasir,2,',','.');?></th>
-				<th align="right"><a target="_blank" href="<?= base_url("laporan/cetak_detail_pasir?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($pemakaian_harsat_pasir,0,',','.');?></a></th>
-				<th align="right"><?php echo number_format($pemakaian_nilai_pasir,0,',','.');?></th>
+				<th align="right"><?php echo number_format($pemakaian_harsat_pasir,0,',','.');?></th>
+				<th align="right"><a target="_blank" href="<?= base_url("laporan/cetak_detail_pasir?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($pemakaian_nilai_pasir,0,',','.');?></a></th>
 				<th align="right" style="<?php echo $styleColorB ?>"><?php echo $evaluasi_volume_b < 0 ? "(".number_format(-$evaluasi_volume_b,2,',','.').")" : number_format($evaluasi_volume_b,2,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorBB ?>"><?php echo $evaluasi_nilai_b < 0 ? "(".number_format(-$evaluasi_nilai_b,0,',','.').")" : number_format($evaluasi_nilai_b,0,',','.');?></th>
 	        </tr>
@@ -294,8 +294,8 @@
 				<th align="right"><?php echo number_format($price_c,0,',','.');?></th>
 				<th align="right"><?php echo number_format($nilai_c,0,',','.');?></th>
 				<th align="right"><?php echo number_format($pemakaian_volume_1020,2,',','.');?></th>
-				<th align="right"><a target="_blank" href="<?= base_url("laporan/cetak_detail_1020?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($pemakaian_harsat_1020,0,',','.');?></a></th>
-				<th align="right"><?php echo number_format($pemakaian_nilai_1020,0,',','.');?></th>
+				<th align="right"><?php echo number_format($pemakaian_harsat_1020,0,',','.');?></th>
+				<th align="right"><a target="_blank" href="<?= base_url("laporan/cetak_detail_1020?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($pemakaian_nilai_1020,0,',','.');?></a></th>
 				<th align="right" style="<?php echo $styleColorC ?>"><?php echo $evaluasi_volume_c < 0 ? "(".number_format(-$evaluasi_volume_c,2,',','.').")" : number_format($evaluasi_volume_c,2,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorCC ?>"><?php echo $evaluasi_nilai_c < 0 ? "(".number_format(-$evaluasi_nilai_c,0,',','.').")" : number_format($evaluasi_nilai_c,0,',','.');?></th>
 	        </tr>
@@ -307,8 +307,8 @@
 				<th align="right"><?php echo number_format($price_d,0,',','.');?></th>
 				<th align="right"><?php echo number_format($nilai_d,0,',','.');?></th>
 				<th align="right"><?php echo number_format($pemakaian_volume_2030,2,',','.');?></th>
-				<th align="right"><a target="_blank" href="<?= base_url("laporan/cetak_detail_2030?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($pemakaian_harsat_2030,0,',','.');?></a></th>
-				<th align="right"><?php echo number_format($pemakaian_nilai_2030,0,',','.');?></th>
+				<th align="right"><?php echo number_format($pemakaian_harsat_2030,0,',','.');?></th>
+				<th align="right"><a target="_blank" href="<?= base_url("laporan/cetak_detail_2030?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($pemakaian_nilai_2030,0,',','.');?></a></th>
 				<th align="right" style="<?php echo $styleColorD ?>"><?php echo $evaluasi_volume_d < 0 ? "(".number_format(-$evaluasi_volume_d,2,',','.').")" : number_format($evaluasi_volume_d,2,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorDD ?>"><?php echo $evaluasi_nilai_d < 0 ? "(".number_format(-$evaluasi_nilai_d,0,',','.').")" : number_format($evaluasi_nilai_d,0,',','.');?></th>
 	        </tr>
@@ -320,8 +320,8 @@
 				<th align="right"><?php echo number_format($price_e,0,',','.');?></th>
 				<th align="right"><?php echo number_format($nilai_e,0,',','.');?></th>
 				<th align="right"><?php echo number_format($pemakaian_volume_additive,2,',','.');?></th>
-				<th align="right"><a target="_blank" href="<?= base_url("laporan/cetak_detail_additive?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($pemakaian_harsat_additive,0,',','.');?></a></th>
-				<th align="right"><?php echo number_format($pemakaian_nilai_additive,0,',','.');?></th>
+				<th align="right"><?php echo number_format($pemakaian_harsat_additive,0,',','.');?></th>
+				<th align="right"><a target="_blank" href="<?= base_url("laporan/cetak_detail_additive?filter_date=".$filter_date = date('d-m-Y',strtotime($date1)).' - '.date('d-m-Y',strtotime($date2))) ?>"><?php echo number_format($pemakaian_nilai_additive,0,',','.');?></a></th>
 				<th align="right" style="<?php echo $styleColorE ?>"><?php echo $evaluasi_volume_e < 0 ? "(".number_format(-$evaluasi_volume_e,2,',','.').")" : number_format($evaluasi_volume_e,2,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorFF ?>"><?php echo $evaluasi_nilai_e < 0 ? "(".number_format(-$evaluasi_nilai_e,0,',','.').")" : number_format($evaluasi_nilai_e,0,',','.');?></th>
 	        </tr>
