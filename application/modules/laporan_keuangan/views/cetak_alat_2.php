@@ -28,7 +28,25 @@
 
 	</head>
 	<body>
-	<table width="98%" cellpadding="3">
+	<?php
+		$data = array();
+		
+		$arr_date = $this->input->get('filter_date');
+		$arr_filter_date = explode(' - ', $arr_date);
+		$date1 = '';
+		$date2 = '';
+		$date3 = '';
+
+		if(count($arr_filter_date) == 2){
+			$date3 	= date('Y-m-d',strtotime($date3));
+			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));
+			$date2 	= date('Y-m-d',strtotime($arr_filter_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		?>
+		<br />
+		<br />
+		<table width="98%" cellpadding="3">
 			<tr>
 				<td align="center"  width="100%">
 					<div style="display: block;font-weight: bold;font-size: 11px;">Biaya Alat</div>
