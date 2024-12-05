@@ -17,7 +17,7 @@
         //table.ajax.reload();
     });
 
-    $('.dtpickerangepemakaian').daterangepicker({
+    $('.dtpickerangepemakaianbahan').daterangepicker({
         autoUpdateInput: false,
         locale: {
             format: 'DD-MM-YYYY'
