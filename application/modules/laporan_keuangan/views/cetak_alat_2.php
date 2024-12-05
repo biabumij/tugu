@@ -77,7 +77,7 @@
 						
 					}
 					?>
-					<div style="display: block;font-weight: bold;font-size: 11px;">Periode Sd. <?= tgl_indo(date($date2)); ?></div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">Periode sd. <?= tgl_indo(date($date2)); ?></div>
 				</td>
 			</tr>
 		</table>
