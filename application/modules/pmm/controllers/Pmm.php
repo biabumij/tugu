@@ -1428,7 +1428,6 @@ class Pmm extends CI_Controller {
 		$convert = $this->input->post('convert');
 		$display_volume = $this->input->post('display_volume');
 		$display_measure = $this->input->post('display_measure');
-		//$price = $this->input->post('price');
 		$notes = $this->input->post('notes');
 		$status = $this->input->post('status');
 
