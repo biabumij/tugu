@@ -3,43 +3,6 @@
 	<head>
 	  <title>BIAYA ALAT</title>
 	  
-	  <?php
-		$search = array(
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-		);
-		
-		$replace = array(
-		'Januari',
-		'Februari',
-		'Maret',
-		'April',
-		'Mei',
-		'Juni',
-		'Juli',
-		'Agustus',
-		'September',
-		'Oktober',
-		'November',
-		'Desember'
-		);
-		
-		$subject = "$filter_date";
-
-		echo str_replace($search, $replace, $subject);
-
-	  ?>
-	  
 	  <style type="text/css">
 		body {
 			font-family: helvetica;
@@ -67,7 +30,33 @@
 	<body>
 		<div align="center" style="display: block;font-weight:bold; font-size: 11px;">Biaya Alat</div>
 		<div align="center" style="display: block;font-weight:bold; font-size: 11px;">Proyek Bendungan Tugu</div>
-		<div align="center" style="display: block;font-weight:bold; font-size: 11px;">Periode <?php echo str_replace($search, $replace, $subject);?></div>
+		<?php
+		function tgl_indo($date2){
+			$bulan = array (
+				1 =>   'Januari',
+				'Februari',
+				'Maret',
+				'April',
+				'Mei',
+				'Juni',
+				'Juli',
+				'Agustus',
+				'September',
+				'Oktober',
+				'November',
+				'Desember'
+			);
+			$pecahkan = explode('-', $date2);
+			
+			// variabel pecahkan 0 = tanggal
+			// variabel pecahkan 1 = bulan
+			// variabel pecahkan 2 = tahun
+		
+			return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+			
+		}
+		?>
+		<div style="display: block;font-weight: bold;font-size: 11px;">Periode SD. <?= tgl_indo(date($date2)); ?></div>
 		<br /><br /><br />
 		<?php
 		$data = array();

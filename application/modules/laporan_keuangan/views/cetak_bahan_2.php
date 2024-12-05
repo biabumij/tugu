@@ -49,9 +49,8 @@
 		<table width="98%" cellpadding="3">
 			<tr>
 				<td align="center"  width="100%">
-					<div style="display: block;font-weight: bold;font-size: 11px;">BIAYA BAHAN</div>
-					<div style="display: block;font-weight: bold;font-size: 11px;">PROYEK BENDUNGAN TUGU</div>
-					<div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">Biaya Bahan</div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">Proyek Bendungan Tugu</div>
 					<?php
 					function tgl_indo($date2){
 						$bulan = array (
@@ -78,7 +77,7 @@
 						
 					}
 					?>
-					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : SD. <?= tgl_indo(date($date2)); ?></div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">Periode SD. <?= tgl_indo(date($date2)); ?></div>
 				</td>
 			</tr>
 		</table>
