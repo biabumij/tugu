@@ -1456,8 +1456,8 @@ class Pmm extends CI_Controller {
 			'display_volume' => $display_volume,
 			'display_measure' => $display_measure,
 			'notes' => $notes,
-			//'price' => $last_price,
-			//'total' => $volume * $last_price,
+			'price' => $last_price,
+			'total' => $volume * $last_price,
 			'pemakaian_custom' => 0,
 			'reset' => 1,
 			'status' => 'PUBLISH'
