@@ -220,7 +220,16 @@ class Produksi extends Secure_Controller {
 			$this->db->where('date >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('date <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
+
+		$last_opname = $this->db->select('date')
+		->from('kunci_rakor')
+		->order_by('date','desc')->limit(1)
+		//->order_by('date','desc')->limit(1,2)
+		->get()->row_array();
+		$last_opname = date('Y-m-d', strtotime($last_opname['date']));
+
         $this->db->select('*');
+		$this->db->where("date > '$last_opname'");
 		$this->db->order_by('date','desc');
 		$query = $this->db->get('pemakaian_bahan');
 		
