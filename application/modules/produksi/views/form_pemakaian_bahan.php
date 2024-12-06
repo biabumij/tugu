@@ -66,10 +66,27 @@
 										<tfoot>
 										</tfoot>
 									</table>
-									<div class="text-center">
-										<a href="<?= site_url('admin/stock_opname#pemakaian_bahan');?>" class="btn btn-danger" style="margin-bottom:0; font-weight:bold; border-radius:10px;">BATAL</a>
-										<button type="submit" class="btn btn-success" style="font-weight:bold; border-radius:10px;">KIRIM</button>
-									</div>
+								</div>
+								<div class="col-sm-4">
+									<label>Rekanan</label>
+									<select class="form-control form-select2" name="notes" id="notes">
+										<option value="">Pilih Rekanan</option>
+										<?php
+										$supplier = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
+										if(!empty($supplier)){
+											foreach ($supplier as $row) {
+												?>
+												<option value="<?php echo $row['nama'];?>"><?php echo $row['nama'];?></option>
+												<?php
+											}
+										}
+										?>
+									</select>
+								</div>
+								<br /><br /><br />
+								<div class="text-center">
+									<a href="<?= site_url('admin/stock_opname#pemakaian_bahan');?>" class="btn btn-danger" style="margin-bottom:0; font-weight:bold; border-radius:10px;">BATAL</a>
+									<button type="submit" class="btn btn-success" style="font-weight:bold; border-radius:10px;">KIRIM</button>
 								</div>
 							</form>
 						</div>

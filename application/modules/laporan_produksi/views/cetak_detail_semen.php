@@ -109,7 +109,7 @@
 			$date3_ago = date('Y-m-d', strtotime('-1 months', strtotime($date1)));
 			$tanggal_opening_balance = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
 
-			$stock_opname_ago = $this->db->select('cat.volume as volume, cat.total as nilai')
+			$stock_opname_ago = $this->db->select('cat.notes as notes, cat.volume as volume, cat.total as nilai')
 			->from('pmm_remaining_materials_cat cat ')
 			->where("(cat.date <= '$tanggal_opening_balance')")
 			->where("cat.material_id = 1")
@@ -135,7 +135,7 @@
 			</tr>
 			<?php foreach ($stock_opname_ago as $x): ?>
 			<tr class="table-baris1">
-				<td align="right"></td>
+				<td align="right"><?= $x['notes'] ?></td>
 				<td align="right"><?php echo number_format($x['volume'],2,',','.');?></td>
 				<td align="right"></td>
 				<td align="right"><?php echo number_format($x['nilai'],0,',','.');?></td>
@@ -197,7 +197,7 @@
 		<br /><br />
 		<table width="98%" cellpadding="3">
 			<?php
-			$pemakaian = $this->db->select('sum(volume) as volume, sum(nilai) as nilai, sum(nilai) / sum(volume) as harsat')
+			$pemakaian = $this->db->select('notes as notes, sum(volume) as volume, sum(nilai) as nilai, sum(nilai) / sum(volume) as harsat')
 			->from('pemakaian_bahan')
 			->where("date between '$date1' and '$date2'")
 			->where("material_id = 1")
@@ -223,7 +223,7 @@
 			</tr>
 			<?php foreach ($pemakaian as $x): ?>
 			<tr class="table-baris1">
-				<td align="right"></td>
+				<td align="right"><?= $x['notes'] ?></td>
 				<td align="right"><?php echo number_format($x['volume'],2,',','.');?></td>
 				<td align="right"><?php echo number_format($x['harsat'],0,',','.');?></td>
 				<td align="right"><?php echo number_format($x['nilai'],0,',','.');?></td>
