@@ -132,7 +132,7 @@
             locale: {
                 format: 'DD-MM-YYYY'
             },
-            //minDate: '<?php echo $last_opname;?>',
+            minDate: '<?php echo $last_opname;?>',
             //maxDate: moment().add(+0, 'd').toDate(),
             //minDate: moment().startOf('month').toDate(),
             maxDate: moment().endOf('month').toDate(),
