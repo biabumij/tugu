@@ -77,6 +77,9 @@
                                                     <p><h5><b>Pengiriman Penjualan</b></h5></p>
                                                     <a href="#laporan_pengiriman_penjualan" aria-controls="laporan_pengiriman_penjualan" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>									
                                                 </div>
+                                                <?php
+                                                if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,5,6,7,8))){
+                                                ?> 
                                                 <div class="col-sm-5">
                                                     <p><h5><b>Laporan Piutang</b></h5></p>
                                                     <a href="#laporan_piutang" aria-controls="laporan_piutang" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
@@ -89,6 +92,9 @@
                                                     <p><h5><b>Daftar Penerimaan</b></h5></p>
                                                     <a href="#daftar_penerimaan" aria-controls="daftar_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
                                                 </div>
+                                                <?php
+                                                }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
