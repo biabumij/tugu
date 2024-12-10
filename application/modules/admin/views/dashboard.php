@@ -489,12 +489,18 @@
                                                 <a href="<?php echo site_url('admin/satuan');?>">
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-ruler-vertical"></i><b>SATUAN</b></span></a>
                                             </li>
+                                            <?php
+                                            if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,5,6,7,8))){
+                                            ?>
                                             <br />
                                             <br />
                                             <li class="text-center" style="background: linear-gradient(110deg, #d11212 20%, #d11212 40%, #b30f15 80%);">
                                                 <a href="<?php echo site_url('admin/users');?>">
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-users"></i><b>USER</b></span></a>
                                             </li>
+                                            <?php
+                                            }
+                                            ?>
                                             <?php
                                             if(in_array($this->session->userdata('admin_group_id'), array(1,2,7,8))){
                                             ?>
