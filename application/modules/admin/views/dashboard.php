@@ -435,16 +435,10 @@
                                 <tr>
                                     <th width="25%" class="text-center">
                                         <ul class="row text-center list-inline  wowload bounceInUp collapse" id="laporan">
-                                            <?php
-                                            if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,6,7,8))){
-                                            ?> 
                                             <li class="text-center" style="background: linear-gradient(110deg, #38761d 20%, #38761d 40%, #6aa84f 80%);">
                                                 <a href="<?php echo site_url('admin/laporan_keuangan');?>">
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-dollar-sign"></i><b>KEUANGAN</b></span></a>
                                             </li>
-                                            <?php
-                                            }
-                                            ?>
                                             <li class="text-center" style="background: linear-gradient(110deg, #38761d 20%, #38761d 40%, #6aa84f 80%);">
                                                 <a href="<?php echo site_url('admin/laporan_pembelian');?>">
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-cart-shopping"></i><b>PEMBELIAN</b></span></a>
@@ -455,9 +449,6 @@
                                                 <a href="<?php echo site_url('admin/laporan_penjualan');?>">
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-bag-shopping"></i><b>PENJUALAN</b></span></a>
                                             </li>
-                                            <?php
-                                            if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,6,7,8))){
-                                            ?>
                                             <li class="text-center" style="background: linear-gradient(110deg, #38761d 20%, #38761d 40%, #6aa84f 80%);">
                                                 <a href="<?php echo site_url('admin/laporan_ev._produksi');?>">
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-chart-simple"></i><b>EVALUASI</b></span></a>
@@ -468,9 +459,6 @@
                                                 <a href="<?php echo site_url('admin/laporan_rencana_kerja');?>">
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-calendar-week"></i><b>RENCANA<br />KERJA</b></span></a>
                                             </li>
-                                            <?php
-                                            }
-                                            ?>
                                         </ul>
                                     </th>
                                     <!--<th width="25%" class="text-center">
