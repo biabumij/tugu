@@ -73,20 +73,11 @@
                                             <br />
                                             <div class="row">
                                                 <div width="100%">
-                                                    <?php
-                                                    if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,7,8))){
-                                                    ?>                             
+                                                                                
                                                     <div class="col-sm-5">
                                                         <p><h5><b>Laporan Laba Rugi</b></h5></p>
                                                         <a href="#laporan-laba-rugi" aria-controls="laporan-laba-rugi" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>										
                                                     </div>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                    <?php
-                                                    if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,6,7,8))){
-                                                    ?>
                                                     <div class="col-sm-5">
                                                         <p><h5><b>Neraca</b></h5></p>
                                                         <a href="#neraca" aria-controls="neraca" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>										
@@ -99,9 +90,6 @@
                                                         <p><h5><b>Cash Flow</b></h5></p>
                                                         <a href="#cash_flow" aria-controls="cash_flow" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>										
                                                     </div>
-                                                    <?php
-                                                    }
-                                                    ?>	
                                                 </div>
                                             </div>
                                         </div>
