@@ -455,13 +455,13 @@
                                                 <a href="<?php echo site_url('admin/laporan_penjualan');?>">
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-bag-shopping"></i><b>PENJUALAN</b></span></a>
                                             </li>
+                                            <?php
+                                            if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,6,7,8))){
+                                            ?>
                                             <li class="text-center" style="background: linear-gradient(110deg, #38761d 20%, #38761d 40%, #6aa84f 80%);">
                                                 <a href="<?php echo site_url('admin/laporan_ev._produksi');?>">
                                                 <span style="color:#fffdd0;"><i class="fa-solid fa-chart-simple"></i><b>EVALUASI</b></span></a>
                                             </li>
-                                            <?php
-                                            if(in_array($this->session->userdata('admin_group_id'), array(1,2,3,4,6,7,8))){
-                                                ?>
                                             <br />
                                             <br />
                                             <li class="text-center" style="background: linear-gradient(110deg, #38761d 20%, #38761d 40%, #6aa84f 80%);">
