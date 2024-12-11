@@ -2106,6 +2106,7 @@ class Reports extends CI_Controller {
 			->where("pm.tanggal_pembayaran between '$date_awal' and '$last_opname'")
 			->where("pm.status = 'DISETUJUI'")
 			->where("pm.memo <> 'PPN'")
+			->where("pm.memo <> 'PPH'")
 			->get()->row_array();
 			$termin_sd_bulan_lalu = $termin_sd_bulan_lalu['total'];
 
@@ -2114,6 +2115,7 @@ class Reports extends CI_Controller {
 			->where("pm.tanggal_pembayaran between '$date_1_awal' and '$date_1_akhir'")
 			->where("pm.status = 'DISETUJUI'")
 			->where("pm.memo <> 'PPN'")
+			->where("pm.memo <> 'PPH'")
 			->get()->row_array();
 			$termin_bulan_ini = $termin_bulan_ini['total'];
 
@@ -2122,6 +2124,7 @@ class Reports extends CI_Controller {
 			->where("pm.tanggal_pembayaran between '$date_awal' and '$date_1_akhir'")
 			->where("pm.status = 'DISETUJUI'")
 			->where("pm.memo <> 'PPN'")
+			->where("pm.memo <> 'PPH'")
 			->get()->row_array();
 			$termin_bulan_ini_sd = $termin_bulan_ini_sd['total'];
 
@@ -2706,7 +2709,7 @@ class Reports extends CI_Controller {
 			->join('pmm_penagihan_pembelian ppp','pm.penagihan_pembelian_id = ppp.id','left')
 			->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left')
 			->where("pm.tanggal_pembayaran between '$date_awal' and '$last_opname'")
-			->where("ppo.kategori_id = '5'")
+			->where("ppo.kategori_id in ('5','4')")
 			->where("pm.memo <> 'PPN'")
 			->get()->row_array();
 			$alat_sd_bulan_lalu = $alat_sd_bulan_lalu['total'];
@@ -2716,7 +2719,7 @@ class Reports extends CI_Controller {
 			->join('pmm_penagihan_pembelian ppp','pm.penagihan_pembelian_id = ppp.id','left')
 			->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left')
 			->where("pm.tanggal_pembayaran between '$date_1_awal' and '$date_1_akhir'")
-			->where("ppo.kategori_id = '5'")
+			->where("ppo.kategori_id in ('5','4')")
 			->where("pm.memo <> 'PPN'")
 			->get()->row_array();
 			$alat_bulan_ini = $alat_bulan_ini['total'];
@@ -2726,7 +2729,7 @@ class Reports extends CI_Controller {
 			->join('pmm_penagihan_pembelian ppp','pm.penagihan_pembelian_id = ppp.id','left')
 			->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left')
 			->where("pm.tanggal_pembayaran between '$date_awal' and '$date_1_akhir'")
-			->where("ppo.kategori_id = '5'")
+			->where("ppo.kategori_id in ('5','4')")
 			->where("pm.memo <> 'PPN'")
 			->get()->row_array();
 			$alat_bulan_ini_sd = $alat_bulan_ini_sd['total'];
