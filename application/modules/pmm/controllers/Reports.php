@@ -5328,6 +5328,8 @@ class Reports extends CI_Controller {
 			$vol_realisasi_solar_1 = ($total_volume_solar_1 * $realisasi_1['realisasi']) + $vol_realisasi_solar_1;
 			$nilai_realisasi_solar_1 = ($total_nilai_solar_1 * $realisasi_1['realisasi']) + $nilai_realisasi_solar_1;
 
+			$nilai_realisasi_jasa_1 = $realisasi_1['nilai_realisasi_jasa'];
+
 			$realisasi_2 = $this->db->select('*')
 			->from('rak')
 			->where("tanggal_rencana_kerja between '$date_september24_awal' and '$date_september24_akhir'")
@@ -5351,6 +5353,8 @@ class Reports extends CI_Controller {
 			$nilai_realisasi_solar_2 = $realisasi_2['nilai_realisasi_solar'];
 			$vol_realisasi_solar_2 = ($total_volume_solar_2 * $realisasi_2['realisasi']) + $vol_realisasi_solar_2;
 			$nilai_realisasi_solar_2 = ($total_nilai_solar_2 * $realisasi_2['realisasi']) + $nilai_realisasi_solar_2;
+
+			$nilai_realisasi_jasa_2 = $realisasi_2['nilai_realisasi_jasa'];
 
 			$realisasi_3 = $this->db->select('*')
 			->from('rak')
@@ -5376,6 +5380,8 @@ class Reports extends CI_Controller {
 			$vol_realisasi_solar_3 = ($total_volume_solar_3 * $realisasi_3['realisasi']) + $vol_realisasi_solar_3;
 			$nilai_realisasi_solar_3 = ($total_nilai_solar_3 * $realisasi_3['realisasi']) + $nilai_realisasi_solar_3;
 
+			$nilai_realisasi_jasa_3 = $realisasi_3['nilai_realisasi_jasa'];
+
 			$realisasi_4 = $this->db->select('*')
 			->from('rak')
 			->where("tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
@@ -5400,6 +5406,8 @@ class Reports extends CI_Controller {
 			$vol_realisasi_solar_4 = ($total_volume_solar_4 * $realisasi_4['realisasi']) + $vol_realisasi_solar_4;
 			$nilai_realisasi_solar_4 = ($total_nilai_solar_4 * $realisasi_4['realisasi']) + $nilai_realisasi_solar_4;
 
+			$nilai_realisasi_jasa_4 = $realisasi_4['nilai_realisasi_jasa'];
+
 			$realisasi_5 = $this->db->select('*')
 			->from('rak')
 			->where("tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
@@ -5423,6 +5431,8 @@ class Reports extends CI_Controller {
 			$nilai_realisasi_solar_5 = $realisasi_5['nilai_realisasi_solar'];
 			$vol_realisasi_solar_5 = ($total_volume_solar_5 * $realisasi_5['realisasi']) + $vol_realisasi_solar_5;
 			$nilai_realisasi_solar_5 = ($total_nilai_solar_5 * $realisasi_5['realisasi']) + $nilai_realisasi_solar_5;
+
+			$nilai_realisasi_jasa_5 = $realisasi_5['nilai_realisasi_jasa'];
 			?>
 			<tr class="table-baris">
 				<th class="text-center"></th>
@@ -5512,13 +5522,34 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_volume_solar,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_solar,0,',','.');?></th>
 			</tr>
+			<tr class="table-baris">
+				<th class="text-center"></th>
+				<th class="text-left">Jasa Angkut</th>
+				<th class="text-right"><?php echo number_format($harsat_rap_alat_jasa,0,',','.');?></th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_jasa_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_jasa_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_jasa_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_jasa_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_realisasi_jasa_5,0,',','.');?></th>
+				<?php
+				$total_nilai_jasa = $nilai_realisasi_jasa_1 + $nilai_realisasi_jasa_2 + $nilai_realisasi_jasa_3 + $nilai_realisasi_jasa_4 + $nilai_realisasi_jasa_5;
+				?>
+				<th class="text-right"><?php echo number_format($total_volume_jasa,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_jasa,0,',','.');?></th>
+			</tr>
 			<?php
-			$jumlah_alat_1 = $nilai_realisasi_bp_1 + $nilai_realisasi_tm_1 + $nilai_realisasi_wl_1 + $nilai_realisasi_solar_1;
-			$jumlah_alat_2 = $nilai_realisasi_bp_2 + $nilai_realisasi_tm_2 + $nilai_realisasi_wl_2 + $nilai_realisasi_solar_2;
-			$jumlah_alat_3 = $nilai_realisasi_bp_3 + $nilai_realisasi_tm_3 + $nilai_realisasi_wl_3 + $nilai_realisasi_solar_3;
-			$jumlah_alat_4 = $nilai_realisasi_bp_4 + $nilai_realisasi_tm_4 + $nilai_realisasi_wl_4 + $nilai_realisasi_solar_4;
-			$jumlah_alat_5 = $nilai_realisasi_bp_5 + $nilai_realisasi_tm_5 + $nilai_realisasi_wl_5 + $nilai_realisasi_solar_5;
-			$jumlah_alat = $total_nilai_bp + $total_nilai_tm + $total_nilai_wl + $total_nilai_solar;
+			$jumlah_alat_1 = $nilai_realisasi_bp_1 + $nilai_realisasi_tm_1 + $nilai_realisasi_wl_1 + $nilai_realisasi_solar_1 + $nilai_realisasi_jasa_1;
+			$jumlah_alat_2 = $nilai_realisasi_bp_2 + $nilai_realisasi_tm_2 + $nilai_realisasi_wl_2 + $nilai_realisasi_solar_2 + $nilai_realisasi_jasa_1;
+			$jumlah_alat_3 = $nilai_realisasi_bp_3 + $nilai_realisasi_tm_3 + $nilai_realisasi_wl_3 + $nilai_realisasi_solar_3 + $nilai_realisasi_jasa_1;
+			$jumlah_alat_4 = $nilai_realisasi_bp_4 + $nilai_realisasi_tm_4 + $nilai_realisasi_wl_4 + $nilai_realisasi_solar_4 + $nilai_realisasi_jasa_1;
+			$jumlah_alat_5 = $nilai_realisasi_bp_5 + $nilai_realisasi_tm_5 + $nilai_realisasi_wl_5 + $nilai_realisasi_solar_5 + $nilai_realisasi_jasa_1;
+			$jumlah_alat = $total_nilai_bp + $total_nilai_tm + $total_nilai_wl + $total_nilai_solar + $total_nilai_jasa;
 			?>
 			<tr class="table-total">
 				<th class="text-right" colspan="4">JUMLAH</th>

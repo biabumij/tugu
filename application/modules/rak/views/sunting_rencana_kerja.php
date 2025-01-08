@@ -366,7 +366,14 @@
                                                 <td colspan="2">
                                                     <input type="text" id="diskonto" name="diskonto" class="form-control text-right" value="<?php echo number_format($rak["diskonto"],0,',','.');?>"  autocomplete="off">
                                                 </td>
-                                            </tr>		
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">3.</td>
+                                                <td>Jasa Angkut</td>
+                                                <td colspan="2">
+                                                    <input type="text" id="jasa" name="jasa" class="form-control text-right" value="<?php echo number_format($rak["jasa"],0,',','.');?>"  autocomplete="off">
+                                                </td>
+                                            </tr>	
                                         </tbody>
                                     </table>
 									<br />
