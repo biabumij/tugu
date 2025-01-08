@@ -442,6 +442,7 @@ class Rak extends Secure_Controller {
 		$price_b =  str_replace('.', '', $this->input->post('price_b'));
 		$overhead =  str_replace('.', '', $this->input->post('overhead'));
 		$diskonto =  str_replace('.', '', $this->input->post('diskonto'));
+		$jasa =  str_replace('.', '', $this->input->post('jasa'));
 
 		$penawaran_id_semen =  $this->input->post('penawaran_id_semen');
 		$penawaran_id_pasir =  $this->input->post('penawaran_id_pasir');
@@ -551,6 +552,7 @@ class Rak extends Secure_Controller {
 			'price_b' => $price_b,
 			'overhead' => $overhead,
 			'diskonto' => $diskonto,
+			'jasa' => $jasa,
 
 			'komposisi_300' => $komposisi_300,
 			'komposisi_300_18' => $komposisi_300_18,
