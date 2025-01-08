@@ -757,9 +757,9 @@
             $('#pajak_id_solar').val(pajak_id);
         });
 
-        $(document).ready(function(){
+        /*$(document).ready(function(){
             $('#overhead').val(<?= $rak['overhead'];?>).trigger('change');
-        });
+        });*/
 
     </script>
 
