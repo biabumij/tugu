@@ -5410,7 +5410,7 @@ class Reports extends CI_Controller {
 
 			$realisasi_5 = $this->db->select('*')
 			->from('rak')
-			->where("tanggal_rencana_kerja between '$date_november24_awal' and '$date_november24_akhir'")
+			->where("tanggal_rencana_kerja between '$date_desember24_awal' and '$date_desember24_akhir'")
 			->get()->row_array();
 			$vol_realisasi_bp_5 = $realisasi_5['vol_realisasi_bp'];
 			$nilai_realisasi_bp_5 = $realisasi_5['nilai_realisasi_bp'];
