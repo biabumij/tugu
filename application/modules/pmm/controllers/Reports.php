@@ -5328,7 +5328,7 @@ class Reports extends CI_Controller {
 			$vol_realisasi_solar_1 = ($total_volume_solar_1 * $realisasi_1['realisasi']) + $vol_realisasi_solar_1;
 			$nilai_realisasi_solar_1 = ($total_nilai_solar_1 * $realisasi_1['realisasi']) + $nilai_realisasi_solar_1;
 
-			$nilai_realisasi_jasa_1 = $realisasi_1['nilai_realisasi_jasa'];
+			$nilai_realisasi_jasa_1 = $realisasi_1['jasa'];
 
 			$realisasi_2 = $this->db->select('*')
 			->from('rak')
@@ -5354,7 +5354,7 @@ class Reports extends CI_Controller {
 			$vol_realisasi_solar_2 = ($total_volume_solar_2 * $realisasi_2['realisasi']) + $vol_realisasi_solar_2;
 			$nilai_realisasi_solar_2 = ($total_nilai_solar_2 * $realisasi_2['realisasi']) + $nilai_realisasi_solar_2;
 
-			$nilai_realisasi_jasa_2 = $realisasi_2['nilai_realisasi_jasa'];
+			$nilai_realisasi_jasa_2 = $realisasi_2['jasa'];
 
 			$realisasi_3 = $this->db->select('*')
 			->from('rak')
@@ -5380,7 +5380,7 @@ class Reports extends CI_Controller {
 			$vol_realisasi_solar_3 = ($total_volume_solar_3 * $realisasi_3['realisasi']) + $vol_realisasi_solar_3;
 			$nilai_realisasi_solar_3 = ($total_nilai_solar_3 * $realisasi_3['realisasi']) + $nilai_realisasi_solar_3;
 
-			$nilai_realisasi_jasa_3 = $realisasi_3['nilai_realisasi_jasa'];
+			$nilai_realisasi_jasa_3 = $realisasi_3['jasa'];
 
 			$realisasi_4 = $this->db->select('*')
 			->from('rak')
@@ -5406,7 +5406,7 @@ class Reports extends CI_Controller {
 			$vol_realisasi_solar_4 = ($total_volume_solar_4 * $realisasi_4['realisasi']) + $vol_realisasi_solar_4;
 			$nilai_realisasi_solar_4 = ($total_nilai_solar_4 * $realisasi_4['realisasi']) + $nilai_realisasi_solar_4;
 
-			$nilai_realisasi_jasa_4 = $realisasi_4['nilai_realisasi_jasa'];
+			$nilai_realisasi_jasa_4 = $realisasi_4['jasa'];
 
 			$realisasi_5 = $this->db->select('*')
 			->from('rak')
@@ -5432,7 +5432,7 @@ class Reports extends CI_Controller {
 			$vol_realisasi_solar_5 = ($total_volume_solar_5 * $realisasi_5['realisasi']) + $vol_realisasi_solar_5;
 			$nilai_realisasi_solar_5 = ($total_nilai_solar_5 * $realisasi_5['realisasi']) + $nilai_realisasi_solar_5;
 
-			$nilai_realisasi_jasa_5 = $realisasi_5['nilai_realisasi_jasa'];
+			$nilai_realisasi_jasa_5 = $realisasi_5['jasa'];
 			?>
 			<tr class="table-baris">
 				<th class="text-center"></th>
@@ -5525,7 +5525,7 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-center"></th>
 				<th class="text-left">Jasa Angkut</th>
-				<th class="text-right"><?php echo number_format($harsat_rap_alat_jasa,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_realisasi_jasa_1,0,',','.');?></th>
