@@ -391,7 +391,7 @@
                                         </table>
                                     </div>
 
-                                    <div class="table-responsive">
+                                    <!--<div class="table-responsive">
                                         <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                             <thead>
                                                 <tr class="text-center">
@@ -509,7 +509,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>    
-                                    </div>
+                                    </div>-->
 
                                     <div class="row">
                                         <div class="col-sm-4">
