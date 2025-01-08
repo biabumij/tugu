@@ -31,6 +31,7 @@
                             <div class="panel-content">
                                 <form method="POST" action="<?php echo site_url('rak/submit_sunting_rencana_kerja');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <input type="hidden" name="id" value="<?= $rak["id"] ?>">
+                                    <div style="padding:5px; font-size:18px; font-weight:bold; background-color:#97C03E;">EDIT RENCANA KERJA</div>
                                     <table class="table table-bordered table-striped">
                                         <tr>
                                             <th width="200px">Tanggal</th>
@@ -370,6 +371,7 @@
                                     </table>
 									<br />
                                     <div class="table-responsive">
+                                        <div style="padding:5px; font-size:18px; font-weight:bold; background-color:#CC0000; color:white;">INPUT REALISASI</div>
                                         <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                             <tr>
                                                 <td style="vertical-align:middle" class="text-right" width="50%">Input Realisasi?</td>
