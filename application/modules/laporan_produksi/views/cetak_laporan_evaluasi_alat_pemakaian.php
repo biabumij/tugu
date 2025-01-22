@@ -267,30 +267,6 @@
 			$pemakaian_nilai_solar = $pemakaian_solar['nilai'];
 			$pemakaian_harsat_solar = ($pemakaian_volume_solar!=0)?$pemakaian_nilai_solar / $pemakaian_volume_solar * 1:0;
 
-			$jasa_angkut = $this->db->select('
-			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
-			->from('pmm_receipt_material prm')
-			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
-			->join('produk p', 'prm.material_id = p.id','left')
-			->join('penerima pn', 'po.supplier_id = pn.id','left')
-			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("p.kategori_alat = '8'")
-			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.harga_satuan')
-			->order_by('pn.nama','asc')
-			->get()->result_array();
-
-			$total_nilai_jasa_angkut = 0;
-			$total_volume_jasa_angkut = 0;
-			foreach ($jasa_angkut as $x){
-				$total_volume_jasa_angkut += $x['volume'];
-				$total_nilai_jasa_angkut += $x['price'];
-			}
-
-			$pemakaian_volume_jasa_angkut = $total_volume_jasa_angkut;
-			$pemakaian_nilai_jasa_angkut = $total_nilai_jasa_angkut;
-			$pemakaian_harsat_jasa_angkut = ($pemakaian_volume_jasa_angkut!=0)?$total_nilai_jasa_angkut / $pemakaian_volume_jasa_angkut * 1:0;
-
 			$penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
 			->from('pmm_productions pp')
 			->join('penerima p', 'pp.client_id = p.id','left')
@@ -394,15 +370,13 @@
 			$total_nilai_evaluasi_transfer_semen = ($total_pemakaian_transfer_semen!=0)?$transfer_semen - $total_pemakaian_transfer_semen * 1:0;
 			$total_vol_evaluasi_bbm_solar = ($pemakaian_volume_solar!=0)?($vol_rap_bbm_solar * $total_volume) - $pemakaian_volume_solar * 1:0;
 			$total_nilai_evaluasi_bbm_solar = ($pemakaian_nilai_solar!=0)?$bbm_solar - $pemakaian_nilai_solar * 1:0;
-			$total_vol_evaluasi_jasa_angkut = ($pemakaian_volume_jasa_angkut!=0)?0 - $pemakaian_volume_jasa_angkut * 1:0;
-			$total_nilai_evaluasi_jasa_angkut = ($pemakaian_nilai_jasa_angkut!=0)?0 - $pemakaian_nilai_jasa_angkut * 1:0;
 
 			$total_vol_rap_alat = $total_volume;
 			$total_nilai_rap_alat = $batching_plant + $truck_mixer + $wheel_loader + $excavator + $transfer_semen + $bbm_solar;
-			$total_vol_realisasi_alat = $pemakaian_vol_batching_plant + $pemakaian_vol_truck_mixer + $pemakaian_vol_wheel_loader + $pemakaian_vol_excavator + $pemakaian_vol_transfer_semen + $pemakaian_volume_solar + $pemakaian_volume_jasa_angkut;
-			$total_nilai_realisasi_alat = $total_pemakaian_batching_plant + $total_pemakaian_truck_mixer + $total_pemakaian_wheel_loader + $total_pemakaian_excavator + $total_nilai_transfer_semen + $pemakaian_nilai_solar + $pemakaian_nilai_jasa_angkut;
-			$total_vol_evaluasi_alat = $total_vol_evaluasi_batching_plant + $total_vol_evaluasi_truck_mixer + $total_vol_evaluasi_wheel_loader + $total_vol_evaluasi_excavator + $total_vol_evaluasi_transfer_semen + $total_vol_evaluasi_bbm_solar + $total_vol_evaluasi_jasa_angkut;
-			$total_nilai_evaluasi_alat = $total_nilai_evaluasi_batching_plant + $total_nilai_evaluasi_truck_mixer + $total_nilai_evaluasi_wheel_loader + $total_nilai_evaluasi_excavator + $total_nilai_evaluasi_transfer_semen + $total_nilai_evaluasi_bbm_solar + $total_nilai_evaluasi_jasa_angkut;
+			$total_vol_realisasi_alat = $pemakaian_vol_batching_plant + $pemakaian_vol_truck_mixer + $pemakaian_vol_wheel_loader + $pemakaian_vol_excavator + $pemakaian_vol_transfer_semen + $pemakaian_volume_solar;
+			$total_nilai_realisasi_alat = $total_pemakaian_batching_plant + $total_pemakaian_truck_mixer + $total_pemakaian_wheel_loader + $total_pemakaian_excavator + $total_nilai_transfer_semen + $pemakaian_nilai_solar;
+			$total_vol_evaluasi_alat = $total_vol_evaluasi_batching_plant + $total_vol_evaluasi_truck_mixer + $total_vol_evaluasi_wheel_loader + $total_vol_evaluasi_excavator + $total_vol_evaluasi_transfer_semen + $total_vol_evaluasi_bbm_solar;
+			$total_nilai_evaluasi_alat = $total_nilai_evaluasi_batching_plant + $total_nilai_evaluasi_truck_mixer + $total_nilai_evaluasi_wheel_loader + $total_nilai_evaluasi_excavator + $total_nilai_evaluasi_transfer_semen + $total_nilai_evaluasi_bbm_solar;
 			?>
 			
 			<tr class="table-judul">
@@ -542,25 +516,6 @@
 				$styleColor = $total_nilai_evaluasi_bbm_solar < 0 ? 'color:red' : 'color:black';
 				?>
 				<th align="right" style="<?php echo $styleColor ?>; border-right:1px solid black;"><?php echo $total_nilai_evaluasi_bbm_solar < 0 ? "(".number_format(-$total_nilai_evaluasi_bbm_solar,0,',','.').")" : number_format($total_nilai_evaluasi_bbm_solar,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center" style="border-left:1px solid black;">7.</th>			
-				<th align="left">Jasa Angkut</th>
-				<th align="center" style="border-right:1px solid black;">Liter</th>
-				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" style="border-right:1px solid black;"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right"><?php echo number_format($pemakaian_volume_jasa_angkut,2,',','.');?></th>
-				<th align="right"><?php echo number_format($pemakaian_harsat_jasa_angkut,0,',','.');?></th>
-				<th align="right" style="border-right:1px solid black;"><?php echo number_format($pemakaian_nilai_jasa_angkut,0,',','.');?></th>
-				<?php
-				$styleColor = $total_vol_evaluasi_jasa_angkut < 0 ? 'color:red' : 'color:black';
-				?>
-				<th align="right" style="<?php echo $styleColor ?>"><?php echo $total_vol_evaluasi_jasa_angkut < 0 ? "(".number_format(-$total_vol_evaluasi_jasa_angkut,2,',','.').")" : number_format($total_vol_evaluasi_jasa_angkut,2,',','.');?></th>
-				<?php
-				$styleColor = $total_nilai_evaluasi_jasa_angkut < 0 ? 'color:red' : 'color:black';
-				?>
-				<th align="right" style="<?php echo $styleColor ?>; border-right:1px solid black;"><?php echo $total_nilai_evaluasi_jasa_angkut < 0 ? "(".number_format(-$total_nilai_evaluasi_jasa_angkut,0,',','.').")" : number_format($total_nilai_evaluasi_jasa_angkut,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">		
 				<th align="right" colspan="3" style="border-left:1px solid black; border-bottom:1px solid black; border-right:1px solid black;">TOTAL</th>
