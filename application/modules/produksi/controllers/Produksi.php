@@ -229,7 +229,7 @@ class Produksi extends Secure_Controller {
 		$last_opname = date('Y-m-d', strtotime($last_opname['date']));
 
         $this->db->select('*');
-		//$this->db->where("date > '$last_opname'");
+		$this->db->where("date > '$last_opname'");
 		$this->db->order_by('date','desc');
 		$query = $this->db->get('pemakaian_bahan');
 		
