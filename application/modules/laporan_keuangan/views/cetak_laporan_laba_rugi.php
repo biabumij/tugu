@@ -541,28 +541,38 @@
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center" >
-								Disetujui Oleh
+								Dibuat Oleh
 							</td>
 							<td align="center">
-								Dibuat Oleh
+								Diperiksa Oleh
+							</td>
+							<td align="center">
+								Disetujui Oleh
 							</td>
 						</tr>
 						<tr class="">
 							<td align="center" height="55px">
-							
+								<img src="uploads/ttd_tri.png" width="70px">
 							</td>
 							<td align="center">
-
+								<img src="uploads/ttd_erika.png" width="70px">
+							</td>
+							<td align="center">
+								<img src="uploads/ttd_deddy.png" width="70px">
 							</td>
 						</tr>
 						<tr>
 							<td align="center">
-								<b><u>Deddy Sarwobiso</u><br />
-								Direktur Utama</b>
-							</td>
-							<td align="center">
 								<b><u>Tri Wahyu Rahadi</u><br />
 								Ka. Plant</b>
+							</td>
+							<td align="center">
+								<b><u>Erika Sinaga</u><br />
+								Dir. Keuangan & SDM</b>
+							</td>
+							<td align="center">
+								<b><u>Deddy Sarwobiso</u><br />
+								Direktur Utama</b>
 							</td>
 						</tr>
 					</table>

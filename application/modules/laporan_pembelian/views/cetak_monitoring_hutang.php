@@ -218,12 +218,12 @@
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
-					<table width="100%" border="0" cellpadding="3" style="font-size:5px;">
+					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center" >
 								Dibuat Oleh
 							</td>
-							<td align="center" >
+							<td align="center">
 								Diperiksa Oleh
 							</td>
 							<td align="center">
@@ -231,27 +231,27 @@
 							</td>
 						</tr>
 						<tr class="">
-							<td align="center" height="35px">
-								
+							<td align="center" height="55px">
+								<img src="uploads/ttd_rifka.png" width="70px">
 							</td>
 							<td align="center">
-								
+								<img src="uploads/ttd_tri.png" width="70px">
 							</td>
 							<td align="center">
-								
+								<img src="uploads/ttd_tri.png" width="70px">
 							</td>
 						</tr>
 						<tr>
-							<td align="center">
-							<b><u>Iva Widya Kumala</u><br />
-								Keuangan Proyek</b>
+						<td align="center">
+								<b><u>Rifka Dian Bethary </u><br />
+								Keuangan</b>
 							</td>
 							<td align="center">
-							<b><u>Rifka Dian Bethary</u><br />
-								Keuangan Proyek</b>
+								<b><u>Tri Wahyu Rahadi </u><br />
+								Ka. Plant</b>
 							</td>
 							<td align="center">
-								<b><u>Tri Wahyu Rahadi</u><br />
+								<b><u>Tri Wahyu Rahadi </u><br />
 								Ka. Plant</b>
 							</td>
 						</tr>

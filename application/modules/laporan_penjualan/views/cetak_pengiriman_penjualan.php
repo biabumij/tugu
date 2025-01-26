@@ -171,36 +171,55 @@
             	</th>
             </tr>
 		</table>
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-		<table width="98%">
+		<table width="98%" border="0" cellpadding="30">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
-							<td align="center">
-								Diperiksa & Disetujui Oleh 
-							</td>
 							<td align="center" >
 								Dibuat Oleh
-							</td>	
+							</td>
+							<td align="center" >
+								Diperiksa Oleh
+							</td>
+							<td align="center">
+								Diperiksa Oleh
+							</td>
+							<td align="center">
+								Disetujui Oleh
+							</td>
 						</tr>
-						<tr>
+						<tr class="">
 							<td align="center" height="55px">
 								
 							</td>
+							<td align="center" height="55px">
+								<img src="uploads/ttd_rifka.png" width="70px">
+							</td>
 							<td align="center">
-								
+								<img src="uploads/ttd_satria.png" width="70px">
+							</td>
+							<td align="center">
+								<img src="uploads/ttd_tri.png" width="70px">
 							</td>
 						</tr>
 						<tr>
 							<td align="center">
-								<b><u>Tri Wahyu Rahadi</u><br />
-								Ka. Plant</b>
+								<b><u>Iva Widya Kumala</u><br />
+								Logistik</b>
 							</td>
 							<td align="center">
-								<b><u>Vicky Irwana Yudha</u><br />
-								Logistik</b>
+								<b><u>Rifka Dian Bethary </u><br />
+								Keuangan</b>
+							</td>
+							<td align="center">
+								<b><u>Satria Widura Drana Wisesa</u><br />
+								Produksi</b>
+							</td>
+							<td align="center">
+								<b><u>Tri Wahyu Rahadi </u><br />
+								Ka. Plant</b>
 							</td>
 						</tr>
 					</table>
