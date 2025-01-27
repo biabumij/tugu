@@ -99,10 +99,10 @@
 				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />NO. INV</th>
 				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />TGL. INV</th>
 				<th width="17%" align="center" colspan="3" class="table-border-atas-only">TAGIHAN</th>
-				<th width="17%" align="center" colspan="4" class="table-border-atas-only">PENERIMAAN</th>
+				<th width="18%" align="center" colspan="4" class="table-border-atas-only">PENERIMAAN</th>
 				<th width="17%" align="center" colspan="3" class="table-border-atas-only">SISA PIUTANG</th>
 				<th width="8%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />STATUS</th>
-				<th width="8%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />UMUR</th>
+				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />UMUR</th>
 			</tr>
 			<tr class="table-judul">
 				<th align="center" class="table-border-bawah-only">KETERANGAN</th>
