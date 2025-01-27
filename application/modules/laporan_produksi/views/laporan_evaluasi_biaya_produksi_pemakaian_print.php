@@ -685,17 +685,17 @@
 							</td>
 						</tr>
 						<tr class="">
-							<td align="center" height="55px">
-								<img src="uploads/ttd_satria.png" width="70px">
-							</td>
-							<td align="center" height="55px">
-								<img src="uploads/ttd_tri.png" width="70px">
+							<td align="center" height="50px">
+								<img src="uploads/ttd_satria.png" width="50px">
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_erika.png" width="70px">
+								<img src="uploads/ttd_tri.png" width="50px">
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_deddy.png" width="70px">
+								<img src="uploads/ttd_erika.png" width="50px">
+							</td>
+							<td align="center">
+								<img src="uploads/ttd_deddy.png" width="50px">
 							</td>
 						</tr>
 						<tr>

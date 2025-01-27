@@ -202,17 +202,17 @@
 							</td>
 						</tr>
 						<tr class="">
-							<td align="center" height="55px">
-								<img src="uploads/ttd_iva.png" width="70px">
-							</td>
-							<td align="center" height="55px">
-								<img src="uploads/ttd_rifka.png" width="70px">
+							<td align="center" height="50px">
+								<img src="uploads/ttd_iva.png" width="50px">
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_satria.png" width="70px">
+								<img src="uploads/ttd_rifka.png" width="50px">
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_tri.png" width="70px">
+								<img src="uploads/ttd_satria.png" width="50px">
+							</td>
+							<td align="center">
+								<img src="uploads/ttd_tri.png" width="50px">
 							</td>
 						</tr>
 						<tr>

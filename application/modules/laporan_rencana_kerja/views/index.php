@@ -98,16 +98,16 @@
 													<a href="laporan_rencana_kerja">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
-													<!--<div class="row">
+													<div class="row">
 														<form action="<?php echo site_url('laporan/cetak_rencana_kerja');?>" target="_blank">
-															<div class="col-sm-3">
+															<!--<div class="col-sm-3">
 																<input type="text" id="filter_date_rencana_kerja" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>
+															</div>-->
 															<div class="col-sm-3">
 																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;">PRINT</button>
 															</div>
 														</form>
-													</div>-->
+													</div>
 													<br />
 													<div id="wait-rencana-kerja" style=" text-align: center; align-content: center; display: none;">	
 														<div>Mohon Tunggu</div>
