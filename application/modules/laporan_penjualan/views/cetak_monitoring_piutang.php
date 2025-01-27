@@ -228,14 +228,14 @@
 							</td>
 						</tr>
 						<tr class="">
-							<td align="center" height="50px">
-								<img src="uploads/ttd_rifka.png" width="50px">
+							<td align="center" height="30px">
+								<img src="uploads/ttd_rifka.png" width="30px">
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_tri.png" width="50px">
+								<img src="uploads/ttd_tri.png" width="30px">
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_tri.png" width="50px">
+								<img src="uploads/ttd_tri.png" width="30px">
 							</td>
 						</tr>
 						<tr>
